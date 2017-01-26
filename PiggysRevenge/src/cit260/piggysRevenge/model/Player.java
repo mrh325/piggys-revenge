@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.Objects;
 /**
  *
- * @author hales AND bolton
+ * @author hales AND bolton AND powell
  */
 public class Player implements Serializable{
     private String name;
