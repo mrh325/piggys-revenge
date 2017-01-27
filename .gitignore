@@ -38,3 +38,6 @@ source
 .Trashes
 ehthumbs.db
 Thumbs.db
+Icon^M^M
+Icon[^M]
+Icon^M
