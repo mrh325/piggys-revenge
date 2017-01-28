@@ -56,14 +56,14 @@ public class PiggysRevenge {
     }
     
     public static void zacPowellAssignment(){
-        MiniGame miniGame = new MiniGame();
+        MiniGame playMiniGame = new MiniGame();
         
-        miniGame.setKey1order(1);
-        miniGame.setKey2order(2);
-        miniGame.setKey3order(3);
-        miniGame.setKey4order(4);
+        playMiniGame.setKey1order(1);
+        playMiniGame.setKey2order(2);
+        playMiniGame.setKey3order(3);
+        playMiniGame.setKey4order(4);
         
-        System.out.println(miniGame.toString());
+        System.out.println(playMiniGame.toString());
         
         Game playGame = new Game();
         
