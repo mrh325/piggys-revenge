@@ -6,9 +6,12 @@
 package piggysrevenge;
 
 import cit260.piggysRevenge.model.Backpack;
+import cit260.piggysRevenge.model.Game;
 import cit260.piggysRevenge.model.Player;
 import cit260.piggysRevenge.model.Item;
 import cit260.piggysRevenge.model.Hat;
+import cit260.piggysRevenge.model.MiniGame;
+import cit260.piggysRevenge.model.Wolf;
 /**
  *
  * @author hales
@@ -51,13 +54,38 @@ public class PiggysRevenge {
         
         System.out.println(myHat.toString());
     }
+    
+    public static void zacPowellAssignment(){
+        MiniGame miniGame = new MiniGame();
+        
+        miniGame.setKey1order(1);
+        miniGame.setKey2order(2);
+        miniGame.setKey3order(3);
+        miniGame.setKey4order(4);
+        
+        System.out.println(miniGame.toString());
+        
+        Game playGame = new Game();
+        
+        playGame.setTurns(0);
+        playGame.setScore(0);
+        
+        System.out.println(playGame.toString());
+        
+        Wolf myWolf = new Wolf();
+        
+        
+        myWolf.setName("Zeke");
+        
+        System.out.println(myWolf.toString());
+    }
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         teamAssignment();
         nateBoltonAssignment();
-        
+        zacPowellAssignment();
     }
     
 }
