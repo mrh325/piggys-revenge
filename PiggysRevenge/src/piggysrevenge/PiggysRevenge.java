@@ -12,6 +12,10 @@ import cit260.piggysRevenge.model.Item;
 import cit260.piggysRevenge.model.Hat;
 import cit260.piggysRevenge.model.MiniGame;
 import cit260.piggysRevenge.model.Wolf;
+import cit260.piggysRevenge.model.Location;
+import cit260.piggysRevenge.model.Map;
+import cit260.piggysRevenge.model.Scene;
+
 /**
  *
  * @author hales
@@ -79,6 +83,39 @@ public class PiggysRevenge {
         
         System.out.println(myWolf.toString());
     }
+    
+    public static void michaelHalesAssignment() {
+        
+        // Map Class
+        Map gameMap = new Map();
+        
+        gameMap.setRowCount(5);
+        gameMap.setColumnCount(5);
+        gameMap.setCurrentPlayerLocation("B2");
+        gameMap.setCurrentWolfLocation("C4");
+        
+        System.out.println(gameMap.toString());
+        
+        // Location class
+        Location currentLocation = new Location();
+        
+        currentLocation.setColumn("D");
+        currentLocation.setRow("3");
+        currentLocation.setVisited(true);
+        
+        System.out.println(currentLocation.toString());
+        
+        
+        // Scene class
+        
+        Scene currentScene = new Scene();
+        
+        currentScene.setName("Man Cave");
+        currentScene.setDescription("Best room in the house");
+        currentScene.setContainsWolf(false);
+        
+        System.out.println(currentScene.toString());
+    }
     /**
      * @param args the command line arguments
      */
@@ -86,6 +123,7 @@ public class PiggysRevenge {
         teamAssignment();
         nateBoltonAssignment();
         zacPowellAssignment();
+        michaelHalesAssignment();
     }
     
 }
