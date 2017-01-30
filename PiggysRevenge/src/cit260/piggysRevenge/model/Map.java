@@ -17,6 +17,9 @@ public class Map implements Serializable {
     private Integer columnCount;
     private String currentPlayerLocation;
     private String currentWolfLocation;
+    private Integer currentRow;
+    private Integer currentColumn;
+    private Scene currentScene;
 
     public Map() {
     }
@@ -53,19 +56,41 @@ public class Map implements Serializable {
         this.currentWolfLocation = currentWolfLocation;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + Objects.hashCode(this.rowCount);
-        hash = 37 * hash + Objects.hashCode(this.columnCount);
-        hash = 37 * hash + Objects.hashCode(this.currentPlayerLocation);
-        hash = 37 * hash + Objects.hashCode(this.currentWolfLocation);
-        return hash;
+    public Integer getCurrentRow() {
+        return currentRow;
+    }
+
+    public void setCurrentRow(Integer currentRow) {
+        this.currentRow = currentRow;
+    }
+
+    public Integer getCurrentColumn() {
+        return currentColumn;
+    }
+
+    public void setCurrentColumn(Integer currentColumn) {
+        this.currentColumn = currentColumn;
+    }
+
+    public Scene getCurrentScene() {
+        return currentScene;
+    }
+
+    public void setCurrentScene(Scene currentScene) {
+        this.currentScene = currentScene;
     }
 
     @Override
-    public String toString() {
-        return "Map{" + "rowCount=" + rowCount + ", columnCount=" + columnCount + ", currentPlayerLocation=" + currentPlayerLocation + ", currentWolfLocation=" + currentWolfLocation + '}';
+    public int hashCode() {
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.rowCount);
+        hash = 97 * hash + Objects.hashCode(this.columnCount);
+        hash = 97 * hash + Objects.hashCode(this.currentPlayerLocation);
+        hash = 97 * hash + Objects.hashCode(this.currentWolfLocation);
+        hash = 97 * hash + Objects.hashCode(this.currentRow);
+        hash = 97 * hash + Objects.hashCode(this.currentColumn);
+        hash = 97 * hash + Objects.hashCode(this.currentScene);
+        return hash;
     }
 
     @Override
@@ -80,21 +105,35 @@ public class Map implements Serializable {
             return false;
         }
         final Map other = (Map) obj;
-        if (!Objects.equals(this.rowCount, other.rowCount)) {
-            return false;
-        }
-        if (!Objects.equals(this.columnCount, other.columnCount)) {
-            return false;
-        }
         if (!Objects.equals(this.currentPlayerLocation, other.currentPlayerLocation)) {
             return false;
         }
         if (!Objects.equals(this.currentWolfLocation, other.currentWolfLocation)) {
             return false;
         }
+        if (!Objects.equals(this.rowCount, other.rowCount)) {
+            return false;
+        }
+        if (!Objects.equals(this.columnCount, other.columnCount)) {
+            return false;
+        }
+        if (!Objects.equals(this.currentRow, other.currentRow)) {
+            return false;
+        }
+        if (!Objects.equals(this.currentColumn, other.currentColumn)) {
+            return false;
+        }
+        if (!Objects.equals(this.currentScene, other.currentScene)) {
+            return false;
+        }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Map{" + "rowCount=" + rowCount + ", columnCount=" + columnCount + ", currentPlayerLocation=" + currentPlayerLocation + ", currentWolfLocation=" + currentWolfLocation + ", currentRow=" + currentRow + ", currentColumn=" + currentColumn + ", currentScene=" + currentScene + '}';
     }
     
     
-    
+
 }
