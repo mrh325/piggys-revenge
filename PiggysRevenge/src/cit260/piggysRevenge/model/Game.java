@@ -6,6 +6,7 @@
 package cit260.piggysRevenge.model;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 /**
  *
@@ -13,6 +14,8 @@ import java.io.Serializable;
  */
 public class Game implements Serializable{
     
+    private String map;
+    private String player;
     private int turns;
     private double score;
 
@@ -20,6 +23,22 @@ public class Game implements Serializable{
     }
     
     
+
+    public String getMap() {
+        return map;
+    }
+
+    public void setMap(String map) {
+        this.map = map;
+    }
+
+    public String getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(String player) {
+        this.player = player;
+    }
 
     public int getTurns() {
         return turns;
@@ -39,19 +58,22 @@ public class Game implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 37 * hash + this.turns;
-        hash = 37 * hash + (int) (Double.doubleToLongBits(this.score) ^ (Double.doubleToLongBits(this.score) >>> 32));
+        int hash = 5;
+        hash = 53 * hash + Objects.hashCode(this.map);
+        hash = 53 * hash + Objects.hashCode(this.player);
+        hash = 53 * hash + this.turns;
+        hash = 53 * hash + (int) (Double.doubleToLongBits(this.score) ^ (Double.doubleToLongBits(this.score) >>> 32));
         return hash;
     }
 
     @Override
     public String toString() {
-        return "Game{" + "turns=" + turns + ", score=" + score + '}';
+        return "Game{" + "map=" + map + ", player=" + player + ", turns=" + turns + ", score=" + score + '}';
     }
-    
-    
 
+    
+    
+    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -70,7 +92,17 @@ public class Game implements Serializable{
         if (Double.doubleToLongBits(this.score) != Double.doubleToLongBits(other.score)) {
             return false;
         }
+        if (!Objects.equals(this.map, other.map)) {
+            return false;
+        }
+        if (!Objects.equals(this.player, other.player)) {
+            return false;
+        }
         return true;
+    }
+
+    public void setPlayer() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     

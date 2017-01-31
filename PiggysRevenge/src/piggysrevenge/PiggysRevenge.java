@@ -73,6 +73,8 @@ public class PiggysRevenge {
         
         playGame.setTurns(0);
         playGame.setScore(0);
+        playGame.setMap("myMap");
+        playGame.setPlayer("Player");
         
         System.out.println(playGame.toString());
         
