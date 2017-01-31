@@ -86,24 +86,7 @@ public class PiggysRevenge {
     
     public static void michaelHalesAssignment() {
         
-        // Map Class
-        Map gameMap = new Map();
-        
-        gameMap.setRowCount(5);
-        gameMap.setColumnCount(5);
-        gameMap.setCurrentPlayerLocation("B2");
-        gameMap.setCurrentWolfLocation("C4");
-        
-        System.out.println(gameMap.toString());
-        
-        // Location class
-        Location currentLocation = new Location();
-        
-        currentLocation.setColumn("D");
-        currentLocation.setRow("3");
-        currentLocation.setVisited(true);
-        
-        System.out.println(currentLocation.toString());
+
         
         
         // Scene class
@@ -115,6 +98,28 @@ public class PiggysRevenge {
         currentScene.setContainsWolf(false);
         
         System.out.println(currentScene.toString());
+        
+                // Map Class
+        Map gameMap = new Map();
+        
+        gameMap.setRowCount(5);
+        gameMap.setColumnCount(5);
+        gameMap.setCurrentPlayerLocation("B2");
+        gameMap.setCurrentWolfLocation("C4");
+        gameMap.setCurrentRow(3);
+        gameMap.setCurrentColumn(2);
+        gameMap.setCurrentScene(currentScene);
+        
+        System.out.println(gameMap.toString());
+        
+        // Location class
+        Location currentLocation = new Location();
+        
+        currentLocation.setColumn("D");
+        currentLocation.setRow("3");
+        currentLocation.setVisited(true);
+        
+        System.out.println(currentLocation.toString());
     }
     /**
      * @param args the command line arguments
