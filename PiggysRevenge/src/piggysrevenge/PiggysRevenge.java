@@ -88,9 +88,6 @@ public class PiggysRevenge {
     
     public static void michaelHalesAssignment() {
         
-
-        
-        
         // Scene class
         
         Scene currentScene = new Scene();
@@ -101,7 +98,8 @@ public class PiggysRevenge {
         
         System.out.println(currentScene.toString());
         
-                // Map Class
+        // Map Class
+        
         Map gameMap = new Map();
         
         gameMap.setRowCount(5);
@@ -115,6 +113,7 @@ public class PiggysRevenge {
         System.out.println(gameMap.toString());
         
         // Location class
+        
         Location currentLocation = new Location();
         
         currentLocation.setColumn("D");
