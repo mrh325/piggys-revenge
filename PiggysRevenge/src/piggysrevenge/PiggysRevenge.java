@@ -15,7 +15,7 @@ import cit260.piggysRevenge.model.Wolf;
 import cit260.piggysRevenge.model.Location;
 import cit260.piggysRevenge.model.Map;
 import cit260.piggysRevenge.model.Scene;
-
+//import cit260.piggysRevenge.control.MiniGameControl;
 /**
  *
  * @author hales
@@ -57,17 +57,22 @@ public class PiggysRevenge {
         myHat.setTargetScene("Empty Scene");
         
         System.out.println(myHat.toString());
+        
+        //test miniGameControl functions here
+        //MiniGameControl myMiniGameControl = new MiniGameControl();
+        //String myString = myMiniGameControl.generateComboOrder("1234");
+        //System.out.println(myString);
     }
     
     public static void zacPowellAssignment(){
-        MiniGame playMiniGame = new MiniGame();
+        //MiniGame playMiniGame = new MiniGame();
         
-        playMiniGame.setKey1order(1);
-        playMiniGame.setKey2order(2);
-        playMiniGame.setKey3order(3);
-        playMiniGame.setKey4order(4);
+        //playMiniGame.setKey1order(1);
+        //playMiniGame.setKey2order(2);
+        //playMiniGame.setKey3order(3);
+        //playMiniGame.setKey4order(4);
         
-        System.out.println(playMiniGame.toString());
+        //System.out.println(playMiniGame.toString());
         
         Game playGame = new Game();
         
