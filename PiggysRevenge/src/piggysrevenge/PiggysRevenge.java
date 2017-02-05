@@ -15,7 +15,7 @@ import cit260.piggysRevenge.model.Wolf;
 import cit260.piggysRevenge.model.Location;
 import cit260.piggysRevenge.model.Map;
 import cit260.piggysRevenge.model.Scene;
-//import cit260.piggysRevenge.control.MiniGameControl;
+import cit260.piggysRevenge.control.*;
 /**
  *
  * @author hales
@@ -23,6 +23,8 @@ import cit260.piggysRevenge.model.Scene;
 public class PiggysRevenge {
 
     public static void teamAssignment() {
+        System.out.println("\nTEAM SECTION");
+        System.out.println("*********************\n");
         Player playerOne = new Player();
         
         playerOne.setName("Bob");
@@ -36,6 +38,8 @@ public class PiggysRevenge {
     }
     
     public static void nateBoltonAssignment() {
+        System.out.println("\nNATE SECTION");
+        System.out.println("*********************\n");
         Backpack myBackpack = new Backpack();
         
         myBackpack.setName("Green Backpack");
@@ -59,20 +63,22 @@ public class PiggysRevenge {
         System.out.println(myHat.toString());
         
         //test miniGameControl functions here
-        //MiniGameControl myMiniGameControl = new MiniGameControl();
-        //String myString = myMiniGameControl.generateComboOrder("1234");
-        //System.out.println(myString);
+        String myString = MiniGameControl.generateComboOrder("1234",1);
+        System.out.println(myString);
+
+        System.out.println(MiniGameControl.checkKeyOrder("54231", "12345"));
+        
+        //System.out.println("\n*********************");
     }
     
     public static void zacPowellAssignment(){
-        //MiniGame playMiniGame = new MiniGame();
+        System.out.println("\nZAC SECTION");
+        System.out.println("*********************\n");
+        MiniGame playMiniGame = new MiniGame();
         
-        //playMiniGame.setKey1order(1);
-        //playMiniGame.setKey2order(2);
-        //playMiniGame.setKey3order(3);
-        //playMiniGame.setKey4order(4);
+        playMiniGame.setComboOrder("1234");
         
-        //System.out.println(playMiniGame.toString());
+        System.out.println(playMiniGame.toString());
         
         Game playGame = new Game();
         
@@ -89,10 +95,12 @@ public class PiggysRevenge {
         myWolf.setName("Zeke");
         
         System.out.println(myWolf.toString());
+        //System.out.println("\n*********************");
     }
     
     public static void michaelHalesAssignment() {
-        
+        System.out.println("\nMICHAEL SECTION");
+        System.out.println("*********************\n");
         // Scene class
         
         Scene currentScene = new Scene();
@@ -126,6 +134,7 @@ public class PiggysRevenge {
         currentLocation.setVisited(true);
         
         System.out.println(currentLocation.toString());
+        //System.out.println("\n*********************");
     }
     /**
      * @param args the command line arguments

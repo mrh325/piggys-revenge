@@ -13,7 +13,7 @@ import java.util.Random;
  */
 public class MiniGameControl {
 /**    
-    
+//my python prototype    
 def checkKeyOrder(playerOrder, keyOrder):
     #if they aren't the same length...
     if len(playerOrder) != len(keyOrder):
@@ -36,8 +36,7 @@ def checkKeyOrder(playerOrder, keyOrder):
 **/
     
     
-    
-    public String generateComboOrder(String inputKeyOrder) {
+    public static String generateComboOrder(String inputKeyOrder) {
         
         //idea copied from:  http://stackoverflow.com/questions/20588736/how-can-i-shuffle-the-letters-of-a-word
         Random rand = new Random();
@@ -56,7 +55,7 @@ def checkKeyOrder(playerOrder, keyOrder):
         return new String(newCharArray);
     }
     
-    public String generateComboOrder(String inputKeyOrder, long randSeed) {
+    public static String generateComboOrder(String inputKeyOrder, long randSeed) {
         
         //idea copied from:  http://stackoverflow.com/questions/20588736/how-can-i-shuffle-the-letters-of-a-word
         Random rand = new Random(randSeed);
@@ -75,7 +74,7 @@ def checkKeyOrder(playerOrder, keyOrder):
         return new String(newCharArray);
     }
     
-    public int checkKeyOrder(String playerOrder, String systemOrder) {
+    public static int checkKeyOrder(String playerOrder, String systemOrder) {
         int playerOrderLen = playerOrder.length();
         int systemOrderLen = systemOrder.length();
         //if inputs are not the same length, return error code -1
@@ -83,6 +82,7 @@ def checkKeyOrder(playerOrder, keyOrder):
             return -1;
         }
         //if both inputs do not contain the same count of each character, return -2
+        // for each letter in playerOrder, count the number of occurences in both Strings and compare
         for ( int i=0; i < playerOrderLen; i++ ) {
             int count1 = 0;
             char testChar = playerOrder.charAt(i);
@@ -103,7 +103,19 @@ def checkKeyOrder(playerOrder, keyOrder):
                 return -2;
             }
         }
+        //if they equal, return playeOrder length
+        if (playerOrder == systemOrder) {
+            return playerOrderLen;
+        } else {
+        //else for each char in playerOrder, if the char at the same index is the same, add to sum
+        int sum = 0;
+        for ( int i=0; i < playerOrderLen; i++ ) {
+            if (playerOrder.charAt(i) == systemOrder.charAt(i)) {
+                sum++;
+            }
+        }
+        return sum;
         
-        return 0;
+        }
     }
 }
