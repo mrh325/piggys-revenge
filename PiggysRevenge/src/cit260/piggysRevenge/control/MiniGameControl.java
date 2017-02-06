@@ -11,30 +11,7 @@ import java.util.Random;
  *
  * @author natebolton
  */
-public class MiniGameControl {
-/**    
-//my python prototype    
-def checkKeyOrder(playerOrder, keyOrder):
-    #if they aren't the same length...
-    if len(playerOrder) != len(keyOrder):
-        return -1
-    #check to be sure they both contain the same number of each character
-    for i in range(len(playerOrder)):
-        if playerOrder.count(playerOrder[i]) != keyOrder.count(playerOrder[i]):
-            return -2
-    #if they're the same...
-    if playerOrder == keyOrder:
-        #return the length of the string
-        return len(playerOrder)
-    else:
-        #count how many are in the correct position by comparing each index of each string to each other and return the count
-        tempSum = 0
-        for i in range(len(playerOrder)):
-            if playerOrder[i] == keyOrder[i]:
-                tempSum += 1
-        return tempSum
-**/
-    
+public class MiniGameControl {    
     
     public static String generateComboOrder(String inputKeyOrder) {
         
@@ -77,9 +54,13 @@ def checkKeyOrder(playerOrder, keyOrder):
     public static int checkKeyOrder(String playerOrder, String systemOrder) {
         int playerOrderLen = playerOrder.length();
         int systemOrderLen = systemOrder.length();
+        //if empty stings, return -1
+        if ( playerOrderLen == 0 || systemOrderLen == 0 ) {
+            return -1;
+        }
         //if inputs are not the same length, return error code -1
         if ( playerOrderLen != systemOrderLen ) {
-            return -1;
+            return -2;
         }
         //if both inputs do not contain the same count of each character, return -2
         // for each letter in playerOrder, count the number of occurences in both Strings and compare
@@ -100,22 +81,22 @@ def checkKeyOrder(playerOrder, keyOrder):
             }            
             
             if (count1 != count2) {
-                return -2;
+                return -3;
             }
         }
         //if they equal, return playeOrder length
-        if (playerOrder == systemOrder) {
+        if (playerOrder.equals(systemOrder)) {
             return playerOrderLen;
         } else {
-        //else for each char in playerOrder, if the char at the same index is the same, add to sum
-        int sum = 0;
-        for ( int i=0; i < playerOrderLen; i++ ) {
-            if (playerOrder.charAt(i) == systemOrder.charAt(i)) {
-                sum++;
+            //else for each char in playerOrder, if the char at the same index is the same, add to sum
+            int sum = 0;
+            for ( int i=0; i < playerOrderLen; i++ ) {
+                if (playerOrder.charAt(i) == systemOrder.charAt(i)) {
+                    sum++;
+                }
             }
-        }
-        return sum;
-        
+            return sum;
+            
         }
     }
 }
