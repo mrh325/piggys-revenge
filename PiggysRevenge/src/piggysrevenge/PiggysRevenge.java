@@ -68,7 +68,9 @@ public class PiggysRevenge {
 
         System.out.println(MiniGameControl.checkKeyOrder("54231", "12345"));
         
-        //System.out.println("\n*********************");
+        //quick test prob function
+        System.out.println(MapControl.calculateEventProbability(16, 25, 3, 5));
+        
     }
     
     public static void zacPowellAssignment(){
@@ -95,7 +97,7 @@ public class PiggysRevenge {
         myWolf.setName("Zeke");
         
         System.out.println(myWolf.toString());
-        //System.out.println("\n*********************");
+        
     }
     
     public static void michaelHalesAssignment() {
@@ -134,7 +136,7 @@ public class PiggysRevenge {
         currentLocation.setVisited(true);
         
         System.out.println(currentLocation.toString());
-        //System.out.println("\n*********************");
+        
     }
     /**
      * @param args the command line arguments
