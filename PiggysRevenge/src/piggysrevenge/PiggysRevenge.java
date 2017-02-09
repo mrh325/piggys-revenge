@@ -35,6 +35,8 @@ public class PiggysRevenge {
         
         String playerInfo = playerOne.toString();
         System.out.println(playerInfo);
+        
+        System.out.println(GameControl.calcScore(250,35,true,false));
     }
     
     public static void nateBoltonAssignment() {
