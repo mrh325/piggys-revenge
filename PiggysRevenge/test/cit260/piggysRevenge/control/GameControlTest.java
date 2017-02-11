@@ -87,5 +87,122 @@ public class GameControlTest {
         assertEquals(expResult, result);
         
     }
+
+    /**
+     * Test of calcNumberofBricks method, of class GameControl.
+     */
+    @Test
+    public void testCalcNumberofBricks() {
+        System.out.println("Test 1 - Length - Lower Boundary");
+        int length = -3;
+        int width = 6;
+        int height = 10;
+        int numberOfStories = 3;
+        int expResult;
+        expResult = -11;
+        int result = GameControl.calcNumberofBricks(length, width, height, numberOfStories);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        // fail("The test case is a prototype.");
+        
+        System.out.println("Test 2 - Length - Upper Boundary");
+        length = 252;
+        width = 6;
+        height = 10;
+        numberOfStories = 2;
+        expResult = -12;
+        result = GameControl.calcNumberofBricks(length, width, height, numberOfStories);
+        assertEquals(expResult, result);
+
+        System.out.println("Test 3 - Width - Lower Boundary");
+        length = 7;
+        width = -5;
+        height = 9;
+        numberOfStories = 2;
+        expResult = -21;
+        result = GameControl.calcNumberofBricks(length, width, height, numberOfStories);
+        assertEquals(expResult, result);
+        
+        System.out.println("Test 4 - Width - Upper Boundary");
+        length = 7;
+        width = 2323;
+        height = 8;
+        numberOfStories = 1;
+        expResult = -22;
+        result = GameControl.calcNumberofBricks(length, width, height, numberOfStories);
+        assertEquals(expResult, result);
+        
+        System.out.println("Test 5 - Height - Lower Boundary");
+        length = 13;
+        width = 15;
+        height = 1;
+        numberOfStories = 3;
+        expResult = -31;
+        result = GameControl.calcNumberofBricks(length, width, height, numberOfStories);
+        assertEquals(expResult, result);
+        
+        System.out.println("Test 1 - Height - Upper Boundary");
+        length = 9;
+        width = 11;
+        height = 15;
+        numberOfStories = 2;
+        expResult = -32;
+        result = GameControl.calcNumberofBricks(length, width, height, numberOfStories);
+        assertEquals(expResult, result);
+        
+        System.out.println("Test 1 - numberOfStories - Lower Boundary");
+        length = 14;
+        width = 15;
+        height = 6;
+        numberOfStories = 0;
+        expResult = -41;
+        result = GameControl.calcNumberofBricks(length, width, height, numberOfStories);
+        assertEquals(expResult, result);
+        
+        System.out.println("Test 1 - numberOfStories - Upper Boundary");
+        length = 6;
+        width = 18;
+        height = 6;
+        numberOfStories = 8;
+        expResult = -42;
+        result = GameControl.calcNumberofBricks(length, width, height, numberOfStories);
+        assertEquals(expResult, result);
+        
+        System.out.println("Valid 1 - Length Boundary");
+        length = 20;
+        width = 8;
+        height = 8;
+        numberOfStories = 2;
+        expResult = 374;
+        result = GameControl.calcNumberofBricks(length, width, height, numberOfStories);
+        assertEquals(expResult, result);
+        
+        System.out.println("Valid 2 - Width Boundary");
+        length = 11;
+        width = 6;
+        height = 8;
+        numberOfStories = 2;
+        expResult = 207;
+        result = GameControl.calcNumberofBricks(length, width, height, numberOfStories);
+        assertEquals(expResult, result);
+        
+        System.out.println("Valid 3 - Height Boundary");
+        length = 13;
+        width = 15;
+        height = 10;
+        numberOfStories = 2;
+        expResult = 462;
+        result = GameControl.calcNumberofBricks(length, width, height, numberOfStories);
+        assertEquals(expResult, result);
+        
+        System.out.println("Valid 4 - numberOfStories Boundary");
+        length = 13;
+        width = 15;
+        height = 8;
+        numberOfStories = 3;
+        expResult = 556;
+        result = GameControl.calcNumberofBricks(length, width, height, numberOfStories);
+        assertEquals(expResult, result);
+    }
     
 }

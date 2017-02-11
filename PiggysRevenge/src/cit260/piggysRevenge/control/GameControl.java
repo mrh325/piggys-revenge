@@ -5,6 +5,8 @@
  */
 package cit260.piggysRevenge.control;
 
+import static java.lang.Math.round;
+
 /**
  *
  * @author natebolton
@@ -41,4 +43,48 @@ public class GameControl {
             return currentScore - (numberOfTurns * 10);
         }
     }
+    public static int calcNumberofBricks (int length, int width, int height, int numberOfStories) {
+        
+        double surfaceAreaPerFloor, surfaceAreaOfRoof;
+        
+        // Length must be between 5 and 20
+        if (length < 5) {
+            return -11;
+        }
+        if (length > 20){
+            return -12;
+        }
+        // Width must be between 6 and 10
+        if (width < 5) {
+            return -21;
+        }
+        if (width > 20){
+            return -22;
+        }
+        // Height must be between 1 and 3
+        if (height < 6) {
+            return -31;
+        }
+        if (height > 10){
+            return -32;
+        }
+        
+        if (numberOfStories <= 0){
+            return -41;
+        }
+        if (numberOfStories > 3){
+            return -42;
+        }
+        
+        double l = (double) length;
+        double w = (double) width;
+        double h = (double) height;
+        double n = (double) numberOfStories;
+        
+        surfaceAreaPerFloor = (l * w) + (2 * l * h) + (2 * w * h);
+        surfaceAreaOfRoof = round(((l * (Math.sqrt(Math.pow((w / 2), 2) + Math.pow(h, 2)))
+                + (w * (Math.sqrt(Math.pow((l / 2), 2) + Math.pow(h, 2)))))));
+        return (int) (((surfaceAreaPerFloor * numberOfStories) + surfaceAreaOfRoof)/4); 
+    }
+    
 }
