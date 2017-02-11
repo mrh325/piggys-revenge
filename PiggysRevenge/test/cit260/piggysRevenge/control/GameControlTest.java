@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author hales
+ * @author hales AND Bolton
  */
 public class GameControlTest {
     
@@ -18,6 +18,8 @@ public class GameControlTest {
     }
 
     /**
+     ****Nathan Bolton L06 Individual Assignment ****
+     * 
      * Test of calcScore method, of class GameControl.
      */
     @Test
@@ -89,6 +91,8 @@ public class GameControlTest {
     }
 
     /**
+     **** Michael Hales L06 Individual Assignment ****
+     * 
      * Test of calcNumberofBricks method, of class GameControl.
      */
     @Test
