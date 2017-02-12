@@ -16,7 +16,7 @@ public class MapControlTest {
     
     public MapControlTest() {
     }
-
+    //BOLTON L06 Individual Assignment - tests CalculateEventProbability()
     /**
      * Test of calculateEventProbability method, of class MapControl.
      */

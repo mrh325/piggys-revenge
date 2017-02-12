@@ -18,12 +18,13 @@ public class GameControlTest {
     }
 
     /**
-     ****Nathan Bolton L06 Individual Assignment ****
+     ****L06 Team Assignment ****
      * 
      * Test of calcScore method, of class GameControl.
      */
     @Test
     public void testCalcScore() {
+        System.out.println("calcScore");
         System.out.println("Test1 - Valid1");
         int numberOfBricks = 250;
         int numberOfTurns = 35;
@@ -97,6 +98,7 @@ public class GameControlTest {
      */
     @Test
     public void testCalcNumberofBricks() {
+        System.out.println("calcNumberOfBricks");
         System.out.println("Test 1 - Length - Lower Boundary");
         int length = -3;
         int width = 6;

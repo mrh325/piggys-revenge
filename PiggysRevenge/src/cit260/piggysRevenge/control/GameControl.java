@@ -12,7 +12,7 @@ import static java.lang.Math.round;
  * @author natebolton
  */
 public class GameControl {
-
+    //L06 TEAM ASSIGNMENT
     public static int calcScore(int numberOfBricks, int numberOfTurns, boolean hasEaten, boolean wolfKilled) {
         //bricks can not be less than 0
         if (numberOfBricks < 0) {
@@ -43,6 +43,7 @@ public class GameControl {
             return currentScore - (numberOfTurns * 10);
         }
     }
+    //L06 MICHAEL HALES INDIVIDUAL ASSIGNMENT
     public static int calcNumberofBricks (int length, int width, int height, int numberOfStories) {
         
         double surfaceAreaPerFloor, surfaceAreaOfRoof;

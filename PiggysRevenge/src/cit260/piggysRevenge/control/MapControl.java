@@ -10,7 +10,7 @@ package cit260.piggysRevenge.control;
  * @author natebolton
  */
 public class MapControl {
-    
+    //L06 BOLTON INDIVIDUAL ASSIGNMENT
     public static double calculateEventProbability(int visitedScenes, int totalScenes, int visitedEvents, int totalEvents) {
 
         if (visitedScenes < 1 || totalScenes < 2 || visitedEvents < 0 || totalEvents < 1) {
