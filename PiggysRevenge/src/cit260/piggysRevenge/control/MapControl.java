@@ -72,10 +72,10 @@ if (endPositionX < 0){
 if (endPositionY < 0){
 	return -6;
 }
-if (endPositionX <=5){
+if (endPositionX >=5){
 	return -7;
 }
-if (endPositionY <=5){
+if (endPositionY >=5){
 	return -8;
 }
 

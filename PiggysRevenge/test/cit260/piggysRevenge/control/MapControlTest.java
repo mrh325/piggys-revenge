@@ -135,6 +135,7 @@ public class MapControlTest {
     /**
      * Test of calcDistance method, of class MapControl.
      */
+    //POWELL INDIVIDUAL ASSIGNMENT testCalcdistance
     @Test
     public void testCalcDistance() {
         
@@ -144,7 +145,7 @@ public class MapControlTest {
         double endPositionX = 3.0;
         double startPositionY = 4.0;
         double endPositionY = 3.0;
-        double expResult = 1.4142;
+        double expResult = 1.4142135623730951;
         double result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
         assertEquals(expResult, result, 0.0);
         
@@ -178,6 +179,35 @@ public class MapControlTest {
         result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
         assertEquals(expResult, result, 0.0);
         
+         //TEST 4 
+        System.out.println("calcDistance");
+        startPositionX = 2.0;
+        endPositionX = 3.0;
+        startPositionY = 3.0;
+        endPositionY = 5.0;
+        expResult = -8;
+        result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
+        assertEquals(expResult, result, 0.0);
+        
+         //TEST 4 
+        System.out.println("calcDistance");
+        startPositionX = 0.0;
+        endPositionX = 4.0;
+        startPositionY = 0.0;
+        endPositionY = 4.0;
+        expResult = 5.656854249492381;
+        result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
+        assertEquals(expResult, result, 0.0);
+        
+         //TEST 4 
+        System.out.println("calcDistance");
+        startPositionX = 1.0;
+        endPositionX = 4.0;
+        startPositionY = 1.0;
+        endPositionY = 4.0;
+        expResult = 4.242640687119285;
+        result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
+        assertEquals(expResult, result, 0.0);
      
        }
     
