@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.control;
 
+import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -15,6 +16,10 @@ import static org.junit.Assert.*;
 public class MapControlTest {
     
     public MapControlTest() {
+    }
+
+    @AfterClass
+    public static void tearDownClass() throws Exception {
     }
     //BOLTON L06 Individual Assignment - tests CalculateEventProbability()
     /**
@@ -126,5 +131,54 @@ public class MapControlTest {
         result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
         assertEquals(expResult, result, 0.0001);
     }
+
+    /**
+     * Test of calcDistance method, of class MapControl.
+     */
+    @Test
+    public void testCalcDistance() {
+        
+        //TEST 1 
+        System.out.println("calcDistance");
+        double startPositionX = 2.0;
+        double endPositionX = 3.0;
+        double startPositionY = 4.0;
+        double endPositionY = 3.0;
+        double expResult = 1.4142;
+        double result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
+        assertEquals(expResult, result, 0.0);
+        
+         //TEST 2 
+        System.out.println("calcDistance");
+        startPositionX = -1.0;
+        endPositionX = 2.0;
+        startPositionY = 3.0;
+        endPositionY = 3.0;
+        expResult = -1;
+        result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
+        assertEquals(expResult, result, 0.0);
+        
+          //TEST 3
+        System.out.println("calcDistance");
+        startPositionX = 5.0;
+        endPositionX = 3.0;
+        startPositionY = 2.0;
+        endPositionY = 3.0;
+        expResult = -3;
+        result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
+        assertEquals(expResult, result, 0.0);
+        
+          //TEST 4 
+        System.out.println("calcDistance");
+        startPositionX = 2.0;
+        endPositionX = 3.0;
+        startPositionY = 3.0;
+        endPositionY = -1.0;
+        expResult = -6;
+        result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
+        assertEquals(expResult, result, 0.0);
+        
+     
+       }
     
 }
