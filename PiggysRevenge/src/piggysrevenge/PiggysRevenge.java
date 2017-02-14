@@ -5,17 +5,9 @@
  */
 package piggysrevenge;
 
-import cit260.piggysRevenge.model.Backpack;
-import cit260.piggysRevenge.model.Game;
-import cit260.piggysRevenge.model.Player;
-import cit260.piggysRevenge.model.Item;
-import cit260.piggysRevenge.model.Hat;
-import cit260.piggysRevenge.model.MiniGame;
-import cit260.piggysRevenge.model.Wolf;
-import cit260.piggysRevenge.model.Location;
-import cit260.piggysRevenge.model.Map;
-import cit260.piggysRevenge.model.Scene;
+import cit260.piggysRevenge.model.*;
 import cit260.piggysRevenge.control.*;
+import cit260.piggysRevenge.view.*;
 /**
  *
  * @author hales
@@ -148,6 +140,9 @@ public class PiggysRevenge {
         nateBoltonAssignment();
         zacPowellAssignment();
         michaelHalesAssignment();
+        StartProgramView startProgramView = new StartProgramView();
+        startProgramView.displayStartProgramView();
     }
-    
+
+
 }
