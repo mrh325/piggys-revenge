@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.control;
 
+import cit260.piggysRevenge.model.Player;
 import static java.lang.Math.round;
 
 /**
@@ -86,6 +87,11 @@ public class GameControl {
         surfaceAreaOfRoof = round(((l * (Math.sqrt(Math.pow((w / 2), 2) + Math.pow(h, 2)))
                 + (w * (Math.sqrt(Math.pow((l / 2), 2) + Math.pow(h, 2)))))));
         return (int) (((surfaceAreaPerFloor * numberOfStories) + surfaceAreaOfRoof)/4); 
+    }
+
+    public static Player createPlayer(String playersName) {
+        System.out.println("\n createPlayer() function called me ***");
+        return new Player();
     }
     
 }
