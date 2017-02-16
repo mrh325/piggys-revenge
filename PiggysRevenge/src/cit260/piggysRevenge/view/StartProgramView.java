@@ -169,8 +169,8 @@ public class StartProgramView {
 + "\n| $$      |   $$ \\ \\$$    $$ \\$$    $$    | $$         \\$$    $$      | $$  | $$| $$     \\    \\$$$   | $$     \\| $$  \\$$$ \\$$    $$| $$     \\"
 + "\n\\$$       \\$$$$$$  \\$$$$$$   \\$$$$$$      \\$$          \\$$$$$$        \\$$   \\$$ \\$$$$$$$$     \\$     \\$$$$$$$$ \\$$   \\$$  \\$$$$$$  \\$$$$$$$$");
                                                                                                                                              
-                                                                                                                                            
-                                                                                                                                             
+
+                                                                                                                                
                                                                                                                                                               
          }
 
@@ -194,3 +194,25 @@ public class StartProgramView {
 
     
 }
+        /*
+        //AFTER THE private String getPlayersName()
+
+        Scanner keyboard = new Scanner(System.in); 
+        String value = "";
+        boolean = false;
+
+        while (!valid) {
+            System.out.println("\n" + this.promptMessage);
+
+            value = keyboard.nextLine();
+            value = value.trim();
+
+            if (value.length() < 1) {
+                System.out.println("\nInvalid value: value can not be blank");
+                continue;
+}
+        break;
+}
+    return value;
+}
+*/
