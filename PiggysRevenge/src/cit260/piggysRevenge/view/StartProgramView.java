@@ -174,7 +174,20 @@ RRRRRRRR     RRRRRRREEEEEEEEEEEEEEEEEEEEEE            VVV            EEEEEEEEEEE
     */
     public void displayStartProgramView() {
         System.out.println("\n*** displayStartProgram() function called ***");
-    }
+        /*
+        boolean done = false;
+        do {
+            //prompt for and get playersName
+            String playerName = this.getPlayerName();
+            if playersName.toUpperCase().equals("Q")) 
+                return;
+        
+            //do request action and display next view
+            done = this.doAction(playerName);
+        
+        } while (!done);
+        */
+    }   
 
     
 }
