@@ -11,12 +11,18 @@ package cit260.piggysRevenge.view;
  */
 public class StartProgramView {
 
+    private String promptMessage;
+            
     public StartProgramView() {
+        this.promptMessage = "\nPlease enter your name:";
         this.displayBanner();
+        
+    
     }
 
     private void displayBanner() {
         System.out.println(
+ //             Description me  "\n"
 
 "\n......................................................ZM~~~~~==7NMMMMD...................+MMMMMZ+=~~:~~8M......................................................."
 + "\n......................................................M=~~~~~~~~~~~~=~NMM.............8MM=~~~~~~~~~~~~~~MO ....................................................."

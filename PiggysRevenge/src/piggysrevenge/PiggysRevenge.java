@@ -136,10 +136,7 @@ public class PiggysRevenge {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        teamAssignment();
-        nateBoltonAssignment();
-        zacPowellAssignment();
-        michaelHalesAssignment();
+
         StartProgramView startProgramView = new StartProgramView();
         startProgramView.displayStartProgramView();
     }
