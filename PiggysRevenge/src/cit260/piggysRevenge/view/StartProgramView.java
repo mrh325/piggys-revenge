@@ -163,7 +163,7 @@ public class StartProgramView {
         return true;
     }
         
-        //AFTER THE private String getPlayersName()
+       
 
     private void displayNextView(Player player) {
         System.out.println("\n *** displayNextView () called ***");
