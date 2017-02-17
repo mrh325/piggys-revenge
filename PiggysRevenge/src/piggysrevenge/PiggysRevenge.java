@@ -135,8 +135,8 @@ public class PiggysRevenge {
     /**
      * @param args the command line arguments
      */
-    public static Game currentGame = null;
-    public static Player player = null;
+    private static Game currentGame = null;
+    private static Player player = null;
     
     public static void main(String[] args) {
 
