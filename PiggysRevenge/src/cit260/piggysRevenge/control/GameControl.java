@@ -7,6 +7,7 @@ package cit260.piggysRevenge.control;
 
 import cit260.piggysRevenge.model.Player;
 import static java.lang.Math.round;
+import piggysrevenge.PiggysRevenge;
 
 /**
  *
@@ -90,8 +91,16 @@ public class GameControl {
     }
 
     public static Player createPlayer(String playersName) {
-        System.out.println("\n createPlayer() function called me ***");
-        return new Player();
+        
+        if (playersName == null) {
+            return null;
+        }
+        
+        Player player = new Player();
+        player.setName(playersName);
+        
+        PiggysRevenge.setPlayer(player);
+        return player;
     }
     
 }

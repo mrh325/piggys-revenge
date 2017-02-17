@@ -135,10 +135,29 @@ public class PiggysRevenge {
     /**
      * @param args the command line arguments
      */
+    public static Game currentGame = null;
+    public static Player player = null;
+    
     public static void main(String[] args) {
 
         StartProgramView startProgramView = new StartProgramView();
         startProgramView.displayStartProgramView();
+    }
+
+    public static Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public static void setCurrentGame(Game currentGame) {
+        PiggysRevenge.currentGame = currentGame;
+    }
+
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Player player) {
+        PiggysRevenge.player = player;
     }
 
 
