@@ -133,13 +133,13 @@ private String menuS;
         
         switch (menuOption) {
             case "G":
-                System.out.println(this.menuG);  //Game Description
+                this.displayGameHelp();
                 break;
             case "H":
-                System.out.println(this.menuH); // Move description
+                this.displayMoveHelp();
                 break;
             case "S":
-                 System.out.println(this.menuS); // Score description
+                this.displayScoreHelp();
                 break;
             case "M":
                 return true;
@@ -147,6 +147,19 @@ private String menuS;
                 System.out.println("\n*** Invalid selection *** Try again ***");
                 break;
         }
-        return false;    }
+        return false;    
+    }
+    
+    private void displayGameHelp() {
+        System.out.println(this.menuG);  //Game Description
+    }
+    
+    private void displayMoveHelp() {
+        System.out.println(this.menuH); // Move description
+    }
+    
+    private void displayScoreHelp() {
+        System.out.println(this.menuS); // Score description
+    }
 } 
 
