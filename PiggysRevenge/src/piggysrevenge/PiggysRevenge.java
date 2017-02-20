@@ -57,8 +57,9 @@ public class PiggysRevenge {
         System.out.println(myHat.toString());
         
         //test miniGameControl functions here
-        String myString = MiniGameControl.generateComboOrder("Stack Overflow is a community of 6.7 million programmers, just like you, helping each other. Join them; it only takes a minute:",1L);
-        System.out.println(myString);
+        //changed MiniGameControl, this code is obsolete
+        //String myString = MiniGameControl.generateComboOrder("Stack Overflow is a community of 6.7 million programmers, just like you, helping each other. Join them; it only takes a minute:",1L);
+        //System.out.println(myString);
 
         System.out.println(MiniGameControl.checkKeyOrder("54231", "12345"));
         
