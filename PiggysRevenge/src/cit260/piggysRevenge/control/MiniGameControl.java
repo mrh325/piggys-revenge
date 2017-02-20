@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.control;
 
+import cit260.piggysRevenge.model.MiniGame;
 import java.util.Random;
 
 /**
@@ -13,12 +14,13 @@ import java.util.Random;
  */
 public class MiniGameControl {    
     
-    public static String generateComboOrder(String inputKeyOrder) {
+    public static void generateComboOrder(MiniGame miniGame) {
         
+        String inputComboOrder = miniGame.getComboOrder();
         //idea copied from:  http://stackoverflow.com/questions/20588736/how-can-i-shuffle-the-letters-of-a-word
         Random rand = new Random();
         // Convert string into a simple char array:
-        char newCharArray[] = inputKeyOrder.toCharArray();
+        char newCharArray[] = inputComboOrder.toCharArray();
 
         // Scramble the letters using the standard Fisher-Yates shuffle, 
         for(int i=0; i<newCharArray.length; i++) {
@@ -28,16 +30,18 @@ public class MiniGameControl {
             newCharArray[i] = newCharArray[j];
             newCharArray[j] = temp;
         }       
-
-        return new String(newCharArray);
+        
+        miniGame.setComboOrder(new String(newCharArray));
+        //return new String(newCharArray);
     }
     
-    public static String generateComboOrder(String inputKeyOrder, long randSeed) {
+    public static void generateComboOrder(MiniGame miniGame, long randSeed) {
         
+        String inputComboOrder = miniGame.getComboOrder();
         //idea copied from:  http://stackoverflow.com/questions/20588736/how-can-i-shuffle-the-letters-of-a-word
         Random rand = new Random(randSeed);
         // Convert string into a simple char array:
-        char newCharArray[] = inputKeyOrder.toCharArray();
+        char newCharArray[] = inputComboOrder.toCharArray();
 
         // Scramble the letters using the standard Fisher-Yates shuffle, 
         for(int i=0; i<newCharArray.length; i++) {
@@ -48,7 +52,8 @@ public class MiniGameControl {
             newCharArray[j] = temp;
         }       
 
-        return new String(newCharArray);
+        miniGame.setComboOrder(new String(newCharArray));
+        //return new String(newCharArray);
     }
     
     public static int checkKeyOrder(String playerOrder, String systemOrder) {

@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.control;
 
+import cit260.piggysRevenge.model.MiniGame;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -26,28 +27,33 @@ public class MiniGameControlTest {
         
         //TEST 1
         System.out.println("TEST 1 - VALID");
-        String inputKeyOrder = "1234";
+        MiniGame miniGame = new MiniGame();
+        miniGame.setComboOrder("1234");
         long randSeed = 1L;
+        MiniGameControl.generateComboOrder(miniGame, randSeed);
         String expResult = "2431";
-        String result = MiniGameControl.generateComboOrder(inputKeyOrder, randSeed);
+        String result = miniGame.getComboOrder();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         //fail("The test case is a prototype.");
         
         //TEST 2
         System.out.println("TEST 2 EMPTY STRING");        
-        inputKeyOrder = "";
+        miniGame.setComboOrder("");
         randSeed = 1L;
+        MiniGameControl.generateComboOrder(miniGame, randSeed);
         expResult = "";
-        result = MiniGameControl.generateComboOrder(inputKeyOrder, randSeed);
+        result = miniGame.getComboOrder();
         assertEquals(expResult, result);
         
         //TEST 3
-        System.out.println("TEST 2 LARGE STRING");        
-        inputKeyOrder = "Stack Overflow is a community of 6.7 million programmers, just like you, helping each other. Join them; it only takes a minute:";
+        System.out.println("TEST 2 LARGE STRING");
+        miniGame.setComboOrder("Stack Overflow is a community of 6.7 million programmers, just like you, helping each other. Join them; it only takes a minute:");
+        //inputKeyOrder = "Stack Overflow is a community of 6.7 million programmers, just like you, helping each other. Join them; it only takes a minute:";
         randSeed = 1L;
+        MiniGameControl.generateComboOrder(miniGame, randSeed);
         expResult = "i lichmklyuiimgoJts et6n ptu7eekpis nrenna y.yrochlf o tv l k;ofl a e:Stsmm aoiouoo mmec,snrtilmteaeOj irwg.a  hhunir, eo t  a ";
-        result = MiniGameControl.generateComboOrder(inputKeyOrder, randSeed);
+        result = miniGame.getComboOrder();
         assertEquals(expResult, result);
     }
 
