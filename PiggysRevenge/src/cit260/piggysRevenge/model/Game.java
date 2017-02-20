@@ -15,7 +15,7 @@ import java.util.Objects;
 public class Game implements Serializable{
     
     private String map;
-    private String player;
+    //private String player; //player seems to be handled in PiggysRevenge class
     private int turns;
     private double score;
 
@@ -32,13 +32,13 @@ public class Game implements Serializable{
         this.map = map;
     }
 
-    public String getPlayer() {
+    /*public String getPlayer() {
         return player;
     }
 
     public void setPlayer(String player) {
         this.player = player;
-    }
+    }*/
 
     public int getTurns() {
         return turns;
@@ -60,7 +60,7 @@ public class Game implements Serializable{
     public int hashCode() {
         int hash = 5;
         hash = 53 * hash + Objects.hashCode(this.map);
-        hash = 53 * hash + Objects.hashCode(this.player);
+        //hash = 53 * hash + Objects.hashCode(this.player);
         hash = 53 * hash + this.turns;
         hash = 53 * hash + (int) (Double.doubleToLongBits(this.score) ^ (Double.doubleToLongBits(this.score) >>> 32));
         return hash;
@@ -68,7 +68,7 @@ public class Game implements Serializable{
 
     @Override
     public String toString() {
-        return "Game{" + "map=" + map + ", player=" + player + ", turns=" + turns + ", score=" + score + '}';
+        return "Game{" + "map=" + map + ", turns=" + turns + ", score=" + score + '}';
     }
 
     
@@ -95,17 +95,7 @@ public class Game implements Serializable{
         if (!Objects.equals(this.map, other.map)) {
             return false;
         }
-        if (!Objects.equals(this.player, other.player)) {
-            return false;
-        }
         return true;
     }
-
-    public void setPlayer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
-    
     
 }

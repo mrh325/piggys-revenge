@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.control;
 
+import cit260.piggysRevenge.model.Game;
 import cit260.piggysRevenge.model.Player;
 import static java.lang.Math.round;
 import piggysrevenge.PiggysRevenge;
@@ -105,6 +106,8 @@ public class GameControl {
 
     public static void createNewGame(Player player) {
         System.out.println("\n*** createNewGame() function called ***");
+        Game game = new Game();
+        PiggysRevenge.setCurrentGame(game);
     }
     
 }

@@ -6,6 +6,7 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.GameControl;
+import cit260.piggysRevenge.model.Game;
 import java.util.Scanner;
 import piggysrevenge.PiggysRevenge;
 
@@ -15,19 +16,33 @@ import piggysrevenge.PiggysRevenge;
  */
 public class MainMenuView {
     private String menu;
+    private String menuCurrentGame;
 
     public MainMenuView() {
-        this.menu = "\n"
+        Game currentGame = PiggysRevenge.getCurrentGame();
+        
+            //If game is null
+            this.menu = "\n"
                 + "\n======================================="
                 + "\n| Main Menu                           |"
                 + "\n======================================="
                 + "\nN - Start new game"
-                + "\nC - Continue game"
                 + "\nL - Load saved game"
-                + "\nS - Save game"
                 + "\nH - Get Help"
                 + "\nQ - Quit"
                 + "\n=======================================";
+            //if game is not null
+            this.menuCurrentGame = "\n"
+                    + "\n======================================="
+                    + "\n| Main Menu                           |"
+                    + "\n======================================="
+                    + "\nN - Start new game"
+                    + "\nC - Continue game"
+                    + "\nL - Load saved game"
+                    + "\nS - Save game"
+                    + "\nH - Get Help"
+                    + "\nQ - Quit"
+                    + "\n=======================================";
     }
     
     
@@ -101,13 +116,16 @@ public class MainMenuView {
         // System.out.println("\n*** startNewGame() function called ***");
         
         GameControl.createNewGame(PiggysRevenge.getPlayer());
+        this.menu = this.menuCurrentGame; //change menu to include current game options
         
         GameMenuView gameMenu = new GameMenuView();
         gameMenu.displayMenu();
     }
 
     private void displayGameMenu() {
-        System.out.println("\n*** displayGameMenu() function called ***");
+        //System.out.println("\n*** displayGameMenu() function called ***");
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.displayMenu();
     }
 
     private void loadSavedGame() {
