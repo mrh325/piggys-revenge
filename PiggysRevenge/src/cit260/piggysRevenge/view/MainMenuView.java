@@ -33,16 +33,16 @@ public class MainMenuView {
                 + "\n=======================================";
             //if game is not null
             this.menuCurrentGame = "\n"
-                    + "\n======================================="
-                    + "\n| Main Menu                           |"
-                    + "\n======================================="
-                    + "\nN - Start new game"
-                    + "\nC - Continue game"
-                    + "\nL - Load saved game"
-                    + "\nS - Save game"
-                    + "\nH - Get Help"
-                    + "\nQ - Quit"
-                    + "\n=======================================";
+                + "\n======================================="
+                + "\n| Main Menu                           |"
+                + "\n======================================="
+                + "\nN - Start new game"
+                + "\nC - Continue game"
+                + "\nL - Load saved game"
+                + "\nS - Save game"
+                + "\nH - Get Help"
+                + "\nQ - Quit"
+                + "\n=======================================";
     }
     
     

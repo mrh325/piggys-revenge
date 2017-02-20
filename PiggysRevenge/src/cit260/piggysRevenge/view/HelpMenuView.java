@@ -27,7 +27,7 @@ private String menuS;
                 + "\nG - Game description"
                 + "\nH - How to move"
                 + "\nS - Scoring"
-                + "\nM - Main Menu"
+                + "\nB - Go back to the previous menu"
                 + "\n=======================================";
         this.menuG = "\n------------------------------------------------------------------------------"
                         +"\nGame Description:"
@@ -141,7 +141,8 @@ private String menuS;
             case "S":
                 this.displayScoreHelp();
                 break;
-            case "M":
+            case "B":
+            case "Q":
                 return true;
             default:
                 System.out.println("\n*** Invalid selection *** Try again ***");

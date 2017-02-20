@@ -26,7 +26,12 @@ public class GameMenuView {
                 + "\nI - Inventory"
                 + "\nH - Change your hat"
                 + "\nO - Change your Shoes"
-                + "\nM - Main Menu"
+                + "\nG - Play the Mini Game!"
+                + "\nC - Show current score"
+                + "\nE - Show probability of winning the game"
+                + "\n    in the fewest turns possible"
+                + "\nU - Caluclate number of bricks for the house"
+                + "\nB - Back to Main Menu"
                 + "\n=======================================";
     }
     
@@ -91,7 +96,20 @@ public class GameMenuView {
             case "O":
                 this.displayShoeMenu();
                 break;
-            case "M":
+            case "G":
+                this.displayMiniGameMenu();
+                break;
+            case "C":
+                this.displayScore();
+                break;
+            case "E":
+                this.displayProbability();
+                break;
+            case "U":
+                this.displayHouseMenu();
+                break;
+            case "B":
+            case "Q":
                 return true;
             default:
                 System.out.println("\n*** Invalid selection *** Try again ***");
@@ -122,6 +140,24 @@ public class GameMenuView {
 
     private void displayShoeMenu() {
         System.out.println("\n*** displayShoeMenu() function called ***");
+    }
+
+    private void displayMiniGameMenu() {
+        //System.out.println("\n*** displayMiniGameMenu() function called ***");
+        MiniGameMenuView miniGameMenu = new MiniGameMenuView();
+        miniGameMenu.displayMenu();
+    }
+
+    private void displayScore() {
+        System.out.println("\n*** displayScore() function called ***");
+    }
+
+    private void displayProbability() {
+        System.out.println("\n*** displayProbability() function called ***");
+    }
+
+    private void displayHouseMenu() {
+        System.out.println("\n*** displayHouseMenu() function called ***");
     }
     
 }

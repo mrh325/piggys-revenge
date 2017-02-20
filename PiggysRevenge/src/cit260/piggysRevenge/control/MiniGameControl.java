@@ -63,11 +63,11 @@ public class MiniGameControl {
         if ( playerOrderLen == 0 || systemOrderLen == 0 ) {
             return -1;
         }
-        //if inputs are not the same length, return error code -1
+        //if inputs are not the same length, return error code -2
         if ( playerOrderLen != systemOrderLen ) {
             return -2;
         }
-        //if both inputs do not contain the same count of each character, return -2
+        //if both inputs do not contain the same count of each character, return -3
         // for each letter in playerOrder, count the number of occurences in both Strings and compare
         for ( int i=0; i < playerOrderLen; i++ ) {
             int count1 = 0;

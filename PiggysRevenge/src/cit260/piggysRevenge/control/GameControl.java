@@ -99,6 +99,7 @@ public class GameControl {
         
         Player player = new Player();
         player.setName(playersName);
+        player.setHasEaten(false);
         
         PiggysRevenge.setPlayer(player);
         return player;
