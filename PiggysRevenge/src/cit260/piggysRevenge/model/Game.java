@@ -14,31 +14,20 @@ import java.util.Objects;
  */
 public class Game implements Serializable{
     
-    private String map;
-    //private String player; //player seems to be handled in PiggysRevenge class
+    private Map map;
     private int turns;
-    private double score;
+    private int score;
 
     public Game() {
     }
-    
-    
 
-    public String getMap() {
+    public Map getMap() {
         return map;
     }
 
-    public void setMap(String map) {
+    public void setMap(Map map) {
         this.map = map;
     }
-
-    /*public String getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(String player) {
-        this.player = player;
-    }*/
 
     public int getTurns() {
         return turns;
@@ -48,32 +37,23 @@ public class Game implements Serializable{
         this.turns = turns;
     }
 
-    public double getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(double score) {
+    public void setScore(int score) {
         this.score = score;
     }
 
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 53 * hash + Objects.hashCode(this.map);
-        //hash = 53 * hash + Objects.hashCode(this.player);
-        hash = 53 * hash + this.turns;
-        hash = 53 * hash + (int) (Double.doubleToLongBits(this.score) ^ (Double.doubleToLongBits(this.score) >>> 32));
+        hash = 83 * hash + Objects.hashCode(this.map);
+        hash = 83 * hash + this.turns;
+        hash = 83 * hash + this.score;
         return hash;
     }
 
-    @Override
-    public String toString() {
-        return "Game{" + "map=" + map + ", turns=" + turns + ", score=" + score + '}';
-    }
-
-    
-    
-    
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -89,13 +69,18 @@ public class Game implements Serializable{
         if (this.turns != other.turns) {
             return false;
         }
-        if (Double.doubleToLongBits(this.score) != Double.doubleToLongBits(other.score)) {
+        if (this.score != other.score) {
             return false;
         }
         if (!Objects.equals(this.map, other.map)) {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Game{" + "map=" + map + ", turns=" + turns + ", score=" + score + '}';
     }
     
 }

@@ -154,6 +154,8 @@ public class GameMenuView {
 
     private void displayProbability() {
         System.out.println("\n*** displayProbability() function called ***");
+        ProbabilityView probabilityView = new ProbabilityView();
+        probabilityView.displayProbability();
     }
 
     private void displayHouseMenu() {

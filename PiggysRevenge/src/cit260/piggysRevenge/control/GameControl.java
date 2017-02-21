@@ -108,6 +108,8 @@ public class GameControl {
     public static void createNewGame(Player player) {
         System.out.println("\n*** createNewGame() function called ***");
         Game game = new Game();
+        game.setTurns(1);
+        game.setScore(GameControl.calcScore(0, 1, false, false));
         PiggysRevenge.setCurrentGame(game);
     }
     

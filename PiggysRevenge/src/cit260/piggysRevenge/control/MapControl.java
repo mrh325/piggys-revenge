@@ -28,17 +28,20 @@ public class MapControl {
         if (totalEvents > 5) {
             return -5;
         }
+        if ((totalScenes - visitedScenes) < (totalEvents - visitedEvents)) {
+            return -6;
+        }
 
         //avoid division by zero
         if (totalScenes - visitedScenes == totalEvents - visitedEvents) {
-            return 1.0;
+            return 100.0;
         }
 
         double probability = 1.0;
 
         //loop through a range from 0 to the number of unvisited events, calculating probability for discovering/visiting one event per turn until all events are visited
         for ( int i=0; i < totalEvents - visitedEvents; i++) {
-            probability *= 1.0 / (totalScenes - visitedScenes - i);
+            probability *= 1.0 / ((totalScenes - visitedScenes)- (totalEvents - visitedEvents - 1) - i);
         }
         
         //round and multiply by 100 to get percent
