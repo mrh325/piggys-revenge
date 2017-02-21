@@ -27,7 +27,7 @@ public class GameMenuView {
                 + "\nH - Change your hat"
                 + "\nO - Change your Shoes"
                 + "\nG - Play the Mini Game!"
-                + "\nC - Show current score"
+                + "\nC - Show possible score"
                 + "\nE - Show probability of winning the game"
                 + "\n    in the fewest turns possible"
                 + "\nU - Caluclate number of bricks for the house"
@@ -149,7 +149,9 @@ public class GameMenuView {
     }
 
     private void displayScore() {
-        System.out.println("\n*** displayScore() function called ***");
+        //System.out.println("\n*** displayScore() function called ***");
+        ScoreView scoreView = new ScoreView();
+        scoreView.displayScore();
     }
 
     private void displayProbability() {
