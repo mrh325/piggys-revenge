@@ -11,7 +11,7 @@ package cit260.piggysRevenge.control;
  */
 public class MapControl {
     //L06 BOLTON INDIVIDUAL ASSIGNMENT
-    public static double calculateEventProbability(int visitedScenes, int totalScenes, int visitedEvents, int totalEvents) {
+    public static double calculateEventProbability(double visitedScenes, double totalScenes, double visitedEvents, double totalEvents) {
 
         if (visitedScenes < 1 || totalScenes < 2 || visitedEvents < 0 || totalEvents < 1) {
             return -1;
@@ -40,14 +40,16 @@ public class MapControl {
         double probability = 1.0;
 
         //loop through a range from 0 to the number of unvisited events, calculating probability for discovering/visiting one event per turn until all events are visited
-        for ( int i=0; i < totalEvents - visitedEvents; i++) {
-            probability *= 1.0 / ((totalScenes - visitedScenes)- (totalEvents - visitedEvents - 1) - i);
+        for ( double i=0; i < totalEvents - visitedEvents; i++) {
+            double a = totalEvents - visitedEvents - i;
+            double b = totalScenes - visitedScenes - i;
+            probability *= a/b;
         }
         
         //round and multiply by 100 to get percent
         probability *= 1000;
         probability = (double)Math.round(probability);
-        probability /= 10;
+        probability /= 10.0;
         return probability;
 
     }

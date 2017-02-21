@@ -81,7 +81,7 @@ class ProbabilityView {
             return true;
         } else {
         
-        double result = MapControl.calculateEventProbability(Integer.parseInt(input1), 25, Integer.parseInt(input2), 5);
+        double result = MapControl.calculateEventProbability(Double.parseDouble(input1), 25, Double.parseDouble(input2), 5);
         if (result == -1.0) {
             System.out.println("\n-----------------------------------------------------------------"
                     + "\nYou may have visited between 1 and 25 scenes or 0 and 5 events"

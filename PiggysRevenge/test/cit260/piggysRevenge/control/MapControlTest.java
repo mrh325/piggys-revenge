@@ -35,7 +35,7 @@ public class MapControlTest {
         int totalScenes = 25;
         int visitedEvents = 3;
         int totalEvents = 5;
-        double expResult = 1.4;
+        double expResult = 2.8;
         double result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
         assertEquals(expResult, result, 0.0001);
         // TODO review the generated test code and remove the default call to fail.
@@ -118,7 +118,7 @@ public class MapControlTest {
         totalScenes = 2;
         visitedEvents = 0;
         totalEvents = 1;
-        expResult = 1.0;
+        expResult = 100.0;
         result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
         assertEquals(expResult, result, 0.0001);
         //TEST 11
