@@ -119,7 +119,9 @@ public class GameMenuView {
     }
 
     private void displayMoveMenu() {
-        System.out.println("\n*** displayMoveMenu() function called ***");
+        
+        MoveMenuView moveMenu = new MoveMenuView();
+        moveMenu.displayMenu();
     }
 
     private void displayMap() {
