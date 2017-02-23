@@ -58,21 +58,21 @@ public class GameControl {
         if (length > 20){
             return -12;
         }
-        // Width must be between 6 and 10
+        // Width must be between 5 and 20
         if (width < 5) {
             return -21;
         }
         if (width > 20){
             return -22;
         }
-        // Height must be between 1 and 3
+        // Height must be between 6 and 10
         if (height < 6) {
             return -31;
         }
         if (height > 10){
             return -32;
         }
-        
+        // Number of Stories must be between 1 and 3
         if (numberOfStories <= 0){
             return -41;
         }
