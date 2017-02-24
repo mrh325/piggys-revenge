@@ -47,7 +47,7 @@ public class GameControl {
         }
     }
     //L06 MICHAEL HALES INDIVIDUAL ASSIGNMENT
-    public static int calcNumberofBricks (int length, int width, int height, int numberOfStories) {
+    public static int calcNumberOfBricks (int length, int width, int height, int numberOfStories) {
         
         double surfaceAreaPerFloor, surfaceAreaOfRoof;
         
@@ -112,6 +112,8 @@ public class GameControl {
         game.setScore(GameControl.calcScore(0, 1, false, false));
         PiggysRevenge.setCurrentGame(game);
     }
+
+
     
 }
 

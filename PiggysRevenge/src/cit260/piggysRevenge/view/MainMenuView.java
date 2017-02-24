@@ -123,6 +123,8 @@ public class MainMenuView {
         
         this.gameMenu = new GameMenuView();
         this.gameMenu.displayMenu();
+        GameMenuView gameMenu = new GameMenuView();
+        gameMenu.displayMenu();
     }
 
     private void displayGameMenu() {

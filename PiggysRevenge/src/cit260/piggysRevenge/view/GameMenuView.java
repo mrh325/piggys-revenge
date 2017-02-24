@@ -28,7 +28,7 @@ public class GameMenuView {
                 + "\nC - Show possible score"
                 + "\nE - Show probability of winning the game"
                 + "\n    in the fewest turns possible"
-                + "\nU - Caluclate number of bricks for the house"
+                + "\nU - Calculate number of bricks for the house"
                 + "\nB - Back to Main Menu"
                 + "\n=======================================";
     }
@@ -152,7 +152,9 @@ public class GameMenuView {
     }
 
     private void displayHouseMenu() {
-        System.out.println("\n*** displayHouseMenu() function called ***");
+        // System.out.println("\n*** displayHouseMenu() function called ***");
+        HouseSizeView houseSize = new HouseSizeView();
+        houseSize.displayHouse();
     }
     
 }
