@@ -81,20 +81,32 @@ class ScoreView {
         
         if ("Q".equals(input1) || "Q".equals(input2) || "Q".equals(input3) || "Q".equals(input4)) {
             return true;
-        } else if (!("Y".equals(input3) || "N".equals(input3))) {
+        }
+        int bricks;
+        int turns;
+        try {
+            bricks = Integer.parseInt(input1);
+            turns = Integer.parseInt(input2);
+        } catch (NumberFormatException e) {
             System.out.println("\n-----------------------------------------------------------------"
-                    + "\nYou must enter Y or N for the Has Eaten question"
+                        + "\nERROR:  Number of Bricks and Turns must be whole numbers"
+                        + "\n-----------------------------------------------------------------");
+            return false;
+        }
+        if (!("Y".equals(input3) || "N".equals(input3))) {
+            System.out.println("\n-----------------------------------------------------------------"
+                    + "\nERROR: You must enter Y or N for the Has Eaten question"
                     + "\n-----------------------------------------------------------------");
             return false;
         } else if (!("Y".equals(input4) || "N".equals(input4))) {
             System.out.println("\n-----------------------------------------------------------------"
-                    + "\nYou must enter Y or N for the Wolf Killed question"
+                    + "\nERROR: You must enter Y or N for the Wolf Killed question"
                     + "\n-----------------------------------------------------------------");
             return false;
         } else {
             if (null == input3) {
                 System.out.println("\n-----------------------------------------------------------------"
-                        + "\nNull Error"
+                        + "\nERROR: Null Error"
                         + "\n-----------------------------------------------------------------");                
                 return false;
             } else switch (input3) {
@@ -106,13 +118,13 @@ class ScoreView {
                     break;
                 default:
                     System.out.println("\n-----------------------------------------------------------------"
-                            + "\nUnkown Error"
+                            + "\nERROR: Unkown Error"
                             + "\n-----------------------------------------------------------------");
                     return false;
             }
             if (null == input4) {
                 System.out.println("\n-----------------------------------------------------------------"
-                        + "\nNull Error"
+                        + "\nERROR: Null Error"
                         + "\n-----------------------------------------------------------------");                
                 return false;
             } else switch (input4) {
@@ -124,22 +136,23 @@ class ScoreView {
                     break;
                 default:
                     System.out.println("\n-----------------------------------------------------------------"
-                            + "\nUnkown Error"
+                            + "\nERROR: Unkown Error"
                             + "\n-----------------------------------------------------------------");
                     return false;
             }
-            int result = GameControl.calcScore(Integer.parseInt(input1), Integer.parseInt(input2), hasEaten, wolfKilled);
+            
+            int result = GameControl.calcScore(bricks, turns, hasEaten, wolfKilled);
             if (result == -1) {
                 System.out.println("\n-----------------------------------------------------------------"
-                        + "\nYou may not have less than 0 bricks"
+                        + "\nERROR: You may not have less than 0 bricks"
                         + "\n-----------------------------------------------------------------");
             } else if (result == -2) {
                 System.out.println("\n-----------------------------------------------------------------"
-                        + "\nTurns can not be less than 1"
+                        + "\nERROR: Turns can not be less than 1"
                         + "\n-----------------------------------------------------------------");
             } else if (result == -3) {
                 System.out.println("\n-----------------------------------------------------------------"
-                        + "\nThe wolf can't be killed if the player has not eaten"
+                        + "\nERROR: The wolf can't be killed if the player has not eaten"
                         + "\n-----------------------------------------------------------------");
             } else {
                 System.out.println("\n-----------------------------------------------------------------"

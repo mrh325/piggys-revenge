@@ -81,7 +81,7 @@ class DistanceView {
                 }
             }
             if (count != 4) {
-                System.out.println("\nPlease enter exactly 4 single digits separated by spaces.");
+                System.out.println("\nERROR:  Please enter exactly 4 single digits separated by spaces.");
                 return false;
             }
             
@@ -99,7 +99,7 @@ class DistanceView {
                 count++;
             }
             if (count != 3) {
-                System.out.println("\nUnknown Error.  Please enter exactly 4 single digits separated by spaces.");
+                System.out.println("\nERROR:  Please enter exactly 4 single digits separated by spaces.");
                 return false;
             }
             
@@ -107,11 +107,11 @@ class DistanceView {
             double result = MapControl.calcDistance(cList[0], cList[1], cList[2], cList[3]);
             if (result == -1.0) {
                 System.out.println("\n-----------------------------------------------------------------"
-                        + "\nA coordinate may not be less than 1 (and no letters please)"
+                        + "\nERROR:  A coordinate may not be less than 1 (and no letters please)"
                         + "\n-----------------------------------------------------------------");
             } else if (result == -2.0) {
                 System.out.println("\n-----------------------------------------------------------------"
-                        + "\nA coordinate may not be more than 5"
+                        + "\nERROR:  A coordinate may not be more than 5"
                         + "\n-----------------------------------------------------------------");
             } else {
                 result *= 100.0;
