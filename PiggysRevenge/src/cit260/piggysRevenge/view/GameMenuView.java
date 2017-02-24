@@ -24,8 +24,6 @@ public class GameMenuView {
                 + "\nS - Show Map"
                 + "\nD - List Known Distance"
                 + "\nI - Inventory"
-                + "\nH - Change your hat"
-                + "\nO - Change your Shoes"
                 + "\nG - Play the Mini Game!"
                 + "\nC - Show possible score"
                 + "\nE - Show probability of winning the game"
@@ -88,13 +86,7 @@ public class GameMenuView {
                 this.displayDistance();
                 break;
             case "I":
-                this.displayInventory();
-                break;
-            case "H":
-                this.displayHatMenu();
-                break;
-            case "O":
-                this.displayShoeMenu();
+                this.displayInventoryMenu();
                 break;
             case "G":
                 this.displayMiniGameMenu();
@@ -129,19 +121,16 @@ public class GameMenuView {
     }
 
     private void displayDistance() {
-        System.out.println("\n*** displayDistance() function called ***");
+        //System.out.println("\n*** displayDistance() function called ***");
+        DistanceView distanceView = new DistanceView();
+        distanceView.displayDistance();
     }
 
-    private void displayInventory() {
-        System.out.println("\n*** displayInventory() function called ***");
-    }
-
-    private void displayHatMenu() {
-        System.out.println("\n*** displayHatMenu() function called ***");
-    }
-
-    private void displayShoeMenu() {
-        System.out.println("\n*** displayShoeMenu() function called ***");
+    private void displayInventoryMenu() {
+        //System.out.println("\n*** displayInventory() function called ***");
+        //We'll probably pass a backpack object in here.
+        InventoryMenuView inventoryMenu = new InventoryMenuView();
+        inventoryMenu.displayMenu();
     }
 
     private void displayMiniGameMenu() {

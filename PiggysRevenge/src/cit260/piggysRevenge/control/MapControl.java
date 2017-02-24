@@ -56,31 +56,13 @@ public class MapControl {
 
 
     //L06 INDIVIDUAL ASSIGNMENT ZAC POWELL
-    public static double calcDistance(double startPositionX, double endPositionX, double startPositionY, double endPositionY){
+    public static double calcDistance(double startPositionX, double startPositionY, double endPositionX, double endPositionY){
 
-        if (startPositionX < 0){
+        if (startPositionX < 1 || endPositionX < 1 || startPositionY < 1 || endPositionY < 1){
                 return -1;
         }
-        if (startPositionY < 0){
+        if (startPositionX > 5 || startPositionY > 5 || endPositionX > 5 || endPositionY > 5){
                 return -2;
-        }
-        if (startPositionX >= 5){
-                return -3;
-        }
-        if (startPositionY >= 5){
-                return -4;
-        }
-        if (endPositionX < 0){
-                return -5;
-        }
-        if (endPositionY < 0){
-                return -6;
-        }
-        if (endPositionX >=5){
-                return -7;
-        }
-        if (endPositionY >=5){
-                return -8;
         }
 
         return Math.sqrt( (startPositionX - endPositionX) * (startPositionX - endPositionX) + (startPositionY-endPositionY) * (startPositionY-endPositionY) );

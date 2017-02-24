@@ -140,7 +140,7 @@ public class MapControlTest {
     public void testCalcDistance() {
         
         //TEST 1 
-        System.out.println("calcDistance");
+        System.out.println("calcDistance TEST1 Valid");
         double startPositionX = 2.0;
         double endPositionX = 3.0;
         double startPositionY = 4.0;
@@ -150,7 +150,7 @@ public class MapControlTest {
         assertEquals(expResult, result, 0.0);
         
          //TEST 2 
-        System.out.println("calcDistance");
+        System.out.println("calcDistance TEST2 LESS THAN 1");
         startPositionX = -1.0;
         endPositionX = 2.0;
         startPositionY = 3.0;
@@ -160,52 +160,32 @@ public class MapControlTest {
         assertEquals(expResult, result, 0.0);
         
           //TEST 3
-        System.out.println("calcDistance");
-        startPositionX = 5.0;
+        System.out.println("calcDistance TEST3 MORE THAN 5");
+        startPositionX = 6.0;
         endPositionX = 3.0;
         startPositionY = 2.0;
         endPositionY = 3.0;
-        expResult = -3;
-        result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
-        assertEquals(expResult, result, 0.0);
-        
-          //TEST 4 
-        System.out.println("calcDistance");
-        startPositionX = 2.0;
-        endPositionX = 3.0;
-        startPositionY = 3.0;
-        endPositionY = -1.0;
-        expResult = -6;
+        expResult = -2;
         result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
         assertEquals(expResult, result, 0.0);
         
          //TEST 4 
-        System.out.println("calcDistance");
-        startPositionX = 2.0;
-        endPositionX = 3.0;
-        startPositionY = 3.0;
+        System.out.println("calcDistance TEST4 BOUNDARY");
+        startPositionX = 1.0;
+        endPositionX = 5.0;
+        startPositionY = 1.0;
         endPositionY = 5.0;
-        expResult = -8;
-        result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
-        assertEquals(expResult, result, 0.0);
-        
-         //TEST 4 
-        System.out.println("calcDistance");
-        startPositionX = 0.0;
-        endPositionX = 4.0;
-        startPositionY = 0.0;
-        endPositionY = 4.0;
         expResult = 5.656854249492381;
         result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
         assertEquals(expResult, result, 0.0);
         
-         //TEST 4 
-        System.out.println("calcDistance");
-        startPositionX = 1.0;
-        endPositionX = 4.0;
-        startPositionY = 1.0;
-        endPositionY = 4.0;
-        expResult = 4.242640687119285;
+         //TEST 5
+        System.out.println("calcDistance TEST5 REVERSE BOUNDARY");
+        startPositionX = 5.0;
+        endPositionX = 1.0;
+        startPositionY = 5.0;
+        endPositionY = 1.0;
+        expResult = 5.656854249492381;
         result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
         assertEquals(expResult, result, 0.0);
      

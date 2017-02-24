@@ -6,7 +6,6 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.GameControl;
-import cit260.piggysRevenge.model.Game;
 import java.util.Scanner;
 import piggysrevenge.PiggysRevenge;
 
@@ -16,12 +15,13 @@ import piggysrevenge.PiggysRevenge;
  */
 public class MainMenuView {
     private String menu;
-    private String menuCurrentGame;
+    private final String menuCurrentGame;
+    private GameMenuView gameMenu;
 
     public MainMenuView() {
-        Game currentGame = PiggysRevenge.getCurrentGame();
+        //Game currentGame = PiggysRevenge.getCurrentGame();
         
-            //If game is null
+            //main menu before starting a new game
             this.menu = "\n"
                 + "\n======================================="
                 + "\n| Main Menu                           |"
@@ -31,7 +31,7 @@ public class MainMenuView {
                 + "\nH - Get Help"
                 + "\nQ - Quit"
                 + "\n=======================================";
-            //if game is not null
+            //main menu after starting a new game
             this.menuCurrentGame = "\n"
                 + "\n======================================="
                 + "\n| Main Menu                           |"
@@ -118,17 +118,17 @@ public class MainMenuView {
         GameControl.createNewGame(PiggysRevenge.getPlayer());
         this.menu = this.menuCurrentGame; //change menu to include current game options
         
-        HouseSizeView houseSize = new HouseSizeView();
-        houseSize.getInputs();
+        //HouseSizeView houseSize = new HouseSizeView();
+        //houseSize.getInputs();
         
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
+        this.gameMenu = new GameMenuView();
+        this.gameMenu.displayMenu();
     }
 
     private void displayGameMenu() {
         //System.out.println("\n*** displayGameMenu() function called ***");
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
+        //GameMenuView gameMenu = new GameMenuView();
+        this.gameMenu.displayMenu();
     }
 
     private void loadSavedGame() {
