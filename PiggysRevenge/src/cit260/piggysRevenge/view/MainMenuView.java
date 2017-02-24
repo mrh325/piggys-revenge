@@ -118,17 +118,13 @@ public class MainMenuView {
         GameControl.createNewGame(PiggysRevenge.getPlayer());
         this.menu = this.menuCurrentGame; //change menu to include current game options
         
-<<<<<<< Updated upstream
-        //HouseSizeView houseSize = new HouseSizeView();
-        //houseSize.getInputs();
-        
         this.gameMenu = new GameMenuView();
         this.gameMenu.displayMenu();
     }
 
     private void displayGameMenu() {
         //System.out.println("\n*** displayGameMenu() function called ***");
-        //GameMenuView gameMenu = new GameMenuView();
+
         this.gameMenu.displayMenu();
     }
 
@@ -150,5 +146,3 @@ public class MainMenuView {
     
 }
 
-        GameMenuView gameMenu = new GameMenuView();
-        gameMenu.displayMenu();
