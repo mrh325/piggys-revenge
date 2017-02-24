@@ -53,11 +53,7 @@ class HouseSizeView {
                 System.out.println("\n-----------------------------------------------------------------"
                         + "\nInvalid input. Please re-enter your input."
                         + "\n-----------------------------------------------------------------");
-//            try{
-//                int num = Integer.parseInt(value);
-//                // is an integer!
-//}               catch (NumberFormatException e) {
-//                // not an integer! }
+
 
                 continue;
             
@@ -80,7 +76,20 @@ class HouseSizeView {
         
         
     }
-    int result = GameControl.calcNumberOfBricks(Integer.parseInt(input1), Integer.parseInt(input2), Integer.parseInt(input3), Integer.parseInt(input4));
+        int num1, num2, num3, num4 = 0;
+        
+            try{
+                num1 = Integer.parseInt(input1);
+                num2 = Integer.parseInt(input2);
+                num3 = Integer.parseInt(input3);
+                num4 = Integer.parseInt(input4);
+                // is an integer!
+}               catch (NumberFormatException e) {
+                System.out.println("\nYou did not enter an integer, please try again.");
+                return false;
+}
+            
+    int result = GameControl.calcNumberOfBricks(num1, num2, num3, num4);
         switch (result) {
             case -11:
                 System.out.println("\n-----------------------------------------------------------------"
