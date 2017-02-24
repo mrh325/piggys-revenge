@@ -22,7 +22,7 @@ public class GameMenuView {
                 + "\n======================================="
                 + "\nV - Move"
                 + "\nS - Show Map"
-                + "\nD - List Known Distance"
+                + "\nD - Calculate distance between two points"
                 + "\nI - Inventory"
                 + "\nG - Play the Mini Game!"
                 + "\nC - Show possible score"
