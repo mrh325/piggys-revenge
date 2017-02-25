@@ -27,9 +27,9 @@ public class MapControlTest {
      */
     @Test
     public void testCalculateEventProbability() {
-        System.out.println("calculateEventProbability");
+        System.out.println("\n\ncalculateEventProbability");
         
-        //TEST 1
+        //TEST 1 valid, non-boundary inputs
         System.out.println("TEST 1 - VALID");
         int visitedScenes = 16;
         int totalScenes = 25;
@@ -38,8 +38,7 @@ public class MapControlTest {
         double expResult = 2.8;
         double result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
         assertEquals(expResult, result, 0.0001);
-
-        //TEST 2
+        //TEST 2 visite scenes < 1
         System.out.println("TEST 2 - INVALID -1");
         visitedScenes = 0;
         totalScenes = 25;
@@ -48,7 +47,7 @@ public class MapControlTest {
         expResult = -1;
         result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
         assertEquals(expResult, result, 0.0001);
-        //TEST 3
+        //TEST 3 total scenes < 2
         System.out.println("TEST 3 - INVALID -1");
         visitedScenes = 1;
         totalScenes = 1;
@@ -57,7 +56,7 @@ public class MapControlTest {
         expResult = -1;
         result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
         assertEquals(expResult, result, 0.0001);
-        //TEST 4
+        //TEST 4 visited events < 0
         System.out.println("TEST 4 - INVALID -1");
         visitedScenes = 1;
         totalScenes = 25;
@@ -66,7 +65,7 @@ public class MapControlTest {
         expResult = -1;
         result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
         assertEquals(expResult, result, 0.0001);
-        //TEST 5
+        //TEST 5 total events < 1
         System.out.println("TEST 5 - INVALID -1");
         visitedScenes = 1;
         totalScenes = 25;
@@ -75,7 +74,7 @@ public class MapControlTest {
         expResult = -1;
         result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
         assertEquals(expResult, result, 0.0001);
-        //TEST 6
+        //TEST 6 visited scenes > total scenes
         System.out.println("TEST 6 - INVALID -2");
         visitedScenes = 26;
         totalScenes = 25;
@@ -84,7 +83,7 @@ public class MapControlTest {
         expResult = -2;
         result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
         assertEquals(expResult, result, 0.0001);
-        //TEST 7
+        //TEST 7 visited events > total events
         System.out.println("TEST 7 - INVALID -3");
         visitedScenes = 1;
         totalScenes = 25;
@@ -93,7 +92,7 @@ public class MapControlTest {
         expResult = -3;
         result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
         assertEquals(expResult, result, 0.0001);
-        //TEST 8
+        //TEST 8 total scenes > 100
         System.out.println("TEST 8 - INVALID -4");
         visitedScenes = 1;
         totalScenes = 101;
@@ -102,7 +101,7 @@ public class MapControlTest {
         expResult = -4;
         result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
         assertEquals(expResult, result, 0.0001);
-        //TEST 9
+        //TEST 9 total events > 5
         System.out.println("TEST 9 - INVALID -5");
         visitedScenes = 1;
         totalScenes = 25;
@@ -111,7 +110,7 @@ public class MapControlTest {
         expResult = -5;
         result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
         assertEquals(expResult, result, 0.0001);
-        //TEST 10
+        //TEST 10 first boundary 100%
         System.out.println("TEST 10 - BOUNDARY 1.0");
         visitedScenes = 1;
         totalScenes = 2;
@@ -120,7 +119,7 @@ public class MapControlTest {
         expResult = 100.0;
         result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
         assertEquals(expResult, result, 0.0001);
-        //TEST 11
+        //TEST 11 second boundary 0%
         System.out.println("TEST 11 - BOUNDARY 0.0");
         visitedScenes = 1;
         totalScenes = 100;
