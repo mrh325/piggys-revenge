@@ -38,8 +38,7 @@ public class MapControlTest {
         double expResult = 2.8;
         double result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
         assertEquals(expResult, result, 0.0001);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("Expected: " + Double.toString(expResult) + "   got: " + Double.toString(result));
+
         //TEST 2
         System.out.println("TEST 2 - INVALID -1");
         visitedScenes = 0;
@@ -146,7 +145,7 @@ public class MapControlTest {
         double startPositionY = 4.0;
         double endPositionY = 3.0;
         double expResult = 1.4142135623730951;
-        double result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
+        double result = MapControl.calcDistance(startPositionX, startPositionY, endPositionX, endPositionY);
         assertEquals(expResult, result, 0.0);
         
          //TEST 2 
@@ -156,7 +155,7 @@ public class MapControlTest {
         startPositionY = 3.0;
         endPositionY = 3.0;
         expResult = -1;
-        result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
+        result = MapControl.calcDistance(startPositionX, startPositionY, endPositionX, endPositionY);
         assertEquals(expResult, result, 0.0);
         
           //TEST 3
@@ -166,7 +165,7 @@ public class MapControlTest {
         startPositionY = 2.0;
         endPositionY = 3.0;
         expResult = -2;
-        result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
+        result = MapControl.calcDistance(startPositionX, startPositionY, endPositionX, endPositionY);
         assertEquals(expResult, result, 0.0);
         
          //TEST 4 
@@ -176,7 +175,7 @@ public class MapControlTest {
         startPositionY = 1.0;
         endPositionY = 5.0;
         expResult = 5.656854249492381;
-        result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
+        result = MapControl.calcDistance(startPositionX, startPositionY, endPositionX, endPositionY);
         assertEquals(expResult, result, 0.0);
         
          //TEST 5
@@ -186,7 +185,7 @@ public class MapControlTest {
         startPositionY = 5.0;
         endPositionY = 1.0;
         expResult = 5.656854249492381;
-        result = MapControl.calcDistance(startPositionX, endPositionX, startPositionY, endPositionY);
+        result = MapControl.calcDistance(startPositionX, startPositionY, endPositionX, endPositionY);
         assertEquals(expResult, result, 0.0);
      
        }
