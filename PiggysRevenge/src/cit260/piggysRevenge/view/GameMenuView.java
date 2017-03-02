@@ -123,20 +123,20 @@ public class GameMenuView {
     private void displayDistance() {
         //System.out.println("\n*** displayDistance() function called ***");
         DistanceView distanceView = new DistanceView();
-        distanceView.displayDistance();
+        distanceView.display();
     }
 
     private void displayInventoryMenu() {
         //System.out.println("\n*** displayInventory() function called ***");
         //We'll probably pass a backpack object in here.
         InventoryMenuView inventoryMenu = new InventoryMenuView();
-        inventoryMenu.displayMenu();
+        inventoryMenu.display();
     }
 
     private void displayMiniGameMenu() {
         //System.out.println("\n*** displayMiniGameMenu() function called ***");
         MiniGameMenuView miniGameMenu = new MiniGameMenuView();
-        miniGameMenu.displayMenu();
+        miniGameMenu.display();
     }
 
     private void displayScore() {
@@ -148,7 +148,7 @@ public class GameMenuView {
     private void displayProbability() {
         //System.out.println("\n*** displayProbability() function called ***");
         ProbabilityView probabilityView = new ProbabilityView();
-        probabilityView.displayProbability();
+        probabilityView.display();
     }
 
     private void displayHouseMenu() {

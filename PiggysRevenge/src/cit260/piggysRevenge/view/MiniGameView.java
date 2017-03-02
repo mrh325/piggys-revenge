@@ -13,61 +13,26 @@ import java.util.Scanner;
  *
  * @author natebolton
  */
-class MiniGameView {
+class MiniGameView extends View {
     
-    private final String miniGameIntro;
-    private MiniGame miniGame;
-    private int comboLength;
+    //private final String miniGameIntro;
+    private final MiniGame miniGame;
+    private final int comboLength;
     
-    public MiniGameView() {
-        this.miniGameIntro = "\n-----------------------------------------------------------------"
+    public MiniGameView(MiniGame miniGame) {
+        super("\n\nGuess the correct order (ie. 1234, or 3241, etc.), or Q to quit: ");
+        System.out.println("\n-----------------------------------------------------------------"
                 + "\nIn this game, you will guess the corect order of four numbers. (1 2 3 4)"
                 + "\nThe correct order is chosen at random.  You will enter a four"
                 + "\ndigit number and then you will be told the how many digits"
                 + "\nare in the correct order.  You win when you guess the correct order."
-                + "\n-----------------------------------------------------------------";
-    }
-
-    public void displayMiniGame(MiniGame miniGame) {
-        //System.out.println("\n*** displayMiniGame() function called ***");
+                + "\n-----------------------------------------------------------------");
         this.miniGame = miniGame;
         this.comboLength = miniGame.getComboOrder().length();
-        System.out.println(this.miniGameIntro);
-        boolean done = false;
-        do {
-            String userGuess = this.getInput();
-           
-            done = this.doAction(userGuess);
-            
-        } while (!done);  
-        
-        
     }
 
-    private String getInput() {
-        // System.out.println("\n*** getMenuOption() function called ***");
-        Scanner keyboard = new Scanner(System.in); 
-        String value = "";
-        boolean valid = false;
-
-        while (!valid) {
-            System.out.println("\n\nGuess the correct order (ie. 1234, or 3241, etc.), or Q to quit: ");
-
-            value = keyboard.nextLine();
-            value = value.trim();
-
-            if (value.length() < 1 || value.length() > this.comboLength) {
-                System.out.println("\n-----------------------------------------------------------------"
-                        + "\nYour Guess is too long or too short. Please re-enter your guess."
-                        + "\n-----------------------------------------------------------------");
-                continue;
-}
-        break;
-}
-    return value;
-    }
-
-    private boolean doAction(String userGuess) {
+    @Override
+    public boolean doAction(String userGuess) {
         // System.out.println("\n*** doAction() function called ***");
         userGuess = userGuess.toUpperCase();
         

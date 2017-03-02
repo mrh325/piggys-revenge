@@ -11,11 +11,10 @@ import java.util.Scanner;
  *
  * @author natebolton
  */
-class InventoryMenuView {
-    private String menu;
+class InventoryMenuView extends View {
 
     public InventoryMenuView() {
-        this.menu = "\n"
+        super("\n"
                 + "\n======================================="
                 + "\n| Inventory Menu                           |"
                 + "\n======================================="
@@ -23,47 +22,11 @@ class InventoryMenuView {
                 + "\nH - Change Hat"
                 + "\nS - Change Shoes"
                 + "\nB - Back to Game Menu"
-                + "\n=======================================";
+                + "\n=======================================");
     }
  
-    public void displayMenu() {
-        // System.out.println("\n*** displayMenu() function called ***");
-        boolean done = false;
-        do {
-            System.out.println(this.menu);
-            String menuOption = this.getMenuOption();
-           /* if (menuOption.toUpperCase().equals("Q"))
-                return; */
-           
-            done = this.doAction(menuOption);
-            
-        } while (!done);
-        
-     
-    }
-
-    private String getMenuOption() {
-        // System.out.println("\n*** getMenuOption() function called ***");
-        Scanner keyboard = new Scanner(System.in); 
-        String value = "";
-        boolean valid = false;
-
-        while (!valid) {
-            System.out.println("\nPlease choose from the options above: ");
-
-            value = keyboard.nextLine();
-            value = value.trim();
-
-            if (value.length() < 1 || value.length() > 1) {
-                System.out.println("\nInvalid value: Please re-enter");
-                continue;
-}
-        break;
-}
-    return value;
-    }
-
-    private boolean doAction(String menuOption) {
+    @Override
+    public boolean doAction(String menuOption) {
         // System.out.println("\n*** doAction() function called ***");
         
         menuOption = menuOption.toUpperCase();

@@ -6,7 +6,6 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.GameControl;
-import java.util.Scanner;
 
 /**
  *
@@ -26,6 +25,7 @@ class ScoreView extends View {
                 + "\nWill you have captured the Wolf? (Y or N)");
     }
 
+    @Override
     public boolean doAction(String value) {
         // System.out.println("\n*** doAction() function called ***");
         //split whitespace separated values

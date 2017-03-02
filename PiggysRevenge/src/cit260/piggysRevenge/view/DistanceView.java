@@ -12,60 +12,21 @@ import java.util.Scanner;
  *
  * @author natebolton
  */
-class DistanceView {
-
-    private final String introPrompt;
-    private final String prompt1;
+class DistanceView extends View {
 
     public DistanceView() {
-        this.introPrompt = "\n-----------------------------------------------------------------"
-                + "\nCalculating a distance...(proof of concept only)"
-                + "\n-----------------------------------------------------------------";
-        this.prompt1 = "\nPlease enter the Point 1 X and Y and Point 2 X and Y"
+        super("\n-----------------------------------------------------------------"
+                + "\nCalculating a distance... Please enter the following"
+                + "\non one line. Separate each value with a space"
+                + "\n-----------------------------------------------------------------"
+                + "\nPlease enter the Point 1 X and Y and Point 2 X and Y"
                 + "\nusing the following format: 1 1 5 5"
                 + "\nCooridnate values must be between 1 and 5 inclusive"
-                + "\nand numbers must be separated by spaces.";
+                + "\nand numbers must be separated by spaces.");
     }
 
-    
-    
-    void displayDistance() {
-        System.out.println("\n*** displayDistance() function called ***");
-                System.out.println(this.introPrompt);
-        boolean done = false;
-        do {
-            String userInput = this.getInput(this.prompt1);
-           
-            done = this.doAction(userInput);
-            
-        } while (!done); 
-    }
-
-    private String getInput(String prompt) {
-        // System.out.println("\n*** getMenuOption() function called ***");
-        Scanner keyboard = new Scanner(System.in); 
-        String value = "";
-        boolean valid = false;
-
-        while (!valid) {
-            System.out.println(prompt);
-            
-            value = keyboard.nextLine();
-            value = value.trim();
-
-            if (value.length() < 1) {
-                System.out.println("\n-----------------------------------------------------------------"
-                        + "\nInvalid input. Please re-enter your input."
-                        + "\n-----------------------------------------------------------------");
-                continue;
-            
-}
-        break;
-}
-    return value;
-    }
-
-    private boolean doAction(String input1) {
+    @Override
+    public boolean doAction(String input1) {
         // System.out.println("\n*** doAction() function called ***");
         input1 = input1.toUpperCase();
 
