@@ -13,7 +13,7 @@ import piggysrevenge.PiggysRevenge;
  * @author hales
  */
 public class MainMenuView extends View{
-    private String menu;
+    //private String menu;
     private final String menuCurrentGame;
     private GameMenuView gameMenu;
 
@@ -94,13 +94,22 @@ public class MainMenuView extends View{
                 this.startNewGame();
                 break;
             case "C":
-                this.displayGameMenu(); // This should return to game menu
+                // This should return to game menu, if there is one
+                try {
+                    this.displayGameMenu();
+                } catch (NullPointerException e) {
+                    System.out.println("\n*** ERROR:  No game in progress ***");
+                }
                 break;
             case "L":
                 this.loadSavedGame();
                 break;
             case "S":
-                this.saveGame();
+                try {
+                    this.saveGame();
+                } catch (NullPointerException e) {
+                    System.out.println("\n*** ERROR:  No game in progress ***");
+                }
                 break;
             case "H":
                 this.displayHelpMenu();
@@ -114,12 +123,36 @@ public class MainMenuView extends View{
 
     private void startNewGame() {
         // System.out.println("\n*** startNewGame() function called ***");
-        
-        GameControl.createNewGame(PiggysRevenge.getPlayer());
-        this.displayMessage = this.menuCurrentGame; //change menu to include current game options
-        
-        this.gameMenu = new GameMenuView();
-        this.gameMenu.displayMenu();
+        //Don't erase a current game unless the player confirms
+        if (PiggysRevenge.getCurrentGame() == null) {
+            GameControl.createNewGame(PiggysRevenge.getPlayer());
+            this.displayMessage = this.menuCurrentGame; //change menu to include current game options
+
+            this.gameMenu = new GameMenuView();
+            this.gameMenu.displayMenu();
+
+        } else {   
+            this.displayMessage = "\n-----------------------------------------------------------------"
+                        + "\nThis will quit your current game and start a new game!  Continue?  (Y or N)"
+                        + "\n-----------------------------------------------------------------";
+            String value = this.getInput().toUpperCase();
+            switch (value) {
+                case "Y":
+                    GameControl.createNewGame(PiggysRevenge.getPlayer());
+                    this.displayMessage = this.menuCurrentGame; //change menu to include current game options
+
+                    this.gameMenu = new GameMenuView();
+                    this.gameMenu.displayMenu();
+                    break;
+                case "N":
+                    this.displayMessage = this.menuCurrentGame;
+                    break;
+                default:
+                    System.out.println("\n-----------------------------------------------------------------"
+                            + "\nERROR: Please enter Y or N"
+                            + "\n-----------------------------------------------------------------");
+            }
+        }
     }
 
     private void displayGameMenu() {

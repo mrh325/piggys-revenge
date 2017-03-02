@@ -24,7 +24,7 @@ public abstract class View implements ViewInterface {
 
     @Override
     public void display() {
-        // System.out.println("\n*** displayMainMenuView() function called ***");
+        // System.out.println("\n*** display() function called ***");
         boolean done = false;
         do {
             // System.out.println(this.menu);
@@ -41,7 +41,7 @@ public abstract class View implements ViewInterface {
     
     @Override
         public String getInput() {
-        // System.out.println("\n*** getMenuOption() function called ***");
+        // System.out.println("\n*** getInput() function called ***");
         Scanner keyboard = new Scanner(System.in); 
         String value = "";
         boolean valid = false;

@@ -12,71 +12,35 @@ import java.util.Scanner;
  *
  * @author natebolton
  */
-class ScoreView {
+class ScoreView extends View {
 
-    private final String prompt1;
-    private final String prompt2;
-    private final String prompt3;
-    private final String prompt4;
-    private final String scoreIntro;
 
     public ScoreView() {
-        this.scoreIntro = "\n-----------------------------------------------------------------"
-                + "\nGenerating your possible score..."
-                + "\n-----------------------------------------------------------------";
-        this.prompt1 = "\nHow many bricks will be in your house?";
-        this.prompt2 = "\nHow many turns will have passed when the game ends?";
-        this.prompt3 = "\nWill you have eaten the roast beef? (Y or N)";
-        this.prompt4 = "\nWill you have captured the Wolf? (Y or N)";
+        super("\n-----------------------------------------------------------------"
+                + "\nGenerating your possible score... Please enter the following"
+                + "\non one line. Separate each value with a space"
+                + "\n-----------------------------------------------------------------"
+                + "\nHow many bricks will be in your house?"
+                + "\nHow many turns will have passed when the game ends?"
+                + "\nWill you have eaten the roast beef? (Y or N)"
+                + "\nWill you have captured the Wolf? (Y or N)");
     }
 
-    void displayScore() {
-        System.out.println(this.scoreIntro);
-        boolean done = false;
-        do {
-            String userInput1 = this.getInput(this.prompt1);
-            String userInput2 = this.getInput(this.prompt2);
-            String userInput3 = this.getInput(this.prompt3);
-            String userInput4 = this.getInput(this.prompt4);
-           
-            done = this.doAction(userInput1, userInput2, userInput3, userInput4);
-            
-        } while (!done); 
-    }
-
-    private String getInput(String prompt) {
-        // System.out.println("\n*** getMenuOption() function called ***");
-        Scanner keyboard = new Scanner(System.in); 
-        String value = "";
-        boolean valid = false;
-
-        while (!valid) {
-            System.out.println(prompt);
-            
-            value = keyboard.nextLine();
-            value = value.trim();
-
-            if (value.length() < 1) {
-                System.out.println("\n-----------------------------------------------------------------"
-                        + "\nInvalid input. Please re-enter your input."
-                        + "\n-----------------------------------------------------------------");
-                continue;
-            
-}
-        break;
-}
-    return value;
-    }
-
-    private boolean doAction(String input1, String input2, String input3, String input4) {
+    public boolean doAction(String value) {
         // System.out.println("\n*** doAction() function called ***");
-        boolean hasEaten;
-        boolean wolfKilled;
+        //split whitespace separated values
+        String[] parts = value.split("\\s+");
+        if (parts.length != 4) {
+            System.out.println("\n-----------------------------------------------------------------"
+                        + "\nERROR:  You must enter 4 space-separated values"
+                        + "\n-----------------------------------------------------------------");
+            return false;
+        }
 
-        input1 = input1.toUpperCase();
-        input2 = input2.toUpperCase();
-        input3 = input3.toUpperCase();
-        input4 = input4.toUpperCase();
+        String input1 = parts[0].toUpperCase();
+        String input2 = parts[1].toUpperCase();
+        String input3 = parts[2].toUpperCase();
+        String input4 = parts[3].toUpperCase();
 
         
         if ("Q".equals(input1) || "Q".equals(input2) || "Q".equals(input3) || "Q".equals(input4)) {
@@ -84,6 +48,8 @@ class ScoreView {
         }
         int bricks;
         int turns;
+        boolean hasEaten;
+        boolean wolfKilled;
         try {
             bricks = Integer.parseInt(input1);
             turns = Integer.parseInt(input2);

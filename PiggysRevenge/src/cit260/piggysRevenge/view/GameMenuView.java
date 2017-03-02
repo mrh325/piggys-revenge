@@ -142,7 +142,7 @@ public class GameMenuView {
     private void displayScore() {
         //System.out.println("\n*** displayScore() function called ***");
         ScoreView scoreView = new ScoreView();
-        scoreView.displayScore();
+        scoreView.display();
     }
 
     private void displayProbability() {
