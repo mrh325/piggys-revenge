@@ -21,6 +21,7 @@ public class MoveMenuView {
                 + "\nD - Down"
                 + "\nL - Left"
                 + "\nR - Right"
+                + "\nW - Test Wolf Encounter View"
                 + "\nB - Back to Main Menu"
                 + "\n=======================================";
     }
@@ -79,6 +80,9 @@ public class MoveMenuView {
             case "R":
                 this.moveRight();
                 break;
+            case "W":
+                this.displayWolfView();
+                break;
             case "B":
                 return true;
             default:
@@ -102,6 +106,12 @@ public class MoveMenuView {
 
     private void moveRight() {
         System.out.println("\n*** moveRight() function called ***");
+    }
+
+    private void displayWolfView() {
+        //PROOF OF CONCEPT ONLY, REMOVE WHEN THIS VIEW IS INSERTED IN ITS PROPER PLACE
+        WolfView wolfView = new WolfView();
+        wolfView.display();
     }
 
 
