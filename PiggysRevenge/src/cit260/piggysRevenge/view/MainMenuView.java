@@ -6,14 +6,13 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.GameControl;
-import java.util.Scanner;
 import piggysrevenge.PiggysRevenge;
 
 /**
  *
  * @author hales
  */
-public class MainMenuView {
+public class MainMenuView extends View{
     private String menu;
     private final String menuCurrentGame;
     private GameMenuView gameMenu;
@@ -22,7 +21,7 @@ public class MainMenuView {
         //Game currentGame = PiggysRevenge.getCurrentGame();
         
             //main menu before starting a new game
-            this.menu = "\n"
+            super("\n"
                 + "\n======================================="
                 + "\n| Main Menu                           |"
                 + "\n======================================="
@@ -30,7 +29,7 @@ public class MainMenuView {
                 + "\nL - Load saved game"
                 + "\nH - Get Help"
                 + "\nQ - Quit"
-                + "\n=======================================";
+                + "\n=======================================");
             //main menu after starting a new game
             this.menuCurrentGame = "\n"
                 + "\n======================================="
@@ -47,49 +46,50 @@ public class MainMenuView {
     
     
 
-    public void displayMainMenuView() {
-        // System.out.println("\n*** displayMainMenuView() function called ***");
-        boolean done = false;
-        do {
-            System.out.println(this.menu);
-            String menuOption = this.getMenuOption();
-            if (menuOption.toUpperCase().equals("Q"))
-                return;
-            
-            done = this.doAction(menuOption);
-            
-        } while (!done);
-        
-     
-    }
+//    public void displayMainMenuView() {
+//        // System.out.println("\n*** displayMainMenuView() function called ***");
+//        boolean done = false;
+//        do {
+//            System.out.println(this.menu);
+//            String menuOption = this.getMenuOption();
+//            if (menuOption.toUpperCase().equals("Q"))
+//                return;
+//            
+//            done = this.doAction(menuOption);
+//            
+//        } while (!done);
+//        
+//     
+//    }
+//
+//    private String getMenuOption() {
+//        // System.out.println("\n*** getMenuOption() function called ***");
+//        Scanner keyboard = new Scanner(System.in); 
+//        String value = "";
+//        boolean valid = false;
+//
+//        while (!valid) {
+//            System.out.println("\nPlease choose from the options above: ");
+//
+//            value = keyboard.nextLine();
+//            value = value.trim();
+//
+//            if (value.length() < 1 || value.length() > 1) {
+//                System.out.println("\nInvalid value: Please re-enter");
+//                continue;
+//}
+//        break;
+//}
+//    return value;
+//    }
 
-    private String getMenuOption() {
-        // System.out.println("\n*** getMenuOption() function called ***");
-        Scanner keyboard = new Scanner(System.in); 
-        String value = "";
-        boolean valid = false;
-
-        while (!valid) {
-            System.out.println("\nPlease choose from the options above: ");
-
-            value = keyboard.nextLine();
-            value = value.trim();
-
-            if (value.length() < 1 || value.length() > 1) {
-                System.out.println("\nInvalid value: Please re-enter");
-                continue;
-}
-        break;
-}
-    return value;
-    }
-
-    private boolean doAction(String menuOption) {
+    @Override
+    public boolean doAction(String value) {
         // System.out.println("\n*** doAction() function called ***");
         
-        menuOption = menuOption.toUpperCase();
+        value = value.toUpperCase();
         
-        switch (menuOption) {
+        switch (value) {
             case "N":
                 this.startNewGame();
                 break;
@@ -116,7 +116,7 @@ public class MainMenuView {
         // System.out.println("\n*** startNewGame() function called ***");
         
         GameControl.createNewGame(PiggysRevenge.getPlayer());
-        this.menu = this.menuCurrentGame; //change menu to include current game options
+        this.displayMessage = this.menuCurrentGame; //change menu to include current game options
         
         this.gameMenu = new GameMenuView();
         this.gameMenu.displayMenu();
