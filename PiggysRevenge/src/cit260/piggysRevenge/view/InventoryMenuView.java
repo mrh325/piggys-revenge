@@ -24,6 +24,7 @@ class InventoryMenuView extends View {
                 + "\nI - View (I)nventory"
                 + "\nH - Change (H)at"
                 + "\nS - Change (S)hoes"
+                + "\nG - (G)imme a brick"
                 + "\nB - (B)ack to Game Menu"
                 + "\n=======================================");
     }
@@ -80,6 +81,10 @@ class InventoryMenuView extends View {
                 //TEST CODE END
                 this.setShoes();
                 break;
+            case "G":
+                PiggysRevenge.getBackpack().setBricks(PiggysRevenge.getBackpack().getBricks()+1);
+                System.out.println("Brick Granted...");
+                break;
             case "B":
             case "Q":
                 return true;
@@ -92,7 +97,7 @@ class InventoryMenuView extends View {
 
     private void displayInventory() {
         //System.out.println("\n*** displayInventory() function called ***");
-//        System.out.println(Arrays.deepToString(PiggysRevenge.getBackpack().getItemList()));
+//        System.out.println(Arrays.deepToString(PiggysRevenge.getBackpack().getItemList())); //inventory throw-up
         Item[][] itemList = PiggysRevenge.getBackpack().getItemList();
         System.out.println("\n-----------------------------------------------------------------"
                 + "\nHats:");
@@ -130,6 +135,9 @@ class InventoryMenuView extends View {
         if (i == 1) {
             System.out.println("\nYou have no shoes.");
         }
+        System.out.println("\n-----------------------------------------------------------------"
+                + "\nBricks:");
+        System.out.println(PiggysRevenge.getBackpack().getBricks());
     }
 
     private void setHat() {
