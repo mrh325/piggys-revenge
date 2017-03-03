@@ -7,7 +7,6 @@ package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.MiniGameControl;
 import cit260.piggysRevenge.model.MiniGame;
-import java.util.Scanner;
 
 /**
  *
@@ -26,43 +25,6 @@ class MiniGameMenuView extends View {
                 + "\nB - (B)ack to Game Menu"
                 + "\n=======================================");
     }
-
-//    public void displayMenu() {
-//        // System.out.println("\n*** displayMenu() function called ***");
-//        boolean done = false;
-//        do {
-//            System.out.println(this.menu);
-//            String menuOption = this.getMenuOption();
-//           /* if (menuOption.toUpperCase().equals("Q"))
-//                return; */
-//           
-//            done = this.doAction(menuOption);
-//            
-//        } while (!done);
-//        
-//     
-//    }
-//
-//    private String getMenuOption() {
-//        // System.out.println("\n*** getMenuOption() function called ***");
-//        Scanner keyboard = new Scanner(System.in); 
-//        String value = "";
-//        boolean valid = false;
-//
-//        while (!valid) {
-//            System.out.println("\nPlease choose from the options above: ");
-//
-//            value = keyboard.nextLine();
-//            value = value.trim();
-//
-//            if (value.length() < 1 || value.length() > 1) {
-//                System.out.println("\nInvalid value: Please re-enter");
-//                continue;
-//}
-//        break;
-//}
-//    return value;
-//    }
 
     @Override
     public boolean doAction(String menuOption) {
