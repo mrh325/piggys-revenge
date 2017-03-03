@@ -60,6 +60,7 @@ class InventoryMenuView extends View {
                 break;
             case "S":
                 //System.out.println("\n*** Giving player a free shoe ***");
+                //TEST CODE START
                 //give the player one shoes to test stuff
                 i = 0;
                 for (Item hat : itemList[1]) {
@@ -76,6 +77,7 @@ class InventoryMenuView extends View {
                     //System.out.println("\n*** inserting something! ***");
                     PiggysRevenge.getBackpack().setItemList(itemList);
                 }
+                //TEST CODE END
                 this.setShoes();
                 break;
             case "B":
