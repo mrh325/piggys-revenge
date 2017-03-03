@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.control;
 
+import cit260.piggysRevenge.model.Backpack;
 import cit260.piggysRevenge.model.Game;
 import cit260.piggysRevenge.model.House;
 import cit260.piggysRevenge.model.Player;
@@ -118,6 +119,12 @@ public class GameControl {
         System.out.println("\n*** createNewHouse() function called ***");
         House house = new House(0,0,0,0);
         PiggysRevenge.setHouse(house);
+    }
+
+    public static void createNewBackpack() {
+        System.out.println("\n*** createNewBackpack() function called ***");
+        Backpack backpack = new Backpack();
+        PiggysRevenge.setBackpack(backpack);
     }
 
 

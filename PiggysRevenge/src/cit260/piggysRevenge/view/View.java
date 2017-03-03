@@ -40,7 +40,7 @@ public abstract class View implements ViewInterface {
     }
     
     @Override
-        public String getInput() {
+    public String getInput() {
         // System.out.println("\n*** getInput() function called ***");
         Scanner keyboard = new Scanner(System.in); 
         String value = "";
@@ -48,7 +48,7 @@ public abstract class View implements ViewInterface {
 
         while (!valid) {
             System.out.println("\n" + this.displayMessage);
-            
+
             value = keyboard.nextLine();
             value = value.trim();
 
@@ -57,11 +57,11 @@ public abstract class View implements ViewInterface {
                         + "\nInvalid input. Please re-enter your input."
                         + "\n-----------------------------------------------------------------");
                 continue;
-            
-}
+
+            }
         break;
-}
-    return value;
+        }
+        return value;
     }
 
 }

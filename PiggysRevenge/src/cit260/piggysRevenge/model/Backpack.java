@@ -7,7 +7,6 @@ package cit260.piggysRevenge.model;
 
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.Objects;
 
 /**
  *
@@ -15,7 +14,6 @@ import java.util.Objects;
  */
 public class Backpack implements Serializable {
     //Variables
-    private String name;
     private Item[][] itemList;
     private int bricks;
 
@@ -23,17 +21,10 @@ public class Backpack implements Serializable {
     public Backpack() {
         //create two arrays of 3 lenth arrays to hold Hats and Shoes
         this.itemList = new Item[2][3];
+        this.bricks = 0;
     }
     
     //methods
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Item[][] getItemList() {
         return itemList;
     }
@@ -53,7 +44,6 @@ public class Backpack implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.name);
         hash = 29 * hash + Arrays.deepHashCode(this.itemList);
         hash = 29 * hash + this.bricks;
         return hash;
@@ -74,9 +64,6 @@ public class Backpack implements Serializable {
         if (this.bricks != other.bricks) {
             return false;
         }
-        if (!Objects.equals(this.name, other.name)) {
-            return false;
-        }
         if (!Arrays.deepEquals(this.itemList, other.itemList)) {
             return false;
         }
@@ -85,7 +72,7 @@ public class Backpack implements Serializable {
 
     @Override
     public String toString() {
-        return "Backpack{" + "name=" + name + ", itemList=" + itemList + ", bricks=" + bricks + '}';
+        return "Backpack{" + "itemList=" + Arrays.toString(itemList) + ", bricks=" + bricks + '}';
     }
     
 }

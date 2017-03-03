@@ -17,6 +17,8 @@ public class Player implements Serializable{
     private double distanceToPantry;
     private double distanceToNearestKey;
     private boolean hasEaten;
+    private Item currentHat;
+    private Item currentShoes;
 
     public Player() {
     }
@@ -61,14 +63,32 @@ public class Player implements Serializable{
         this.hasEaten = hasEaten;
     }
 
+    public Item getCurrentHat() {
+        return currentHat;
+    }
+
+    public void setCurrentHat(Item currentHat) {
+        this.currentHat = currentHat;
+    }
+
+    public Item getCurrentShoes() {
+        return currentShoes;
+    }
+
+    public void setCurrentShoes(Item currentShoes) {
+        this.currentShoes = currentShoes;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 71 * hash + Objects.hashCode(this.name);
-        hash = 71 * hash + (int) (Double.doubleToLongBits(this.distanceToWolf) ^ (Double.doubleToLongBits(this.distanceToWolf) >>> 32));
-        hash = 71 * hash + (int) (Double.doubleToLongBits(this.distanceToPantry) ^ (Double.doubleToLongBits(this.distanceToPantry) >>> 32));
-        hash = 71 * hash + (int) (Double.doubleToLongBits(this.distanceToNearestKey) ^ (Double.doubleToLongBits(this.distanceToNearestKey) >>> 32));
-        hash = 71 * hash + (this.hasEaten ? 1 : 0);
+        hash = 29 * hash + Objects.hashCode(this.name);
+        hash = 29 * hash + (int) (Double.doubleToLongBits(this.distanceToWolf) ^ (Double.doubleToLongBits(this.distanceToWolf) >>> 32));
+        hash = 29 * hash + (int) (Double.doubleToLongBits(this.distanceToPantry) ^ (Double.doubleToLongBits(this.distanceToPantry) >>> 32));
+        hash = 29 * hash + (int) (Double.doubleToLongBits(this.distanceToNearestKey) ^ (Double.doubleToLongBits(this.distanceToNearestKey) >>> 32));
+        hash = 29 * hash + (this.hasEaten ? 1 : 0);
+        hash = 29 * hash + Objects.hashCode(this.currentHat);
+        hash = 29 * hash + Objects.hashCode(this.currentShoes);
         return hash;
     }
 
@@ -99,17 +119,18 @@ public class Player implements Serializable{
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
+        if (!Objects.equals(this.currentHat, other.currentHat)) {
+            return false;
+        }
+        if (!Objects.equals(this.currentShoes, other.currentShoes)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Player{" + "name=" + name + ", distanceToWolf=" + distanceToWolf + ", distanceToPantry=" + distanceToPantry + ", distanceToNearestKey=" + distanceToNearestKey + ", hasEaten=" + hasEaten + '}';
-    }
-    
-    
-
-
-    
+        return "Player{" + "name=" + name + ", distanceToWolf=" + distanceToWolf + ", distanceToPantry=" + distanceToPantry + ", distanceToNearestKey=" + distanceToNearestKey + ", hasEaten=" + hasEaten + ", currentHat=" + currentHat + ", currentShoes=" + currentShoes + '}';
+    }    
     
 }

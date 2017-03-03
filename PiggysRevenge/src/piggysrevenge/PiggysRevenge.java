@@ -139,6 +139,7 @@ public class PiggysRevenge {
     private static Game currentGame = null;
     private static Player player = null;
     private static House house = null;
+    private static Backpack backpack = null;
     
     public static void main(String[] args) {
 
@@ -170,5 +171,12 @@ public class PiggysRevenge {
         PiggysRevenge.house = house;
     }
 
+    public static Backpack getBackpack() {
+        return backpack;
+    }
+
+    public static void setBackpack(Backpack backpack) {
+        PiggysRevenge.backpack = backpack;
+    }
 
 }
