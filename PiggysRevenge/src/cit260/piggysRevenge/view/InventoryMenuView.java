@@ -24,7 +24,9 @@ class InventoryMenuView extends View {
                 + "\nI - View (I)nventory"
                 + "\nH - Change (H)at"
                 + "\nS - Change (S)hoes"
-                + "\nG - (G)imme a brick"
+                + "\nT - Gimme a ha(T) (FOR TESTING)"
+                + "\nO - Gimme a sh(O)es (FOR TESTING)"
+                + "\nG - (G)imme a brick (FOR TESTING)"
                 + "\nB - (B)ack to Game Menu"
                 + "\n=======================================");
     }
@@ -40,6 +42,12 @@ class InventoryMenuView extends View {
                 this.displayInventory();
                 break;
             case "H":
+                this.setHat();
+                break;
+            case "S":
+                this.setShoes();
+                break;
+            case "T":
                 //System.out.println("\n*** Giving player a free hat ***");
                 //give the player one hat to test stuff
                 int i = 0;
@@ -54,14 +62,14 @@ class InventoryMenuView extends View {
                 }
                 //if we didn't loop through the whole array without finding a non-null...
                 if (i != 3) {
-                    //System.out.println("\n*** inserting something! ***");
                     PiggysRevenge.getBackpack().setItemList(itemList);
+                    System.out.println("Hat Granted...");
+                } else {
+                    System.out.println("No good, you already have 3 hats.");
                 }
-                this.setHat();
                 break;
-            case "S":
+            case "O":
                 //System.out.println("\n*** Giving player a free shoe ***");
-                //TEST CODE START
                 //give the player one shoes to test stuff
                 i = 0;
                 for (Item hat : itemList[1]) {
@@ -75,11 +83,11 @@ class InventoryMenuView extends View {
                 }
                 //if we found a null in our loop...
                 if (i != 3) {
-                    //System.out.println("\n*** inserting something! ***");
+                    System.out.println("Shoes Granted...");
                     PiggysRevenge.getBackpack().setItemList(itemList);
+                } else {
+                    System.out.println("No good, you already have 3 shoes.");
                 }
-                //TEST CODE END
-                this.setShoes();
                 break;
             case "G":
                 PiggysRevenge.getBackpack().setBricks(PiggysRevenge.getBackpack().getBricks()+1);

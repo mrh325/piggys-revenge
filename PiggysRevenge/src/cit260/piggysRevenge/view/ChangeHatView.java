@@ -16,15 +16,15 @@ import piggysrevenge.PiggysRevenge;
 class ChangeHatView extends View {
 
     public ChangeHatView() {
-        super("\nPlease Choose a hat to wear.");
+        super("\nPlease Choose a hat to wear, or type \"N\" for none.");
     }
 
     @Override
     public void display() {
         if (PiggysRevenge.getPlayer().getCurrentHat() == null) {
-            System.out.print("\nYou're not currently wearing any hat.");
+            System.out.print("\n\n--You're not currently wearing any hat.");
         } else {
-            System.out.print("\nYou current hat is:" + PiggysRevenge.getPlayer().getCurrentHat().getName());
+            System.out.print("\n\n--You current hat is:" + PiggysRevenge.getPlayer().getCurrentHat().getName());
         }
         System.out.print("\nYou currently have the following hats:\n");
         Item[][] itemList = PiggysRevenge.getBackpack().getItemList();
@@ -40,8 +40,8 @@ class ChangeHatView extends View {
         }
         //if i was not incremented, all values are null
         if (i == 1) {
-            System.out.println("I'm sorry, you don't have any hats yet. Contents of the hats array:\n");
-            System.out.println(Arrays.toString(itemList[0]));
+            System.out.println("--I'm sorry, you don't have any hats yet.");
+            //System.out.println(Arrays.toString(itemList[0]));
             return;
         }
         super.display();
@@ -78,6 +78,9 @@ class ChangeHatView extends View {
                     System.out.println("\n*** Invalid selection *** Try again ***");
                 }
                 break;
+            case "N":
+                PiggysRevenge.getPlayer().setCurrentHat(null);
+                return true;
             case "B":
             case "Q":
                 return true;

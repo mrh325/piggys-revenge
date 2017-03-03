@@ -16,15 +16,15 @@ import piggysrevenge.PiggysRevenge;
 class ChangeShoesView extends View {
 
     public ChangeShoesView() {
-        super("\nPlease Choose shoes to wear.");
+        super("\nPlease Choose shoes to wear, or type \"N\" for none.");
     }
     
     @Override
     public void display() {
         if (PiggysRevenge.getPlayer().getCurrentShoes() == null) {
-            System.out.print("\nYou're not currently wearing any shoes.");
+            System.out.print("\n\n--You're not currently wearing any shoes.");
         } else {
-            System.out.print("\nYou current shoes are:" + PiggysRevenge.getPlayer().getCurrentShoes().getName());
+            System.out.print("\n\n--You current shoes are:" + PiggysRevenge.getPlayer().getCurrentShoes().getName());
         }
         System.out.print("\nYou currently have the following shoes:\n");
         Item[][] itemList = PiggysRevenge.getBackpack().getItemList();
@@ -40,8 +40,8 @@ class ChangeShoesView extends View {
         }
         //if shoe list is all null...
         if (i == 1) {
-            System.out.println("I'm sorry, you don't have any shoes yet. Contents of the shoes array:\n");
-            System.out.println(Arrays.toString(itemList[1]));
+            System.out.println("--I'm sorry, you don't have any shoes yet.");
+            //System.out.println(Arrays.toString(itemList[1]));
             return;
         }
         super.display();
@@ -78,6 +78,9 @@ class ChangeShoesView extends View {
                     System.out.println("\n*** Invalid selection *** Try again ***");
                 }
                 break;
+            case "N":
+                PiggysRevenge.getPlayer().setCurrentShoes(null);
+                return true;
             case "B":
             case "Q":
                 return true;
