@@ -21,9 +21,9 @@ class MiniGameMenuView extends View {
                 + "\n======================================="
                 + "\n| MiniGame Menu                           |"
                 + "\n======================================="
-                + "\nN - Start a new minigame"
-                + "\nH - Get Help"
-                + "\nB - Back to Game Menu"
+                + "\nN - Start a (N)ew minigame"
+                + "\nH - Get (H)elp"
+                + "\nB - (B)ack to Game Menu"
                 + "\n=======================================");
     }
 

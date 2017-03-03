@@ -20,16 +20,15 @@ public class GameMenuView {
                 + "\n======================================="
                 + "\n| Game Menu                           |"
                 + "\n======================================="
-                + "\nM - Move"
-                + "\nS - Show Map"
-                + "\nD - Calculate distance between two points"
-                + "\nI - Inventory"
-                + "\nG - Play the Mini Game!"
-                + "\nC - Show possible score"
-                + "\nE - Show probability of winning the game"
-                + "\n    in the fewest turns possible"
-                + "\nU - Calculate number of bricks for the house"
-                + "\nB - Back to Main Menu"
+                + "\nM - (M)ove"
+                + "\nS - (S)how Map"
+                + "\nD - Calculate (D)istance between two points"
+                + "\nI - (I)nventory"
+                + "\nG - Play the Mini (G)ame!"
+                + "\nC - Show s(C)ore"
+                + "\nP - Show (P)robability of winning the game"
+                + "\nU - Calc(U)late number of bricks for the house"
+                + "\nB - (B)ack to Main Menu"
                 + "\n=======================================";
     }
     
@@ -94,7 +93,7 @@ public class GameMenuView {
             case "C":
                 this.displayScore();
                 break;
-            case "E":
+            case "P":
                 this.displayProbability();
                 break;
             case "U":

@@ -25,22 +25,22 @@ public class MainMenuView extends View{
                 + "\n======================================="
                 + "\n| Main Menu                           |"
                 + "\n======================================="
-                + "\nN - Start new game"
-                + "\nL - Load saved game"
-                + "\nH - Get Help"
-                + "\nQ - Quit"
+                + "\nN - Start (N)ew game"
+                + "\nL - (L)oad saved game"
+                + "\nH - Get (H)elp"
+                + "\nQ - (Q)uit"
                 + "\n=======================================");
             //main menu after starting a new game
             this.menuCurrentGame = "\n"
                 + "\n======================================="
                 + "\n| Main Menu                           |"
                 + "\n======================================="
-                + "\nN - Start new game"
-                + "\nC - Continue game"
-                + "\nL - Load saved game"
-                + "\nS - Save game"
-                + "\nH - Get Help"
-                + "\nQ - Quit"
+                + "\nN - Start (N)ew game"
+                + "\nC - (C)ontinue game"
+                + "\nL - (L)oad saved game"
+                + "\nS - (S)ave game"
+                + "\nH - Get (H)elp"
+                + "\nQ - (Q)uit"
                 + "\n=======================================";
     }
     

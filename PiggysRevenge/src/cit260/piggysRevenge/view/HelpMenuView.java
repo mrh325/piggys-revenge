@@ -24,10 +24,10 @@ private String menuS;
                 + "\n======================================="
                 + "\n| Help Menu                           |"
                 + "\n======================================="
-                + "\nG - Game description"
-                + "\nH - How to move"
-                + "\nS - Scoring"
-                + "\nB - Go back to the previous menu"
+                + "\nG - (G)ame description"
+                + "\nM - How to (M)ove"
+                + "\nS - (S)coring"
+                + "\nB - (B)ack to the previous menu"
                 + "\n=======================================";
         this.menuG = "\n------------------------------------------------------------------------------"
                         +"\nGame Description:"
@@ -135,7 +135,7 @@ private String menuS;
             case "G":
                 this.displayGameHelp();
                 break;
-            case "H":
+            case "M":
                 this.displayMoveHelp();
                 break;
             case "S":

@@ -18,10 +18,10 @@ class InventoryMenuView extends View {
                 + "\n======================================="
                 + "\n| Inventory Menu                           |"
                 + "\n======================================="
-                + "\nI - See Inventory"
-                + "\nH - Change Hat"
-                + "\nS - Change Shoes"
-                + "\nB - Back to Game Menu"
+                + "\nI - View (I)nventory"
+                + "\nH - Change (H)at"
+                + "\nS - Change (S)hoes"
+                + "\nB - (B)ack to Game Menu"
                 + "\n=======================================");
     }
  

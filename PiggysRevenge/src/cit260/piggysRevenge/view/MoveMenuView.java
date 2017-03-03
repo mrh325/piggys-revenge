@@ -17,12 +17,12 @@ public class MoveMenuView {
                 + "\n======================================="
                 + "\n| Move Menu                           |"
                 + "\n======================================="
-                + "\nU - Up"
-                + "\nD - Down"
-                + "\nL - Left"
-                + "\nR - Right"
-                + "\nW - Test Wolf Encounter View"
-                + "\nB - Back to Main Menu"
+                + "\nU - (U)p"
+                + "\nD - (D)own"
+                + "\nL - (L)eft"
+                + "\nR - (R)ight"
+                + "\nT - (T)est Wolf Encounter View"
+                + "\nB - (B)ack to Main Menu"
                 + "\n=======================================";
     }
     
@@ -80,7 +80,7 @@ public class MoveMenuView {
             case "R":
                 this.moveRight();
                 break;
-            case "W":
+            case "T":
                 this.displayWolfView();
                 break;
             case "B":
