@@ -14,18 +14,18 @@ import java.util.Objects;
  */
 public class Hat extends Item implements Serializable {
     //variables
-    private String targetScene;
+    private Scene targetScene;
     
     //constructor
     public Hat() {
     }
     
     //methods
-    public String getTargetScene() {
+    public Scene getTargetScene() {
         return targetScene;
     }
 
-    public void setTargetScene(String targetScene) {
+    public void setTargetScene(Scene targetScene) {
         this.targetScene = targetScene;
     }
 
