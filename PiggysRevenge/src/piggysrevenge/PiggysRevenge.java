@@ -138,6 +138,7 @@ public class PiggysRevenge {
      */
     private static Game currentGame = null;
     private static Player player = null;
+    private static House house = null;
     
     public static void main(String[] args) {
 
@@ -159,6 +160,14 @@ public class PiggysRevenge {
 
     public static void setPlayer(Player player) {
         PiggysRevenge.player = player;
+    }
+
+    public static House getHouse() {
+        return house;
+    }
+
+    public static void setHouse(House house) {
+        PiggysRevenge.house = house;
     }
 
 

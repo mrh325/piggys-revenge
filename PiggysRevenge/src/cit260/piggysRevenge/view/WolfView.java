@@ -5,6 +5,8 @@
  */
 package cit260.piggysRevenge.view;
 
+import piggysrevenge.PiggysRevenge;
+
 /**
  *
  * @author natebolton
@@ -63,10 +65,26 @@ public class WolfView extends View {
 "                    ,M.                M  M M                        \n" +
 "                       =MMMMMM~+..  .+MMMMMN                         \n" +
 "                        .        .                                   \n" +
-"                                                                     ";
+"                                                                     "
+            + "\n\nYOU HAVE ENCOUNTERED THE WOLF!!";
     
     public WolfView() {
         System.out.println(this.wolfAsciiArt);
+    }
+
+    @Override
+    public void display() {
+        if (PiggysRevenge.getPlayer().isHasEaten()) {
+            System.out.println("You have captured the wolf and rid the forest of"
+                    + "\ndanger for the rest of your days.  Great Job!"
+                    + "\nBonus points for you!");
+        } else {
+            System.out.println("Without the superpig strength given to you"
+                    + "\nby eating the roast beef, you are overcome by the"
+                    + "\nthe wolf and die.");            
+        }
+        EndGameView endGameView = new EndGameView();
+        endGameView.display();
     }
     
     

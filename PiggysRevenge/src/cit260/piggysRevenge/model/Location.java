@@ -14,18 +14,21 @@ import java.util.Objects;
  */
 public class Location implements Serializable {
     
-    private String column;
-    private String row;
+    private int column;
+    private int row;
     private Boolean visited;
 
-    public Location() {
+    public Location(int column, int row) {
+        this.column = column;
+        this.row = row;
+        this.visited = false;
     }
 
-    public String getColumn() {
+    public int getColumn() {
         return column;
     }
 
-    public String getRow() {
+    public int getRow() {
         return row;
     }
 
@@ -33,11 +36,11 @@ public class Location implements Serializable {
         return visited;
     }
 
-    public void setColumn(String column) {
+    public void setColumn(int column) {
         this.column = column;
     }
 
-    public void setRow(String row) {
+    public void setRow(int row) {
         this.row = row;
     }
 
@@ -47,10 +50,10 @@ public class Location implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 13 * hash + Objects.hashCode(this.column);
-        hash = 13 * hash + Objects.hashCode(this.row);
-        hash = 13 * hash + Objects.hashCode(this.visited);
+        int hash = 7;
+        hash = 83 * hash + this.column;
+        hash = 83 * hash + this.row;
+        hash = 83 * hash + Objects.hashCode(this.visited);
         return hash;
     }
 
@@ -66,10 +69,10 @@ public class Location implements Serializable {
             return false;
         }
         final Location other = (Location) obj;
-        if (!Objects.equals(this.column, other.column)) {
+        if (this.column != other.column) {
             return false;
         }
-        if (!Objects.equals(this.row, other.row)) {
+        if (this.row != other.row) {
             return false;
         }
         if (!Objects.equals(this.visited, other.visited)) {

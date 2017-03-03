@@ -20,7 +20,7 @@ public class GameMenuView {
                 + "\n======================================="
                 + "\n| Game Menu                           |"
                 + "\n======================================="
-                + "\nV - Move"
+                + "\nM - Move"
                 + "\nS - Show Map"
                 + "\nD - Calculate distance between two points"
                 + "\nI - Inventory"
@@ -76,7 +76,7 @@ public class GameMenuView {
         menuOption = menuOption.toUpperCase();
         
         switch (menuOption) {
-            case "V":
+            case "M":
                 this.displayMoveMenu();
                 break;
             case "S":

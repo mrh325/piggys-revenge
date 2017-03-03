@@ -6,6 +6,7 @@
 package cit260.piggysRevenge.control;
 
 import cit260.piggysRevenge.model.Game;
+import cit260.piggysRevenge.model.House;
 import cit260.piggysRevenge.model.Player;
 import static java.lang.Math.round;
 import piggysrevenge.PiggysRevenge;
@@ -111,6 +112,12 @@ public class GameControl {
         game.setTurns(1);
         game.setScore(GameControl.calcScore(0, 1, false, false));
         PiggysRevenge.setCurrentGame(game);
+    }
+
+    public static void createNewHouse(Player player) {
+        System.out.println("\n*** createNewHouse() function called ***");
+        House house = new House(0,0,0,0);
+        PiggysRevenge.setHouse(house);
     }
 
 
