@@ -6,6 +6,7 @@
 package cit260.piggysRevenge.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -15,10 +16,13 @@ import java.util.Objects;
 public class Backpack implements Serializable {
     //Variables
     private String name;
-    private String itemList;
+    private Item[][] itemList;
+    private int bricks;
 
     //constructor
     public Backpack() {
+        //create two arrays of 3 lenth arrays to hold Hats and Shoes
+        this.itemList = new Item[2][3];
     }
     
     //methods
@@ -30,19 +34,28 @@ public class Backpack implements Serializable {
         this.name = name;
     }
 
-    public String getItemList() {
+    public Item[][] getItemList() {
         return itemList;
     }
 
-    public void setItemList(String itemList) {
+    public void setItemList(Item[][] itemList) {
         this.itemList = itemList;
+    }
+
+    public int getBricks() {
+        return bricks;
+    }
+
+    public void setBricks(int bricks) {
+        this.bricks = bricks;
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 41 * hash + Objects.hashCode(this.name);
-        hash = 41 * hash + Objects.hashCode(this.itemList);
+        hash = 29 * hash + Objects.hashCode(this.name);
+        hash = 29 * hash + Arrays.deepHashCode(this.itemList);
+        hash = 29 * hash + this.bricks;
         return hash;
     }
 
@@ -58,10 +71,13 @@ public class Backpack implements Serializable {
             return false;
         }
         final Backpack other = (Backpack) obj;
+        if (this.bricks != other.bricks) {
+            return false;
+        }
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
-        if (!Objects.equals(this.itemList, other.itemList)) {
+        if (!Arrays.deepEquals(this.itemList, other.itemList)) {
             return false;
         }
         return true;
@@ -69,9 +85,7 @@ public class Backpack implements Serializable {
 
     @Override
     public String toString() {
-        return "Backpack{" + "name=" + name + ", itemList=" + itemList + '}';
+        return "Backpack{" + "name=" + name + ", itemList=" + itemList + ", bricks=" + bricks + '}';
     }
-    
-    
     
 }
