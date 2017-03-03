@@ -37,11 +37,12 @@ class ChangeHatView extends View {
                 System.out.println(hat.getDescription());
                 i++;
             }
-            if (i == 1) {
-                System.out.println("I'm sorry, you don't have any hats yet. Contents of the hats array:\n");
-                System.out.println(Arrays.toString(itemList[0]));
-                return;
-            }
+        }
+        //if i was not incremented, all values are null
+        if (i == 1) {
+            System.out.println("I'm sorry, you don't have any hats yet. Contents of the hats array:\n");
+            System.out.println(Arrays.toString(itemList[0]));
+            return;
         }
         super.display();
     }

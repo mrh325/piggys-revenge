@@ -92,7 +92,44 @@ class InventoryMenuView extends View {
 
     private void displayInventory() {
         //System.out.println("\n*** displayInventory() function called ***");
-        System.out.println(Arrays.deepToString(PiggysRevenge.getBackpack().getItemList()));
+//        System.out.println(Arrays.deepToString(PiggysRevenge.getBackpack().getItemList()));
+        Item[][] itemList = PiggysRevenge.getBackpack().getItemList();
+        System.out.println("\n-----------------------------------------------------------------"
+                + "\nHats:");
+        int i = 1;
+        for (Item hat : itemList[0]) {
+            if (hat != null) {
+                System.out.print("\n");
+                if (hat == PiggysRevenge.getPlayer().getCurrentHat()) {
+                    System.out.println(hat.getName() + " - CURRENTLY WEARING");
+                } else {
+                    System.out.println(hat.getName());
+                }
+                System.out.println(hat.getDescription());
+                i++;
+            }
+        }
+        if (i == 1) {
+            System.out.println("\nYou have no hats.");
+        }
+        System.out.println("\n-----------------------------------------------------------------"
+                + "\nShoes:");
+        i = 1;
+        for (Item shoe : itemList[1]) {
+            if (shoe != null) {
+                System.out.print("\n");
+                if (shoe == PiggysRevenge.getPlayer().getCurrentShoes()) {
+                    System.out.println(shoe.getName() + " - CURRENTLY WEARING");
+                } else {
+                    System.out.println(shoe.getName());
+                }
+                System.out.println(shoe.getDescription());
+                i++;
+            }
+        }
+        if (i == 1) {
+            System.out.println("\nYou have no shoes.");
+        }
     }
 
     private void setHat() {

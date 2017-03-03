@@ -37,11 +37,12 @@ class ChangeShoesView extends View {
                 System.out.println(shoe.getDescription());
                 i++;
             }
-            if (i == 1) {
-                System.out.println("I'm sorry, you don't have any shoes yet. Contents of the shoes array:\n");
-                System.out.println(Arrays.toString(itemList[1]));
-                return;
-            }
+        }
+        //if shoe list is all null...
+        if (i == 1) {
+            System.out.println("I'm sorry, you don't have any shoes yet. Contents of the shoes array:\n");
+            System.out.println(Arrays.toString(itemList[1]));
+            return;
         }
         super.display();
     }
