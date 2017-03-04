@@ -6,8 +6,6 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.model.Item;
-import java.util.Arrays;
-import java.util.Scanner;
 import piggysrevenge.PiggysRevenge;
 
 /**

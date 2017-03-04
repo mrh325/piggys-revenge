@@ -156,14 +156,14 @@ public class MainMenuView extends View{
         this.displayMessage = this.menuCurrentGame; //change menu to include current game options
 
         this.gameMenu = new GameMenuView();
-        this.gameMenu.displayMenu();
+        this.gameMenu.display();
 
     }
 
     private void displayGameMenu() {
         //System.out.println("\n*** displayGameMenu() function called ***");
 
-        this.gameMenu.displayMenu();
+        this.gameMenu.display();
     }
 
     private void loadSavedGame() {
@@ -178,7 +178,7 @@ public class MainMenuView extends View{
         // System.out.println("\n*** displayHelpMenu() function called ***");
     
         HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.displayMenu();
+        helpMenu.display();
         
     }
     

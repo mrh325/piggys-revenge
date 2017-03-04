@@ -6,70 +6,57 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.GameControl;
-import java.util.Scanner;
+
 
 /**
  *
  * @author hales
  */
-class HouseSizeView {
+class HouseSizeView extends View{
 
     private String promptIntro;
     
     public HouseSizeView() {
-        this.promptIntro = "\n"
+        super ("\n"
                 + "\n============================="
                 + "\n| House Size View            |"
-                + "\n=============================";
+                + "\n============================="
+                + "\n"
+                + "\nPlease enter the length, width, height, and number of "
+                + "\nstories of the house you would like to build (Enter all"
+                + "\nvalues on one line separated by spaces):");
                 
     }
-    void displayHouse() {
-        System.out.println(this.promptIntro);
-        boolean done = false;
-        do {
-            String userInput1 = this.getInput("Enter the length of the house (between 5 and 20)");
-            String userInput2 = this.getInput("Enter the width of the house (between 5 and 20)");
-            String userInput3 = this.getInput("Enter the height of the house (between 6 and 10)");
-            String userInput4 = this.getInput("Enter the number of stories of the house (between 1 and 3)");
-           
-            done = this.doAction(userInput1, userInput2, userInput3, userInput4);
-            
-        } while (!done); 
-    }
+    
+    
+//    void displayHouse() {
+//        System.out.println(this.promptIntro);
+//        boolean done = false;
+//        do {
+//            String userInput1 = this.getInput("Enter the length of the house (between 5 and 20)");
+//            String userInput2 = this.getInput("Enter the width of the house (between 5 and 20)");
+//            String userInput3 = this.getInput("Enter the height of the house (between 6 and 10)");
+//            String userInput4 = this.getInput("Enter the number of stories of the house (between 1 and 3)");
+//           
+//            done = this.doAction(userInput1, userInput2, userInput3, userInput4);
+//            
+//        } while (!done); 
+//    }
 
-        private String getInput(String prompt) {
-        // System.out.println("\n*** getMenuOption() function called ***");
-        Scanner keyboard = new Scanner(System.in); 
-        String value = "";
-        boolean valid = false;
-
-        while (!valid) {
-            System.out.println(prompt);
-            
-            value = keyboard.nextLine();
-            value = value.trim();
-
-            if (value.length() < 1) {
-                System.out.println("\n-----------------------------------------------------------------"
-                        + "\nInvalid input. Please re-enter your input."
-                        + "\n-----------------------------------------------------------------");
-
-
-                continue;
-            
-}
-        break;
-}
-    return value;
-    }
-        
- private boolean doAction(String input1, String input2, String input3, String input4) {
+ @Override         
+ public boolean doAction(String value) {
         // System.out.println("\n*** doAction() function called ***");
-
-        input1 = input1.toUpperCase();
-        input2 = input2.toUpperCase();
-        input3 = input3.toUpperCase();
-        input4 = input4.toUpperCase();
+        String[] parts = value.split("\\s+");
+        
+        if (parts.length != 4) {
+            System.out.println("Please enter exactly 4 integers.");
+            return false;
+        }
+        
+        String input1 = parts[0].toUpperCase();
+        String input2 = parts[1].toUpperCase();
+        String input3 = parts[2].toUpperCase();
+        String input4 = parts[3].toUpperCase();
 
         if ("Q".equals(input1) || "Q".equals(input2) || "Q".equals(input3) || "Q".equals(input4)) {
             return true;

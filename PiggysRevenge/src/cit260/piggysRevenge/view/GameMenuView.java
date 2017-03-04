@@ -5,18 +5,14 @@
  */
 package cit260.piggysRevenge.view;
 
-import java.util.Scanner;
-
 /**
  *
  * @author natebolton
  */
-public class GameMenuView {
-
-    private String menu;
+public class GameMenuView extends View {
 
     public GameMenuView() {
-        this.menu = "\n"
+        super ("\n"
                 + "\n======================================="
                 + "\n| Game Menu                           |"
                 + "\n======================================="
@@ -29,47 +25,10 @@ public class GameMenuView {
                 + "\nP - Show (P)robability of winning the game"
                 + "\nU - Calc(U)late number of bricks for the house"
                 + "\nB - (B)ack to Main Menu"
-                + "\n=======================================";
+                + "\n=======================================");
     }
-    
-    public void displayMenu() {
-        // System.out.println("\n*** displayMenu() function called ***");
-        boolean done = false;
-        do {
-            System.out.println(this.menu);
-            String menuOption = this.getMenuOption();
-           /* if (menuOption.toUpperCase().equals("Q"))
-                return; */
-           
-            done = this.doAction(menuOption);
-            
-        } while (!done);
-        
-     
-    }
-
-    private String getMenuOption() {
-        // System.out.println("\n*** getMenuOption() function called ***");
-        Scanner keyboard = new Scanner(System.in); 
-        String value = "";
-        boolean valid = false;
-
-        while (!valid) {
-            System.out.println("\nPlease choose from the options above: ");
-
-            value = keyboard.nextLine();
-            value = value.trim();
-
-            if (value.length() < 1 || value.length() > 1) {
-                System.out.println("\nInvalid value: Please re-enter");
-                continue;
-}
-        break;
-}
-    return value;
-    }
-
-    private boolean doAction(String menuOption) {
+    @Override
+    public boolean doAction(String menuOption) {
         // System.out.println("\n*** doAction() function called ***");
         
         menuOption = menuOption.toUpperCase();
@@ -112,7 +71,7 @@ public class GameMenuView {
     private void displayMoveMenu() {
         
         MoveMenuView moveMenu = new MoveMenuView();
-        moveMenu.displayMenu();
+        moveMenu.display();
     }
 
     private void displayMap() {
@@ -153,7 +112,7 @@ public class GameMenuView {
     private void displayHouseMenu() {
         // System.out.println("\n*** displayHouseMenu() function called ***");
         HouseSizeView houseSize = new HouseSizeView();
-        houseSize.displayHouse();
+        houseSize.display();
     }
     
 }

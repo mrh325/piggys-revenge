@@ -63,7 +63,7 @@ class MiniGameMenuView extends View {
         // System.out.println("\n*** displayHelpMenu() function called ***");
     
         HelpMenuView helpMenu = new HelpMenuView();
-        helpMenu.displayMenu();
+        helpMenu.display();
         
     }
 }

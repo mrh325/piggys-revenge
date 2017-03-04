@@ -5,13 +5,11 @@
  */
 package cit260.piggysRevenge.view;
 
-import java.util.Scanner;
-
 /**
  *
  * @author hales
  */
-class HelpMenuView {
+class HelpMenuView extends View{
 
 
 private String menu;
@@ -20,7 +18,7 @@ private String menuH;
 private String menuS;
     
     public HelpMenuView() {
-        this.menu = "\n"
+        super ("\n"
                 + "\n======================================="
                 + "\n| Help Menu                           |"
                 + "\n======================================="
@@ -28,7 +26,7 @@ private String menuS;
                 + "\nM - How to (M)ove"
                 + "\nS - (S)coring"
                 + "\nB - (B)ack to the previous menu"
-                + "\n=======================================";
+                + "\n=======================================");
         this.menuG = "\n------------------------------------------------------------------------------"
                         +"\nGame Description:"
                         + "\n\n"
@@ -87,46 +85,8 @@ private String menuS;
 +"\n------------------------------------------------------------------------------";
     }
     
-    
-
-    public void displayMenu() {
-        // System.out.println("\n*** displayMenu() function called ***");
-        boolean done = false;
-        do {
-            System.out.println(this.menu);
-            String menuOption = this.getMenuOption();
-           /* if (menuOption.toUpperCase().equals("Q"))
-                return; */
-           
-            done = this.doAction(menuOption);
-            
-        } while (!done);
-        
-     
-    }
-
-    private String getMenuOption() {
-        // System.out.println("\n*** getMenuOption() function called ***");
-        Scanner keyboard = new Scanner(System.in); 
-        String value = "";
-        boolean valid = false;
-
-        while (!valid) {
-            System.out.println("\nPlease choose from the options above: ");
-
-            value = keyboard.nextLine();
-            value = value.trim();
-
-            if (value.length() < 1 || value.length() > 1) {
-                System.out.println("\nInvalid value: Please re-enter");
-                continue;
-}
-        break;
-}
-    return value;
-    }
-
-    private boolean doAction(String menuOption) {
+    @Override
+    public boolean doAction(String menuOption) {
         // System.out.println("\n*** doAction() function called ***");
         
         menuOption = menuOption.toUpperCase();

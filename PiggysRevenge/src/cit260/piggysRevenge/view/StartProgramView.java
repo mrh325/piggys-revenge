@@ -13,12 +13,12 @@ import java.util.Scanner;
  *
  * @author hales
  */
-public class StartProgramView {
+public class StartProgramView extends View {
 
-    private String promptMessage;
+
             
     public StartProgramView() {
-        this.promptMessage = "\nPlease enter your name:";
+        super ( "\nPlease enter your name:");
         this.displayBanner();
         
     
@@ -140,47 +140,48 @@ public class StartProgramView {
                                                                                                                                                               
          }
 
+//    @Override
+//    public void display() {
+//
+//        boolean done = false;
+//        do {
+//            //prompt for and get playersName
+//            String playersName = this.getPlayersName();
+//            if (playersName.toUpperCase().equals("Q")) 
+//                return;
+//        
+//            //do request action and display next view
+//            done = this.doAction(playersName);
+//        
+//        } while (!done);
+//
+//           
+//    }
+//
+//    private String getPlayersName() {
+//       
+//        Scanner keyboard = new Scanner(System.in); 
+//        String value = "";
+//        boolean valid = false;
+//
+//        while (!valid) {
+//            System.out.println("\n" + this.promptMessage);
+//
+//            value = keyboard.nextLine();
+//            value = value.trim();
+//
+//            if (value.length() < 1) {
+//                System.out.println("\nInvalid value: value can not be blank");
+//                continue;
+//}
+//        break;
+//}
+//    return value;
+//}
     
-    public void displayStartProgramView() {
 
-        boolean done = false;
-        do {
-            //prompt for and get playersName
-            String playersName = this.getPlayersName();
-            if (playersName.toUpperCase().equals("Q")) 
-                return;
-        
-            //do request action and display next view
-            done = this.doAction(playersName);
-        
-        } while (!done);
-
-           
-    }
-
-    private String getPlayersName() {
-       
-        Scanner keyboard = new Scanner(System.in); 
-        String value = "";
-        boolean valid = false;
-
-        while (!valid) {
-            System.out.println("\n" + this.promptMessage);
-
-            value = keyboard.nextLine();
-            value = value.trim();
-
-            if (value.length() < 1) {
-                System.out.println("\nInvalid value: value can not be blank");
-                continue;
-}
-        break;
-}
-    return value;
-}
-    
-
-    private boolean doAction(String playersName) {
+    @Override
+    public boolean doAction(String playersName) {
         if (playersName.length() < 2){
             System.out.println("\nInvalid player's name: "
                 + "The name must be greater than one character in length");
