@@ -9,10 +9,10 @@ package cit260.piggysRevenge.view;
  *
  * @author hales
  */
-public class findHatView extends View {
+public class FindHatView extends View {
     
 
-    public findHatView() {
+    public FindHatView() {
         super ( "\n"
 + "        .e$$$$$$$$$o.  .z+\"\"-eu.      .xu..\n" +
 "     d$$$$$$$$$$$$$$$$$o.    $$$$$u#         ^%s\n" +

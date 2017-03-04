@@ -17,8 +17,8 @@ public class MoveMenuView extends View {
                 + "\nD - (D)own"
                 + "\nL - (L)eft"
                 + "\nR - (R)ight"
-                + "\nT - (T)est Wolf Encounter View"
-                + "\nH - Test find (H)at view"
+                + "\nT - (T)est Wolf Encounter View (FOR TESTING ONLY)"
+                + "\nH - Test find (H)at view (FOR TESTING ONLY)"
                 + "\nB - (B)ack to Main Menu"
                 + "\n=======================================");
     }
@@ -81,7 +81,7 @@ public class MoveMenuView extends View {
     }
 
     private void findHat() {
-        findHatView findHat = new findHatView();
+        FindHatView findHat = new FindHatView();
         findHat.display();
     }
 
