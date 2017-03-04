@@ -18,6 +18,7 @@ public class MoveMenuView extends View {
                 + "\nL - (L)eft"
                 + "\nR - (R)ight"
                 + "\nT - (T)est Wolf Encounter View"
+                + "\nH - Test find (H)at view"
                 + "\nB - (B)ack to Main Menu"
                 + "\n=======================================");
     }
@@ -44,6 +45,9 @@ public class MoveMenuView extends View {
                 break;
             case "T":
                 this.displayWolfView();
+                break;
+            case "H":
+                this.findHat();
                 break;
             case "B":
                 return true;
@@ -74,6 +78,11 @@ public class MoveMenuView extends View {
         //PROOF OF CONCEPT ONLY, REMOVE WHEN THIS VIEW IS INSERTED IN ITS PROPER PLACE
         WolfView wolfView = new WolfView();
         wolfView.display();
+    }
+
+    private void findHat() {
+        findHatView findHat = new findHatView();
+        findHat.display();
     }
 
 
