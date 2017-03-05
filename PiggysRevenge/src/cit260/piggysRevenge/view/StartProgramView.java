@@ -7,7 +7,6 @@ package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.GameControl;
 import cit260.piggysRevenge.model.Player;
-import java.util.Scanner;
 
 /**
  *
