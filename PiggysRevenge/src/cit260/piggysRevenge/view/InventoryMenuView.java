@@ -127,51 +127,13 @@ class InventoryMenuView extends View {
     }
 
     private void giveHat() {
-        for (int i = 1; i < 4; i++) {
-            Item item = new Item("hat" + Integer.toString(i),"This is a generic hat","hat");
-            int result = InventoryControl.storeHat(item);
-            switch (result) {
-                case -1:
-                    System.out.println("\n-----------------------------------------------------------------"
-                            + "\nERROR: item is not a hat type");
-                    break;
-                case -2:
-                case 0:
-                    if (i == 3 || result == 0) {
-                        System.out.println("\n-----------------------------------------------------------------"
-                            + "\nERROR: No space left in inventory");
-                    }
-                    break;
-                case 1:
-                    System.out.println("\n-----------------------------------------------------------------"
-                            + "\nA hat has been placed in your backpack.");
-                    return;
-            }
-        }
+        int result = InventoryControl.giveHat();
+        //System.out.println(result);
     }
 
     private void giveShoe() {
-        for (int i = 1; i < 4; i++) {
-            Item item = new Item("shoes" + Integer.toString(i),"These are generic shoes","shoe");
-            int result = InventoryControl.storeShoe(item);
-            switch (result) {
-                case -1:
-                    System.out.println("\n-----------------------------------------------------------------"
-                            + "\nERROR: item is not a shoe type");
-                    break;
-                case -2:
-                case 0:
-                    if (i == 3 || result == 0) {
-                        System.out.println("\n-----------------------------------------------------------------"
-                            + "\nERROR: No space left in inventory");
-                    }
-                    break;
-                case 1:
-                    System.out.println("\n-----------------------------------------------------------------"
-                            + "\nShoes have been placed in your backpack.");
-                    return;
-            }
-        }
+        int result = InventoryControl.giveShoe();
+        //System.out.println(result);
     }
 
 }

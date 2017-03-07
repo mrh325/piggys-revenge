@@ -5,6 +5,10 @@
  */
 package cit260.piggysRevenge.view;
 
+import cit260.piggysRevenge.control.InventoryControl;
+import cit260.piggysRevenge.model.Item;
+import piggysrevenge.PiggysRevenge;
+
 /**
  *
  * @author hales
@@ -40,7 +44,7 @@ public class FindHatView extends View {
                 + "\nE - (E)quip"
                 + "\nS - (S)tore in backpack"
                 + "\nL - (L)eave the hat here"
-                + "\nV - (View current backpack inventory"
+                + "\nV - (V)iew current backpack inventory"
                 + "\nB - (B)ack to Game"
                 + "\n=======================================");
     }
@@ -61,7 +65,7 @@ public class FindHatView extends View {
                 return true;
             case "V":
                 this.displayInventory();
-                return true;
+                return false;
             case "L":
             case "B":
                 return true;
@@ -74,14 +78,66 @@ public class FindHatView extends View {
 
     private void equipHat() {
         System.out.println("*** equipHat function called ***");
+        int result = InventoryControl.giveHat();
+        Item[][] itemList = PiggysRevenge.getBackpack().getItemList();
+        if (itemList[0][result] != null) {
+            PiggysRevenge.getPlayer().setCurrentHat(itemList[0][result]);
+            System.out.println("\n-----------------------------------------------------------------"
+                    + "\nHat Equipped.");
+        } else {
+            System.out.println("\n*** Error Equiping Hat ***");
+        }
     }
 
     private void storeHat() {
         System.out.println("*** storeHat function called ***");
+        int result = InventoryControl.giveHat();
     }
 
     private void displayInventory() {
         System.out.println("*** displayInventory function called ***");
+        //System.out.println("\n*** displayInventory() function called ***");
+//        System.out.println(Arrays.deepToString(PiggysRevenge.getBackpack().getItemList())); //inventory throw-up
+        Item[][] itemList = PiggysRevenge.getBackpack().getItemList();
+        System.out.println("\n-----------------------------------------------------------------"
+                + "\nHats:");
+        int i = 1;
+        for (Item hat : itemList[0]) {
+            if (hat != null) {
+                System.out.print("\n");
+                if (hat == PiggysRevenge.getPlayer().getCurrentHat()) {
+                    System.out.println(hat.getName() + " - CURRENTLY WEARING");
+                } else {
+                    System.out.println(hat.getName());
+                }
+                System.out.println(hat.getDescription());
+                i++;
+            }
+        }
+        if (i == 1) {
+            System.out.println("\nYou have no hats.");
+        }
+        System.out.println("\n-----------------------------------------------------------------"
+                + "\nShoes:");
+        i = 1;
+        for (Item shoe : itemList[1]) {
+            if (shoe != null) {
+                System.out.print("\n");
+                if (shoe == PiggysRevenge.getPlayer().getCurrentShoes()) {
+                    System.out.println(shoe.getName() + " - CURRENTLY WEARING");
+                } else {
+                    System.out.println(shoe.getName());
+                }
+                System.out.println(shoe.getDescription());
+                i++;
+            }
+        }
+        if (i == 1) {
+            System.out.println("\nYou have no shoes.");
+        }
+        System.out.println("\n-----------------------------------------------------------------"
+                + "\nBricks:");
+        System.out.println(PiggysRevenge.getBackpack().getBricks());
     }
 
     
