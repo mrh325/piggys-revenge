@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.view;
 
+import cit260.piggysRevenge.control.InventoryControl;
 import cit260.piggysRevenge.model.Item;
 import piggysrevenge.PiggysRevenge;
 
@@ -46,48 +47,15 @@ class InventoryMenuView extends View {
                 this.setShoes();
                 break;
             case "T":
-                //System.out.println("\n*** Giving player a free hat ***");
-                //give the player one hat to test stuff
-                int i = 0;
-                for (Item hat : itemList[0]) {
-                    //System.out.println("\npass " + Integer.toString(i));
-                    if (hat == null) {
-                        Item item = new Item("hat" + Integer.toString(i+1),"This is a generic hat","hat");
-                        itemList[0][i] = item;
-                        break;
-                    }
-                    i++;
-                }
-                //if we didn't loop through the whole array without finding a non-null...
-                if (i != 3) {
-                    PiggysRevenge.getBackpack().setItemList(itemList);
-                    System.out.println("Hat Granted...");
-                } else {
-                    System.out.println("No good, you already have 3 hats.");
-                }
+                //for testing only
+                this.giveHat();
                 break;
             case "O":
-                //System.out.println("\n*** Giving player a free shoe ***");
-                //give the player one shoes to test stuff
-                i = 0;
-                for (Item hat : itemList[1]) {
-                    //System.out.println("\npass " + Integer.toString(i));
-                    if (hat == null) {
-                        Item item = new Item("shoes" + Integer.toString(i+1),"These are generic shoes","shoes");
-                        itemList[1][i] = item;
-                        break;
-                    }
-                    i++;
-                }
-                //if we found a null in our loop...
-                if (i != 3) {
-                    System.out.println("Shoes Granted...");
-                    PiggysRevenge.getBackpack().setItemList(itemList);
-                } else {
-                    System.out.println("No good, you already have 3 shoes.");
-                }
+                //for testing only
+                this.giveShoe();
                 break;
             case "G":
+                //for testing only
                 PiggysRevenge.getBackpack().setBricks(PiggysRevenge.getBackpack().getBricks()+1);
                 System.out.println("Brick Granted...");
                 break;
@@ -156,6 +124,54 @@ class InventoryMenuView extends View {
         //System.out.println("\n*** setShoes() function called ***");
         ChangeShoesView changeShoesView = new ChangeShoesView();
         changeShoesView.display();
+    }
+
+    private void giveHat() {
+        for (int i = 1; i < 4; i++) {
+            Item item = new Item("hat" + Integer.toString(i),"This is a generic hat","hat");
+            int result = InventoryControl.storeHat(item);
+            switch (result) {
+                case -1:
+                    System.out.println("\n-----------------------------------------------------------------"
+                            + "\nERROR: item is not a hat type");
+                    break;
+                case -2:
+                case 0:
+                    if (i == 3 || result == 0) {
+                        System.out.println("\n-----------------------------------------------------------------"
+                            + "\nERROR: No space left in inventory");
+                    }
+                    break;
+                case 1:
+                    System.out.println("\n-----------------------------------------------------------------"
+                            + "\nA hat has been placed in your backpack.");
+                    return;
+            }
+        }
+    }
+
+    private void giveShoe() {
+        for (int i = 1; i < 4; i++) {
+            Item item = new Item("shoes" + Integer.toString(i),"These are generic shoes","shoe");
+            int result = InventoryControl.storeShoe(item);
+            switch (result) {
+                case -1:
+                    System.out.println("\n-----------------------------------------------------------------"
+                            + "\nERROR: item is not a shoe type");
+                    break;
+                case -2:
+                case 0:
+                    if (i == 3 || result == 0) {
+                        System.out.println("\n-----------------------------------------------------------------"
+                            + "\nERROR: No space left in inventory");
+                    }
+                    break;
+                case 1:
+                    System.out.println("\n-----------------------------------------------------------------"
+                            + "\nShoes have been placed in your backpack.");
+                    return;
+            }
+        }
     }
 
 }

@@ -18,7 +18,7 @@ public class Item implements Serializable {
     private String description;
     private int movementBonus;
     private Scene targetScene;
-    private String itemType;
+    private String itemType; //type == "hat" OR "shoe"
 
     //constructor
     public Item() {
