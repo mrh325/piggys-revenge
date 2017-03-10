@@ -8,6 +8,8 @@ package cit260.piggysRevenge.control;
 import cit260.piggysRevenge.model.Backpack;
 import cit260.piggysRevenge.model.Game;
 import cit260.piggysRevenge.model.House;
+import cit260.piggysRevenge.model.Item;
+import cit260.piggysRevenge.model.Map;
 import cit260.piggysRevenge.model.Player;
 import static java.lang.Math.round;
 import piggysrevenge.PiggysRevenge;
@@ -120,6 +122,8 @@ public class GameControl {
         //set map
         game.setHouse(GameControl.createNewHouse());
         game.setBackpack(GameControl.createNewBackpack());
+        Map map = MapControl.createMap();
+        game.setMap(map);
         PiggysRevenge.setCurrentGame(game);
     }
 
@@ -131,7 +135,7 @@ public class GameControl {
 
     public static Backpack createNewBackpack() {
         System.out.println("\n*** createNewBackpack() function called ***");
-        Backpack backpack = new Backpack();
+        Backpack backpack = new Backpack(new Item[2][3]);
         return backpack;
     }
 

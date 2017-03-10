@@ -5,6 +5,8 @@
  */
 package cit260.piggysRevenge.control;
 
+import cit260.piggysRevenge.model.Map;
+
 /**
  *
  * @author natebolton
@@ -67,5 +69,10 @@ public class MapControl {
 
         return Math.sqrt( (startPositionX - endPositionX) * (startPositionX - endPositionX) + (startPositionY-endPositionY) * (startPositionY-endPositionY) );
 
+    }
+
+    static Map createMap() {
+        System.out.println("*** createMap() called ***");
+        return null;
     }
 }

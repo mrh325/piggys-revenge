@@ -18,9 +18,9 @@ public class Backpack implements Serializable {
     private int bricks;
 
     //constructor
-    public Backpack() {
+    public Backpack(Item[][] itemList) {
         //create two arrays of 3 lenth arrays to hold Hats and Shoes
-        this.itemList = new Item[2][3];
+        this.itemList = itemList; //new Item[2][3];
         this.bricks = 0;
     }
     
