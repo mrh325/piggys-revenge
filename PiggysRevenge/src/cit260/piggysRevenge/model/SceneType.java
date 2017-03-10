@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cit260.piggysRevenge.control;
+package cit260.piggysRevenge.model;
 
 /**
  *
@@ -20,5 +20,5 @@ public enum SceneType {
     rockyCliffs,
     frozenTundra,
     beach,
-    daveyJonesLocker;
+    canyons;
 }

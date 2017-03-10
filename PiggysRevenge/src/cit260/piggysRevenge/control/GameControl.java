@@ -148,8 +148,8 @@ public class GameControl {
         Location[][] locations = map.getLocations();
         
 
-        for (int i = 0; i < PiggysRevenge.getCurrentGame().getMap().getRowCount(); i++) {
-            for (int j = 0; j < PiggysRevenge.getCurrentGame().getMap().getColumnCount(); j++) {
+        for (int i = 0; i < map.getRowCount(); i++) {
+            for (int j = 0; j < map.getColumnCount(); j++) {
                 Random rand = new Random();
                 locations[i][j].setScene(scenes[rand.nextInt(10) + 1]);
             }
