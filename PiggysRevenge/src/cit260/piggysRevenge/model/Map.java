@@ -6,6 +6,7 @@
 package cit260.piggysRevenge.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 /**
  *
@@ -15,61 +16,67 @@ public class Map implements Serializable {
     
     private Integer rowCount;
     private Integer columnCount;
-    private Location currentPlayerLocation;
-    private Location currentWolfLocation;
-    private Scene currentScene;
+    private Location[][] locations;
+
 
     public Map() {
+    }
+
+    public Map(int columnCount, int rowCount) {
+        // System.out.println("*** Map class called ***");
+        
+        if (rowCount < 1 || columnCount < 1) {
+            System.out.println("The number of rows and columns must be > zero");
+            return;
+        }
+        
+        this.columnCount = columnCount;
+        this.rowCount = rowCount;
+        
+        this.locations = new Location[rowCount][columnCount];
+        
+        for (int row = 0; row < rowCount; row++) {
+            for (int column = 0; column < columnCount; column++) {
+                Location location = new Location();
+                location.setColumn(column);
+                location.setRow(row);
+                location.setVisited(false);
+                
+                locations[row][column] = location;
+            }
+        }
     }
 
     public Integer getRowCount() {
         return rowCount;
     }
 
-    public Integer getColumnCount() {
-        return columnCount;
-    }
-
     public void setRowCount(Integer rowCount) {
         this.rowCount = rowCount;
+    }
+
+    public Integer getColumnCount() {
+        return columnCount;
     }
 
     public void setColumnCount(Integer columnCount) {
         this.columnCount = columnCount;
     }
 
-    public Location getCurrentPlayerLocation() {
-        return currentPlayerLocation;
+    public Location[][] getLocations() {
+        return locations;
     }
 
-    public Location getCurrentWolfLocation() {
-        return currentWolfLocation;
-    }
-    
-    public void setCurrentPlayerLocation(Location currentPlayerLocation) {
-        this.currentPlayerLocation = currentPlayerLocation;
-    }
-
-    public void setCurrentWolfLocation(Location currentWolfLocation) {
-        this.currentWolfLocation = currentWolfLocation;
-    }
-
-    public Scene getCurrentScene() {
-        return currentScene;
-    }
-
-    public void setCurrentScene(Scene currentScene) {
-        this.currentScene = currentScene;
+    public void setLocations(Location[][] locations) {
+        this.locations = locations;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.rowCount);
-        hash = 97 * hash + Objects.hashCode(this.columnCount);
-        hash = 97 * hash + Objects.hashCode(this.currentPlayerLocation);
-        hash = 97 * hash + Objects.hashCode(this.currentWolfLocation);
-        hash = 97 * hash + Objects.hashCode(this.currentScene);
+        hash = 79 * hash + Objects.hashCode(this.rowCount);
+        hash = 79 * hash + Objects.hashCode(this.columnCount);
+        hash = 79 * hash + Arrays.deepHashCode(this.locations);
         return hash;
     }
 
@@ -85,19 +92,13 @@ public class Map implements Serializable {
             return false;
         }
         final Map other = (Map) obj;
-        if (!Objects.equals(this.currentPlayerLocation, other.currentPlayerLocation)) {
-            return false;
-        }
-        if (!Objects.equals(this.currentWolfLocation, other.currentWolfLocation)) {
-            return false;
-        }
         if (!Objects.equals(this.rowCount, other.rowCount)) {
             return false;
         }
         if (!Objects.equals(this.columnCount, other.columnCount)) {
             return false;
         }
-        if (!Objects.equals(this.currentScene, other.currentScene)) {
+        if (!Arrays.deepEquals(this.locations, other.locations)) {
             return false;
         }
         return true;
@@ -105,7 +106,9 @@ public class Map implements Serializable {
 
     @Override
     public String toString() {
-        return "Map{" + "rowCount=" + rowCount + ", columnCount=" + columnCount + ", currentPlayerLocation=" + currentPlayerLocation + ", currentWolfLocation=" + currentWolfLocation + ", currentScene=" + currentScene + '}';
-    }    
+        return "Map{" + "rowCount=" + rowCount + ", columnCount=" + columnCount + ", locations=" + locations + '}';
+    }
+
+   
 
 }

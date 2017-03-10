@@ -6,6 +6,7 @@
 package cit260.piggysRevenge.control;
 
 import cit260.piggysRevenge.model.Map;
+import cit260.piggysRevenge.model.Scene;
 
 /**
  *
@@ -71,8 +72,33 @@ public class MapControl {
 
     }
 
-    static Map createMap() {
-        System.out.println("*** createMap() called ***");
-        return null;
+    public static Map createMap() {
+        // System.out.println("*** createMap() called ***");
+        
+        Map map = new Map (7, 7);
+        
+        Scene[] scenes = createScenes();
+        
+        GameControl.assignScenesToLocations(map, scenes);
+        return map;
+    }
+
+    private static Scene[] createScenes() {
+        // System.out.println("*** Scene function called***");
+        
+        Scene[] scenes = new Scene[SceneType.values().length];
+        
+        Scene startingScene = new Scene();
+        startingScene.setDescription("Yay, you're at the beginning");
+        startingScene.setMapSymbol(" P ");
+        scenes[SceneType.start.ordinal()] = startingScene;
+        
+        for (int i = 1; i < SceneType.values().length; i++) {
+            Scene randomScene = new Scene();
+            randomScene.setDescription("Yay, you're at random location" + i);
+            randomScene.setMapSymbol(" ? ");
+            scenes[i] = randomScene;
+        }
+        return scenes;
     }
 }

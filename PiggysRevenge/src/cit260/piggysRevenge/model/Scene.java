@@ -16,7 +16,7 @@ public class Scene implements Serializable {
     
     private String name;
     private String description;
-    private Boolean containsWolf;
+    private String mapSymbol;
 
     public Scene() {
     }
@@ -37,12 +37,12 @@ public class Scene implements Serializable {
         this.description = description;
     }
 
-    public Boolean getContainsWolf() {
-        return containsWolf;
+    public String mapSymbol() {
+        return mapSymbol;
     }
 
-    public void setContainsWolf(Boolean containsWolf) {
-        this.containsWolf = containsWolf;
+    public void setMapSymbol(String mapSymbol) {
+        this.mapSymbol = mapSymbol;
     }
 
     @Override
@@ -50,7 +50,7 @@ public class Scene implements Serializable {
         int hash = 7;
         hash = 17 * hash + Objects.hashCode(this.name);
         hash = 17 * hash + Objects.hashCode(this.description);
-        hash = 17 * hash + Objects.hashCode(this.containsWolf);
+        hash = 17 * hash + Objects.hashCode(this.mapSymbol);
         return hash;
     }
 
@@ -72,7 +72,7 @@ public class Scene implements Serializable {
         if (!Objects.equals(this.description, other.description)) {
             return false;
         }
-        if (!Objects.equals(this.containsWolf, other.containsWolf)) {
+        if (!Objects.equals(this.mapSymbol, other.mapSymbol)) {
             return false;
         }
         return true;
@@ -80,8 +80,9 @@ public class Scene implements Serializable {
 
     @Override
     public String toString() {
-        return "Scene{" + "name=" + name + ", description=" + description + ", containsWolf=" + containsWolf + '}';
+        return "Scene{" + "name=" + name + ", description=" + description + ", mapSymbol=" + mapSymbol + '}';
     }
-    
+
+   
     
 }

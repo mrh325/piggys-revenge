@@ -9,9 +9,12 @@ import cit260.piggysRevenge.model.Backpack;
 import cit260.piggysRevenge.model.Game;
 import cit260.piggysRevenge.model.House;
 import cit260.piggysRevenge.model.Item;
+import cit260.piggysRevenge.model.Location;
 import cit260.piggysRevenge.model.Map;
 import cit260.piggysRevenge.model.Player;
+import cit260.piggysRevenge.model.Scene;
 import static java.lang.Math.round;
+import java.util.Random;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -139,7 +142,23 @@ public class GameControl {
         return backpack;
     }
 
+    public static void assignScenesToLocations(Map map, Scene[] scenes) {
+        // System.out.println("*** assignScenesToLocations called ***");
+        
+        Location[][] locations = map.getLocations();
+        
 
-    
+        for (int i = 0; i < PiggysRevenge.getCurrentGame().getMap().getRowCount(); i++) {
+            for (int j = 0; j < PiggysRevenge.getCurrentGame().getMap().getColumnCount(); j++) {
+                Random rand = new Random();
+                locations[i][j].setScene(scenes[rand.nextInt(10) + 1]);
+            }
+        }
+        
+    }
+
+
+
+   
 }
 

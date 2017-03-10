@@ -5,6 +5,9 @@
  */
 package cit260.piggysRevenge.view;
 
+import cit260.piggysRevenge.model.Location;
+import piggysrevenge.PiggysRevenge;
+
 /**
  *
  * @author natebolton
@@ -75,7 +78,12 @@ public class GameMenuView extends View {
     }
 
     private void displayMap() {
-        System.out.println("\n*** displayMap() function called ***");
+//        System.out.println("\n*** displayMap() function called ***");
+//        StringBuilder line = new StringBuilder(
+//            )
+
+        Location[][] locations = PiggysRevenge.getCurrentGame().getMap().getLocations();
+        System.out.println("The Far Away Land of Nonsense");
     }
 
     private void displayDistance() {
