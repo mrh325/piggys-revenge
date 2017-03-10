@@ -35,7 +35,7 @@ class InventoryMenuView extends View {
         // System.out.println("\n*** doAction() function called ***");
         
         menuOption = menuOption.toUpperCase();
-        Item[][] itemList = PiggysRevenge.getBackpack().getItemList();
+        Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
         switch (menuOption) {
             case "I":
                 this.displayInventory();
@@ -56,7 +56,7 @@ class InventoryMenuView extends View {
                 break;
             case "G":
                 //for testing only
-                PiggysRevenge.getBackpack().setBricks(PiggysRevenge.getBackpack().getBricks()+1);
+                PiggysRevenge.getCurrentGame().getBackpack().setBricks(PiggysRevenge.getCurrentGame().getBackpack().getBricks()+1);
                 System.out.println("Brick Granted...");
                 break;
             case "B":
@@ -72,7 +72,7 @@ class InventoryMenuView extends View {
     private void displayInventory() {
         //System.out.println("\n*** displayInventory() function called ***");
 //        System.out.println(Arrays.deepToString(PiggysRevenge.getBackpack().getItemList())); //inventory throw-up
-        Item[][] itemList = PiggysRevenge.getBackpack().getItemList();
+        Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
         System.out.println("\n-----------------------------------------------------------------"
                 + "\nHats:");
         int i = 1;
@@ -111,7 +111,7 @@ class InventoryMenuView extends View {
         }
         System.out.println("\n-----------------------------------------------------------------"
                 + "\nBricks:");
-        System.out.println(PiggysRevenge.getBackpack().getBricks());
+        System.out.println(PiggysRevenge.getCurrentGame().getBackpack().getBricks());
     }
 
     private void setHat() {

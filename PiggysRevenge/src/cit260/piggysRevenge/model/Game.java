@@ -17,10 +17,14 @@ public class Game implements Serializable{
     private Map map;
     private int turns;
     private int score;
+    private boolean wolfKilled;
+    private Player player;
+    private House house;
+    private Backpack backpack;
 
     public Game() {
     }
-
+    
     public Map getMap() {
         return map;
     }
@@ -45,12 +49,47 @@ public class Game implements Serializable{
         this.score = score;
     }
 
+    public boolean isWolfKilled() {
+        return wolfKilled;
+    }
+
+    public void setWolfKilled(boolean wolfKilled) {
+        this.wolfKilled = wolfKilled;
+    }
+    
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
+    }
+
+    public  Backpack getBackpack() {
+        return backpack;
+    }
+
+    public void setBackpack(Backpack backpack) {
+        this.backpack = backpack;
+    }
+    
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 83 * hash + Objects.hashCode(this.map);
-        hash = 83 * hash + this.turns;
-        hash = 83 * hash + this.score;
+        int hash = 3;
+        hash = 97 * hash + Objects.hashCode(this.map);
+        hash = 97 * hash + this.turns;
+        hash = 97 * hash + this.score;
+        hash = 97 * hash + Objects.hashCode(this.player);
+        hash = 97 * hash + Objects.hashCode(this.house);
+        hash = 97 * hash + Objects.hashCode(this.backpack);
         return hash;
     }
 
@@ -75,12 +114,23 @@ public class Game implements Serializable{
         if (!Objects.equals(this.map, other.map)) {
             return false;
         }
+        if (!Objects.equals(this.player, other.player)) {
+            return false;
+        }
+        if (!Objects.equals(this.house, other.house)) {
+            return false;
+        }
+        if (!Objects.equals(this.backpack, other.backpack)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Game{" + "map=" + map + ", turns=" + turns + ", score=" + score + '}';
+        return "Game{" + "map=" + map + ", turns=" + turns + ", score=" + score + ", player=" + player + ", house=" + house + ", backpack=" + backpack + '}';
     }
+    
+    
     
 }

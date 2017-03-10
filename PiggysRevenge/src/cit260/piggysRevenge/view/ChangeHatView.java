@@ -6,7 +6,6 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.model.Item;
-import java.util.Arrays;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -27,7 +26,7 @@ class ChangeHatView extends View {
             System.out.print("\n\n--You current hat is:" + PiggysRevenge.getPlayer().getCurrentHat().getName());
         }
         System.out.print("\nYou currently have the following hats:\n");
-        Item[][] itemList = PiggysRevenge.getBackpack().getItemList();
+        Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
         //System.out.println(Arrays.toString(hats[0]));
         int i = 1;
         for (Item hat : itemList[0]) {
@@ -52,7 +51,7 @@ class ChangeHatView extends View {
         // System.out.println("\n*** doAction() function called in ChangeHatView***");
         
         value = value.toUpperCase();
-        Item[][] itemList = PiggysRevenge.getBackpack().getItemList();
+        Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
         switch (value) {
             case "1":
                 if (itemList[0][0] != null) {

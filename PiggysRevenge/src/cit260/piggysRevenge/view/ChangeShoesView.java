@@ -27,7 +27,7 @@ class ChangeShoesView extends View {
             System.out.print("\n\n--You current shoes are:" + PiggysRevenge.getPlayer().getCurrentShoes().getName());
         }
         System.out.print("\nYou currently have the following shoes:\n");
-        Item[][] itemList = PiggysRevenge.getBackpack().getItemList();
+        Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
         //System.out.println(Arrays.toString(hats[0]));
         int i = 1;
         for (Item shoe : itemList[1]) {
@@ -52,7 +52,7 @@ class ChangeShoesView extends View {
         // System.out.println("\n*** doAction() function called in ChangeHatView***");
         
         value = value.toUpperCase();
-        Item[][] itemList = PiggysRevenge.getBackpack().getItemList();
+        Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
         switch (value) {
             case "1":
                 if (itemList[1][0] != null) {

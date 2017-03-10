@@ -109,22 +109,30 @@ public class GameControl {
 
     public static void createNewGame(Player player) {
         System.out.println("\n*** createNewGame() function called ***");
+        if (player == null) {
+            System.out.println("\n*** Error:  player is null ***");
+        }
         Game game = new Game();
+        game.setPlayer(player);
         game.setTurns(1);
-        game.setScore(GameControl.calcScore(0, 1, false, false));
+        game.setWolfKilled(false);
+        game.setScore(GameControl.calcScore(0, game.getTurns(), game.getPlayer().isHasEaten(), game.isWolfKilled()));
+        //set map
+        game.setHouse(GameControl.createNewHouse());
+        game.setBackpack(GameControl.createNewBackpack());
         PiggysRevenge.setCurrentGame(game);
     }
 
-    public static void createNewHouse(Player player) {
+    public static House createNewHouse() {
         System.out.println("\n*** createNewHouse() function called ***");
         House house = new House(0,0,0,0);
-        PiggysRevenge.setHouse(house);
+        return house;
     }
 
-    public static void createNewBackpack() {
+    public static Backpack createNewBackpack() {
         System.out.println("\n*** createNewBackpack() function called ***");
         Backpack backpack = new Backpack();
-        PiggysRevenge.setBackpack(backpack);
+        return backpack;
     }
 
 

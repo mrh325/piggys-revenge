@@ -12,6 +12,35 @@ import cit260.piggysRevenge.view.*;
  * @author hales
  */
 public class PiggysRevenge {
+    /**
+     * @param args the command line arguments
+     */
+    private static Game currentGame = null;
+    private static Player player = null;
+    
+    public static void main(String[] args) {
+
+        StartProgramView startProgramView = new StartProgramView();
+        startProgramView.display();
+    }
+
+    public static Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public static void setCurrentGame(Game currentGame) {
+        PiggysRevenge.currentGame = currentGame;
+    }
+
+    public static Player getPlayer() {
+        return player;
+    }
+
+    public static void setPlayer(Player player) {
+        PiggysRevenge.player = player;
+    }
+
+}
 
 //    public static void teamAssignment() {
 //        System.out.println("\nTEAM SECTION");
@@ -132,50 +161,3 @@ public class PiggysRevenge {
 //        System.out.println(currentLocation.toString());
 //        
 //    }
-    /**
-     * @param args the command line arguments
-     */
-    private static Game currentGame = null;
-    private static Player player = null;
-    private static House house = null;
-    private static Backpack backpack = null;
-    
-    public static void main(String[] args) {
-
-        StartProgramView startProgramView = new StartProgramView();
-        startProgramView.display();
-    }
-
-    public static Game getCurrentGame() {
-        return currentGame;
-    }
-
-    public static void setCurrentGame(Game currentGame) {
-        PiggysRevenge.currentGame = currentGame;
-    }
-
-    public static Player getPlayer() {
-        return player;
-    }
-
-    public static void setPlayer(Player player) {
-        PiggysRevenge.player = player;
-    }
-
-    public static House getHouse() {
-        return house;
-    }
-
-    public static void setHouse(House house) {
-        PiggysRevenge.house = house;
-    }
-
-    public static Backpack getBackpack() {
-        return backpack;
-    }
-
-    public static void setBackpack(Backpack backpack) {
-        PiggysRevenge.backpack = backpack;
-    }
-
-}

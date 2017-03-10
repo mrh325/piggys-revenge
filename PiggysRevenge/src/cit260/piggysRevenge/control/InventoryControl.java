@@ -20,7 +20,7 @@ public class InventoryControl {
             return -1;
         }
         //Get player's backpack contents
-        Item[][] itemList = PiggysRevenge.getBackpack().getItemList();
+        Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
 
         //Look for a free space in the hat part of the backpack
         int i = 0;
@@ -31,7 +31,7 @@ public class InventoryControl {
             } else if (hat == null) {
                 //Item item = new Item("hat" + Integer.toString(i+1),"This is a generic hat","hat");
                 itemList[0][i] = item;
-                PiggysRevenge.getBackpack().setItemList(itemList);
+                PiggysRevenge.getCurrentGame().getBackpack().setItemList(itemList);
                 //return the slot number
                 return i;
             }
@@ -48,7 +48,7 @@ public class InventoryControl {
             return -1;
         }
         //Get player's backpack contents
-        Item[][] itemList = PiggysRevenge.getBackpack().getItemList();
+        Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
 
         //Look for a free space in the hat part of the backpack
         int i = 0;
@@ -59,7 +59,7 @@ public class InventoryControl {
             } else if (shoe == null) {
                 //Item item = new Item("hat" + Integer.toString(i+1),"This is a generic hat","hat");
                 itemList[1][i] = item;
-                PiggysRevenge.getBackpack().setItemList(itemList);
+                PiggysRevenge.getCurrentGame().getBackpack().setItemList(itemList);
                 //return the slot number
                 return i;
             }

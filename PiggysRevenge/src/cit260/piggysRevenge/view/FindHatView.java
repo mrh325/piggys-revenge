@@ -79,7 +79,7 @@ public class FindHatView extends View {
     private void equipHat() {
         System.out.println("*** equipHat function called ***");
         int result = InventoryControl.giveHat();
-        Item[][] itemList = PiggysRevenge.getBackpack().getItemList();
+        Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
         if (itemList[0][result] != null) {
             PiggysRevenge.getPlayer().setCurrentHat(itemList[0][result]);
             System.out.println("\n-----------------------------------------------------------------"
@@ -98,7 +98,7 @@ public class FindHatView extends View {
         System.out.println("*** displayInventory function called ***");
         //System.out.println("\n*** displayInventory() function called ***");
 //        System.out.println(Arrays.deepToString(PiggysRevenge.getBackpack().getItemList())); //inventory throw-up
-        Item[][] itemList = PiggysRevenge.getBackpack().getItemList();
+        Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
         System.out.println("\n-----------------------------------------------------------------"
                 + "\nHats:");
         int i = 1;
@@ -137,7 +137,7 @@ public class FindHatView extends View {
         }
         System.out.println("\n-----------------------------------------------------------------"
                 + "\nBricks:");
-        System.out.println(PiggysRevenge.getBackpack().getBricks());
+        System.out.println(PiggysRevenge.getCurrentGame().getBackpack().getBricks());
     }
 
     

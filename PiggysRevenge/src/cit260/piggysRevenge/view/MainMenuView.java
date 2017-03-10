@@ -151,7 +151,7 @@ public class MainMenuView extends View{
 //                + "\n-----------------------------------------------------------------";
 //        HouseSizeView houseSizeView = new HouseSizeView();
 //        houseSizeView.display();
-        GameControl.createNewBackpack();
+
         
         this.displayMessage = this.menuCurrentGame; //change menu to include current game options
 
