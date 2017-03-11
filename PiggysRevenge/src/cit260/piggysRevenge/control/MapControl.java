@@ -5,9 +5,13 @@
  */
 package cit260.piggysRevenge.control;
 
+import cit260.piggysRevenge.model.Actor;
+import cit260.piggysRevenge.model.Location;
 import cit260.piggysRevenge.model.SceneType;
 import cit260.piggysRevenge.model.Map;
 import cit260.piggysRevenge.model.Scene;
+import java.awt.Point;
+import java.util.Random;
 
 /**
  *
@@ -162,4 +166,44 @@ public class MapControl {
         //}
         return scenes;
     }
+
+    static void moveActorsToStartingLocation(Map map) {
+        // System.out.println("*** assignScenesToLocations called ***");
+        
+        Location[][] locations = map.getLocations();
+        Point[] tempPoints = new Point[Actor.values().length];
+
+        Random rand = new Random();
+        boolean pickNewLocation = true;
+        Point point;
+        int point1, point2;
+        
+        for (int i = 0; i < tempPoints.length; i++) {
+            do {
+                point1 = 3;
+                while (point1 == 3) {
+                    point1 = rand.nextInt(map.getRowCount());
+                }
+                point2 = 3;
+                while (point2 == 3) {
+                    point2 = rand.nextInt(map.getColumnCount());
+                }
+                point = new Point(point1,point2);
+
+                for (Point temp : tempPoints) {
+                    if (temp==null) {
+                        pickNewLocation = false;
+                        break;
+                    } else if (temp.equals(point)) {
+                        break;
+                    } else {
+                        pickNewLocation = false;
+                    }
+                }
+            } while (pickNewLocation);
+            tempPoints[i] = point;
+            locations[point1][point2].setActor(Actor.values()[i]);
+        }
+    }
+
 }

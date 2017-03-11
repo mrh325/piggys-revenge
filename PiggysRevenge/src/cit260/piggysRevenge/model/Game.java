@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.model;
 
+import cit260.piggysRevenge.control.GameControl;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -23,6 +24,9 @@ public class Game implements Serializable{
     private Backpack backpack;
 
     public Game() {
+        this.turns = 1;
+        this.score = 0;
+        this.wolfKilled = false;
     }
     
     public Map getMap() {

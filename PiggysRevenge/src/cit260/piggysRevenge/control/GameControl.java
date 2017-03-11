@@ -118,16 +118,19 @@ public class GameControl {
             System.out.println("\n*** Error:  player is null ***");
         }
         Game game = new Game();
+        PiggysRevenge.setCurrentGame(game);
+        
         game.setPlayer(player);
-        game.setTurns(1);
-        game.setWolfKilled(false);
-        game.setScore(GameControl.calcScore(0, game.getTurns(), game.getPlayer().isHasEaten(), game.isWolfKilled()));
+
         //set map
         game.setHouse(GameControl.createNewHouse());
         game.setBackpack(GameControl.createNewBackpack());
+        
         Map map = MapControl.createMap();
         game.setMap(map);
-        PiggysRevenge.setCurrentGame(game);
+        
+        MapControl.moveActorsToStartingLocation(map);
+        
     }
 
     public static House createNewHouse() {
