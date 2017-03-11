@@ -169,7 +169,7 @@ public class MapControl {
 
     static void moveActorsToStartingLocation(Map map) {
         // System.out.println("*** assignScenesToLocations called ***");
-        
+        //pick random, unique locations for actors and assign the actor to those locations.
         Location[][] locations = map.getLocations();
         Point[] tempPoints = new Point[Actor.values().length];
 
@@ -177,19 +177,23 @@ public class MapControl {
         boolean pickNewLocation = true;
         Point point;
         int point1, point2;
-        
+        //for each of the actors in Actor...
         for (int i = 0; i < tempPoints.length; i++) {
             do {
+                //pick a random row
                 point1 = 3;
                 while (point1 == 3) {
                     point1 = rand.nextInt(map.getRowCount());
                 }
+                //pick a random column
                 point2 = 3;
                 while (point2 == 3) {
                     point2 = rand.nextInt(map.getColumnCount());
                 }
+                //if not the starting point, create a point
                 point = new Point(point1,point2);
 
+                //check to make sure the point is unique
                 for (Point temp : tempPoints) {
                     if (temp==null) {
                         pickNewLocation = false;
@@ -201,7 +205,9 @@ public class MapControl {
                     }
                 }
             } while (pickNewLocation);
+            //if unique, add to the temp array for checking later points
             tempPoints[i] = point;
+            //and assign the next actor in the Actor class to the chosen location.
             locations[point1][point2].setActor(Actor.values()[i]);
         }
     }
