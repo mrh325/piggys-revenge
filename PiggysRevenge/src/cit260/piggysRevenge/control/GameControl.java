@@ -150,8 +150,12 @@ public class GameControl {
 
         for (int i = 0; i < map.getRowCount(); i++) {
             for (int j = 0; j < map.getColumnCount(); j++) {
-                Random rand = new Random();
-                locations[i][j].setScene(scenes[rand.nextInt(10) + 1]);
+                if (i == 3 && j == 3) {
+                    locations[i][j].setScene(scenes[0]);
+                } else {
+                    Random rand = new Random();
+                    locations[i][j].setScene(scenes[rand.nextInt(10) + 1]);
+                }
             }
         }
         

@@ -79,11 +79,48 @@ public class GameMenuView extends View {
 
     private void displayMap() {
 //        System.out.println("\n*** displayMap() function called ***");
-//        StringBuilder line = new StringBuilder(
-//            )
-
+        int columns = PiggysRevenge.getCurrentGame().getMap().getColumnCount();
+        //get locations and prep an empty line for string building
         Location[][] locations = PiggysRevenge.getCurrentGame().getMap().getLocations();
-        System.out.println("The Far Away Land of Nonsense");
+        String emptyLine = "";
+        for (int i = 1; i < columns*5+10; i++ ) {
+            emptyLine += " ";
+        }
+        //System.out.println(PiggysRevenge.getCurrentGame().getMap().getColumnCount()*5+10);
+
+        //draw the title
+        StringBuilder line = new StringBuilder(emptyLine);
+        String mapTitle = "The Far Away Land of Nonsense";
+        //System.out.println(mapTitle.length()/2);
+        //System.out.println(line.toString().length()/2);
+        line.insert(10, mapTitle);
+        System.out.println(line.toString());
+        
+//draw a line.
+        String aLine = "";
+        for (int i = 0; i <= columns*5+10; i++ ) {
+            aLine += "–";
+        }
+        System.out.println(aLine);
+        
+        //draw column headers
+        line = new StringBuilder(emptyLine);
+        char ch = 'A';
+        for (int insertPoint = 10; insertPoint <= columns*5+9; insertPoint+=5) {
+            line.insert(insertPoint,"| " + ch + " |");
+            ch++;
+        }
+        System.out.println(line.toString());
+        
+        //draw the rows
+        for (int currentRow = 1; currentRow <= PiggysRevenge.getCurrentGame().getMap().getRowCount(); currentRow++) {
+            line = new StringBuilder(emptyLine);
+            line.insert(7,Integer.toString(currentRow) + " ");
+            for (int currentColumn = 0; currentColumn < columns; currentColumn++) {
+                line.insert(10+currentColumn*5,"|" + locations[currentRow-1][currentColumn].getScene().mapSymbol() + "|");
+            }
+            System.out.println(line.toString());
+        }
     }
 
     private void displayDistance() {
