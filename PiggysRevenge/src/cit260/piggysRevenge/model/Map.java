@@ -33,16 +33,16 @@ public class Map implements Serializable {
         this.columnCount = columnCount;
         this.rowCount = rowCount;
         
-        this.locations = new Location[rowCount][columnCount];
+        this.locations = new Location[columnCount][rowCount];
         
-        for (int row = 0; row < rowCount; row++) {
-            for (int column = 0; column < columnCount; column++) {
+        for (int column = 0; column < columnCount; column++) {
+            for (int row = 0; row < rowCount; row++) {
                 Location location = new Location();
                 location.setColumn(column);
                 location.setRow(row);
                 location.setVisited(false);
                 
-                locations[row][column] = location;
+                locations[column][row] = location;
             }
         }
     }

@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.model;
 
+import java.awt.Point;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -15,6 +16,7 @@ import java.util.Objects;
 public class Wolf implements Serializable{
     
     private String name;
+    private Point coordinates;
 
     public Wolf() {
     }
@@ -29,19 +31,21 @@ public class Wolf implements Serializable{
         this.name = name;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 43 * hash + Objects.hashCode(this.name);
-        return hash;
+    public Point getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(Point coordinates) {
+        this.coordinates = coordinates;
     }
 
     @Override
-    public String toString() {
-        return "Wolf{" + "name=" + name + '}';
+    public int hashCode() {
+        int hash = 5;
+        hash = 43 * hash + Objects.hashCode(this.name);
+        hash = 43 * hash + Objects.hashCode(this.coordinates);
+        return hash;
     }
-    
-    
 
     @Override
     public boolean equals(Object obj) {
@@ -58,11 +62,15 @@ public class Wolf implements Serializable{
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
+        if (!Objects.equals(this.coordinates, other.coordinates)) {
+            return false;
+        }
         return true;
     }
-    
-    
-    
-    
+
+    @Override
+    public String toString() {
+        return "Wolf{" + "name=" + name + ", coordinates=" + coordinates + '}';
+    }
     
 }

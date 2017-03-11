@@ -20,6 +20,7 @@ public class Game implements Serializable{
     private int score;
     private boolean wolfKilled;
     private Player player;
+    private Wolf wolf;
     private House house;
     private Backpack backpack;
 
@@ -69,6 +70,14 @@ public class Game implements Serializable{
         this.player = player;
     }
 
+    public Wolf getWolf() {
+        return wolf;
+    }
+
+    public void setWolf(Wolf wolf) {
+        this.wolf = wolf;
+    }
+
     public House getHouse() {
         return house;
     }
@@ -92,6 +101,7 @@ public class Game implements Serializable{
         hash = 97 * hash + this.turns;
         hash = 97 * hash + this.score;
         hash = 97 * hash + Objects.hashCode(this.player);
+        hash = 97 * hash + Objects.hashCode(this.wolf);
         hash = 97 * hash + Objects.hashCode(this.house);
         hash = 97 * hash + Objects.hashCode(this.backpack);
         return hash;
@@ -121,6 +131,9 @@ public class Game implements Serializable{
         if (!Objects.equals(this.player, other.player)) {
             return false;
         }
+        if (!Objects.equals(this.wolf, other.wolf)) {
+            return false;
+        }
         if (!Objects.equals(this.house, other.house)) {
             return false;
         }
@@ -132,7 +145,7 @@ public class Game implements Serializable{
 
     @Override
     public String toString() {
-        return "Game{" + "map=" + map + ", turns=" + turns + ", score=" + score + ", player=" + player + ", house=" + house + ", backpack=" + backpack + '}';
+        return "Game{" + "map=" + map + ", turns=" + turns + ", score=" + score + ", player=" + player + ", wolf=" + wolf + ", house=" + house + ", backpack=" + backpack + '}';
     }
     
     

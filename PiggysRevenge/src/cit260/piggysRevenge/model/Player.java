@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.model;
 
+import java.awt.Point;
 import java.io.Serializable;
 import java.util.Objects;
 /**
@@ -13,9 +14,10 @@ import java.util.Objects;
  */
 public class Player implements Serializable{
     private String name;
+    private Point coordinates;
     private double distanceToWolf;
     private double distanceToPantry;
-    private double distanceToNearestKey;
+    private double distanceToNearestActor;
     private boolean hasEaten;
     private Item currentHat;
     private Item currentShoes;
@@ -29,6 +31,14 @@ public class Player implements Serializable{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Point getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(Point coordinates) {
+        this.coordinates = coordinates;
     }
 
     public double getDistanceToWolf() {
@@ -47,12 +57,12 @@ public class Player implements Serializable{
         this.distanceToPantry = distanceToPantry;
     }
 
-    public double getDistanceToNearestKey() {
-        return distanceToNearestKey;
+    public double getDistanceToNearestActor() {
+        return distanceToNearestActor;
     }
 
-    public void setDistanceToNearestKey(double distanceToNearestKey) {
-        this.distanceToNearestKey = distanceToNearestKey;
+    public void setDistanceToNearestActor(double distanceToNearestActor) {
+        this.distanceToNearestActor = distanceToNearestActor;
     }
 
     public boolean isHasEaten() {
@@ -81,14 +91,15 @@ public class Player implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.name);
-        hash = 29 * hash + (int) (Double.doubleToLongBits(this.distanceToWolf) ^ (Double.doubleToLongBits(this.distanceToWolf) >>> 32));
-        hash = 29 * hash + (int) (Double.doubleToLongBits(this.distanceToPantry) ^ (Double.doubleToLongBits(this.distanceToPantry) >>> 32));
-        hash = 29 * hash + (int) (Double.doubleToLongBits(this.distanceToNearestKey) ^ (Double.doubleToLongBits(this.distanceToNearestKey) >>> 32));
-        hash = 29 * hash + (this.hasEaten ? 1 : 0);
-        hash = 29 * hash + Objects.hashCode(this.currentHat);
-        hash = 29 * hash + Objects.hashCode(this.currentShoes);
+        int hash = 3;
+        hash = 59 * hash + Objects.hashCode(this.name);
+        hash = 59 * hash + Objects.hashCode(this.coordinates);
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.distanceToWolf) ^ (Double.doubleToLongBits(this.distanceToWolf) >>> 32));
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.distanceToPantry) ^ (Double.doubleToLongBits(this.distanceToPantry) >>> 32));
+        hash = 59 * hash + (int) (Double.doubleToLongBits(this.distanceToNearestActor) ^ (Double.doubleToLongBits(this.distanceToNearestActor) >>> 32));
+        hash = 59 * hash + (this.hasEaten ? 1 : 0);
+        hash = 59 * hash + Objects.hashCode(this.currentHat);
+        hash = 59 * hash + Objects.hashCode(this.currentShoes);
         return hash;
     }
 
@@ -110,13 +121,16 @@ public class Player implements Serializable{
         if (Double.doubleToLongBits(this.distanceToPantry) != Double.doubleToLongBits(other.distanceToPantry)) {
             return false;
         }
-        if (Double.doubleToLongBits(this.distanceToNearestKey) != Double.doubleToLongBits(other.distanceToNearestKey)) {
+        if (Double.doubleToLongBits(this.distanceToNearestActor) != Double.doubleToLongBits(other.distanceToNearestActor)) {
             return false;
         }
         if (this.hasEaten != other.hasEaten) {
             return false;
         }
         if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.coordinates, other.coordinates)) {
             return false;
         }
         if (!Objects.equals(this.currentHat, other.currentHat)) {
@@ -130,7 +144,9 @@ public class Player implements Serializable{
 
     @Override
     public String toString() {
-        return "Player{" + "name=" + name + ", distanceToWolf=" + distanceToWolf + ", distanceToPantry=" + distanceToPantry + ", distanceToNearestKey=" + distanceToNearestKey + ", hasEaten=" + hasEaten + ", currentHat=" + currentHat + ", currentShoes=" + currentShoes + '}';
-    }    
+        return "Player{" + "name=" + name + ", coordinates=" + coordinates + ", distanceToWolf=" + distanceToWolf + ", distanceToPantry=" + distanceToPantry + ", distanceToNearestActor=" + distanceToNearestActor + ", hasEaten=" + hasEaten + ", currentHat=" + currentHat + ", currentShoes=" + currentShoes + '}';
+    }
+
+
     
 }

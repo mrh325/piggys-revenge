@@ -23,29 +23,13 @@ public enum Actor implements Serializable {
     Piggy4("This little piggy had none.");
     
     private final String description;
-    //private final Point coordinates;
 
     Actor(String description) {
         this.description = description;
-//        //set random location for actor(
-//        Random rand = new Random();
-//        int point1 = 3;
-//        while (point1 == 3) {
-//            point1 = rand.nextInt(PiggysRevenge.getCurrentGame().getMap().getRowCount())+1;
-//        }
-//        int point2 = 3;
-//        while (point1 == 3) {
-//            point2 = rand.nextInt(PiggysRevenge.getCurrentGame().getMap().getColumnCount())+1;
-//        }
-//        this.coordinates = new Point(point1,point2);
 
     }
 
     public String getDescription() {
         return description;
     }
-
-//    public Point getCoordinates() {
-//        return coordinates;
-//    }
 }

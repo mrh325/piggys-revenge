@@ -11,7 +11,9 @@ import cit260.piggysRevenge.model.SceneType;
 import cit260.piggysRevenge.model.Map;
 import cit260.piggysRevenge.model.Scene;
 import java.awt.Point;
+import java.util.Arrays;
 import java.util.Random;
+import piggysrevenge.PiggysRevenge;
 
 /**
  *
@@ -65,11 +67,13 @@ public class MapControl {
 
     //L06 INDIVIDUAL ASSIGNMENT ZAC POWELL
     public static double calcDistance(double startPositionX, double startPositionY, double endPositionX, double endPositionY){
-
-        if (startPositionX < 1 || endPositionX < 1 || startPositionY < 1 || endPositionY < 1){
+        
+        if (startPositionX < 0 || endPositionX < 0 || startPositionY < 0 || endPositionY < 0){
                 return -1;
         }
-        if (startPositionX > 5 || startPositionY > 5 || endPositionX > 5 || endPositionY > 5){
+        int maxColumns = PiggysRevenge.getCurrentGame().getMap().getColumnCount();
+        int maxRows = PiggysRevenge.getCurrentGame().getMap().getRowCount();
+        if (startPositionX > maxColumns || startPositionY > maxRows || endPositionX > maxColumns || endPositionY > maxRows){
                 return -2;
         }
 
@@ -80,11 +84,12 @@ public class MapControl {
     public static Map createMap() {
         // System.out.println("*** createMap() called ***");
         
-        Map map = new Map(7, 7);
+        Map map = new Map(7, 7); //set map size here
         
         Scene[] scenes = createScenes();
         
         GameControl.assignScenesToLocations(map, scenes);
+        
         return map;
     }
 
@@ -180,16 +185,17 @@ public class MapControl {
         //for each of the actors in Actor...
         for (int i = 0; i < tempPoints.length; i++) {
             do {
-                //pick a random row
+                //pick a random column
                 point1 = 3;
                 while (point1 == 3) {
-                    point1 = rand.nextInt(map.getRowCount());
+                    point1 = rand.nextInt(map.getColumnCount());
                 }
-                //pick a random column
+                //pick a random row
                 point2 = 3;
                 while (point2 == 3) {
-                    point2 = rand.nextInt(map.getColumnCount());
+                    point2 = rand.nextInt(map.getRowCount());
                 }
+
                 //if not the starting point, create a point
                 point = new Point(point1,point2);
 
@@ -209,6 +215,44 @@ public class MapControl {
             tempPoints[i] = point;
             //and assign the next actor in the Actor class to the chosen location.
             locations[point1][point2].setActor(Actor.values()[i]);
+        }
+    }
+
+    public static Point[] getActorPoints(Map map) {
+         System.out.println("*** getActorPoints called ***");
+         //create array to save actor points
+         Point[] actorPoints = new Point[Actor.values().length];
+         //get the map locations
+         System.out.println("All Actors:  ");
+         Location[][] locations = map.getLocations();
+         int nextIndex = 0;
+         //go through each location to find the actors
+         for (Location[] array1 : locations) {
+            for (Location location : array1) {
+                System.out.println(location.getActor());
+                //if the location has an actor
+                if (location.getActor() != null) {
+                    //store the actor's coordinates as a point in the point array
+                    Point point = new Point(location.getColumn(),location.getRow());
+                    actorPoints[nextIndex] = point;
+                    nextIndex++;
+                }
+            }
+         }
+         //System.out.println("ActorPoints:  ");
+         //System.out.println(Arrays.toString(actorPoints)); //testing
+         return actorPoints;
+    }
+    
+    public static Actor getActorFromPoint(Point point, Map map) {
+        Location[][] locations = map.getLocations();
+//        System.out.println(point.x);
+//        System.out.println(point.y);
+//        System.out.println(locations[point.x][point.y]);
+        try {
+            return locations[point.x][point.y].getActor();
+        } catch (NullPointerException e) {
+            return null;
         }
     }
 
