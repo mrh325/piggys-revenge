@@ -101,63 +101,63 @@ public class MapControl {
         randomScene.setDescription("You are in the middle of barren, lifeless desert."
                 + "\nWater lost to evaporation and transpiration here"
                 + "\nexceeds the amount of precipitation...");
-        randomScene.setMapSymbol(" ? ");
+        randomScene.setMapSymbol(" . ");
         scenes[SceneType.desert.ordinal()] = randomScene;
         
         randomScene = new Scene();
         randomScene.setName("The forest");
         randomScene.setDescription("You are in a busy, dense forest.");
-        randomScene.setMapSymbol(" ? ");
+        randomScene.setMapSymbol(" . ");
         scenes[SceneType.forest.ordinal()] = randomScene;
         
         randomScene = new Scene();
         randomScene.setName("The Old Mill");
         randomScene.setDescription("You are at the old mill.  Rumor is there may"
                 + "\nbe gold buried in the foundation...");
-        randomScene.setMapSymbol(" ? ");
+        randomScene.setMapSymbol(" . ");
         scenes[SceneType.mill.ordinal()] = randomScene;
         
         randomScene = new Scene();
         randomScene.setName("The grassy field");
         randomScene.setDescription("You are in huge field of grass.");
-        randomScene.setMapSymbol(" ? ");
+        randomScene.setMapSymbol(" . ");
         scenes[SceneType.grassyField.ordinal()] = randomScene;
         
         randomScene = new Scene();
         randomScene.setName("The valley");
         randomScene.setDescription("You are in a millenia old valley carved by ancient glaciers.");
-        randomScene.setMapSymbol(" ? ");
+        randomScene.setMapSymbol(" . ");
         scenes[SceneType.valley.ordinal()] = randomScene;
         
         randomScene = new Scene();
         randomScene.setName("The river");
         randomScene.setDescription("You'r at the edge of a swift and violent river.");
-        randomScene.setMapSymbol(" ? ");
+        randomScene.setMapSymbol(" . ");
         scenes[SceneType.river.ordinal()] = randomScene;
         
         randomScene = new Scene();
         randomScene.setName("The rocky cliffs");
         randomScene.setDescription("You are at the rocky cliffs, hundreds of feet above the cliff floors."
                 + "\nDon't fall off.");
-        randomScene.setMapSymbol(" ? ");
+        randomScene.setMapSymbol(" . ");
         scenes[SceneType.rockyCliffs.ordinal()] = randomScene;
         
         randomScene = new Scene();
         randomScene.setName("The frozen tundra");
         randomScene.setDescription("You are at the frozen tundra, with reindeer, and ice...");
-        randomScene.setMapSymbol(" ? ");
+        randomScene.setMapSymbol(" . ");
         scenes[SceneType.frozenTundra.ordinal()] = randomScene;
         
         randomScene = new Scene();
         randomScene.setName("The beach");
         randomScene.setDescription("You are the beach!  Relax.");
-        randomScene.setMapSymbol(" ? ");
+        randomScene.setMapSymbol(" . ");
         scenes[SceneType.beach.ordinal()] = randomScene;
         
         randomScene = new Scene();
         randomScene.setName("The ancient canyons");
         randomScene.setDescription("You are deep down in the canyons.  The ancients made their homes here.");
-        randomScene.setMapSymbol(" ? ");
+        randomScene.setMapSymbol(" . ");
         scenes[SceneType.canyons.ordinal()] = randomScene;
         //}
         return scenes;

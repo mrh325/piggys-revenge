@@ -86,7 +86,6 @@ public class GameMenuView extends View {
         for (int i = 1; i < columns*5+10; i++ ) {
             emptyLine += " ";
         }
-        //System.out.println(PiggysRevenge.getCurrentGame().getMap().getColumnCount()*5+10);
 
         //draw the title
         StringBuilder line = new StringBuilder(emptyLine);
@@ -96,7 +95,7 @@ public class GameMenuView extends View {
         line.insert(10, mapTitle);
         System.out.println(line.toString());
         
-//draw a line.
+        //draw a line.
         String aLine = "";
         for (int i = 0; i <= columns*5+10; i++ ) {
             aLine += "–";
@@ -121,6 +120,11 @@ public class GameMenuView extends View {
             }
             System.out.println(line.toString());
         }
+        System.out.println("\nKEY:  	. Unvisited");
+	System.out.println("	# Visited");
+	System.out.println("	@ You (A5)");
+	System.out.println("	P Piggy Found");
+	System.out.println("	B Building Site Found");
     }
 
     private void displayDistance() {
