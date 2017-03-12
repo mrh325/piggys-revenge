@@ -11,7 +11,6 @@ import cit260.piggysRevenge.model.SceneType;
 import cit260.piggysRevenge.model.Map;
 import cit260.piggysRevenge.model.Scene;
 import java.awt.Point;
-import java.util.Arrays;
 import java.util.Random;
 import piggysrevenge.PiggysRevenge;
 
