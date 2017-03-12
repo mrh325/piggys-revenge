@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.view;
 
+import cit260.piggysRevenge.control.GameControl;
 import cit260.piggysRevenge.model.HighScore;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,7 +22,7 @@ public class HighScoreView extends View {
     public void display() {
             
         ArrayList<HighScore> highScores = PiggysRevenge.getCurrentGame().getHighScores();
-        System.out.println(highScores);
+
         for (int n = 0; n < highScores.size(); n++) {
             for (int m = 0; m < highScores.size() - 1 - n; m++) {
                 if (highScores.get(m).getScore() < highScores.get(m + 1).getScore()) {
@@ -32,9 +33,6 @@ public class HighScoreView extends View {
             }
         }
         
-//        System.out.println(highScores);
-
-
           System.out.println("\n-------------------------------------------"
                 + "\n               HIGH SCORES                 "
                 + "\n-------------------------------------------"
@@ -43,18 +41,18 @@ public class HighScoreView extends View {
                 + "\n----           -----             ----------"
                 + "\n");
           
-//       int index = 0;
-//       for (HighScore : highScores) {
-//           line = new StringBuilder("                                         ");
-//           Actor value = MapControl.getActorFromPoint(point,PiggysRevenge.getCurrentGame().getMap());
-//           if (value == null) {
-//               line.insert(0, Integer.toString(index+1) + ":  Wolf");
-//           } else {
-//               line.insert(0, Integer.toString(index+1) + ":  " + value);
-//           }
-//           line.insert(20, distances[index]);
-//           System.out.println(line.toString());
-//           index++;
+       int index = 0;
+       for (HighScore hs : highScores) {
+
+            System.out.println(hs.getName() + "        " + hs.getScore() + "            " 
+                    + GameControl.calcNumberOfBricks(hs.getHouse().getLength(), 
+                            hs.getHouse().getWidth(), hs.getHouse().getHeight(), 
+                            hs.getHouse().getStories()));
+
+
+
+           index++;
+       }
     }
 
     @Override
