@@ -7,6 +7,7 @@ package cit260.piggysRevenge.model;
 
 import cit260.piggysRevenge.control.GameControl;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -23,11 +24,13 @@ public class Game implements Serializable{
     private Wolf wolf;
     private House house;
     private Backpack backpack;
+    private ArrayList<HighScore> highScores;
 
     public Game() {
         this.turns = 1;
         this.score = 0;
         this.wolfKilled = false;
+        this.highScores = new ArrayList<>();
     }
     
     public Map getMap() {
@@ -93,17 +96,27 @@ public class Game implements Serializable{
     public void setBackpack(Backpack backpack) {
         this.backpack = backpack;
     }
-    
+
+    public ArrayList<HighScore> getHighScores() {
+        return highScores;
+    }
+
+    public void setHighScores(ArrayList<HighScore> highScores) {
+        this.highScores = highScores;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.map);
-        hash = 97 * hash + this.turns;
-        hash = 97 * hash + this.score;
-        hash = 97 * hash + Objects.hashCode(this.player);
-        hash = 97 * hash + Objects.hashCode(this.wolf);
-        hash = 97 * hash + Objects.hashCode(this.house);
-        hash = 97 * hash + Objects.hashCode(this.backpack);
+        hash = 89 * hash + Objects.hashCode(this.map);
+        hash = 89 * hash + this.turns;
+        hash = 89 * hash + this.score;
+        hash = 89 * hash + (this.wolfKilled ? 1 : 0);
+        hash = 89 * hash + Objects.hashCode(this.player);
+        hash = 89 * hash + Objects.hashCode(this.wolf);
+        hash = 89 * hash + Objects.hashCode(this.house);
+        hash = 89 * hash + Objects.hashCode(this.backpack);
+        hash = 89 * hash + Objects.hashCode(this.highScores);
         return hash;
     }
 
@@ -125,6 +138,9 @@ public class Game implements Serializable{
         if (this.score != other.score) {
             return false;
         }
+        if (this.wolfKilled != other.wolfKilled) {
+            return false;
+        }
         if (!Objects.equals(this.map, other.map)) {
             return false;
         }
@@ -140,14 +156,16 @@ public class Game implements Serializable{
         if (!Objects.equals(this.backpack, other.backpack)) {
             return false;
         }
+        if (!Objects.equals(this.highScores, other.highScores)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Game{" + "map=" + map + ", turns=" + turns + ", score=" + score + ", player=" + player + ", wolf=" + wolf + ", house=" + house + ", backpack=" + backpack + '}';
+        return "Game{" + "map=" + map + ", turns=" + turns + ", score=" + score + ", wolfKilled=" + wolfKilled + ", player=" + player + ", wolf=" + wolf + ", house=" + house + ", backpack=" + backpack + ", highScores=" + highScores + '}';
     }
     
-    
-    
+        
 }

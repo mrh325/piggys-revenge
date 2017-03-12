@@ -5,7 +5,15 @@
  */
 package cit260.piggysRevenge.view;
 
+import cit260.piggysRevenge.control.MapControl;
+import cit260.piggysRevenge.model.Actor;
+import cit260.piggysRevenge.model.HighScore;
+import cit260.piggysRevenge.model.House;
 import cit260.piggysRevenge.model.Location;
+import java.awt.Point;
+import static java.lang.Math.abs;
+import java.util.ArrayList;
+import java.util.Arrays;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -27,6 +35,7 @@ public class GameMenuView extends View {
                 + "\nC - Show s(C)ore"
                 + "\nP - Show (P)robability of winning the game"
                 + "\nU - Calc(U)late number of bricks for the house"
+                + "\nH - (H)igh Score list"
                 + "\nB - (B)ack to Main Menu"
                 + "\n=======================================");
     }
@@ -60,6 +69,9 @@ public class GameMenuView extends View {
                 break;
             case "U":
                 this.displayHouseMenu();
+                break;
+            case "H":
+                this.displayHighScores();
                 break;
             case "B":
             case "Q":
@@ -163,6 +175,19 @@ public class GameMenuView extends View {
         // System.out.println("\n*** displayHouseMenu() function called ***");
         HouseSizeView houseSize = new HouseSizeView();
         houseSize.display();
+    }
+
+    private void displayHighScores() {
+
+        ArrayList<HighScore> highScores = PiggysRevenge.getCurrentGame().getHighScores();
+        highScores.add(new HighScore("Player1", 900, new House(8,8,8,2)));
+        highScores.add(new HighScore("Player2", 78300, new House(19,13,8,3)));
+        highScores.add(new HighScore("Player3", 1600, new House(7,8,9,1)));
+        
+        PiggysRevenge.getCurrentGame().setHighScores(highScores);
+        
+        HighScoreView highScoreView = new HighScoreView();
+        highScoreView.display();
     }
     
 }
