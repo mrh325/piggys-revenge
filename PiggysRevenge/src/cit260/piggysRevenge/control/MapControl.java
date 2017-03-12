@@ -219,17 +219,17 @@ public class MapControl {
     }
 
     public static Point[] getActorPoints(Map map) {
-         System.out.println("*** getActorPoints called ***");
+         //System.out.println("*** getActorPoints called ***");
          //create array to save actor points
          Point[] actorPoints = new Point[Actor.values().length];
          //get the map locations
-         System.out.println("All Actors:  ");
+         //System.out.println("All Actors:  ");
          Location[][] locations = map.getLocations();
          int nextIndex = 0;
          //go through each location to find the actors
          for (Location[] array1 : locations) {
             for (Location location : array1) {
-                System.out.println(location.getActor());
+                //System.out.println(location.getActor());
                 //if the location has an actor
                 if (location.getActor() != null) {
                     //store the actor's coordinates as a point in the point array
