@@ -32,7 +32,29 @@ public class HighScoreView extends View {
             }
         }
         
-        System.out.println(highScores);
+//        System.out.println(highScores);
+
+
+          System.out.println("\n-------------------------------------------"
+                + "\n               HIGH SCORES                 "
+                + "\n-------------------------------------------"
+                + "\n"
+                + "\nName           Score             House Size"
+                + "\n----           -----             ----------"
+                + "\n");
+          
+//       int index = 0;
+//       for (HighScore : highScores) {
+//           line = new StringBuilder("                                         ");
+//           Actor value = MapControl.getActorFromPoint(point,PiggysRevenge.getCurrentGame().getMap());
+//           if (value == null) {
+//               line.insert(0, Integer.toString(index+1) + ":  Wolf");
+//           } else {
+//               line.insert(0, Integer.toString(index+1) + ":  " + value);
+//           }
+//           line.insert(20, distances[index]);
+//           System.out.println(line.toString());
+//           index++;
     }
 
     @Override
@@ -41,3 +63,4 @@ public class HighScoreView extends View {
     }
 
 }
+
