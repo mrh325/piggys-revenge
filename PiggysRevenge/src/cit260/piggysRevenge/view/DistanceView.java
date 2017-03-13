@@ -9,6 +9,7 @@ import cit260.piggysRevenge.control.MapControl;
 import cit260.piggysRevenge.model.Actor;
 import java.awt.Point;
 import static java.lang.Math.abs;
+import java.util.Arrays;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -29,7 +30,8 @@ class DistanceView extends View {
         Point wolfCoords = PiggysRevenge.getCurrentGame().getWolf().getCoordinates();
         //Get list of actor coordinates (as Points) in a list from MapControl
         Point[] actorPoints = MapControl.getActorPoints(PiggysRevenge.getCurrentGame().getMap());
-        //make new list to add the wolf.
+        String[] actorNames = MapControl.getActorNames(PiggysRevenge.getCurrentGame().getMap());
+        //make new lists to add the wolf.
         Point[] allPoints = new Point[actorPoints.length+1];
         int index = 0;
         for (Point point : actorPoints) {
@@ -37,10 +39,18 @@ class DistanceView extends View {
             index++;
         }
         allPoints[index] = wolfCoords;
-        //System.out.println("allPoints is:  ");
-        //System.out.println(Arrays.toString(allPoints));
-        //System.out.println("Player's coords is:  ");
-        //System.out.println(playerCoords.toString());
+        String[] allNames = new String[actorNames.length+1];
+        index = 0;
+        for (String name : actorNames) {
+            allNames[index] = name;
+            index++;
+        }
+        allNames[index] = PiggysRevenge.getCurrentGame().getWolf().getName() + " the Wolf";
+
+//        System.out.println("allPoints is:  ");
+//        System.out.println(Arrays.toString(allPoints));
+//        System.out.println("Player's coords is:  ");
+//        System.out.println(playerCoords.toString());
         
         //convert list of points to list of distances from player
         double[] distances = new double[allPoints.length];
@@ -60,7 +70,7 @@ class DistanceView extends View {
         //sort lists
         //System.out.println("distances unsorted:  ");
         //System.out.println(Arrays.toString(distances));
-        //bubble sort both arrays
+        //bubble sort all three arrays (distance, points, names)
         for (int n = 0; n < 5; n++) {
             for (int m = 0; m < 4 - n; m++) {
                 if (distances[m] > distances[m + 1]) {
@@ -70,6 +80,9 @@ class DistanceView extends View {
                     Point swapPoint = allPoints[m];
                     allPoints[m] = allPoints[m + 1];
                     allPoints[m + 1] = swapPoint;
+                    String swapString = allNames[m];
+                    allNames[m] = allNames[m + 1];
+                    allNames[m + 1] = swapString;
                 }
             }
         }
@@ -79,18 +92,19 @@ class DistanceView extends View {
         System.out.println("\nSORTED DISTANCES\n");
         StringBuilder line = new StringBuilder("                                         ");
         line.insert(0, "ACTOR");
-        line.insert(20, "DISTANCE");
+        line.insert(25, "DISTANCE");
         System.out.println(line.toString());
         index = 0;
-        for (Point point : allPoints) {
+        for (String name : allNames) {
             line = new StringBuilder("                                         ");
-            Actor value = MapControl.getActorFromPoint(point,PiggysRevenge.getCurrentGame().getMap());
-            if (value == null) {
-                line.insert(0, Integer.toString(index+1) + ":  Wolf");
+            //Actor value = MapControl.getActorFromPoint(point,PiggysRevenge.getCurrentGame().getMap());
+            if (name == null) {
+                System.out.println("ERROR:  null value");
+//                line.insert(0, Integer.toString(index+1) + ":  Wolf");
             } else {
-                line.insert(0, Integer.toString(index+1) + ":  " + value);
+                line.insert(0, Integer.toString(index+1) + ":  " + name);
             }
-            line.insert(20, distances[index]);
+            line.insert(25, distances[index]);
             System.out.println(line.toString());
             index++;
         }

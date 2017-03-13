@@ -177,58 +177,71 @@ public class MapControl {
         Location[][] locations = map.getLocations();
         Point[] tempPoints = new Point[Actor.values().length];
 
-        Random rand = new Random();
-        boolean pickNewLocation = true;
         Point point;
-        int point1, point2;
+        int columns = map.getColumnCount();
+        int rows = map.getRowCount();
         //for each of the actors in Actor...
         for (int i = 0; i < tempPoints.length; i++) {
-            do {
-                //pick a random column
-                point1 = 3;
-                while (point1 == 3) {
-                    point1 = rand.nextInt(map.getColumnCount());
-                }
-                //pick a random row
-                point2 = 3;
-                while (point2 == 3) {
-                    point2 = rand.nextInt(map.getRowCount());
-                }
+            point = returnEmptyActorLocation(columns,rows,tempPoints);
+            
+            //if unique, add to the temp array for checking later points
+            tempPoints[i] = point;
+            //and assign the next actor in the Actor class to the chosen location.
+            locations[point.x][point.y].setActor(Actor.values()[i]);
+            //System.out.println("adding " + Actor.values()[i] + " to " + point.x + "," + point.y);
+        }
+    }
 
-                //if not the starting point, create a point
+    private static Point returnEmptyActorLocation(int columns,int rows,Point[] tempPoints) {
+        boolean pickNewLocation;
+        int point1, point2;
+        Random rand = new Random();
+        Point point = null;
+        do {
+            pickNewLocation = true;
+            //pick a random column
+            point1 = rand.nextInt(columns);
+            //pick a random row
+            point2 = rand.nextInt(rows);
+            if (point1 != 3 && point2 != 3) {
+            //create a point if not 3,3
                 point = new Point(point1,point2);
 
                 //check to make sure the point is unique
                 for (Point temp : tempPoints) {
+//                    System.out.println("temp and point:");
+//                    System.out.println(temp);
+//                    System.out.println(point);
                     if (temp==null) {
                         pickNewLocation = false;
                         break;
                     } else if (temp.equals(point)) {
+//                        System.out.println("SAME POINT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//                        System.out.println(point);
+                        pickNewLocation = true;
                         break;
                     } else {
                         pickNewLocation = false;
                     }
                 }
-            } while (pickNewLocation);
-            //if unique, add to the temp array for checking later points
-            tempPoints[i] = point;
-            //and assign the next actor in the Actor class to the chosen location.
-            locations[point1][point2].setActor(Actor.values()[i]);
-        }
+            }
+        } while (pickNewLocation);
+        return point;
     }
-
+    
     public static Point[] getActorPoints(Map map) {
          //System.out.println("*** getActorPoints called ***");
          //create array to save actor points
          Point[] actorPoints = new Point[Actor.values().length];
          //get the map locations
-         //System.out.println("All Actors:  ");
+//         System.out.println("All Actors:  ");
+         
          Location[][] locations = map.getLocations();
          int nextIndex = 0;
          //go through each location to find the actors
          for (Location[] array1 : locations) {
             for (Location location : array1) {
-                //System.out.println(location.getActor());
+//                System.out.println(location.getActor());
                 //if the location has an actor
                 if (location.getActor() != null) {
                     //store the actor's coordinates as a point in the point array
@@ -238,21 +251,136 @@ public class MapControl {
                 }
             }
          }
+         if (nextIndex != Actor.values().length) {
+             System.out.println("ERROR:  not enough points in getActorPoints()");
+         }
          //System.out.println("ActorPoints:  ");
          //System.out.println(Arrays.toString(actorPoints)); //testing
          return actorPoints;
     }
     
-    public static Actor getActorFromPoint(Point point, Map map) {
-        Location[][] locations = map.getLocations();
-//        System.out.println(point.x);
-//        System.out.println(point.y);
-//        System.out.println(locations[point.x][point.y]);
-        try {
-            return locations[point.x][point.y].getActor();
-        } catch (NullPointerException e) {
-            return null;
-        }
+    public static String[] getActorNames(Map map) {
+         //System.out.println("*** getActorPoints called ***");
+         //create array to save actor points
+         String[] actorNames = new String[Actor.values().length];
+         //get the map locations
+//         System.out.println("All Actors:  ");
+         
+         Location[][] locations = map.getLocations();
+         int nextIndex = 0;
+         //go through each location to find the actors
+         for (Location[] array1 : locations) {
+            for (Location location : array1) {
+//                System.out.println(location.getActor());
+                //if the location has an actor
+                if (location.getActor() != null) {
+                    //store the actor's coordinates as a point in the point array
+                    String name = location.getActor().name();
+                    actorNames[nextIndex] = name;
+                    nextIndex++;
+                }
+            }
+         }
+         if (nextIndex != Actor.values().length) {
+             System.out.println("ERROR:  not enough names in getActorNames()");
+         }
+         //System.out.println("ActorPoints:  ");
+         //System.out.println(Arrays.toString(actorPoints)); //testing
+         return actorNames;
     }
+    
+//    public static Actor getActorFromPoint(Point point, Map map) {
+//        Location[][] locations = map.getLocations();
+////        System.out.println(point.x);
+////        System.out.println(point.y);
+////        System.out.println(locations[point.x][point.y]);
+//        try {
+//            return locations[point.x][point.y].getActor();
+//        } catch (NullPointerException e) {
+//            return null;
+//        }
+//    }
 
+    public static void movePlayer(Point playerLoc,String dir) {
+        //System.out.println("*** movePlayer() called ***");
+        switch (dir) {
+            case "up":
+                if (playerLoc.y == 0) {
+                    System.out.println("*** ERROR: Player Can't Move Up ***");
+                } else {
+                    playerLoc.y -= 1;
+                }
+                break;
+            case "down":
+                if (playerLoc.y == 6) {
+                    System.out.println("*** ERROR: Player Can't Move Down ***");
+                } else {
+                    playerLoc.y += 1;
+                }
+                break;
+            case "left":
+                if (playerLoc.x == 0) {
+                    System.out.println("*** ERROR: Player Can't Move Left ***");
+                } else {
+                    playerLoc.x -= 1;
+                }
+                break;
+            case "right":
+                if (playerLoc.x == 6) {
+                    System.out.println("*** ERROR: Player Can't Move Right ***");
+                } else {
+                    playerLoc.x += 1;
+                }
+                break;
+        }
+        PiggysRevenge.getCurrentGame().getPlayer().setCoordinates(playerLoc);
+    }
+        public static void drawMap() {
+            int columns = PiggysRevenge.getCurrentGame().getMap().getColumnCount();
+            //get locations and prep an empty line for string building
+            Location[][] locations = PiggysRevenge.getCurrentGame().getMap().getLocations();
+            String emptyLine = "";
+            for (int i = 1; i < columns*5+10; i++ ) {
+                emptyLine += " ";
+            }
+
+            //draw the title
+            StringBuilder line = new StringBuilder(emptyLine);
+            String mapTitle = "The Far Away Land of Nonsense";
+            //System.out.println(mapTitle.length()/2);
+            //System.out.println(line.toString().length()/2);
+            line.insert(10, mapTitle);
+            System.out.println(line.toString());
+
+            //draw a line.
+            String aLine = "";
+            for (int i = 0; i <= columns*5+10; i++ ) {
+                aLine += "–";
+            }
+            System.out.println(aLine);
+
+            //draw column headers
+            line = new StringBuilder(emptyLine);
+            char ch = 'A';
+            for (int insertPoint = 10; insertPoint <= columns*5+9; insertPoint+=5) {
+                line.insert(insertPoint,"| " + ch + " |");
+                ch++;
+            }
+            System.out.println(line.toString());
+
+            //draw the rows
+            for (int currentRow = 1; currentRow <= PiggysRevenge.getCurrentGame().getMap().getRowCount(); currentRow++) {
+                line = new StringBuilder(emptyLine);
+                line.insert(7,Integer.toString(currentRow) + " ");
+                for (int currentColumn = 0; currentColumn < columns; currentColumn++) {
+                    line.insert(10+currentColumn*5,"|" + locations[currentRow-1][currentColumn].getScene().mapSymbol() + "|");
+                }
+                System.out.println(line.toString());
+            }
+            System.out.println("\nKEY:  	. Unvisited");
+            System.out.println("	# Visited");
+            System.out.println("	@ You (A5)");
+            System.out.println("	P Piggy Found");
+            System.out.println("	B Building Site Found");
+        }
 }

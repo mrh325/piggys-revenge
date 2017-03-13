@@ -115,7 +115,7 @@ public class GameControl {
     }
 
     public static void createNewGame(Player player) {
-        System.out.println("\n*** createNewGame() function called ***");
+        //System.out.println("\n*** createNewGame() function called ***");
         if (player == null) {
             System.out.println("\n*** Error:  player is null ***");
         } else {
@@ -143,19 +143,19 @@ public class GameControl {
     }
 
     public static House createNewHouse() {
-        System.out.println("\n*** createNewHouse() function called ***");
+        //System.out.println("\n*** createNewHouse() function called ***");
         House house = new House(0,0,0,0);
         return house;
     }
 
     public static Backpack createNewBackpack() {
-        System.out.println("\n*** createNewBackpack() function called ***");
+        //System.out.println("\n*** createNewBackpack() function called ***");
         Backpack backpack = new Backpack(new Item[2][3]);
         return backpack;
     }
     
     public static Wolf createNewWolf(Map map) {
-        System.out.println("\n*** createNewWolf() function called ***");
+        //System.out.println("\n*** createNewWolf() function called ***");
         //set wolf's starting coordinates
         Wolf wolf = new Wolf();
         //give wolf a random name
@@ -175,6 +175,8 @@ public class GameControl {
         }
         Point point = new Point(rand.nextInt(2)*(map.getColumnCount()-1),rand.nextInt(2)*(map.getRowCount()-1));
         wolf.setCoordinates(point);
+        Location[][] locations = map.getLocations();
+        locations[point.x][point.y].setContainsWolf(true);
         //System.out.println("Wolf coords is:  ");
         //System.out.println(wolf.toString());
         return wolf;

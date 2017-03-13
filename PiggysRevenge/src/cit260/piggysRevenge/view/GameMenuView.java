@@ -6,14 +6,10 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.MapControl;
-import cit260.piggysRevenge.model.Actor;
 import cit260.piggysRevenge.model.HighScore;
 import cit260.piggysRevenge.model.House;
-import cit260.piggysRevenge.model.Location;
 import java.awt.Point;
-import static java.lang.Math.abs;
 import java.util.ArrayList;
-import java.util.Arrays;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -84,59 +80,14 @@ public class GameMenuView extends View {
     }
 
     private void displayMoveMenu() {
-        
-        MoveMenuView moveMenu = new MoveMenuView();
+        Point playerLoc = PiggysRevenge.getCurrentGame().getPlayer().getCoordinates();
+        MoveMenuView moveMenu = new MoveMenuView(playerLoc);
         moveMenu.display();
     }
 
     private void displayMap() {
 //        System.out.println("\n*** displayMap() function called ***");
-        int columns = PiggysRevenge.getCurrentGame().getMap().getColumnCount();
-        //get locations and prep an empty line for string building
-        Location[][] locations = PiggysRevenge.getCurrentGame().getMap().getLocations();
-        String emptyLine = "";
-        for (int i = 1; i < columns*5+10; i++ ) {
-            emptyLine += " ";
-        }
-
-        //draw the title
-        StringBuilder line = new StringBuilder(emptyLine);
-        String mapTitle = "The Far Away Land of Nonsense";
-        //System.out.println(mapTitle.length()/2);
-        //System.out.println(line.toString().length()/2);
-        line.insert(10, mapTitle);
-        System.out.println(line.toString());
-        
-        //draw a line.
-        String aLine = "";
-        for (int i = 0; i <= columns*5+10; i++ ) {
-            aLine += "–";
-        }
-        System.out.println(aLine);
-        
-        //draw column headers
-        line = new StringBuilder(emptyLine);
-        char ch = 'A';
-        for (int insertPoint = 10; insertPoint <= columns*5+9; insertPoint+=5) {
-            line.insert(insertPoint,"| " + ch + " |");
-            ch++;
-        }
-        System.out.println(line.toString());
-        
-        //draw the rows
-        for (int currentRow = 1; currentRow <= PiggysRevenge.getCurrentGame().getMap().getRowCount(); currentRow++) {
-            line = new StringBuilder(emptyLine);
-            line.insert(7,Integer.toString(currentRow) + " ");
-            for (int currentColumn = 0; currentColumn < columns; currentColumn++) {
-                line.insert(10+currentColumn*5,"|" + locations[currentRow-1][currentColumn].getScene().mapSymbol() + "|");
-            }
-            System.out.println(line.toString());
-        }
-        System.out.println("\nKEY:  	. Unvisited");
-	System.out.println("	# Visited");
-	System.out.println("	@ You (A5)");
-	System.out.println("	P Piggy Found");
-	System.out.println("	B Building Site Found");
+        MapControl.drawMap();
     }
 
     private void displayDistances() {

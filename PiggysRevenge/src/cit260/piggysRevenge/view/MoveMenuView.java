@@ -5,22 +5,17 @@
  */
 package cit260.piggysRevenge.view;
 
+import cit260.piggysRevenge.control.MapControl;
+import java.awt.Point;
+
 
 public class MoveMenuView extends View {
+    Point playerLoc;
     
-    public MoveMenuView() {
-        super ( "\n"
-                + "\n======================================="
-                + "\n| Move Menu                           |"
-                + "\n======================================="
-                + "\nU - (U)p"
-                + "\nD - (D)own"
-                + "\nL - (L)eft"
-                + "\nR - (R)ight"
-                + "\nT - (T)est Wolf Encounter View (FOR TESTING ONLY)"
-                + "\nH - Test find (H)at view (FOR TESTING ONLY)"
-                + "\nB - (B)ack to Main Menu"
-                + "\n=======================================");
+    public MoveMenuView(Point playerLoc) {
+        super ();
+        this.playerLoc = playerLoc;
+        this.drawMenu(playerLoc);
     }
     
 
@@ -60,18 +55,30 @@ public class MoveMenuView extends View {
 
     private void moveUp() {
         System.out.println("\n*** moveUp() function called ***");
+        MapControl.movePlayer(playerLoc,"up");
+        this.drawMenu(playerLoc);
+        MapControl.drawMap();
     }
 
     private void moveDown() {
         System.out.println("\n*** moveDown() function called ***");
+        MapControl.movePlayer(playerLoc,"down");
+        this.drawMenu(playerLoc);
+        MapControl.drawMap();
     }
 
     private void moveLeft() {
         System.out.println("\n*** moveLeft() function called ***");
+        MapControl.movePlayer(playerLoc,"left");
+        this.drawMenu(playerLoc);
+        MapControl.drawMap();
     }
 
     private void moveRight() {
         System.out.println("\n*** moveRight() function called ***");
+        MapControl.movePlayer(playerLoc,"right");
+        this.drawMenu(playerLoc);
+        MapControl.drawMap();
     }
 
     private void displayWolfView() {
@@ -85,5 +92,26 @@ public class MoveMenuView extends View {
         findHat.display();
     }
 
-
+    private void drawMenu(Point playerLoc) {
+        this.displayMessage = "\n"
+                + "\n======================================="
+                + "\n| Move Menu                           |"
+                + "\n=======================================";
+        if (playerLoc.y != 0) {
+            this.displayMessage += "\nU - (U)p";
+        }
+        if (playerLoc.y != 6) {
+            this.displayMessage += "\nD - (D)own";
+        }
+        if (playerLoc.x != 0) {
+            this.displayMessage += "\nL - (L)eft";
+        }
+        if (playerLoc.x != 6) {
+            this.displayMessage += "\nR - (R)ight";
+        }
+        this.displayMessage += "\nT - (T)est Wolf Encounter View (FOR TESTING ONLY)"
+                + "\nH - Test find (H)at view (FOR TESTING ONLY)"
+                + "\nB - (B)ack to Main Menu"
+                + "\n=======================================";   
+    }
 }

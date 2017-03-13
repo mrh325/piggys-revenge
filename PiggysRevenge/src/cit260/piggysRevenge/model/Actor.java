@@ -5,10 +5,7 @@
  */
 package cit260.piggysRevenge.model;
 
-import java.awt.Point;
 import java.io.Serializable;
-import java.util.Random;
-import piggysrevenge.PiggysRevenge;
 
 /**
  *
