@@ -10,7 +10,6 @@ package cit260.piggysRevenge.model;
  * @author hales
  */
 public enum SceneType {
-    start,
     desert,
     forest,
     mill,
@@ -20,5 +19,6 @@ public enum SceneType {
     rockyCliffs,
     frozenTundra,
     beach,
-    canyons;
+    canyons,
+    start;
 }

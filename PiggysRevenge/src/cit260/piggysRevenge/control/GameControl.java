@@ -16,6 +16,7 @@ import cit260.piggysRevenge.model.Scene;
 import cit260.piggysRevenge.model.Wolf;
 import java.awt.Point;
 import static java.lang.Math.round;
+import java.util.Arrays;
 import java.util.Random;
 import piggysrevenge.PiggysRevenge;
 
@@ -183,19 +184,23 @@ public class GameControl {
     }
 
     public static void assignScenesToLocations(Map map, Scene[] scenes) {
-        // System.out.println("*** assignScenesToLocations called ***");
+        //System.out.println("*** assignScenesToLocations called ***");
         
         Location[][] locations = map.getLocations();
         
 
         for (int i = 0; i < map.getColumnCount(); i++) {
             for (int j = 0; j < map.getRowCount(); j++) {
-                if (i == 3 && j == 3) {
-                    locations[i][j].setScene(scenes[0]);
-                } else {
-                    Random rand = new Random();
-                    locations[i][j].setScene(scenes[rand.nextInt(10) + 1]);
+//                if (i == 3 && j == 3) {
+//                    locations[i][j].setScene(scenes[0]);
+//                    locations[i][j].setVisited(Boolean.TRUE);
+//                } else {
+                if (scenes[i*map.getRowCount()+j] == null) {
+                    System.out.println(i*map.getRowCount()+j);
+                    System.out.println(scenes[i*map.getRowCount()+j]);   
                 }
+                locations[i][j].setScene(scenes[(i*map.getRowCount()+j)]);
+//                }
             }
         }
         

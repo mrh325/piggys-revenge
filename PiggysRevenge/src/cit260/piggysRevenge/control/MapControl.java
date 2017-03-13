@@ -11,6 +11,7 @@ import cit260.piggysRevenge.model.SceneType;
 import cit260.piggysRevenge.model.Map;
 import cit260.piggysRevenge.model.Scene;
 import java.awt.Point;
+import java.util.Arrays;
 import java.util.Random;
 import piggysrevenge.PiggysRevenge;
 
@@ -85,89 +86,145 @@ public class MapControl {
         
         Map map = new Map(7, 7); //set map size here
         
-        Scene[] scenes = createScenes();
+        Scene[] scenes = createScenes(map);
         
         GameControl.assignScenesToLocations(map, scenes);
         
         return map;
     }
 
-    private static Scene[] createScenes() {
+    private static Scene[] createScenes(Map map) {
         // System.out.println("*** Scene function called***");
+        //we need to create as many scenes as there are map locations
+        int totalMapLocations = map.getColumnCount()*map.getRowCount();
+        Scene[] scenes = new Scene[totalMapLocations];
         
-        Scene[] scenes = new Scene[SceneType.values().length];
-        
+        int loop = 0;
+        int i = 0;
+        while (true) {
+            if (i==totalMapLocations) {
+                break;
+            }
+            Scene randomScene = new Scene();
+            randomScene.setName("The desert");
+            randomScene.setDescription("\nYou are in the middle of barren, lifeless desert."
+                    + "\nWater lost to evaporation and transpiration here"
+                    + "\nexceeds the amount of precipitation...");
+            randomScene.setMapSymbol(" . ");
+            scenes[SceneType.desert.ordinal()+(10*loop)] = randomScene;
+            i++;
+
+            if (i==totalMapLocations) {
+                break;
+            }
+            randomScene = new Scene();
+            randomScene.setName("The forest");
+            randomScene.setDescription("\nYou are in a busy, dense forest.");
+            randomScene.setMapSymbol(" . ");
+            scenes[SceneType.forest.ordinal()+(10*loop)] = randomScene;
+            i++;
+
+            if (i==totalMapLocations) {
+                break;
+            }
+            randomScene = new Scene();
+            randomScene.setName("The Old Mill");
+            randomScene.setDescription("\nYou are at the old mill.  Rumor is there may"
+                    + "\nbe gold buried in the foundation...");
+            randomScene.setMapSymbol(" . ");
+            scenes[SceneType.mill.ordinal()+(10*loop)] = randomScene;
+            i++;
+
+            if (i==totalMapLocations) {
+                break;
+            }
+            randomScene = new Scene();
+            randomScene.setName("The grassy field");
+            randomScene.setDescription("\nYou are in huge field of grass.");
+            randomScene.setMapSymbol(" . ");
+            scenes[SceneType.grassyField.ordinal()+(10*loop)] = randomScene;
+            i++;
+
+            if (i==totalMapLocations) {
+                break;
+            }
+            randomScene = new Scene();
+            randomScene.setName("The valley");
+            randomScene.setDescription("\nYou are in a millenia old valley carved by ancient glaciers.");
+            randomScene.setMapSymbol(" . ");
+            scenes[SceneType.valley.ordinal()+(10*loop)] = randomScene;
+            i++;
+
+            if (i==totalMapLocations) {
+                break;
+            }
+            randomScene = new Scene();
+            randomScene.setName("The river");
+            randomScene.setDescription("\nYou are at the edge of a swift and violent river.");
+            randomScene.setMapSymbol(" . ");
+            scenes[SceneType.river.ordinal()+(10*loop)] = randomScene;
+            i++;
+
+            if (i==totalMapLocations) {
+                break;
+            }
+            randomScene = new Scene();
+            randomScene.setName("The rocky cliffs");
+            randomScene.setDescription("\nYou are at the rocky cliffs, hundreds of feet above the cliff floors."
+                    + "\nDon't fall off.");
+            randomScene.setMapSymbol(" . ");
+            scenes[SceneType.rockyCliffs.ordinal()+(10*loop)] = randomScene;
+            i++;
+
+            if (i==totalMapLocations) {
+                break;
+            }
+            randomScene = new Scene();
+            randomScene.setName("The frozen tundra");
+            randomScene.setDescription("\nYou are at the frozen tundra, with reindeer, and ice...");
+            randomScene.setMapSymbol(" . ");
+            scenes[SceneType.frozenTundra.ordinal()+(10*loop)] = randomScene;
+            i++;
+
+            if (i==totalMapLocations) {
+                break;
+            }
+            randomScene = new Scene();
+            randomScene.setName("The beach");
+            randomScene.setDescription("\nYou are the beach!  Relax.");
+            randomScene.setMapSymbol(" . ");
+            scenes[SceneType.beach.ordinal()+(10*loop)] = randomScene;
+            i++;
+
+            if (i==totalMapLocations) {
+                break;
+            }
+            randomScene = new Scene();
+            randomScene.setName("The ancient canyons");
+            randomScene.setDescription("\nYou are deep down in the canyons.  The ancients made their homes here.");
+            randomScene.setMapSymbol(" . ");
+            scenes[SceneType.canyons.ordinal()+(10*loop)] = randomScene;
+            i++;
+            loop++;
+        }
+        //Randomize the scenes
+        // Scramble the array elements using the standard Fisher-Yates shuffle, 
+        Random rand = new Random();
+        for(i=0; i<scenes.length; i++) {
+            int j = rand.nextInt(scenes.length);
+            // Swap letters
+            Scene temp = scenes[i];
+            scenes[i] = scenes[j];
+            scenes[j] = temp;
+        }
+        //finally, set the first scene as the start scene
         Scene startingScene = new Scene();
         startingScene.setName("Starting Scene");
-        startingScene.setDescription("Yay, you're at the beginning");
-        startingScene.setMapSymbol(" P ");
-        scenes[SceneType.start.ordinal()] = startingScene;
+        startingScene.setDescription("\nYay, you're at the beginning");
+        startingScene.setMapSymbol(" @ ");
+        scenes[totalMapLocations/2] = startingScene;
         
-        //for (int i = 1; i < SceneType.values().length; i++) {
-        Scene randomScene = new Scene();
-        randomScene.setName("The desert");
-        randomScene.setDescription("You are in the middle of barren, lifeless desert."
-                + "\nWater lost to evaporation and transpiration here"
-                + "\nexceeds the amount of precipitation...");
-        randomScene.setMapSymbol(" . ");
-        scenes[SceneType.desert.ordinal()] = randomScene;
-        
-        randomScene = new Scene();
-        randomScene.setName("The forest");
-        randomScene.setDescription("You are in a busy, dense forest.");
-        randomScene.setMapSymbol(" . ");
-        scenes[SceneType.forest.ordinal()] = randomScene;
-        
-        randomScene = new Scene();
-        randomScene.setName("The Old Mill");
-        randomScene.setDescription("You are at the old mill.  Rumor is there may"
-                + "\nbe gold buried in the foundation...");
-        randomScene.setMapSymbol(" . ");
-        scenes[SceneType.mill.ordinal()] = randomScene;
-        
-        randomScene = new Scene();
-        randomScene.setName("The grassy field");
-        randomScene.setDescription("You are in huge field of grass.");
-        randomScene.setMapSymbol(" . ");
-        scenes[SceneType.grassyField.ordinal()] = randomScene;
-        
-        randomScene = new Scene();
-        randomScene.setName("The valley");
-        randomScene.setDescription("You are in a millenia old valley carved by ancient glaciers.");
-        randomScene.setMapSymbol(" . ");
-        scenes[SceneType.valley.ordinal()] = randomScene;
-        
-        randomScene = new Scene();
-        randomScene.setName("The river");
-        randomScene.setDescription("You'r at the edge of a swift and violent river.");
-        randomScene.setMapSymbol(" . ");
-        scenes[SceneType.river.ordinal()] = randomScene;
-        
-        randomScene = new Scene();
-        randomScene.setName("The rocky cliffs");
-        randomScene.setDescription("You are at the rocky cliffs, hundreds of feet above the cliff floors."
-                + "\nDon't fall off.");
-        randomScene.setMapSymbol(" . ");
-        scenes[SceneType.rockyCliffs.ordinal()] = randomScene;
-        
-        randomScene = new Scene();
-        randomScene.setName("The frozen tundra");
-        randomScene.setDescription("You are at the frozen tundra, with reindeer, and ice...");
-        randomScene.setMapSymbol(" . ");
-        scenes[SceneType.frozenTundra.ordinal()] = randomScene;
-        
-        randomScene = new Scene();
-        randomScene.setName("The beach");
-        randomScene.setDescription("You are the beach!  Relax.");
-        randomScene.setMapSymbol(" . ");
-        scenes[SceneType.beach.ordinal()] = randomScene;
-        
-        randomScene = new Scene();
-        randomScene.setName("The ancient canyons");
-        randomScene.setDescription("You are deep down in the canyons.  The ancients made their homes here.");
-        randomScene.setMapSymbol(" . ");
-        scenes[SceneType.canyons.ordinal()] = randomScene;
-        //}
+        //System.out.println(Arrays.toString(scenes));
         return scenes;
     }
 
@@ -303,37 +360,60 @@ public class MapControl {
 
     public static void movePlayer(Point playerLoc,String dir) {
         //System.out.println("*** movePlayer() called ***");
+        Location[][] locations = PiggysRevenge.getCurrentGame().getMap().getLocations();
         switch (dir) {
-            case "up":
+            case "left":
                 if (playerLoc.y == 0) {
-                    System.out.println("*** ERROR: Player Can't Move Up ***");
+                    System.out.println("*** ERROR: Player Can't Move Left ***");
                 } else {
+                    if (locations[playerLoc.x][playerLoc.y].getActor() == null) {
+                        locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" # ");
+                    } else {
+                        locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" P ");
+                    }
                     playerLoc.y -= 1;
                 }
                 break;
-            case "down":
+            case "right":
                 if (playerLoc.y == 6) {
-                    System.out.println("*** ERROR: Player Can't Move Down ***");
+                    System.out.println("*** ERROR: Player Can't Move Right ***");
                 } else {
+                    if (locations[playerLoc.x][playerLoc.y].getActor() == null) {
+                        locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" # ");
+                    } else {
+                        locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" P ");
+                    }
                     playerLoc.y += 1;
                 }
                 break;
-            case "left":
+            case "up":
                 if (playerLoc.x == 0) {
-                    System.out.println("*** ERROR: Player Can't Move Left ***");
+                    System.out.println("*** ERROR: Player Can't Move Up ***");
                 } else {
+                    if (locations[playerLoc.x][playerLoc.y].getActor() == null) {
+                        locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" # ");
+                    } else {
+                        locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" P ");
+                    }
                     playerLoc.x -= 1;
                 }
                 break;
-            case "right":
+            case "down":
                 if (playerLoc.x == 6) {
-                    System.out.println("*** ERROR: Player Can't Move Right ***");
+                    System.out.println("*** ERROR: Player Can't Move Down ***");
                 } else {
+                    if (locations[playerLoc.x][playerLoc.y].getActor() == null) {
+                        locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" # ");
+                    } else {
+                        locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" P ");
+                    }
                     playerLoc.x += 1;
                 }
                 break;
         }
         PiggysRevenge.getCurrentGame().getPlayer().setCoordinates(playerLoc);
+        locations[playerLoc.x][playerLoc.y].setVisited(Boolean.TRUE);
+        locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" @ ");
     }
         public static void drawMap() {
             int columns = PiggysRevenge.getCurrentGame().getMap().getColumnCount();
@@ -379,7 +459,7 @@ public class MapControl {
             }
             System.out.println("\nKEY:  	. Unvisited");
             System.out.println("	# Visited");
-            System.out.println("	@ You (A5)");
+            System.out.println("	@ You"); //add location later
             System.out.println("	P Piggy Found");
             System.out.println("	B Building Site Found");
         }

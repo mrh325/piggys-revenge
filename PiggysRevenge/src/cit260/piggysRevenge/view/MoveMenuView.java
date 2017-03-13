@@ -15,6 +15,7 @@ public class MoveMenuView extends View {
     public MoveMenuView(Point playerLoc) {
         super ();
         this.playerLoc = playerLoc;
+        MapControl.drawMap();
         this.drawMenu(playerLoc);
     }
     
@@ -54,28 +55,28 @@ public class MoveMenuView extends View {
     }
 
     private void moveUp() {
-        System.out.println("\n*** moveUp() function called ***");
+        //System.out.println("\n*** moveUp() function called ***");
         MapControl.movePlayer(playerLoc,"up");
         this.drawMenu(playerLoc);
         MapControl.drawMap();
     }
 
     private void moveDown() {
-        System.out.println("\n*** moveDown() function called ***");
+        //System.out.println("\n*** moveDown() function called ***");
         MapControl.movePlayer(playerLoc,"down");
         this.drawMenu(playerLoc);
         MapControl.drawMap();
     }
 
     private void moveLeft() {
-        System.out.println("\n*** moveLeft() function called ***");
+        //System.out.println("\n*** moveLeft() function called ***");
         MapControl.movePlayer(playerLoc,"left");
         this.drawMenu(playerLoc);
         MapControl.drawMap();
     }
 
     private void moveRight() {
-        System.out.println("\n*** moveRight() function called ***");
+        //System.out.println("\n*** moveRight() function called ***");
         MapControl.movePlayer(playerLoc,"right");
         this.drawMenu(playerLoc);
         MapControl.drawMap();

@@ -22,7 +22,7 @@ public class MiniGameControl {
         // Convert string into a simple char array:
         char newCharArray[] = inputComboOrder.toCharArray();
 
-        // Scramble the letters using the standard Fisher-Yates shuffle, 
+        // Scramble the array elements using the standard Fisher-Yates shuffle, 
         for(int i=0; i<newCharArray.length; i++) {
             int j = rand.nextInt(newCharArray.length);
             // Swap letters
