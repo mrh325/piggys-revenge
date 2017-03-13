@@ -7,64 +7,107 @@ package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.InventoryControl;
 import cit260.piggysRevenge.model.Item;
+import java.awt.Point;
 import piggysrevenge.PiggysRevenge;
 
 /**
  *
  * @author natebolton
  */
-class InventoryMenuView extends View {
+public class FindShoeView extends View {
+    Item item;
+    Point playerLoc;
 
-    public InventoryMenuView() {
-        super("\n"
-                + "\n======================================="
-                + "\n| Inventory Menu                           |"
-                + "\n======================================="
-                + "\nI - View (I)nventory"
-                + "\nH - Change (H)at"
-                + "\nS - Change (S)hoes"
-                + "\nG - (G)imme a brick (FOR TESTING)"
-                + "\nB - (B)ack to Game Menu"
+    public FindShoeView(Point playerLoc, Item item) {
+        super ( "\n"
+                + "\n"
+                + "\n"
+                + "\nCONGRATULATIONS!! You found "
+                + item.getName()
+                + "\n"
+                + item.getDescription()
+                + "\n\n\nPlease choose from the following:"
+                + "======================================="
+                + "\nE - (E)quip"
+                + "\nS - (S)tore in backpack"
+                + "\nL - (L)eave the shoe here"
+                + "\nV - (V)iew current backpack inventory"
+                + "\nB - (B)ack to Game"
                 + "\n=======================================");
+        this.item = item;
+        this.playerLoc = playerLoc;
     }
- 
+    
+
     @Override
     public boolean doAction(String menuOption) {
-        // System.out.println("\n*** doAction() function called ***");
+              // System.out.println("\n*** doAction() function called ***");
         
         menuOption = menuOption.toUpperCase();
-        Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
+        
         switch (menuOption) {
-            case "I":
-                this.displayInventory();
-                break;
-            case "H":
-                this.setHat();
-                break;
+            case "E":
+                this.equipShoe();
+                return true;
             case "S":
-                this.setShoes();
-                break;
-            case "G":
-                //for testing only
-                PiggysRevenge.getCurrentGame().getBackpack().setBricks(PiggysRevenge.getCurrentGame().getBackpack().getBricks()+1);
-                System.out.println("Brick Granted...");
-                break;
+                this.storeShoe();
+                return true;
+            case "V":
+                this.displayInventory();
+                return false;
+            case "L":
             case "B":
-            case "Q":
                 return true;
             default:
                 System.out.println("\n*** Invalid selection *** Try again ***");
                 break;
         }
-        return false;    
+        return false;
     }
 
+    private void equipShoe() {
+        System.out.println("*** equipShoe function called ***");
+        int result = InventoryControl.storeShoe(this.item);
+        switch (result) {
+            case -1:
+                System.out.println("ERROR: tried to store non-shoe type in shoe inventory");
+                break;
+            case -2:
+                System.out.println("ERROR: Shoe already in inventory");
+                break;
+            case -3:
+                System.out.println("UNKOWN ERROR: Could not equip shoe");
+                break;
+            case 0:
+            case 1:
+            case 2:
+                InventoryControl.equipShoe(result);
+                PiggysRevenge.getCurrentGame().getMap().getLocations()[playerLoc.x][playerLoc.y].setItem(null);
+        }
+    }
+
+    private void storeShoe() {
+        System.out.println("*** storeShoe function called ***");
+        int result = InventoryControl.storeShoe(this.item);
+        switch (result) {
+            case -1:
+                System.out.println("ERROR: tried to store non-shoe type in hat inventory");
+                break;
+            case -2:
+                System.out.println("ERROR: Shoe already in inventory");
+                break;
+            case -3:
+                System.out.println("UNKOWN ERROR: Could not equip shoe");
+        }
+    }
+    
     private void displayInventory() {
+        System.out.println("*** displayInventory function called ***");
         //System.out.println("\n*** displayInventory() function called ***");
 //        System.out.println(Arrays.deepToString(PiggysRevenge.getBackpack().getItemList())); //inventory throw-up
         Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
         System.out.println("\n-----------------------------------------------------------------"
-                + "\nHATS:");
+                + "\nHats:");
         int i = 1;
         for (Item hat : itemList[0]) {
             if (hat != null) {
@@ -82,7 +125,7 @@ class InventoryMenuView extends View {
             System.out.println("\nYou have no hats.");
         }
         System.out.println("\n-----------------------------------------------------------------"
-                + "\nSHOES:");
+                + "\nShoes:");
         i = 1;
         for (Item shoe : itemList[1]) {
             if (shoe != null) {
@@ -104,16 +147,5 @@ class InventoryMenuView extends View {
         System.out.println(PiggysRevenge.getCurrentGame().getBackpack().getBricks());
     }
 
-    private void setHat() {
-        //System.out.println("\n*** setHat() function called ***");
-        ChangeHatView changeHatView = new ChangeHatView();
-        changeHatView.display();
-    }
-
-    private void setShoes() {
-        //System.out.println("\n*** setShoes() function called ***");
-        ChangeShoesView changeShoesView = new ChangeShoesView();
-        changeShoesView.display();
-    }
-
+    
 }

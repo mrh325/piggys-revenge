@@ -7,6 +7,8 @@ package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.InventoryControl;
 import cit260.piggysRevenge.model.Item;
+import cit260.piggysRevenge.model.Location;
+import java.awt.Point;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -14,9 +16,10 @@ import piggysrevenge.PiggysRevenge;
  * @author hales
  */
 public class FindHatView extends View {
-    
+    Item item;
+    Point playerLoc;
 
-    public FindHatView() {
+    public FindHatView(Point playerLoc, Item item) {
         super ( "\n"
 + "        .e$$$$$$$$$o.  .z+\"\"-eu.      .xu..\n" +
 "     d$$$$$$$$$$$$$$$$$o.    $$$$$u#         ^%s\n" +
@@ -38,7 +41,10 @@ public class FindHatView extends View {
 "        x$$$$c#$$$$**#\"\"\"\"\"\"\"\"$$$$$$$$$$$$eed\"R"
                 + "\n"
                 + "\n"
-                + "\nCONGRATULATIONS!! You found a hat!"
+                + "\nCONGRATULATIONS!! You found the "
+                + item.getName()
+                + "\nwhich "
+                + item.getDescription()
                 + "\n\n\nPlease choose from the following:"
                 + "======================================="
                 + "\nE - (E)quip"
@@ -47,6 +53,8 @@ public class FindHatView extends View {
                 + "\nV - (V)iew current backpack inventory"
                 + "\nB - (B)ack to Game"
                 + "\n=======================================");
+        this.item = item;
+        this.playerLoc = playerLoc;
     }
     
 
@@ -78,20 +86,39 @@ public class FindHatView extends View {
 
     private void equipHat() {
         System.out.println("*** equipHat function called ***");
-        int result = InventoryControl.giveHat();
-        Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
-        if (itemList[0][result] != null) {
-            PiggysRevenge.getPlayer().setCurrentHat(itemList[0][result]);
-            System.out.println("\n-----------------------------------------------------------------"
-                    + "\nHat Equipped.");
-        } else {
-            System.out.println("\n*** Error Equiping Hat ***");
+        int result = InventoryControl.storeHat(this.item);
+        switch (result) {
+            case -1:
+                System.out.println("ERROR: tried to store non-hat type in hat inventory");
+                break;
+            case -2:
+                System.out.println("ERROR: Hat already in inventory");
+                break;
+            case -3:
+                System.out.println("UNKOWN ERROR: Could not equip hat");
+                break;
+            case 0:
+            case 1:
+            case 2:
+                InventoryControl.equipHat(result);
+                PiggysRevenge.getCurrentGame().getMap().getLocations()[playerLoc.x][playerLoc.y].setItem(null);
         }
+        
     }
 
     private void storeHat() {
         System.out.println("*** storeHat function called ***");
-        int result = InventoryControl.giveHat();
+        int result = InventoryControl.storeHat(this.item);
+        switch (result) {
+            case -1:
+                System.out.println("ERROR: tried to store non-hat type in hat inventory");
+                break;
+            case -2:
+                System.out.println("ERROR: Hat already in inventory");
+                break;
+            case -3:
+                System.out.println("UNKOWN ERROR: Could not equip hat");
+        }
     }
 
     private void displayInventory() {

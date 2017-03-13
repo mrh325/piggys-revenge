@@ -9,6 +9,7 @@ import cit260.piggysRevenge.model.Backpack;
 import cit260.piggysRevenge.model.Game;
 import cit260.piggysRevenge.model.House;
 import cit260.piggysRevenge.model.Item;
+import cit260.piggysRevenge.model.ItemType;
 import cit260.piggysRevenge.model.Location;
 import cit260.piggysRevenge.model.Map;
 import cit260.piggysRevenge.model.Player;
@@ -140,6 +141,8 @@ public class GameControl {
             game.setWolf(GameControl.createNewWolf(map));
 
             MapControl.moveActorsToStartingLocation(map);
+            Item[] items = createItems(map);
+            MapControl.moveItemsToStartingLocation(map,items);
         }
     }
 
@@ -183,12 +186,27 @@ public class GameControl {
         return wolf;
     }
 
+    private static Item[] createItems(Map map) {
+        // System.out.println("*** Scene function called***");
+        //we need to create as many scenes as there are map locations
+        //int totalMapLocations = map.getColumnCount() * map.getRowCount();
+        Item[] items = new Item[ItemType.values().length];
+        int i = 0;
+        for (Item item : items) {
+            item = new Item();
+            item.setName(ItemType.values()[i].getName());
+            item.setDescription(ItemType.values()[i].getDescription());
+            item.setItemType(ItemType.values()[i].getType());
+            items[i] = item;
+            i++;
+        }
+        return items;
+    }
+    
     public static void assignScenesToLocations(Map map, Scene[] scenes) {
         //System.out.println("*** assignScenesToLocations called ***");
-        
         Location[][] locations = map.getLocations();
         
-
         for (int i = 0; i < map.getColumnCount(); i++) {
             for (int j = 0; j < map.getRowCount(); j++) {
 //                if (i == 3 && j == 3) {
@@ -206,8 +224,5 @@ public class GameControl {
         
     }
 
-
-
-   
 }
 

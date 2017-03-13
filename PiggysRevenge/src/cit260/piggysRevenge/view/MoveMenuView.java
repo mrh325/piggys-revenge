@@ -44,9 +44,6 @@ public class MoveMenuView extends View {
             case "M":
                 this.displayMap();
                 break;
-            case "H":
-                this.findHat();
-                break;
             case "B":
                 return true;
             default:
@@ -61,24 +58,6 @@ public class MoveMenuView extends View {
         //move the player's location
         MapControl.movePlayer(playerLoc,"up");
         this.doAfterMove(playerLoc,wolfLoc);
-//        //----------------------------
-//        //MOVE THE WOLF HERE
-//        MapControl.moveWolf(wolfLoc);
-//        //----------------------------
-//
-//        //----------------------------
-//        //ADD CHECKS FOR EVENTS HERE starting with wolf encounter, then 
-//        //piggy's or building site, then items or bricks.
-//        if (playerLoc.equals(wolfLoc)) {
-//            WolfView wolfView = new WolfView();
-//            wolfView.display();
-//        }
-//        //----------------------------
-//        
-//        //redefine the menu for the next display() call
-//        this.drawMenu(playerLoc);        
-//        //draw the map to screen
-//        MapControl.drawMap();
     }
 
     private void moveDown() {
@@ -99,11 +78,6 @@ public class MoveMenuView extends View {
         this.doAfterMove(playerLoc,wolfLoc);
     }
 
-    private void findHat() {
-        FindHatView findHat = new FindHatView();
-        findHat.display();
-    }
-
     private void displayMap() {
 //        System.out.println("\n*** displayMap() function called ***");
         MapControl.drawMap();
@@ -116,28 +90,35 @@ public class MoveMenuView extends View {
                 + "\n=======================================";
         if (playerLoc.x != 0) {
             this.displayMessage += "\nU - (U)p";
+        } else {
+            this.displayMessage += "\n  -";
         }
         if (playerLoc.x != 6) {
             this.displayMessage += "\nD - (D)own";
+        } else {
+            this.displayMessage += "\n  -";
         }
         if (playerLoc.y != 0) {
             this.displayMessage += "\nL - (L)eft";
+        } else {
+            this.displayMessage += "\n  -";
         }
         if (playerLoc.y != 6) {
             this.displayMessage += "\nR - (R)ight";
+        } else {
+            this.displayMessage += "\n  -";
         }
         this.displayMessage += "\nM - Display the (M)ap"
-                + "\nH - Test find (H)at view (FOR TESTING ONLY)"
                 + "\nB - (B)ack to Main Menu"
                 + "\n=======================================";   
     }
     
     private void doAfterMove(Point playerLoc,Point wolfLoc) {
         
-        //MOVE THE WOLF HERE
+        //move the wolf
         MapControl.moveWolf(wolfLoc);
-        //ADD CHECKS FOR EVENTS HERE starting with wolf encounter, then 
-        //piggy's or building site, then items or bricks.
+        
+        //check for wolf-player collision
         if (playerLoc.x == wolfLoc.x && playerLoc.y == wolfLoc.y) {
             WolfView wolfView = new WolfView();
             wolfView.display();
@@ -146,6 +127,12 @@ public class MoveMenuView extends View {
             System.out.println(playerLoc);
             System.out.println(wolfLoc);            
         }
+        
+        //check for actor-player collision
+        MapControl.checkUnvisitedActorCollision(playerLoc);
+        //check for item-player collision
+        MapControl.checkItemCollision(playerLoc);
+        //check for bricks-player collision
         
         //redefine the menu for the next display() call
         this.drawMenu(playerLoc);        

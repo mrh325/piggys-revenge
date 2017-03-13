@@ -91,8 +91,12 @@ class DistanceView extends View {
         //display sorted List of actors and wolf
         System.out.println("\nSORTED DISTANCES\n");
         StringBuilder line = new StringBuilder("                                         ");
-        line.insert(0, "ACTOR");
+        line.insert(4, "ACTOR");
         line.insert(25, "DISTANCE");
+        System.out.println(line.toString());
+        line = new StringBuilder("                                         ");
+        line.insert(4, "-----");
+        line.insert(25, "--------");
         System.out.println(line.toString());
         index = 0;
         for (String name : allNames) {

@@ -5,7 +5,6 @@
  */
 package cit260.piggysRevenge.model;
 
-import cit260.piggysRevenge.control.GameControl;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;

@@ -19,6 +19,7 @@ public class Location implements Serializable {
     private Boolean visited;
     private Scene scene;
     private Actor actor;
+    private Item item;
     private boolean containsWolf;
 
     public Location(int column, int row) {
@@ -47,7 +48,7 @@ public class Location implements Serializable {
         this.row = row;
     }
 
-    public Boolean isVisited() {
+    public Boolean getVisited() {
         return visited;
     }
 
@@ -71,6 +72,14 @@ public class Location implements Serializable {
         this.actor = actor;
     }
 
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
     public boolean isContainsWolf() {
         return containsWolf;
     }
@@ -81,13 +90,14 @@ public class Location implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + this.column;
-        hash = 79 * hash + this.row;
-        hash = 79 * hash + (this.visited ? 1 : 0);
-        hash = 79 * hash + Objects.hashCode(this.scene);
-        hash = 79 * hash + Objects.hashCode(this.actor);
-        hash = 79 * hash + (this.containsWolf ? 1 : 0);
+        int hash = 5;
+        hash = 97 * hash + this.column;
+        hash = 97 * hash + this.row;
+        hash = 97 * hash + Objects.hashCode(this.visited);
+        hash = 97 * hash + Objects.hashCode(this.scene);
+        hash = 97 * hash + Objects.hashCode(this.actor);
+        hash = 97 * hash + Objects.hashCode(this.item);
+        hash = 97 * hash + (this.containsWolf ? 1 : 0);
         return hash;
     }
 
@@ -109,10 +119,10 @@ public class Location implements Serializable {
         if (this.row != other.row) {
             return false;
         }
-        if (this.visited != other.visited) {
+        if (this.containsWolf != other.containsWolf) {
             return false;
         }
-        if (this.containsWolf != other.containsWolf) {
+        if (!Objects.equals(this.visited, other.visited)) {
             return false;
         }
         if (!Objects.equals(this.scene, other.scene)) {
@@ -121,12 +131,15 @@ public class Location implements Serializable {
         if (this.actor != other.actor) {
             return false;
         }
+        if (!Objects.equals(this.item, other.item)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return "Location{" + "column=" + column + ", row=" + row + ", visited=" + visited + ", scene=" + scene + ", actor=" + actor + ", containsWolf=" + containsWolf + '}';
+        return "Location{" + "column=" + column + ", row=" + row + ", visited=" + visited + ", scene=" + scene + ", actor=" + actor + ", item=" + item + ", containsWolf=" + containsWolf + '}';
     }
     
 }

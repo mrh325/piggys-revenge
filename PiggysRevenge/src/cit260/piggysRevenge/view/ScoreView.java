@@ -57,10 +57,10 @@ class ScoreView extends View {
                     + "\n-----------------------------------------------------------------");
         } else {
             System.out.println("\n-----------------------------------------------------------------"
-                    + "\nCongrats!  Your score is: "
+                    + "\nYour score is: "
                     + String.valueOf(result)
                     + "."
-                    + "\nYou lasted " + turns + " turns."
+                    + "\nTurns:  " + turns
                     + "\n-----------------------------------------------------------------");
         }
         

@@ -38,7 +38,6 @@ public class InventoryControl {
             i++;
         }
         //if we couldn't add the item for some reason, return -3
-        //System.out.println("returning zero here!");
         return -3;
     }
 
@@ -67,6 +66,30 @@ public class InventoryControl {
         }
         //if we couldn't add the item for some reason, return -3
         return -3;
+    }
+    
+    public static void equipHat(int result) {
+        Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
+        if (itemList[0][result] != null) {
+            PiggysRevenge.getPlayer().setCurrentHat(itemList[0][result]);
+            System.out.println("\n-----------------------------------------------------------------\n"
+                    + PiggysRevenge.getPlayer().getCurrentHat().getName()
+                    + " Equipped.");
+        } else {
+            System.out.println("\n*** Error Equiping Hat ***");
+        }
+    }
+    
+    public static void equipShoe(int result) {
+        Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
+        if (itemList[1][result] != null) {
+            PiggysRevenge.getPlayer().setCurrentShoes(itemList[1][result]);
+            System.out.println("\n-----------------------------------------------------------------\n"
+                    + PiggysRevenge.getPlayer().getCurrentShoes().getName()
+                    + " Equipped.");
+        } else {
+            System.out.println("\n*** Error Equiping Shoes ***");
+        }
     }
     
     public static int giveHat() {

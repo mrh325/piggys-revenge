@@ -6,10 +6,16 @@
 package cit260.piggysRevenge.control;
 
 import cit260.piggysRevenge.model.Actor;
+import cit260.piggysRevenge.model.Item;
+import cit260.piggysRevenge.model.ItemType;
 import cit260.piggysRevenge.model.Location;
 import cit260.piggysRevenge.model.SceneType;
 import cit260.piggysRevenge.model.Map;
 import cit260.piggysRevenge.model.Scene;
+import cit260.piggysRevenge.view.FindBuilderView;
+import cit260.piggysRevenge.view.FindHatView;
+import cit260.piggysRevenge.view.FindPiggyView;
+import cit260.piggysRevenge.view.FindShoeView;
 import java.awt.Point;
 import java.util.Random;
 import piggysrevenge.PiggysRevenge;
@@ -86,7 +92,6 @@ public class MapControl {
         Map map = new Map(7, 7); //set map size here
         
         Scene[] scenes = createScenes(map);
-        
         GameControl.assignScenesToLocations(map, scenes);
         
         return map;
@@ -344,19 +349,66 @@ public class MapControl {
          //System.out.println(Arrays.toString(actorPoints)); //testing
          return actorNames;
     }
-    
-//    public static Actor getActorFromPoint(Point point, Map map) {
-//        Location[][] locations = map.getLocations();
-////        System.out.println(point.x);
-////        System.out.println(point.y);
-////        System.out.println(locations[point.x][point.y]);
-//        try {
-//            return locations[point.x][point.y].getActor();
-//        } catch (NullPointerException e) {
-//            return null;
-//        }
-//    }
 
+    static void moveItemsToStartingLocation(Map map,Item[] items) {
+        // System.out.println("*** moveItemsToStartingLocations called ***");
+        //pick random, unique locations for items and assign the item to those locations.
+        Location[][] locations = map.getLocations();
+        Point[] tempPoints = new Point[ItemType.values().length];
+
+        Point point;
+        int columns = map.getColumnCount();
+        int rows = map.getRowCount();
+        //for each of the actors in Actor...
+        for (int i = 0; i < tempPoints.length; i++) {
+            //get a unique point for the item
+            point = returnEmptyItemLocation(columns,rows,tempPoints);
+            
+            //add to the temp array
+            tempPoints[i] = point;
+            //and assign the next item in item list to the chosen location.
+            locations[point.x][point.y].setItem(items[i]);
+            System.out.println("adding " + items[i] + " to " + point.x + "," + point.y);
+        }
+    }
+
+    private static Point returnEmptyItemLocation(int columns,int rows,Point[] tempPoints) {
+        boolean pickNewLocation;
+        int point1, point2;
+        Random rand = new Random();
+        Point point = null;
+        do {
+            pickNewLocation = true;
+            //pick a random column
+            point1 = rand.nextInt(columns);
+            //pick a random row
+            point2 = rand.nextInt(rows);
+            if (point1 != 3 && point2 != 3) {
+            //create a point if not 3,3
+                point = new Point(point1,point2);
+
+                //check to make sure the point is unique
+                for (Point temp : tempPoints) {
+//                    System.out.println("temp and point:");
+//                    System.out.println(temp);
+//                    System.out.println(point);
+                    if (temp==null) {
+                        pickNewLocation = false;
+                        break;
+                    } else if (temp.equals(point)) {
+//                        System.out.println("SAME POINT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//                        System.out.println(point);
+                        pickNewLocation = true;
+                        break;
+                    } else {
+                        pickNewLocation = false;
+                    }
+                }
+            }
+        } while (pickNewLocation);
+        return point;
+    }
+    
     public static void movePlayer(Point playerLoc,String dir) {
         //System.out.println("*** movePlayer() called ***");
         Location[][] locations = PiggysRevenge.getCurrentGame().getMap().getLocations();
@@ -427,7 +479,6 @@ public class MapControl {
                 break;
         }
         PiggysRevenge.getCurrentGame().getPlayer().setCoordinates(playerLoc);
-        locations[playerLoc.x][playerLoc.y].setVisited(Boolean.TRUE);
         locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" @ ");
         PiggysRevenge.getCurrentGame().incrementTurns();
     }
@@ -520,5 +571,34 @@ public class MapControl {
             System.out.println("	P A Little Piggy");
             System.out.println("	B The Builder");
         }
+
+    public static void checkUnvisitedActorCollision(Point playerLoc) {
+        Location location = PiggysRevenge.getCurrentGame().getMap().getLocations()[playerLoc.x][playerLoc.y];
+        if (!location.getVisited()) {
+            if (location.getActor() != null) {
+                if ("Builder".equals(location.getActor().name())) {
+                    FindBuilderView findBuilderView = new FindBuilderView();
+                    findBuilderView.display();
+                } else {
+                    FindPiggyView findPiggyView = new FindPiggyView();
+                    findPiggyView.display();
+                }
+            }
+        }
+        location.setVisited(Boolean.TRUE);
+    }
+
+    public static void checkItemCollision(Point playerLoc) {
+        Location location = PiggysRevenge.getCurrentGame().getMap().getLocations()[playerLoc.x][playerLoc.y];
+        if (location.getItem() != null) {
+            if ("hat".equals(location.getItem().getItemType())) {
+                FindHatView findHatView = new FindHatView(playerLoc,location.getItem());
+                findHatView.display();
+            } else if ("shoe".equals(location.getItem().getItemType())) {
+                FindShoeView findShoeView = new FindShoeView(playerLoc,location.getItem());
+                findShoeView.display();
+            }
+        }
+    }
 
 }
