@@ -115,16 +115,16 @@ public class MoveMenuView extends View {
                 + "\n======================================="
                 + "\n| Move Menu                           |"
                 + "\n=======================================";
-        if (playerLoc.y != 0) {
+        if (playerLoc.x != 0) {
             this.displayMessage += "\nU - (U)p";
         }
-        if (playerLoc.y != 6) {
+        if (playerLoc.x != 6) {
             this.displayMessage += "\nD - (D)own";
         }
-        if (playerLoc.x != 0) {
+        if (playerLoc.y != 0) {
             this.displayMessage += "\nL - (L)eft";
         }
-        if (playerLoc.x != 6) {
+        if (playerLoc.y != 6) {
             this.displayMessage += "\nR - (R)ight";
         }
         this.displayMessage += "\nT - (T)est Wolf Encounter View (FOR TESTING ONLY)"
