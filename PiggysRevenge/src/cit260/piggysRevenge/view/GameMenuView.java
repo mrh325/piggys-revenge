@@ -81,7 +81,8 @@ public class GameMenuView extends View {
 
     private void displayMoveMenu() {
         Point playerLoc = PiggysRevenge.getCurrentGame().getPlayer().getCoordinates();
-        MoveMenuView moveMenu = new MoveMenuView(playerLoc);
+        Point wolfLoc = PiggysRevenge.getCurrentGame().getWolf().getCoordinates();
+        MoveMenuView moveMenu = new MoveMenuView(playerLoc,wolfLoc);
         moveMenu.display();
     }
 

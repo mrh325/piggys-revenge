@@ -15,6 +15,7 @@ public class House {
     private int width;
     private int height;
     private int stories;
+    //private boolean completed = false;
 
     public House(int length, int width, int height, int stories) {
         this.length = length;

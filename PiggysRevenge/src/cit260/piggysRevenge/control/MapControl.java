@@ -11,7 +11,6 @@ import cit260.piggysRevenge.model.SceneType;
 import cit260.piggysRevenge.model.Map;
 import cit260.piggysRevenge.model.Scene;
 import java.awt.Point;
-import java.util.Arrays;
 import java.util.Random;
 import piggysrevenge.PiggysRevenge;
 
@@ -369,7 +368,11 @@ public class MapControl {
                     if (locations[playerLoc.x][playerLoc.y].getActor() == null) {
                         locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" # ");
                     } else {
-                        locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" P ");
+                        if ("Builder".equals(locations[playerLoc.x][playerLoc.y].getActor().name())) {
+                            locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" B ");
+                        } else {
+                            locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" P ");
+                        }
                     }
                     playerLoc.y -= 1;
                 }
@@ -381,7 +384,11 @@ public class MapControl {
                     if (locations[playerLoc.x][playerLoc.y].getActor() == null) {
                         locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" # ");
                     } else {
-                        locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" P ");
+                        if ("Builder".equals(locations[playerLoc.x][playerLoc.y].getActor().name())) {
+                            locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" B ");
+                        } else {
+                            locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" P ");
+                        }
                     }
                     playerLoc.y += 1;
                 }
@@ -393,7 +400,11 @@ public class MapControl {
                     if (locations[playerLoc.x][playerLoc.y].getActor() == null) {
                         locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" # ");
                     } else {
-                        locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" P ");
+                        if ("Builder".equals(locations[playerLoc.x][playerLoc.y].getActor().name())) {
+                            locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" B ");
+                        } else {
+                            locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" P ");
+                        }
                     }
                     playerLoc.x -= 1;
                 }
@@ -405,7 +416,11 @@ public class MapControl {
                     if (locations[playerLoc.x][playerLoc.y].getActor() == null) {
                         locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" # ");
                     } else {
-                        locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" P ");
+                        if ("Builder".equals(locations[playerLoc.x][playerLoc.y].getActor().name())) {
+                            locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" B ");
+                        } else {
+                            locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" P ");
+                        }
                     }
                     playerLoc.x += 1;
                 }
@@ -415,6 +430,47 @@ public class MapControl {
         locations[playerLoc.x][playerLoc.y].setVisited(Boolean.TRUE);
         locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" @ ");
     }
+    
+    public static void moveWolf(Point wolfLoc) {
+        //wolf move up/down or left right at random
+        //also checks for map boundaries, then moves one direction or the other
+        //totally random at this point, to make it harder, compare wolfLoc to playerLoc
+        //and make wolf move toward player, or limit directions based on playerLoc, etc.
+        Random rand = new Random();
+        if (rand.nextBoolean()) {
+            switch (wolfLoc.y) {
+                case 0:
+                    wolfLoc.y++;
+                    break;
+                case 6:
+                    wolfLoc.y--;
+                    break;
+                default:
+                    if (rand.nextBoolean()) {
+                        wolfLoc.y++;
+                    } else {
+                        wolfLoc.y--;
+                    }   break;
+            }
+        } else {
+            switch (wolfLoc.x) {
+                case 0:
+                    wolfLoc.x++;
+                    break;
+                case 6:
+                    wolfLoc.x--;
+                    break;
+                default:
+                    if (rand.nextBoolean()) {
+                        wolfLoc.x++;
+                    } else {
+                        wolfLoc.x--;
+                    }   break;
+            }
+        }
+        PiggysRevenge.getCurrentGame().getWolf().setCoordinates(wolfLoc);
+    }
+    
         public static void drawMap() {
             int columns = PiggysRevenge.getCurrentGame().getMap().getColumnCount();
             //get locations and prep an empty line for string building
@@ -459,8 +515,9 @@ public class MapControl {
             }
             System.out.println("\nKEY:  	. Unvisited");
             System.out.println("	# Visited");
-            System.out.println("	@ You"); //add location later
-            System.out.println("	P Piggy Found");
-            System.out.println("	B Building Site Found");
+            System.out.println("	@ You (" + String.valueOf((char)('A' + PiggysRevenge.getCurrentGame().getPlayer().getCoordinates().y)) + (PiggysRevenge.getCurrentGame().getPlayer().getCoordinates().x+1) + ")"); //add location later
+            System.out.println("	P A Little Piggy");
+            System.out.println("	B The Builder");
         }
+
 }

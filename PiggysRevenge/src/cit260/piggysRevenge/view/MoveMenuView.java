@@ -11,10 +11,12 @@ import java.awt.Point;
 
 public class MoveMenuView extends View {
     Point playerLoc;
+    Point wolfLoc;
     
-    public MoveMenuView(Point playerLoc) {
+    public MoveMenuView(Point playerLoc, Point wolfLoc) {
         super ();
         this.playerLoc = playerLoc;
+        this.wolfLoc = wolfLoc;
         MapControl.drawMap();
         this.drawMenu(playerLoc);
     }
@@ -56,30 +58,45 @@ public class MoveMenuView extends View {
 
     private void moveUp() {
         //System.out.println("\n*** moveUp() function called ***");
+        //move the player's location
         MapControl.movePlayer(playerLoc,"up");
-        this.drawMenu(playerLoc);
-        MapControl.drawMap();
+        this.doAfterMove(playerLoc,wolfLoc);
+//        //----------------------------
+//        //MOVE THE WOLF HERE
+//        MapControl.moveWolf(wolfLoc);
+//        //----------------------------
+//
+//        //----------------------------
+//        //ADD CHECKS FOR EVENTS HERE starting with wolf encounter, then 
+//        //piggy's or building site, then items or bricks.
+//        if (playerLoc.equals(wolfLoc)) {
+//            WolfView wolfView = new WolfView();
+//            wolfView.display();
+//        }
+//        //----------------------------
+//        
+//        //redefine the menu for the next display() call
+//        this.drawMenu(playerLoc);        
+//        //draw the map to screen
+//        MapControl.drawMap();
     }
 
     private void moveDown() {
         //System.out.println("\n*** moveDown() function called ***");
         MapControl.movePlayer(playerLoc,"down");
-        this.drawMenu(playerLoc);
-        MapControl.drawMap();
+        this.doAfterMove(playerLoc,wolfLoc);
     }
 
     private void moveLeft() {
         //System.out.println("\n*** moveLeft() function called ***");
         MapControl.movePlayer(playerLoc,"left");
-        this.drawMenu(playerLoc);
-        MapControl.drawMap();
+        this.doAfterMove(playerLoc,wolfLoc);
     }
 
     private void moveRight() {
         //System.out.println("\n*** moveRight() function called ***");
         MapControl.movePlayer(playerLoc,"right");
-        this.drawMenu(playerLoc);
-        MapControl.drawMap();
+        this.doAfterMove(playerLoc,wolfLoc);
     }
 
     private void displayWolfView() {
@@ -114,5 +131,31 @@ public class MoveMenuView extends View {
                 + "\nH - Test find (H)at view (FOR TESTING ONLY)"
                 + "\nB - (B)ack to Main Menu"
                 + "\n=======================================";   
+    }
+    
+    private void doAfterMove(Point playerLoc,Point wolfLoc) {
+        
+        //----------------------------
+        //MOVE THE WOLF HERE
+        MapControl.moveWolf(wolfLoc);
+        //----------------------------
+
+        //----------------------------
+        //ADD CHECKS FOR EVENTS HERE starting with wolf encounter, then 
+        //piggy's or building site, then items or bricks.
+        if (playerLoc.x == wolfLoc.x && playerLoc.y == wolfLoc.y) {
+            WolfView wolfView = new WolfView();
+            wolfView.display();
+        } else {
+            System.out.println("playerLoc and WolfLoc");
+            System.out.println(playerLoc);
+            System.out.println(wolfLoc);            
+        }
+        //----------------------------
+        
+        //redefine the menu for the next display() call
+        this.drawMenu(playerLoc);        
+        //draw the map to screen
+        MapControl.drawMap();
     }
 }
