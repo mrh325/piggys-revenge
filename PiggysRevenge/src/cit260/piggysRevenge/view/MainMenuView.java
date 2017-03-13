@@ -124,23 +124,23 @@ public class MainMenuView extends View{
     private void startNewGame() {
         // System.out.println("\n*** startNewGame() function called ***");
         //Don't erase a current game unless the player confirms
-//        if (PiggysRevenge.getCurrentGame() != null) {
-//            this.displayMessage = "\n-----------------------------------------------------------------"
-//                        + "\nThis will quit your current game and start a new game!  Continue?  (Y or N)"
-//                        + "\n-----------------------------------------------------------------";
-//            String value = this.getInput().toUpperCase();
-//            switch (value) {
-//                case "Y":
-//                    break;
-//                case "N":
-//                    this.displayMessage = this.menuCurrentGame;
-//                    return;
-//                default:
-//                    System.out.println("\n-----------------------------------------------------------------"
-//                            + "\nERROR: Please enter Y or N"
-//                            + "\n-----------------------------------------------------------------");
-//            }
-//        }
+        if (PiggysRevenge.getCurrentGame() != null) {
+            this.displayMessage = "\n-----------------------------------------------------------------"
+                        + "\nThis will quit your current game and start a new game!  Continue?  (Y or N)"
+                        + "\n-----------------------------------------------------------------";
+            String value = this.getInput().toUpperCase();
+            switch (value) {
+                case "Y":
+                    break;
+                case "N":
+                    this.displayMessage = this.menuCurrentGame;
+                    return;
+                default:
+                    System.out.println("\n-----------------------------------------------------------------"
+                            + "\nERROR: Please enter Y or N"
+                            + "\n-----------------------------------------------------------------");
+            }
+        }
         GameControl.createNewGame(PiggysRevenge.getPlayer());
 //        GameControl.createNewHouse(PiggysRevenge.getPlayer());
         //ASK PLAYER FOR HOUSE INPUTS HERE (FUTURE IMPLEMENTATION)
