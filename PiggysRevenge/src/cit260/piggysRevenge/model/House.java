@@ -15,7 +15,7 @@ public class House {
     private int width;
     private int height;
     private int stories;
-    //private boolean completed = false;
+    private boolean completed = false;
 
     public House(int length, int width, int height, int stories) {
         this.length = length;
@@ -56,13 +56,22 @@ public class House {
         this.stories = stories;
     }
 
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
+
     @Override
     public int hashCode() {
         int hash = 5;
-        hash = 31 * hash + this.length;
-        hash = 31 * hash + this.width;
-        hash = 31 * hash + this.height;
-        hash = 31 * hash + this.stories;
+        hash = 67 * hash + this.length;
+        hash = 67 * hash + this.width;
+        hash = 67 * hash + this.height;
+        hash = 67 * hash + this.stories;
+        hash = 67 * hash + (this.completed ? 1 : 0);
         return hash;
     }
 
@@ -90,12 +99,12 @@ public class House {
         if (this.stories != other.stories) {
             return false;
         }
-        return true;
+        return this.completed == other.completed;
     }
 
     @Override
     public String toString() {
-        return "House{" + "length=" + length + ", width=" + width + ", height=" + height + ", stories=" + stories + '}';
+        return "House{" + "length=" + length + ", width=" + width + ", height=" + height + ", stories=" + stories + ", completed=" + completed + '}';
     }
     
 }

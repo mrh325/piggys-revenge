@@ -49,6 +49,10 @@ public class Game implements Serializable{
         this.turns = turns;
     }
 
+    public void incrementTurns() {
+        this.turns++;
+    }
+    
     public int getScore() {
         return score;
     }

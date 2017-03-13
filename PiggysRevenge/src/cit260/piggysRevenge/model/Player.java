@@ -15,16 +15,14 @@ import java.util.Objects;
 public class Player implements Serializable{
     private String name;
     private Point coordinates;
-    private double distanceToWolf;
-    private double distanceToPantry;
-    private double distanceToNearestActor;
+    private int piggysFound;
     private boolean hasEaten;
     private Item currentHat;
     private Item currentShoes;
 
     public Player() {
     }
-        
+
     public String getName() {
         return name;
     }
@@ -41,28 +39,12 @@ public class Player implements Serializable{
         this.coordinates = coordinates;
     }
 
-    public double getDistanceToWolf() {
-        return distanceToWolf;
+    public int getPiggysFound() {
+        return piggysFound;
     }
 
-    public void setDistanceToWolf(double distanceToWolf) {
-        this.distanceToWolf = distanceToWolf;
-    }
-
-    public double getDistanceToPantry() {
-        return distanceToPantry;
-    }
-
-    public void setDistanceToPantry(double distanceToPantry) {
-        this.distanceToPantry = distanceToPantry;
-    }
-
-    public double getDistanceToNearestActor() {
-        return distanceToNearestActor;
-    }
-
-    public void setDistanceToNearestActor(double distanceToNearestActor) {
-        this.distanceToNearestActor = distanceToNearestActor;
+    public void setPiggysFound(int piggysFound) {
+        this.piggysFound = piggysFound;
     }
 
     public boolean isHasEaten() {
@@ -91,15 +73,13 @@ public class Player implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 59 * hash + Objects.hashCode(this.name);
-        hash = 59 * hash + Objects.hashCode(this.coordinates);
-        hash = 59 * hash + (int) (Double.doubleToLongBits(this.distanceToWolf) ^ (Double.doubleToLongBits(this.distanceToWolf) >>> 32));
-        hash = 59 * hash + (int) (Double.doubleToLongBits(this.distanceToPantry) ^ (Double.doubleToLongBits(this.distanceToPantry) >>> 32));
-        hash = 59 * hash + (int) (Double.doubleToLongBits(this.distanceToNearestActor) ^ (Double.doubleToLongBits(this.distanceToNearestActor) >>> 32));
-        hash = 59 * hash + (this.hasEaten ? 1 : 0);
-        hash = 59 * hash + Objects.hashCode(this.currentHat);
-        hash = 59 * hash + Objects.hashCode(this.currentShoes);
+        int hash = 7;
+        hash = 17 * hash + Objects.hashCode(this.name);
+        hash = 17 * hash + Objects.hashCode(this.coordinates);
+        hash = 17 * hash + this.piggysFound;
+        hash = 17 * hash + (this.hasEaten ? 1 : 0);
+        hash = 17 * hash + Objects.hashCode(this.currentHat);
+        hash = 17 * hash + Objects.hashCode(this.currentShoes);
         return hash;
     }
 
@@ -115,13 +95,7 @@ public class Player implements Serializable{
             return false;
         }
         final Player other = (Player) obj;
-        if (Double.doubleToLongBits(this.distanceToWolf) != Double.doubleToLongBits(other.distanceToWolf)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.distanceToPantry) != Double.doubleToLongBits(other.distanceToPantry)) {
-            return false;
-        }
-        if (Double.doubleToLongBits(this.distanceToNearestActor) != Double.doubleToLongBits(other.distanceToNearestActor)) {
+        if (this.piggysFound != other.piggysFound) {
             return false;
         }
         if (this.hasEaten != other.hasEaten) {
@@ -144,9 +118,7 @@ public class Player implements Serializable{
 
     @Override
     public String toString() {
-        return "Player{" + "name=" + name + ", coordinates=" + coordinates + ", distanceToWolf=" + distanceToWolf + ", distanceToPantry=" + distanceToPantry + ", distanceToNearestActor=" + distanceToNearestActor + ", hasEaten=" + hasEaten + ", currentHat=" + currentHat + ", currentShoes=" + currentShoes + '}';
+        return "Player{" + "name=" + name + ", coordinates=" + coordinates + ", piggysFound=" + piggysFound + ", hasEaten=" + hasEaten + ", currentHat=" + currentHat + ", currentShoes=" + currentShoes + '}';
     }
-
-
-    
+        
 }

@@ -429,6 +429,7 @@ public class MapControl {
         PiggysRevenge.getCurrentGame().getPlayer().setCoordinates(playerLoc);
         locations[playerLoc.x][playerLoc.y].setVisited(Boolean.TRUE);
         locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" @ ");
+        PiggysRevenge.getCurrentGame().incrementTurns();
     }
     
     public static void moveWolf(Point wolfLoc) {

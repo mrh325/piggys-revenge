@@ -41,8 +41,8 @@ public class MoveMenuView extends View {
             case "R":
                 this.moveRight();
                 break;
-            case "T":
-                this.displayWolfView();
+            case "M":
+                this.displayMap();
                 break;
             case "H":
                 this.findHat();
@@ -99,17 +99,16 @@ public class MoveMenuView extends View {
         this.doAfterMove(playerLoc,wolfLoc);
     }
 
-    private void displayWolfView() {
-        //PROOF OF CONCEPT ONLY, REMOVE WHEN THIS VIEW IS INSERTED IN ITS PROPER PLACE
-        WolfView wolfView = new WolfView();
-        wolfView.display();
-    }
-
     private void findHat() {
         FindHatView findHat = new FindHatView();
         findHat.display();
     }
 
+    private void displayMap() {
+//        System.out.println("\n*** displayMap() function called ***");
+        MapControl.drawMap();
+    }
+    
     private void drawMenu(Point playerLoc) {
         this.displayMessage = "\n"
                 + "\n======================================="
@@ -127,7 +126,7 @@ public class MoveMenuView extends View {
         if (playerLoc.y != 6) {
             this.displayMessage += "\nR - (R)ight";
         }
-        this.displayMessage += "\nT - (T)est Wolf Encounter View (FOR TESTING ONLY)"
+        this.displayMessage += "\nM - Display the (M)ap"
                 + "\nH - Test find (H)at view (FOR TESTING ONLY)"
                 + "\nB - (B)ack to Main Menu"
                 + "\n=======================================";   
@@ -135,12 +134,8 @@ public class MoveMenuView extends View {
     
     private void doAfterMove(Point playerLoc,Point wolfLoc) {
         
-        //----------------------------
         //MOVE THE WOLF HERE
         MapControl.moveWolf(wolfLoc);
-        //----------------------------
-
-        //----------------------------
         //ADD CHECKS FOR EVENTS HERE starting with wolf encounter, then 
         //piggy's or building site, then items or bricks.
         if (playerLoc.x == wolfLoc.x && playerLoc.y == wolfLoc.y) {
@@ -151,7 +146,6 @@ public class MoveMenuView extends View {
             System.out.println(playerLoc);
             System.out.println(wolfLoc);            
         }
-        //----------------------------
         
         //redefine the menu for the next display() call
         this.drawMenu(playerLoc);        
