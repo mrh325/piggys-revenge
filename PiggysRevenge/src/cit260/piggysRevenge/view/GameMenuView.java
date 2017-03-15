@@ -6,10 +6,13 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.MapControl;
+import cit260.piggysRevenge.exceptions.MapControlException;
 import cit260.piggysRevenge.model.HighScore;
 import cit260.piggysRevenge.model.House;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -30,6 +33,8 @@ public class GameMenuView extends View {
                 + "\nG - Play the Mini (G)ame!"
                 + "\nC - Show s(C)ore"
                 + "\nP - Show (P)robability of winning the game"
+                + "\nL - Test distance (L)ower bound exception"
+                + "\nZ - Test distance upper bound exception"                
                 + "\nU - Calc(U)late number of bricks for the house"
                 + "\nH - (H)igh Score list"
                 + "\nB - (B)ack to Main Menu"
@@ -62,6 +67,24 @@ public class GameMenuView extends View {
                 break;
             case "P":
                 this.displayProbability();
+                break;
+            case "L":
+        {
+            try {
+                this.displayTestDistanceException();
+            } catch (MapControlException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+                break;
+            case "Z":
+        {
+            try {
+                this.displayTestDistanceException2();
+            } catch (MapControlException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
                 break;
             case "U":
                 this.displayHouseMenu();
@@ -140,6 +163,15 @@ public class GameMenuView extends View {
         
         HighScoreView highScoreView = new HighScoreView();
         highScoreView.display();
+    }
+
+    private void displayTestDistanceException() throws MapControlException {
+        MapControl.calcDistance(-1, 4, 2, 3);
+        
+    }
+
+    private void displayTestDistanceException2() throws MapControlException {
+        MapControl.calcDistance(2, 125, 2, 3);
     }
     
 }

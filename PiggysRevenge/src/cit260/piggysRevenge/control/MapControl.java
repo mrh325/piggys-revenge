@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.control;
 
+import cit260.piggysRevenge.exceptions.MapControlException;
 import cit260.piggysRevenge.model.Actor;
 import cit260.piggysRevenge.model.Item;
 import cit260.piggysRevenge.model.ItemType;
@@ -26,25 +27,25 @@ import piggysrevenge.PiggysRevenge;
  */
 public class MapControl {
     //L06 BOLTON INDIVIDUAL ASSIGNMENT
-    public static double calculateEventProbability(double visitedScenes, double totalScenes, double visitedEvents, double totalEvents) {
+    public static double calculateEventProbability(double visitedScenes, double totalScenes, double visitedEvents, double totalEvents) throws MapControlException {
 
         if (visitedScenes < 1 || totalScenes < 2 || visitedEvents < 0 || totalEvents < 1) {
-            return -1;
+            throw new MapControlException ("Too few scenes or events.");
         }
         if (visitedScenes > totalScenes) {
-            return -2;
+            throw new MapControlException ("Visited scenes cannot be greater than total scenes.");
         }
         if (visitedEvents > totalEvents) {
-            return -3;
+            throw new MapControlException ("Visited events cannot be greater than total events.");
         }
         if (totalScenes > 100) {
-            return -4;
+            throw new MapControlException ("Total scenes cannot be greater than 100.");
         }
         if (totalEvents > 5) {
-            return -5;
+            throw new MapControlException ("Total events cannot be greater than 5.");
         }
         if ((totalScenes - visitedScenes) < (totalEvents - visitedEvents)) {
-            return -6;
+            throw new MapControlException ("Unvisited scenes must be greater than unvisited events.");
         }
 
         //avoid division by zero
@@ -71,15 +72,17 @@ public class MapControl {
 
 
     //L06 INDIVIDUAL ASSIGNMENT ZAC POWELL
-    public static double calcDistance(double startPositionX, double startPositionY, double endPositionX, double endPositionY){
+    public static double calcDistance(double startPositionX, double startPositionY, double endPositionX, double endPositionY) throws MapControlException{
         
         if (startPositionX < 0 || endPositionX < 0 || startPositionY < 0 || endPositionY < 0){
-                return -1;
+                throw new MapControlException("startPositionX is " + startPositionX + "\nendPositionX is " + endPositionX
+                        + "\nstartPositionY is " + startPositionY + "\nendPositionY is " + endPositionY + "\nPoint out of lower bounds");
         }
         int maxColumns = PiggysRevenge.getCurrentGame().getMap().getColumnCount();
         int maxRows = PiggysRevenge.getCurrentGame().getMap().getRowCount();
         if (startPositionX > maxColumns || startPositionY > maxRows || endPositionX > maxColumns || endPositionY > maxRows){
-                return -2;
+                throw new MapControlException("startPositionX is " + startPositionX + "\nendPositionX is " + endPositionX
+                        + "\nstartPositionY is " + startPositionY + "\nendPositionY is " + endPositionY + "\nPoint out of upper bounds");
         }
 
         return Math.sqrt( (startPositionX - endPositionX) * (startPositionX - endPositionX) + (startPositionY-endPositionY) * (startPositionY-endPositionY) );
@@ -409,13 +412,13 @@ public class MapControl {
         return point;
     }
     
-    public static void movePlayer(Point playerLoc,String dir) {
+    public static void movePlayer(Point playerLoc,String dir) throws MapControlException {
         //System.out.println("*** movePlayer() called ***");
         Location[][] locations = PiggysRevenge.getCurrentGame().getMap().getLocations();
         switch (dir) {
             case "left":
                 if (playerLoc.y == 0) {
-                    System.out.println("*** ERROR: Player Can't Move Left ***");
+                    throw new MapControlException("*** ERROR: Player Can't Move Left ***");
                 } else {
                     if (locations[playerLoc.x][playerLoc.y].getActor() == null) {
                         locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" # ");
@@ -431,7 +434,7 @@ public class MapControl {
                 break;
             case "right":
                 if (playerLoc.y == 6) {
-                    System.out.println("*** ERROR: Player Can't Move Right ***");
+                    throw new MapControlException("*** ERROR: Player Can't Move Right ***");
                 } else {
                     if (locations[playerLoc.x][playerLoc.y].getActor() == null) {
                         locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" # ");
@@ -447,7 +450,7 @@ public class MapControl {
                 break;
             case "up":
                 if (playerLoc.x == 0) {
-                    System.out.println("*** ERROR: Player Can't Move Up ***");
+                    throw new MapControlException("*** ERROR: Player Can't Move Up ***");
                 } else {
                     if (locations[playerLoc.x][playerLoc.y].getActor() == null) {
                         locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" # ");
@@ -463,7 +466,7 @@ public class MapControl {
                 break;
             case "down":
                 if (playerLoc.x == 6) {
-                    System.out.println("*** ERROR: Player Can't Move Down ***");
+                    throw new MapControlException("*** ERROR: Player Can't Move Down ***");
                 } else {
                     if (locations[playerLoc.x][playerLoc.y].getActor() == null) {
                         locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" # ");

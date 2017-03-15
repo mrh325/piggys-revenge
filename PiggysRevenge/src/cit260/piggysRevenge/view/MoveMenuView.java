@@ -6,7 +6,10 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.MapControl;
+import cit260.piggysRevenge.exceptions.MapControlException;
 import java.awt.Point;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 public class MoveMenuView extends View {
@@ -30,16 +33,40 @@ public class MoveMenuView extends View {
         
         switch (menuOption) {
             case "U":
+        {
+            try {
                 this.moveUp();
+            } catch (MapControlException ex) {
+                System.out.println("Error moving up.");
+            }
+        }
                 break;
             case "D":
+        {
+            try {
                 this.moveDown();
+            } catch (MapControlException ex) {
+                System.out.println("Error moving down.");
+            }
+        }
                 break;
             case "L":
+        {
+            try {
                 this.moveLeft();
+            } catch (MapControlException ex) {
+                System.out.println("Error moving left.");
+            }
+        }
                 break;
             case "R":
+        {
+            try {
                 this.moveRight();
+            } catch (MapControlException ex) {
+                System.out.println("Error moving right.");
+            }
+        }
                 break;
             case "M":
                 this.displayMap();
@@ -53,26 +80,26 @@ public class MoveMenuView extends View {
         return false;
     }
 
-    private void moveUp() {
+    private void moveUp() throws MapControlException {
         //System.out.println("\n*** moveUp() function called ***");
         //move the player's location
         MapControl.movePlayer(playerLoc,"up");
         this.doAfterMove(playerLoc,wolfLoc);
     }
 
-    private void moveDown() {
+    private void moveDown() throws MapControlException {
         //System.out.println("\n*** moveDown() function called ***");
         MapControl.movePlayer(playerLoc,"down");
         this.doAfterMove(playerLoc,wolfLoc);
     }
 
-    private void moveLeft() {
+    private void moveLeft() throws MapControlException {
         //System.out.println("\n*** moveLeft() function called ***");
         MapControl.movePlayer(playerLoc,"left");
         this.doAfterMove(playerLoc,wolfLoc);
     }
 
-    private void moveRight() {
+    private void moveRight() throws MapControlException {
         //System.out.println("\n*** moveRight() function called ***");
         MapControl.movePlayer(playerLoc,"right");
         this.doAfterMove(playerLoc,wolfLoc);

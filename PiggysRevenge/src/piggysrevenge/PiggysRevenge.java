@@ -21,7 +21,14 @@ public class PiggysRevenge {
     public static void main(String[] args) {
 
         StartProgramView startProgramView = new StartProgramView();
+        try {
         startProgramView.display();
+    } catch (Throwable te) {
+        System.out.println("The game encountered an error and will close.");
+        System.out.println(te.getMessage());
+        te.printStackTrace();
+        System.exit(0);
+    }
     }
 
     public static Game getCurrentGame() {

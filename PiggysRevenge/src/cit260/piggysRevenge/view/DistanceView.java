@@ -6,10 +6,9 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.MapControl;
-import cit260.piggysRevenge.model.Actor;
+import cit260.piggysRevenge.exceptions.MapControlException;
 import java.awt.Point;
 import static java.lang.Math.abs;
-import java.util.Arrays;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -56,16 +55,18 @@ class DistanceView extends View {
         double[] distances = new double[allPoints.length];
         index = 0;
         for (Point point : allPoints) {
-            double result = MapControl.calcDistance(playerCoords.x, playerCoords.y, point.x, point.y);
-            if (result >= 0) {
-                result *= 10.0;
-                result = Math.round(result);
-                result /= 10.0;
-                distances[index] = abs(result);
-            } else {
-                System.out.println("error in calcDistance function in displayDistances function in GameMenuView class");
+            try {
+                double result = MapControl.calcDistance(playerCoords.x, playerCoords.y, point.x, point.y);
+               
+                    result *= 10.0;
+                    result = Math.round(result);
+                    result /= 10.0;
+                    distances[index] = abs(result);
+                       
+                index++;
+            } catch (MapControlException ex) {
+                System.out.println(ex.getMessage());
             }
-            index++;
         }
         //sort lists
         //System.out.println("distances unsorted:  ");
