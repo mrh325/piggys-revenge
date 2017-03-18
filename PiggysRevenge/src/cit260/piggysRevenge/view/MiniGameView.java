@@ -6,6 +6,7 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.MiniGameControl;
+import cit260.piggysRevenge.exceptions.MiniGameControlException;
 import cit260.piggysRevenge.model.MiniGame;
 
 /**
@@ -39,23 +40,14 @@ class MiniGameView extends View {
             return true;
         }
         
-        int result = MiniGameControl.checkKeyOrder(userGuess, this.miniGame.getComboOrder());
+        int result = -1;
+        try {
+            result = MiniGameControl.checkKeyOrder(userGuess, this.miniGame.getComboOrder());
+        } catch (MiniGameControlException ex) {
+            System.out.println(ex.getMessage());
+        }
         
         switch (result) {
-            case -1:
-            case -2:
-                System.out.println("\n-----------------------------------------------------------------"
-                        + "\nPlease enter a number that is exactly "
-                        + String.valueOf(this.comboLength)
-                        + " digits long."
-                        + "\n-----------------------------------------------------------------");
-                break;
-            case -3:
-                System.out.println("\n-----------------------------------------------------------------"
-                        + "\nYou must enter a combination of 1234.  You must include exactly"
-                        + "\none of each digit."
-                        + "\n-----------------------------------------------------------------");
-                break;
             case 0:
             case 1:
             case 2:

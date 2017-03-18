@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.control;
 
+import cit260.piggysRevenge.exceptions.MiniGameControlException;
 import cit260.piggysRevenge.model.MiniGame;
 import java.util.Random;
 
@@ -56,16 +57,22 @@ public class MiniGameControl {
         //return new String(newCharArray);
     }
     
-    public static int checkKeyOrder(String playerOrder, String systemOrder) {
+    public static int checkKeyOrder(String playerOrder, String systemOrder) throws MiniGameControlException {
         int playerOrderLen = playerOrder.length();
         int systemOrderLen = systemOrder.length();
         //if empty stings, return -1
         if ( playerOrderLen == 0 || systemOrderLen == 0 ) {
-            return -1;
+            throw new MiniGameControlException("Please enter a number that is exactly "
+                        + String.valueOf(systemOrderLen)
+                        + " digits long.");
         }
         //if inputs are not the same length, return error code -2
         if ( playerOrderLen != systemOrderLen ) {
-            return -2;
+            throw new MiniGameControlException("\n-----------------------------------------------------------------"
+                        + "\nPlease enter a number that is exactly "
+                        + String.valueOf(systemOrderLen)
+                        + " digits long."
+                        + "\n-----------------------------------------------------------------");
         }
         //if both inputs do not contain the same count of each character, return -3
         // for each letter in playerOrder, count the number of occurences in both Strings and compare
@@ -86,7 +93,10 @@ public class MiniGameControl {
             }            
             
             if (count1 != count2) {
-                return -3;
+                throw new MiniGameControlException("\n-----------------------------------------------------------------"
+                        + "\nYou must enter a combination of 1234.  You must include exactly"
+                        + "\none of each digit."
+                        + "\n-----------------------------------------------------------------");
             }
         }
         //if they equal, return playeOrder length

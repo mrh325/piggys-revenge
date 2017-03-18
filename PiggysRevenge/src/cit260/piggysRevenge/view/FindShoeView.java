@@ -6,6 +6,7 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.InventoryControl;
+import cit260.piggysRevenge.exceptions.InventoryControlException;
 import cit260.piggysRevenge.model.Item;
 import java.awt.Point;
 import piggysrevenge.PiggysRevenge;
@@ -47,10 +48,22 @@ public class FindShoeView extends View {
         
         switch (menuOption) {
             case "E":
+        {
+            try {
                 this.equipShoe();
+            } catch (InventoryControlException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
                 return true;
             case "S":
+        {
+            try {
                 this.storeShoe();
+            } catch (InventoryControlException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
                 return true;
             case "V":
                 this.displayInventory();
@@ -65,19 +78,10 @@ public class FindShoeView extends View {
         return false;
     }
 
-    private void equipShoe() {
-        System.out.println("*** equipShoe function called ***");
+    private void equipShoe() throws InventoryControlException {
+        //System.out.println("*** equipShoe function called ***");
         int result = InventoryControl.storeShoe(this.item);
         switch (result) {
-            case -1:
-                System.out.println("ERROR: tried to store non-shoe type in shoe inventory");
-                break;
-            case -2:
-                System.out.println("ERROR: Shoe already in inventory");
-                break;
-            case -3:
-                System.out.println("UNKOWN ERROR: Could not equip shoe");
-                break;
             case 0:
             case 1:
             case 2:
@@ -86,19 +90,9 @@ public class FindShoeView extends View {
         }
     }
 
-    private void storeShoe() {
-        System.out.println("*** storeShoe function called ***");
+    private void storeShoe() throws InventoryControlException {
+        //System.out.println("*** storeShoe function called ***");
         int result = InventoryControl.storeShoe(this.item);
-        switch (result) {
-            case -1:
-                System.out.println("ERROR: tried to store non-shoe type in hat inventory");
-                break;
-            case -2:
-                System.out.println("ERROR: Shoe already in inventory");
-                break;
-            case -3:
-                System.out.println("UNKOWN ERROR: Could not equip shoe");
-        }
     }
     
     private void displayInventory() {
@@ -147,5 +141,4 @@ public class FindShoeView extends View {
         System.out.println(PiggysRevenge.getCurrentGame().getBackpack().getBricks());
     }
 
-    
 }

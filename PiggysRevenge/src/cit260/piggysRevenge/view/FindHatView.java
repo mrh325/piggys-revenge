@@ -6,8 +6,8 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.InventoryControl;
+import cit260.piggysRevenge.exceptions.InventoryControlException;
 import cit260.piggysRevenge.model.Item;
-import cit260.piggysRevenge.model.Location;
 import java.awt.Point;
 import piggysrevenge.PiggysRevenge;
 
@@ -66,10 +66,22 @@ public class FindHatView extends View {
         
         switch (menuOption) {
             case "E":
+        {
+            try {
                 this.equipHat();
+            } catch (InventoryControlException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
                 return true;
             case "S":
+        {
+            try {
                 this.storeHat();
+            } catch (InventoryControlException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
                 return true;
             case "V":
                 this.displayInventory();
@@ -84,19 +96,10 @@ public class FindHatView extends View {
         return false;
     }
 
-    private void equipHat() {
+    private void equipHat() throws InventoryControlException {
         System.out.println("*** equipHat function called ***");
         int result = InventoryControl.storeHat(this.item);
         switch (result) {
-            case -1:
-                System.out.println("ERROR: tried to store non-hat type in hat inventory");
-                break;
-            case -2:
-                System.out.println("ERROR: Hat already in inventory");
-                break;
-            case -3:
-                System.out.println("UNKOWN ERROR: Could not equip hat");
-                break;
             case 0:
             case 1:
             case 2:
@@ -106,19 +109,9 @@ public class FindHatView extends View {
         
     }
 
-    private void storeHat() {
+    private void storeHat() throws InventoryControlException {
         System.out.println("*** storeHat function called ***");
         int result = InventoryControl.storeHat(this.item);
-        switch (result) {
-            case -1:
-                System.out.println("ERROR: tried to store non-hat type in hat inventory");
-                break;
-            case -2:
-                System.out.println("ERROR: Hat already in inventory");
-                break;
-            case -3:
-                System.out.println("UNKOWN ERROR: Could not equip hat");
-        }
     }
 
     private void displayInventory() {
