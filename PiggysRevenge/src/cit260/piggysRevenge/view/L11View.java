@@ -12,7 +12,7 @@ package cit260.piggysRevenge.view;
 class L11View extends View {
 
     public L11View() {
-        super("Hi, I need you to enter any integer.  Letters/Doubles will throw an exception.");
+        super("Hi, I need you to enter any integer.  Letters/Doubles will cause a NumberFormatException.");
     }
 
     @Override

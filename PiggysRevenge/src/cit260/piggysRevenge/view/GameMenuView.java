@@ -34,7 +34,8 @@ public class GameMenuView extends View {
                 + "\nC - Show s(C)ore"
                 + "\nP - Show (P)robability of winning the game"
                 + "\nL - Test distance (L)ower bound exception"
-                + "\nZ - Test distance upper bound exception"                
+                + "\nZ - Test distance upper bound exception"
+                + "\nX - Test Nate's NumberException View"
                 + "\nU - Calc(U)late number of bricks for the house"
                 + "\nH - (H)igh Score list"
                 + "\nB - (B)ack to Main Menu"
@@ -69,22 +70,21 @@ public class GameMenuView extends View {
                 this.displayProbability();
                 break;
             case "L":
-        {
-            try {
-                this.displayTestDistanceException();
-            } catch (MapControlException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
+                try {
+                    this.displayTestDistanceException();
+                } catch (MapControlException ex) {
+                    System.out.println(ex.getMessage());
+                }
                 break;
             case "Z":
-        {
-            try {
-                this.displayTestDistanceException2();
-            } catch (MapControlException ex) {
-                System.out.println(ex.getMessage());
-            }
-        }
+                try {
+                    this.displayTestDistanceException2();
+                } catch (MapControlException ex) {
+                    System.out.println(ex.getMessage());
+                }
+                break;
+            case "X":
+                this.displayL11Exception();
                 break;
             case "U":
                 this.displayHouseMenu();
@@ -172,6 +172,11 @@ public class GameMenuView extends View {
 
     private void displayTestDistanceException2() throws MapControlException {
         MapControl.calcDistance(2, 125, 2, 3);
+    }
+
+    private void displayL11Exception() {
+        L11View l11view = new L11View();
+        l11view.display();
     }
     
 }
