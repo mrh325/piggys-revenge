@@ -6,9 +6,9 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.GameControl;
+import cit260.piggysRevenge.exceptions.GameControlException;
 import cit260.piggysRevenge.model.HighScore;
 import java.util.ArrayList;
-import java.util.Arrays;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -44,10 +44,14 @@ public class HighScoreView extends View {
        int index = 0;
        for (HighScore hs : highScores) {
 
-            System.out.println(hs.getName() + "        " + hs.getScore() + "            " 
-                    + GameControl.calcNumberOfBricks(hs.getHouse().getLength(), 
-                            hs.getHouse().getWidth(), hs.getHouse().getHeight(), 
-                            hs.getHouse().getStories()));
+            try {
+                System.out.println(hs.getName() + "        " + hs.getScore() + "            "
+                        + GameControl.calcNumberOfBricks(hs.getHouse().getLength(),
+                                hs.getHouse().getWidth(), hs.getHouse().getHeight(),
+                                hs.getHouse().getStories()));
+            } catch (GameControlException ex) {
+                System.out.println(ex.getMessage());
+            }
 
 
 

@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.control;
 
+import cit260.piggysRevenge.exceptions.GameControlException;
 import cit260.piggysRevenge.model.Backpack;
 import cit260.piggysRevenge.model.Game;
 import cit260.piggysRevenge.model.House;
@@ -17,7 +18,6 @@ import cit260.piggysRevenge.model.Scene;
 import cit260.piggysRevenge.model.Wolf;
 import java.awt.Point;
 import static java.lang.Math.round;
-import java.util.Arrays;
 import java.util.Random;
 import piggysrevenge.PiggysRevenge;
 
@@ -27,18 +27,18 @@ import piggysrevenge.PiggysRevenge;
  */
 public class GameControl {
     //L06 TEAM ASSIGNMENT
-    public static int calcScore(int numberOfBricks, int numberOfTurns, boolean hasEaten, boolean wolfKilled) {
+    public static int calcScore(int numberOfBricks, int numberOfTurns, boolean hasEaten, boolean wolfKilled) throws GameControlException {
         //bricks can not be less than 0
         if (numberOfBricks < 0) {
-            return -1;
+            throw new GameControlException("The number of bricks cannot be negative.");
         }        
         //turns can not be less than 1
         if (numberOfTurns < 1) {
-            return -2;
+            throw new GameControlException("The number of turns must be greater than 0.");
         }
         //wolf can't be killed if player has not eaten.
         if (hasEaten == false && wolfKilled == true) {
-            return -3;
+            throw new GameControlException("You cannot face the mighty wolf without the magic roast beef.");
         }
 
         int currentScore;
@@ -58,37 +58,37 @@ public class GameControl {
         }
     }
     //L06 MICHAEL HALES INDIVIDUAL ASSIGNMENT
-    public static int calcNumberOfBricks (int length, int width, int height, int numberOfStories) {
+    public static int calcNumberOfBricks (int length, int width, int height, int numberOfStories) throws GameControlException {
         
         double surfaceAreaPerFloor, surfaceAreaOfRoof;
         
         // Length must be between 5 and 20
         if (length < 5) {
-            return -11;
+            throw new GameControlException("The length must be greater than 4.");
         }
         if (length > 20){
-            return -12;
+            throw new GameControlException("The length must be less than 21.");
         }
         // Width must be between 5 and 20
         if (width < 5) {
-            return -21;
+            throw new GameControlException("The width must be greater than 4.");
         }
         if (width > 20){
-            return -22;
+            throw new GameControlException("The length must be less than 21.");
         }
         // Height must be between 6 and 10
         if (height < 6) {
-            return -31;
+            throw new GameControlException("The height must be greater than 5.");
         }
         if (height > 10){
-            return -32;
+            throw new GameControlException("The height must be less than 11.");
         }
         // Number of Stories must be between 1 and 3
         if (numberOfStories <= 0){
-            return -41;
+            throw new GameControlException("The number of stories must be greater than 0.");
         }
         if (numberOfStories > 3){
-            return -42;
+            throw new GameControlException("The number of stories must be less than 4.");
         }
         
         double l = (double) length;

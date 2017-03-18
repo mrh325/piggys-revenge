@@ -6,6 +6,7 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.GameControl;
+import cit260.piggysRevenge.exceptions.GameControlException;
 
 
 /**
@@ -76,56 +77,65 @@ class HouseSizeView extends View{
                 return false;
 }
             
-    int result = GameControl.calcNumberOfBricks(num1, num2, num3, num4);
-        switch (result) {
-            case -11:
-                System.out.println("\n-----------------------------------------------------------------"
-                        + "\nLength is too small."
-                        + "\n-----------------------------------------------------------------");
-                break;
-            case -12:
-                System.out.println("\n-----------------------------------------------------------------"
-                        + "\nLength is too large."
-                        + "\n-----------------------------------------------------------------");
-                break;
-            case -21:
-                System.out.println("\n-----------------------------------------------------------------"
-                        + "\nWidth is too small."
-                        + "\n-----------------------------------------------------------------");
-                break;
-            case -22:
-                System.out.println("\n-----------------------------------------------------------------"
-                        + "\nWidth is too large."
-                        + "\n-----------------------------------------------------------------");
-                break;
-            case -31:
-                System.out.println("\n-----------------------------------------------------------------"
-                        + "\nHeight is too small."
-                        + "\n-----------------------------------------------------------------");
-                break;
-            case -32:
-                System.out.println("\n-----------------------------------------------------------------"
-                        + "\nHeight is too large."
-                        + "\n-----------------------------------------------------------------");
-                break;
-            case -41:
-                System.out.println("\n-----------------------------------------------------------------"
-                        + "\nNumber of stories is too small."
-                        + "\n-----------------------------------------------------------------");
-                break;
-            case -42:
-                System.out.println("\n-----------------------------------------------------------------"
-                        + "\nNumber of stories is too large."
-                        + "\n-----------------------------------------------------------------");
-                break;
-            default:
-                System.out.println("\n-----------------------------------------------------------------"
-                        + "\nYou will need to collect  "
-                        + String.valueOf(result)
-                        + " bricks."
-                                + "\n-----------------------------------------------------------------");
-                return true;
-        }
+    int result;
+    try {
+    result = GameControl.calcNumberOfBricks(num1, num2, num3, num4);
+    System.out.println("\nYou will need " + result + " bricks to build a house with the parameters given.");
+    return true;
+    } catch (GameControlException ex) {
+        System.out.println(ex.getMessage());
+    
+    }
+//        switch (result) {
+//            case -11:
+//                System.out.println("\n-----------------------------------------------------------------"
+//                        + "\nLength is too small."
+//                        + "\n-----------------------------------------------------------------");
+//                break;
+//            case -12:
+//                System.out.println("\n-----------------------------------------------------------------"
+//                        + "\nLength is too large."
+//                        + "\n-----------------------------------------------------------------");
+//                break;
+//            case -21:
+//                System.out.println("\n-----------------------------------------------------------------"
+//                        + "\nWidth is too small."
+//                        + "\n-----------------------------------------------------------------");
+//                break;
+//            case -22:
+//                System.out.println("\n-----------------------------------------------------------------"
+//                        + "\nWidth is too large."
+//                        + "\n-----------------------------------------------------------------");
+//                break;
+//            case -31:
+//                System.out.println("\n-----------------------------------------------------------------"
+//                        + "\nHeight is too small."
+//                        + "\n-----------------------------------------------------------------");
+//                break;
+//            case -32:
+//                System.out.println("\n-----------------------------------------------------------------"
+//                        + "\nHeight is too large."
+//                        + "\n-----------------------------------------------------------------");
+//                break;
+//            case -41:
+//                System.out.println("\n-----------------------------------------------------------------"
+//                        + "\nNumber of stories is too small."
+//                        + "\n-----------------------------------------------------------------");
+//                break;
+//            case -42:
+//                System.out.println("\n-----------------------------------------------------------------"
+//                        + "\nNumber of stories is too large."
+//                        + "\n-----------------------------------------------------------------");
+//                break;
+//            default:
+//                System.out.println("\n-----------------------------------------------------------------"
+//                        + "\nYou will need to collect  "
+//                        + String.valueOf(result)
+//                        + " bricks."
+//                                + "\n-----------------------------------------------------------------");
+//                return true;
+//        }
 return false;
  }
+ 
 }

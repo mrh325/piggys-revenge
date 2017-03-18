@@ -6,8 +6,11 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.control.GameControl;
+import cit260.piggysRevenge.exceptions.GameControlException;
 import cit260.piggysRevenge.model.Game;
 import cit260.piggysRevenge.model.House;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -32,38 +35,47 @@ class ScoreView extends View {
     public void display() {
         // System.out.println("\n*** display() function called ***");
         Game game = PiggysRevenge.getCurrentGame();
-        int bricks;
+        int bricks = 0;
         if (game.getHouse().isCompleted()) {
             House house = game.getHouse();
-            bricks = GameControl.calcNumberOfBricks(house.getLength(), house.getWidth(), house.getHeight(), house.getStories());
+            try {
+                bricks = GameControl.calcNumberOfBricks(house.getLength(), house.getWidth(), house.getHeight(), house.getStories());
+            } catch (GameControlException ex) {
+                System.out.println(ex.getMessage());
+            }
         } else {
             bricks = 0;
         }
         int turns = game.getTurns();
         boolean hasEaten = game.getPlayer().isHasEaten();
         boolean wolfKilled = game.isWolfKilled();
-        int result = GameControl.calcScore(bricks, turns, hasEaten, wolfKilled);
-        if (result == -1) {
-            System.out.println("\n-----------------------------------------------------------------"
-                    + "\nERROR: You may not have less than 0 bricks"
-                    + "\n-----------------------------------------------------------------");
-        } else if (result == -2) {
-            System.out.println("\n-----------------------------------------------------------------"
-                    + "\nERROR: Turns can not be less than 1"
-                    + "\n-----------------------------------------------------------------");
-        } else if (result == -3) {
-            System.out.println("\n-----------------------------------------------------------------"
-                    + "\nERROR: The wolf can't be killed if the player has not eaten"
-                    + "\n-----------------------------------------------------------------");
-        } else {
-            System.out.println("\n-----------------------------------------------------------------"
-                    + "\nYour score is: "
-                    + String.valueOf(result)
-                    + "."
-                    + "\nTurns:  " + turns
-                    + "\n-----------------------------------------------------------------");
+        int result;
+        try {
+            result = GameControl.calcScore(bricks, turns, hasEaten, wolfKilled);
+        } catch (GameControlException ex) {
+            System.out.println(ex.getMessage());
         }
-        
+//        if (result == -1) {
+//            System.out.println("\n-----------------------------------------------------------------"
+//                    + "\nERROR: You may not have less than 0 bricks"
+//                    + "\n-----------------------------------------------------------------");
+//        } else if (result == -2) {
+//            System.out.println("\n-----------------------------------------------------------------"
+//                    + "\nERROR: Turns can not be less than 1"
+//                    + "\n-----------------------------------------------------------------");
+//        } else if (result == -3) {
+//            System.out.println("\n-----------------------------------------------------------------"
+//                    + "\nERROR: The wolf can't be killed if the player has not eaten"
+//                    + "\n-----------------------------------------------------------------");
+//        } else {
+//            System.out.println("\n-----------------------------------------------------------------"
+//                    + "\nYour score is: "
+//                    + String.valueOf(result)
+//                    + "."
+//                    + "\nTurns:  " + turns
+//                    + "\n-----------------------------------------------------------------");
+//        }
+//        
      
     }
     
