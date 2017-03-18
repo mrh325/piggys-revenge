@@ -5,7 +5,6 @@
  */
 package cit260.piggysRevenge.view;
 
-import cit260.piggysRevenge.control.InventoryControl;
 import cit260.piggysRevenge.model.Item;
 import piggysrevenge.PiggysRevenge;
 

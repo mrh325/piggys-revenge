@@ -537,11 +537,11 @@ public class MapControl {
 
             //draw the title
             StringBuilder line = new StringBuilder(emptyLine);
-            String mapTitle = "The Far Away Land of Nonsense";
+            //String mapTitle = "The Far Away Land of Nonsense";
             //System.out.println(mapTitle.length()/2);
             //System.out.println(line.toString().length()/2);
-            line.insert(10, mapTitle);
-            System.out.println(line.toString());
+            //line.insert(10, mapTitle);
+            //System.out.println(line.toString());
 
             //draw a line.
             String aLine = "";
@@ -580,15 +580,17 @@ public class MapControl {
         if (!location.getVisited()) {
             if (location.getActor() != null) {
                 if ("Builder".equals(location.getActor().name())) {
+                    location.setVisited(Boolean.TRUE);
                     FindBuilderView findBuilderView = new FindBuilderView();
                     findBuilderView.display();
                 } else {
+                    location.setVisited(Boolean.TRUE);
                     FindPiggyView findPiggyView = new FindPiggyView();
                     findPiggyView.display();
                 }
             }
         }
-        location.setVisited(Boolean.TRUE);
+        
     }
 
     public static void checkItemCollision(Point playerLoc) {
