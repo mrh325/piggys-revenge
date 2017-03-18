@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.control;
 
+import cit260.piggysRevenge.exceptions.MiniGameControlException;
 import cit260.piggysRevenge.model.MiniGame;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -61,7 +62,7 @@ public class MiniGameControlTest {
      * Test of checkKeyOrder method, of class MiniGameControl.
      */
     @Test
-    public void testCheckKeyOrder() {
+    public void testCheckKeyOrder() throws MiniGameControlException {
         System.out.println("checkKeyOrder");
         
         //TEST 1

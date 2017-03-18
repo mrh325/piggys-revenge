@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.control;
 
+import cit260.piggysRevenge.exceptions.GameControlException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -23,7 +24,7 @@ public class GameControlTest {
      * Test of calcScore method, of class GameControl.
      */
     @Test
-    public void testCalcScore() {
+    public void testCalcScore() throws GameControlException {
         System.out.println("calcScore");
         System.out.println("Test1 - Valid1");
         int numberOfBricks = 250;
@@ -97,7 +98,7 @@ public class GameControlTest {
      * Test of calcNumberofBricks method, of class GameControl.
      */
     @Test
-    public void testCalcNumberOfBricks() {
+    public void testCalcNumberOfBricks() throws GameControlException {
         System.out.println("calcNumberOfBricks");
         System.out.println("Test 1 - Length - Invalid");
         int length = -3;
