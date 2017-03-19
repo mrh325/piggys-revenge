@@ -154,7 +154,9 @@ public class MainMenuView extends View{
 
         
         this.displayMessage = this.menuCurrentGame; //change menu to include current game options
-
+        //HouseSizeView houseSizeView = new HouseSizeView();
+        //houseSizeView.display();
+        
         this.gameMenu = new GameMenuView();
         this.gameMenu.display();
 
