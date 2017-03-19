@@ -147,11 +147,11 @@ public class MoveMenuView extends View {
         if (playerLoc.x == wolfLoc.x && playerLoc.y == wolfLoc.y) {
             WolfView wolfView = new WolfView();
             wolfView.display();
-        } else {
-            System.out.println("playerLoc and WolfLoc");
-            System.out.println(playerLoc);
-            System.out.println(wolfLoc);            
-        }
+        } //else {
+//            System.out.println("playerLoc and WolfLoc");
+//            System.out.println(playerLoc);
+//            System.out.println(wolfLoc);            
+//        }
         
         //check for actor-player collision
         MapControl.checkUnvisitedActorCollision(playerLoc);

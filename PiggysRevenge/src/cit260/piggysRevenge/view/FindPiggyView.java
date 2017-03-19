@@ -8,6 +8,7 @@ package cit260.piggysRevenge.view;
 import cit260.piggysRevenge.control.MapControl;
 import cit260.piggysRevenge.model.Map;
 import java.awt.Point;
+import java.util.Scanner;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -74,13 +75,7 @@ public class FindPiggyView extends View {
                     + unvisitedPiggys
                     + " Piggys left to find before the builder will build your house.");
         }
-        System.out.println("Press enter key to continue...");
-        try
-        {
-            System.in.read();
-        }  
-        catch(Exception e)
-        {}  
+        this.pressAnyKeyToContinue();
     }
     
     
@@ -89,5 +84,17 @@ public class FindPiggyView extends View {
     public boolean doAction(String value) {
         System.out.println("\n*** doAction() in FindPiggyView called ***");
         return true;
+    }
+    
+    private void pressAnyKeyToContinue() {
+        try
+        {
+            Scanner keyIn = new Scanner(System.in);
+
+            System.out.print("Press the enter key to continue");
+            keyIn.nextLine();
+        }  
+        catch(Exception e)
+        {}          
     }
 }
