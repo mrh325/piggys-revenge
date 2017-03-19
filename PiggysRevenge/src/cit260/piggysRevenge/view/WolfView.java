@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.view;
 
+import java.util.Scanner;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -74,10 +75,12 @@ public class WolfView extends View {
 
     @Override
     public void display() {
-        System.out.println("Press enter key to continue...");
         try
         {
-            System.in.read();
+            Scanner keyIn = new Scanner(System.in);
+
+            System.out.print("Press the enter key to continue");
+            keyIn.nextLine();
         }  
         catch(Exception e)
         {}

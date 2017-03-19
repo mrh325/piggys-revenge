@@ -5,6 +5,8 @@
  */
 package cit260.piggysRevenge.view;
 
+import java.util.Scanner;
+
 /**
  *
  * @author natebolton
@@ -31,13 +33,7 @@ public class FindBricksView extends View {
     @Override
     public void display() {
         System.out.println("\nYou found " + this.bricksFound + " bricks.");
-        System.out.println("Press enter key to continue...");
-        try
-        {
-            System.in.read();
-        }  
-        catch(Exception e)
-        {}  
+        this.pressAnyKeyToContinue();
     }
     
     @Override
@@ -45,5 +41,16 @@ public class FindBricksView extends View {
         System.out.println("\n*** doAction() in FindBricksView called ***");
         return true;
     }
-    
+
+    private void pressAnyKeyToContinue() {
+        try
+        {
+            Scanner keyIn = new Scanner(System.in);
+
+            System.out.print("Press the enter key to continue");
+            keyIn.nextLine();
+        }  
+        catch(Exception e)
+        {}          
+    }
 }

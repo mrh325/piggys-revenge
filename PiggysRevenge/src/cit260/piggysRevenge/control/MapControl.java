@@ -640,7 +640,7 @@ public class MapControl {
                 break;
             }
         }
-        System.out.println("seeded to single location");
+        //System.out.println("seeded to single location");
     }
 
     public static void checkBrickCollection(Point playerLoc) {
