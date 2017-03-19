@@ -43,7 +43,7 @@ public class FindShoeView extends View {
                 + "\n"
                 + item.getDescription()
                 + "\n\n\nPlease choose from the following:"
-                + "======================================="
+                + "\n======================================="
                 + "\nE - (E)quip"
                 + "\nS - (S)tore in backpack"
                 + "\nL - (L)eave the shoe here"

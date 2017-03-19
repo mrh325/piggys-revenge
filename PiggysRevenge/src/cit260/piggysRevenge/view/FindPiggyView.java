@@ -27,10 +27,12 @@ public class FindPiggyView extends View {
         Point playerCoords = PiggysRevenge.getCurrentGame().getPlayer().getCoordinates();
         Map map = PiggysRevenge.getCurrentGame().getMap();
         Point[] actorPoints = MapControl.getActorPoints(map);
-        int unvisitedPiggys = -1; //-1 for builder
+        int unvisitedPiggys = 0;
         for (Point point : actorPoints) {
             if (map.getLocations()[point.x][point.y].getVisited() == false) {
-                unvisitedPiggys++;
+                if (!"Builder".equals(map.getLocations()[point.x][point.y].getActor().name())) {
+                    unvisitedPiggys++;
+                }
             }
         }
         System.out.println("\n\n"
@@ -63,10 +65,22 @@ public class FindPiggyView extends View {
                 + "\n\nHello "
                 + PiggysRevenge.getCurrentGame().getPlayer().getName()
                 + ".  You found me!  I am "
-                + map.getLocations()[playerCoords.x][playerCoords.y].getActor().getDescription()
-                + ".\nThere are still "
-                + unvisitedPiggys
-                + " Piggys left to find.");
+                + map.getLocations()[playerCoords.x][playerCoords.y].getActor().getDescription());
+        if (unvisitedPiggys == 0) {
+            System.out.println(".\nI was the last piggy to find! The builder will"
+                    + "\nnow build the house for you.");
+        } else {
+            System.out.println(".\nThere are still "
+                    + unvisitedPiggys
+                    + " Piggys left to find before the builder will build your house.");
+        }
+        System.out.println("Press enter key to continue...");
+        try
+        {
+            System.in.read();
+        }  
+        catch(Exception e)
+        {}  
     }
     
     

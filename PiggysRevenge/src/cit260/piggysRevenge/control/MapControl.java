@@ -13,6 +13,7 @@ import cit260.piggysRevenge.model.Location;
 import cit260.piggysRevenge.model.SceneType;
 import cit260.piggysRevenge.model.Map;
 import cit260.piggysRevenge.model.Scene;
+import cit260.piggysRevenge.view.FindBricksView;
 import cit260.piggysRevenge.view.FindBuilderView;
 import cit260.piggysRevenge.view.FindHatView;
 import cit260.piggysRevenge.view.FindPiggyView;
@@ -267,7 +268,7 @@ public class MapControl {
             point1 = rand.nextInt(columns);
             //pick a random row
             point2 = rand.nextInt(rows);
-            if (point1 != 3 && point2 != 3) {
+            if (point1 != 3 || point2 != 3) {
             //create a point if not 3,3
                 point = new Point(point1,point2);
 
@@ -371,7 +372,7 @@ public class MapControl {
             tempPoints[i] = point;
             //and assign the next item in item list to the chosen location.
             locations[point.x][point.y].setItem(items[i]);
-            System.out.println("adding " + items[i] + " to " + point.x + "," + point.y);
+            //System.out.println("adding " + items[i] + " to " + point.x + "," + point.y);
         }
     }
 
@@ -551,7 +552,7 @@ public class MapControl {
             System.out.println(aLine);
 
             //draw column headers
-            line = new StringBuilder(emptyLine);
+            //line = new StringBuilder(emptyLine);
             char ch = 'A';
             for (int insertPoint = 10; insertPoint <= columns*5+9; insertPoint+=5) {
                 line.insert(insertPoint,"| " + ch + " |");
@@ -577,7 +578,7 @@ public class MapControl {
 
     public static void checkUnvisitedActorCollision(Point playerLoc) {
         Location location = PiggysRevenge.getCurrentGame().getMap().getLocations()[playerLoc.x][playerLoc.y];
-        if (!location.getVisited()) {
+        if (!location.getVisited() || "Builder".equals(location.getActor().name())) {
             if (location.getActor() != null) {
                 if ("Builder".equals(location.getActor().name())) {
                     location.setVisited(Boolean.TRUE);
@@ -603,6 +604,54 @@ public class MapControl {
                 FindShoeView findShoeView = new FindShoeView(playerLoc,location.getItem());
                 findShoeView.display();
             }
+        }
+    }
+
+    static void seedBricks(Map map) {
+        //SEED a random amount of bricks to rougly 25% of locations.
+        Random rand = new Random();
+        Location[][] locations = map.getLocations();
+        int getting = 0;
+        while (getting < ((map.getColumnCount()*map.getRowCount())/4)+1) {
+            getting = 0;
+            for (Location[] locationx : locations) {
+                for (Location locationy : locationx) {
+                    if (rand.nextInt(100) > 74) {
+                        locationy.setBricks(rand.nextInt(21)+1);
+                        getting++;
+                    } else {
+                        locationy.setBricks(0);
+                    }
+                }
+            }
+        }
+        //System.out.println("Getting: " + getting);
+    }
+    
+    static void seedBricksToSingleLocation(Map map) {
+        //SEED a random amount of bricks to rougly 25% of locations.
+        Random rand = new Random();
+        Location[][] locations = map.getLocations();
+        while (true) {
+            int x = rand.nextInt(7);
+            int y = rand.nextInt(7);
+            if (locations[x][y].getBricks() == 0) {
+                locations[x][y].setBricks(rand.nextInt(21)+1);
+                break;
+            }
+        }
+        System.out.println("seeded to single location");
+    }
+
+    public static void checkBrickCollection(Point playerLoc) {
+        Location location = PiggysRevenge.getCurrentGame().getMap().getLocations()[playerLoc.x][playerLoc.y];
+        int bricksFound = location.getBricks();
+        if (bricksFound > 0) {
+            PiggysRevenge.getCurrentGame().getBackpack().setBricks(PiggysRevenge.getCurrentGame().getBackpack().getBricks()+bricksFound);
+            location.setBricks(0);
+            MapControl.seedBricksToSingleLocation(PiggysRevenge.getCurrentGame().getMap());
+            FindBricksView findBricksView = new FindBricksView(bricksFound);
+            findBricksView.display();
         }
     }
 

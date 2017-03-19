@@ -74,6 +74,13 @@ public class WolfView extends View {
 
     @Override
     public void display() {
+        System.out.println("Press enter key to continue...");
+        try
+        {
+            System.in.read();
+        }  
+        catch(Exception e)
+        {}
         if (PiggysRevenge.getPlayer().isHasEaten()) {
             PiggysRevenge.getCurrentGame().setWolfKilled(true);
             System.out.println("You have captured the wolf and rid the forest of"
@@ -84,8 +91,8 @@ public class WolfView extends View {
                     + "\nby eating the roast beef, you are overcome by the"
                     + "\nthe wolf and YOU DIE.");            
         }
-        EndGameView endGameView = new EndGameView();
-        endGameView.display();
+        //EndGameView endGameView = new EndGameView();
+        //endGameView.display();
     }
     
     

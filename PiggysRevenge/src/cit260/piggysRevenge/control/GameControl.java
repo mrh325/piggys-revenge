@@ -143,6 +143,7 @@ public class GameControl {
             MapControl.moveActorsToStartingLocation(map);
             Item[] items = createItems(map);
             MapControl.moveItemsToStartingLocation(map,items);
+            MapControl.seedBricks(map);
         }
     }
 

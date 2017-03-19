@@ -21,6 +21,7 @@ public class Location implements Serializable {
     private Actor actor;
     private Item item;
     private boolean containsWolf;
+    private int bricks;
 
     public Location(int column, int row) {
         this.column = column;
@@ -88,16 +89,25 @@ public class Location implements Serializable {
         this.containsWolf = containsWolf;
     }
 
+    public int getBricks() {
+        return bricks;
+    }
+
+    public void setBricks(int bricks) {
+        this.bricks = bricks;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + this.column;
-        hash = 97 * hash + this.row;
-        hash = 97 * hash + Objects.hashCode(this.visited);
-        hash = 97 * hash + Objects.hashCode(this.scene);
-        hash = 97 * hash + Objects.hashCode(this.actor);
-        hash = 97 * hash + Objects.hashCode(this.item);
-        hash = 97 * hash + (this.containsWolf ? 1 : 0);
+        int hash = 7;
+        hash = 41 * hash + this.column;
+        hash = 41 * hash + this.row;
+        hash = 41 * hash + Objects.hashCode(this.visited);
+        hash = 41 * hash + Objects.hashCode(this.scene);
+        hash = 41 * hash + Objects.hashCode(this.actor);
+        hash = 41 * hash + Objects.hashCode(this.item);
+        hash = 41 * hash + (this.containsWolf ? 1 : 0);
+        hash = 41 * hash + this.bricks;
         return hash;
     }
 
@@ -122,6 +132,9 @@ public class Location implements Serializable {
         if (this.containsWolf != other.containsWolf) {
             return false;
         }
+        if (this.bricks != other.bricks) {
+            return false;
+        }
         if (!Objects.equals(this.visited, other.visited)) {
             return false;
         }
@@ -139,7 +152,7 @@ public class Location implements Serializable {
 
     @Override
     public String toString() {
-        return "Location{" + "column=" + column + ", row=" + row + ", visited=" + visited + ", scene=" + scene + ", actor=" + actor + ", item=" + item + ", containsWolf=" + containsWolf + '}';
+        return "Location{" + "column=" + column + ", row=" + row + ", visited=" + visited + ", scene=" + scene + ", actor=" + actor + ", item=" + item + ", containsWolf=" + containsWolf + ", bricks=" + bricks + '}';
     }
-    
+   
 }

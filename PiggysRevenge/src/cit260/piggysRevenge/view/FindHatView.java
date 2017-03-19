@@ -46,7 +46,7 @@ public class FindHatView extends View {
                 + "\nwhich "
                 + item.getDescription()
                 + "\n\n\nPlease choose from the following:"
-                + "======================================="
+                + "\n======================================="
                 + "\nE - (E)quip"
                 + "\nS - (S)tore in backpack"
                 + "\nL - (L)eave the hat here"

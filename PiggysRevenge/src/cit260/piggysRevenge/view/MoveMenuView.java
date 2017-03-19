@@ -8,8 +8,6 @@ package cit260.piggysRevenge.view;
 import cit260.piggysRevenge.control.MapControl;
 import cit260.piggysRevenge.exceptions.MapControlException;
 import java.awt.Point;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 public class MoveMenuView extends View {
@@ -136,7 +134,7 @@ public class MoveMenuView extends View {
             this.displayMessage += "\n  -";
         }
         this.displayMessage += "\nM - Display the (M)ap"
-                + "\nB - (B)ack to Main Menu"
+                + "\nB - (B)ack to Game Menu"
                 + "\n=======================================";   
     }
     
@@ -160,6 +158,7 @@ public class MoveMenuView extends View {
         //check for item-player collision
         MapControl.checkItemCollision(playerLoc);
         //check for bricks-player collision
+        MapControl.checkBrickCollection(playerLoc);
         
         //redefine the menu for the next display() call
         this.drawMenu(playerLoc);        
