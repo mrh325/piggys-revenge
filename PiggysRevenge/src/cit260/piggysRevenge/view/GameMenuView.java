@@ -11,8 +11,6 @@ import cit260.piggysRevenge.model.HighScore;
 import cit260.piggysRevenge.model.House;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -32,11 +30,6 @@ public class GameMenuView extends View {
                 + "\nI - (I)nventory"
                 + "\nG - Play the Mini (G)ame!"
                 + "\nC - Show s(C)ore"
-                + "\nP - Show (P)robability of winning the game"
-                + "\nL - Test distance (L)ower bound exception"
-                + "\nZ - Test distance upper bound exception"
-                + "\nX - Test Nate's NumberException View"
-                + "\nU - Calc(U)late number of bricks for the house"
                 + "\nH - (H)igh Score list"
                 + "\nB - (B)ack to Main Menu"
                 + "\n=======================================");
@@ -66,26 +59,23 @@ public class GameMenuView extends View {
             case "C":
                 this.displayScore();
                 break;
-            case "P":
-                this.displayProbability();
-                break;
-            case "L":
-                try {
-                    this.displayTestDistanceException();
-                } catch (MapControlException ex) {
-                    System.out.println(ex.getMessage());
-                }
-                break;
-            case "Z":
-                try {
-                    this.displayTestDistanceException2();
-                } catch (MapControlException ex) {
-                    System.out.println(ex.getMessage());
-                }
-                break;
-            case "X":
-                this.displayL11Exception();
-                break;
+//            case "P":
+//                this.displayProbability();
+//                break;
+//            case "L":
+//                try {
+//                    this.displayTestDistanceException();
+//                } catch (MapControlException ex) {
+//                    System.out.println(ex.getMessage());
+//                }
+//                break;
+//            case "Z":
+//                try {
+//                    this.displayTestDistanceException2();
+//                } catch (MapControlException ex) {
+//                    System.out.println(ex.getMessage());
+//                }
+//                break;
             case "U":
                 this.displayHouseMenu();
                 break;
@@ -140,12 +130,12 @@ public class GameMenuView extends View {
         scoreView.display();
     }
 
-    private void displayProbability() {
-        //System.out.println("\n*** displayProbability() function called ***");
-        ProbabilityView probabilityView = new ProbabilityView();
-        probabilityView.display();
-    }
-
+//    private void displayProbability() {
+//        //System.out.println("\n*** displayProbability() function called ***");
+//        ProbabilityView probabilityView = new ProbabilityView();
+//        probabilityView.display();
+//    }
+//
     private void displayHouseMenu() {
         // System.out.println("\n*** displayHouseMenu() function called ***");
         HouseSizeView houseSize = new HouseSizeView();
@@ -165,18 +155,14 @@ public class GameMenuView extends View {
         highScoreView.display();
     }
 
-    private void displayTestDistanceException() throws MapControlException {
-        MapControl.calcDistance(-1, 4, 2, 3);
-        
-    }
-
-    private void displayTestDistanceException2() throws MapControlException {
-        MapControl.calcDistance(2, 125, 2, 3);
-    }
-
-    private void displayL11Exception() {
-        L11View l11view = new L11View();
-        l11view.display();
-    }
+//    private void displayTestDistanceException() throws MapControlException {
+//        MapControl.calcDistance(-1, 4, 2, 3);
+//        
+//    }
+//
+//    private void displayTestDistanceException2() throws MapControlException {
+//        MapControl.calcDistance(2, 125, 2, 3);
+//    }
+//
     
 }
