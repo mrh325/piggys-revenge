@@ -17,6 +17,7 @@ public class Game implements Serializable{
     
     private Map map;
     private int turns;
+    private int turnsRemaining;
     private int score;
     private boolean wolfKilled;
     private Player player;
@@ -30,6 +31,7 @@ public class Game implements Serializable{
         this.score = 0;
         this.wolfKilled = false;
         this.highScores = new ArrayList<>();
+        this.turnsRemaining = -1;
     }
     
     public Map getMap() {
@@ -48,6 +50,14 @@ public class Game implements Serializable{
         this.turns = turns;
     }
 
+    public int getTurnsRemaining() {
+        return turnsRemaining;
+    }
+
+    public void setTurnsRemaining(int turnsRemaining) {
+        this.turnsRemaining = turnsRemaining;
+    }
+    
     public void incrementTurns() {
         this.turns++;
     }
@@ -110,16 +120,17 @@ public class Game implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 89 * hash + Objects.hashCode(this.map);
-        hash = 89 * hash + this.turns;
-        hash = 89 * hash + this.score;
-        hash = 89 * hash + (this.wolfKilled ? 1 : 0);
-        hash = 89 * hash + Objects.hashCode(this.player);
-        hash = 89 * hash + Objects.hashCode(this.wolf);
-        hash = 89 * hash + Objects.hashCode(this.house);
-        hash = 89 * hash + Objects.hashCode(this.backpack);
-        hash = 89 * hash + Objects.hashCode(this.highScores);
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.map);
+        hash = 29 * hash + this.turns;
+        hash = 29 * hash + this.turnsRemaining;
+        hash = 29 * hash + this.score;
+        hash = 29 * hash + (this.wolfKilled ? 1 : 0);
+        hash = 29 * hash + Objects.hashCode(this.player);
+        hash = 29 * hash + Objects.hashCode(this.wolf);
+        hash = 29 * hash + Objects.hashCode(this.house);
+        hash = 29 * hash + Objects.hashCode(this.backpack);
+        hash = 29 * hash + Objects.hashCode(this.highScores);
         return hash;
     }
 
@@ -136,6 +147,9 @@ public class Game implements Serializable{
         }
         final Game other = (Game) obj;
         if (this.turns != other.turns) {
+            return false;
+        }
+        if (this.turnsRemaining != other.turnsRemaining) {
             return false;
         }
         if (this.score != other.score) {
@@ -167,8 +181,7 @@ public class Game implements Serializable{
 
     @Override
     public String toString() {
-        return "Game{" + "map=" + map + ", turns=" + turns + ", score=" + score + ", wolfKilled=" + wolfKilled + ", player=" + player + ", wolf=" + wolf + ", house=" + house + ", backpack=" + backpack + ", highScores=" + highScores + '}';
-    }
-    
+        return "Game{" + "map=" + map + ", turns=" + turns + ", turnsRemaining=" + turnsRemaining + ", score=" + score + ", wolfKilled=" + wolfKilled + ", player=" + player + ", wolf=" + wolf + ", house=" + house + ", backpack=" + backpack + ", highScores=" + highScores + '}';
+    }    
         
 }

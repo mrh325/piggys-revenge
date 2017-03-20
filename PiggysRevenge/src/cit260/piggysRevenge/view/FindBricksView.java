@@ -49,6 +49,7 @@ public class FindBricksView extends View {
 
             System.out.print("Press the enter key to continue");
             keyIn.nextLine();
+            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         }  
         catch(Exception e)
         {}          

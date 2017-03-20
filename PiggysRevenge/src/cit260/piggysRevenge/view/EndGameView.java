@@ -5,6 +5,8 @@
  */
 package cit260.piggysRevenge.view;
 
+import piggysrevenge.PiggysRevenge;
+
 /**
  *
  * @author natebolton
@@ -12,7 +14,9 @@ package cit260.piggysRevenge.view;
 class EndGameView {
 
     void display() {
-        System.out.println("\nGAME OVER");
+        if (!PiggysRevenge.getCurrentGame().isWolfKilled()) {
+            System.out.println("\nAwww... you missed the wolf this time....");
+        }
         ScoreView scoreView = new ScoreView();
         scoreView.display();
         System.out.println("\nThank you for playing.  The game will now exit.");

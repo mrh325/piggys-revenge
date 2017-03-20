@@ -8,11 +8,13 @@ package cit260.piggysRevenge.view;
 import cit260.piggysRevenge.control.MapControl;
 import cit260.piggysRevenge.exceptions.MapControlException;
 import java.awt.Point;
+import piggysrevenge.PiggysRevenge;
 
 
 public class MoveMenuView extends View {
     Point playerLoc;
     Point wolfLoc;
+    boolean freeTurn = false;
     
     public MoveMenuView(Point playerLoc, Point wolfLoc) {
         super ();
@@ -22,6 +24,22 @@ public class MoveMenuView extends View {
         this.drawMenu(playerLoc);
     }
     
+//    public void display(boolean doOnce) {
+//        // System.out.println("\n*** display() function called ***");
+//        this.doOnce = doOnce;
+//        boolean done = false;
+//        do {
+//            // System.out.println(this.menu);
+//            String value = this.getInput();
+//            if (value.toUpperCase().equals("Q")) {
+//                return;
+//            }
+//
+//            done = this.doAction(value);
+//
+//        } while (!done);
+//
+//    }
 
     @Override
     public boolean doAction(String menuOption) {
@@ -35,7 +53,7 @@ public class MoveMenuView extends View {
             try {
                 this.moveUp();
             } catch (MapControlException ex) {
-                System.out.println("Error moving up.");
+                System.out.println(ex.getMessage());
             }
         }
                 break;
@@ -44,7 +62,7 @@ public class MoveMenuView extends View {
             try {
                 this.moveDown();
             } catch (MapControlException ex) {
-                System.out.println("Error moving down.");
+                System.out.println(ex.getMessage());
             }
         }
                 break;
@@ -53,7 +71,7 @@ public class MoveMenuView extends View {
             try {
                 this.moveLeft();
             } catch (MapControlException ex) {
-                System.out.println("Error moving left.");
+                System.out.println(ex.getMessage());
             }
         }
                 break;
@@ -62,7 +80,7 @@ public class MoveMenuView extends View {
             try {
                 this.moveRight();
             } catch (MapControlException ex) {
-                System.out.println("Error moving right.");
+                System.out.println(ex.getMessage());
             }
         }
                 break;
@@ -82,34 +100,56 @@ public class MoveMenuView extends View {
         //System.out.println("\n*** moveUp() function called ***");
         //move the player's location
         MapControl.movePlayer(playerLoc,"up");
+        if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes() != null) {
+            this.freeTurn = !("Sneakers".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes().getName()) && this.freeTurn);
+        }
         this.doAfterMove(playerLoc,wolfLoc);
     }
 
     private void moveDown() throws MapControlException {
         //System.out.println("\n*** moveDown() function called ***");
         MapControl.movePlayer(playerLoc,"down");
+        if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes() != null) {
+            this.freeTurn = !("Sneakers".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes().getName()) && this.freeTurn);
+        }
         this.doAfterMove(playerLoc,wolfLoc);
     }
 
     private void moveLeft() throws MapControlException {
         //System.out.println("\n*** moveLeft() function called ***");
         MapControl.movePlayer(playerLoc,"left");
+        if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes() != null) {
+            this.freeTurn = !("Sneakers".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes().getName()) && this.freeTurn);
+        }
         this.doAfterMove(playerLoc,wolfLoc);
     }
 
     private void moveRight() throws MapControlException {
         //System.out.println("\n*** moveRight() function called ***");
         MapControl.movePlayer(playerLoc,"right");
+        if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes() != null) {
+            this.freeTurn = !("Sneakers".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes().getName()) && this.freeTurn);
+        }
         this.doAfterMove(playerLoc,wolfLoc);
     }
 
     private void displayMap() {
 //        System.out.println("\n*** displayMap() function called ***");
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         MapControl.drawMap();
     }
     
     private void drawMenu(Point playerLoc) {
-        this.displayMessage = "\n"
+        int turnsRemaining = PiggysRevenge.getCurrentGame().getTurnsRemaining();
+        this.displayMessage = "";
+        if (turnsRemaining > -1) {
+            if (turnsRemaining == 0) {
+                EndGameView endGameView = new EndGameView();
+                endGameView.display();
+            }
+            this.displayMessage += "You have " + turnsRemaining + " turns remaining.";
+        }
+        this.displayMessage += "\n"
                 + "\n======================================="
                 + "\n| Move Menu                           |"
                 + "\n=======================================";
@@ -141,8 +181,18 @@ public class MoveMenuView extends View {
     private void doAfterMove(Point playerLoc,Point wolfLoc) {
         
         //move the wolf
-        MapControl.moveWolf(wolfLoc);
-        
+        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes() != null) {
+            if ("Sneakers".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes().getName()) && this.freeTurn) {
+                System.out.println("You're Wearing Sneakers --> The wolf didn't move this turn.");
+            } else {
+                System.out.println("The Wolf moved.");
+                MapControl.moveWolf(wolfLoc);                
+            }
+        } else {
+                System.out.println("The Wolf moved.");
+                MapControl.moveWolf(wolfLoc);                
+        }
         //check for wolf-player collision
         if (playerLoc.x == wolfLoc.x && playerLoc.y == wolfLoc.y) {
             WolfView wolfView = new WolfView();

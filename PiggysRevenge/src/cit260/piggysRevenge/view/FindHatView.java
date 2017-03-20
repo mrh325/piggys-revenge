@@ -97,7 +97,7 @@ public class FindHatView extends View {
     }
 
     private void equipHat() throws InventoryControlException {
-        System.out.println("*** equipHat function called ***");
+        //System.out.println("*** equipHat function called ***");
         int result = InventoryControl.storeHat(this.item);
         switch (result) {
             case 0:
@@ -110,14 +110,14 @@ public class FindHatView extends View {
     }
 
     private void storeHat() throws InventoryControlException {
-        System.out.println("*** storeHat function called ***");
+        //System.out.println("*** storeHat function called ***");
         int result = InventoryControl.storeHat(this.item);
         System.out.println("Hat stored in slot " + result);
         PiggysRevenge.getCurrentGame().getMap().getLocations()[playerLoc.x][playerLoc.y].setItem(null);
     }
 
     private void displayInventory() {
-        System.out.println("*** displayInventory function called ***");
+        //System.out.println("*** displayInventory function called ***");
         //System.out.println("\n*** displayInventory() function called ***");
 //        System.out.println(Arrays.deepToString(PiggysRevenge.getBackpack().getItemList())); //inventory throw-up
         Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();

@@ -485,6 +485,10 @@ public class MapControl {
         PiggysRevenge.getCurrentGame().getPlayer().setCoordinates(playerLoc);
         locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" @ ");
         PiggysRevenge.getCurrentGame().incrementTurns();
+        //if turns remaining is active, reduce by 1
+        if (PiggysRevenge.getCurrentGame().getTurnsRemaining() > -1) {
+            PiggysRevenge.getCurrentGame().setTurnsRemaining(PiggysRevenge.getCurrentGame().getTurnsRemaining()-1);
+        }
     }
     
     public static void moveWolf(Point wolfLoc) {

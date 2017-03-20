@@ -17,7 +17,7 @@ public enum ItemType implements Serializable {
     Fedora("Fedora","allows you to see distances to Piggys","hat"),
     HardHat("Hard Hat","allows you to see distance to Builder","hat"),
     Sneakers("Sneakers","allow you to move at double speed","shoe"),
-    AlienBoots("Alien Boots from Outer Space","allow you to teleport.","shoe");
+    AlienBoots("Alien Boots from Outer Space","sort the distances view.","shoe");
     private final String name;
     private final String description;
     private final String type;

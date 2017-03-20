@@ -9,8 +9,6 @@ import cit260.piggysRevenge.control.GameControl;
 import cit260.piggysRevenge.exceptions.GameControlException;
 import cit260.piggysRevenge.model.Game;
 import cit260.piggysRevenge.model.House;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -49,12 +47,13 @@ class ScoreView extends View {
         int turns = game.getTurns();
         boolean hasEaten = game.getPlayer().isHasEaten();
         boolean wolfKilled = game.isWolfKilled();
-        int result;
+        int result = 0;
         try {
             result = GameControl.calcScore(bricks, turns, hasEaten, wolfKilled);
         } catch (GameControlException ex) {
             System.out.println(ex.getMessage());
         }
+        System.out.println("\nYOUR FINAL SCORE IS:  " + result);
 //        if (result == -1) {
 //            System.out.println("\n-----------------------------------------------------------------"
 //                    + "\nERROR: You may not have less than 0 bricks"

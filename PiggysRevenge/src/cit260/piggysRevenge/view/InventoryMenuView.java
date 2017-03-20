@@ -22,7 +22,6 @@ class InventoryMenuView extends View {
                 + "\nI - View (I)nventory"
                 + "\nH - Change (H)at"
                 + "\nS - Change (S)hoes"
-                + "\nG - (G)imme a brick (FOR TESTING)"
                 + "\nB - (B)ack to Game Menu"
                 + "\n=======================================");
     }
@@ -42,11 +41,6 @@ class InventoryMenuView extends View {
                 break;
             case "S":
                 this.setShoes();
-                break;
-            case "G":
-                //for testing only
-                PiggysRevenge.getCurrentGame().getBackpack().setBricks(PiggysRevenge.getCurrentGame().getBackpack().getBricks()+1);
-                System.out.println("Brick Granted...");
                 break;
             case "B":
             case "Q":

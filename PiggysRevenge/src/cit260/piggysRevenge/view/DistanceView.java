@@ -44,6 +44,7 @@ class DistanceView extends View {
             allNames[index] = name;
             index++;
         }
+        //variable wolfName needed later
         allNames[index] = PiggysRevenge.getCurrentGame().getWolf().getName() + " the Wolf";
 
 //        System.out.println("allPoints is:  ");
@@ -72,25 +73,30 @@ class DistanceView extends View {
         //System.out.println("distances unsorted:  ");
         //System.out.println(Arrays.toString(distances));
         //bubble sort all three arrays (distance, points, names)
-        for (int n = 0; n < 5; n++) {
-            for (int m = 0; m < 4 - n; m++) {
-                if (distances[m] > distances[m + 1]) {
-                    Double swapDouble = distances[m];
-                    distances[m] = distances[m + 1];
-                    distances[m + 1] = swapDouble;
-                    Point swapPoint = allPoints[m];
-                    allPoints[m] = allPoints[m + 1];
-                    allPoints[m + 1] = swapPoint;
-                    String swapString = allNames[m];
-                    allNames[m] = allNames[m + 1];
-                    allNames[m + 1] = swapString;
+        if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes() != null) {            
+            if ("Alien Boots from Outer Space".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes().getName())) {
+                for (int n = 0; n < 5; n++) {
+                    for (int m = 0; m < 4 - n; m++) {
+                        if (distances[m] > distances[m + 1]) {
+                            Double swapDouble = distances[m];
+                            distances[m] = distances[m + 1];
+                            distances[m + 1] = swapDouble;
+                            Point swapPoint = allPoints[m];
+                            allPoints[m] = allPoints[m + 1];
+                            allPoints[m + 1] = swapPoint;
+                            String swapString = allNames[m];
+                            allNames[m] = allNames[m + 1];
+                            allNames[m + 1] = swapString;
+                        }
+                    }
                 }
+                System.out.println("WEARING ALIEN BOOTS - DISTANCES ARE SORTED");
             }
         }
         //System.out.println("distances sorted:  ");
         //System.out.println(Arrays.toString(distances));
         //display sorted List of actors and wolf
-        System.out.println("\nSORTED DISTANCES\n");
+        System.out.println("\nDISTANCES\n");
         StringBuilder line = new StringBuilder("                                         ");
         line.insert(4, "ACTOR");
         line.insert(25, "DISTANCE");
@@ -105,11 +111,49 @@ class DistanceView extends View {
             //Actor value = MapControl.getActorFromPoint(point,PiggysRevenge.getCurrentGame().getMap());
             if (name == null) {
                 System.out.println("ERROR:  null value");
+                return;
 //                line.insert(0, Integer.toString(index+1) + ":  Wolf");
             } else {
                 line.insert(0, Integer.toString(index+1) + ":  " + name);
             }
-            line.insert(25, distances[index]);
+            switch (name) {
+                case "Piggy1":
+                case "Piggy2":
+                case "Piggy3":
+                case "Piggy4":
+                    if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentHat() != null) {
+                        if ("Fedora".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentHat().getName())) {
+                            line.insert(25, distances[index]);
+                        } else {
+                            line.insert(25, "???");
+                        }
+                    } else {
+                        line.insert(25, "???");
+                    }
+                    break;
+                case "Builder":
+                    if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentHat() != null) {
+                        if ("Hard Hat".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentHat().getName())) {
+                            line.insert(25, distances[index]);
+                        } else {
+                            line.insert(25, "???");
+                        }
+                    } else {
+                        line.insert(25, "???");
+                    }
+                    break;
+                default:
+                    if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentHat() != null) {
+                        if ("Cowboy Hat".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentHat().getName())) {
+                            line.insert(25, distances[index]);
+                        } else {
+                            line.insert(25, "???");
+                        }
+                    } else {
+                        line.insert(25, "???");
+                    }
+            }
+            //line.insert(25, distances[index]);
             System.out.println(line.toString());
             index++;
         }
