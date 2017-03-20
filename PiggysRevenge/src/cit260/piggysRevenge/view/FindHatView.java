@@ -112,6 +112,8 @@ public class FindHatView extends View {
     private void storeHat() throws InventoryControlException {
         System.out.println("*** storeHat function called ***");
         int result = InventoryControl.storeHat(this.item);
+        System.out.println("Hat stored in slot " + result);
+        PiggysRevenge.getCurrentGame().getMap().getLocations()[playerLoc.x][playerLoc.y].setItem(null);
     }
 
     private void displayInventory() {

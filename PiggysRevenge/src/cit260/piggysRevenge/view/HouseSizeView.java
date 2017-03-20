@@ -8,8 +8,6 @@ package cit260.piggysRevenge.view;
 import cit260.piggysRevenge.control.GameControl;
 import cit260.piggysRevenge.exceptions.GameControlException;
 import cit260.piggysRevenge.model.House;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import piggysrevenge.PiggysRevenge;
 
 /**

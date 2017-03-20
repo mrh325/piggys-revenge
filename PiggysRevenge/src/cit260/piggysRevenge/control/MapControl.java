@@ -612,11 +612,11 @@ public class MapControl {
         Random rand = new Random();
         Location[][] locations = map.getLocations();
         int getting = 0;
-        while (getting < ((map.getColumnCount()*map.getRowCount())/4)+1) {
+        while (getting < ((map.getColumnCount()*map.getRowCount())/5)+1) {
             getting = 0;
             for (Location[] locationx : locations) {
                 for (Location locationy : locationx) {
-                    if (rand.nextInt(100) > 74) {
+                    if (rand.nextInt(100) > 78) {
                         locationy.setBricks(rand.nextInt(21)+1);
                         getting++;
                     } else {
@@ -643,6 +643,17 @@ public class MapControl {
         //System.out.println("seeded to single location");
     }
 
+    public static void deleteBricks(Map map) {
+        //SEED a random amount of bricks to rougly 25% of locations.
+        Location[][] locations = map.getLocations();
+        for (Location[] locationx : locations) {
+            for (Location locationy : locationx) {
+                locationy.setBricks(0);
+            }
+        }
+        //System.out.println("Getting: " + getting);
+    }
+    
     public static void checkBrickCollection(Point playerLoc) {
         Location location = PiggysRevenge.getCurrentGame().getMap().getLocations()[playerLoc.x][playerLoc.y];
         int bricksFound = location.getBricks();

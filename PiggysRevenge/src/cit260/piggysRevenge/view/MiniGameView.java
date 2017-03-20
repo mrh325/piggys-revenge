@@ -8,6 +8,7 @@ package cit260.piggysRevenge.view;
 import cit260.piggysRevenge.control.MiniGameControl;
 import cit260.piggysRevenge.exceptions.MiniGameControlException;
 import cit260.piggysRevenge.model.MiniGame;
+import piggysrevenge.PiggysRevenge;
 
 /**
  *
@@ -24,7 +25,7 @@ class MiniGameView extends View {
         System.out.println("\n-----------------------------------------------------------------"
                 + "\nIn this game, you will guess the corect order of four numbers. (1 2 3 4)"
                 + "\nThe correct order is chosen at random.  You will enter a four"
-                + "\ndigit number and then you will be told the how many digits"
+                + "\ndigit number and then you will be told how many digits"
                 + "\nare in the correct order.  You win when you guess the correct order."
                 + "\n-----------------------------------------------------------------");
         this.miniGame = miniGame;
@@ -61,6 +62,7 @@ class MiniGameView extends View {
                         + "\nYou win! The correct order was "
                         + String.valueOf(this.miniGame.getComboOrder())
                         + "\n-----------------------------------------------------------------");
+                PiggysRevenge.getCurrentGame().getPlayer().setHasEaten(true);
                 return true;
         }
         return false;  

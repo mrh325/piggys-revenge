@@ -108,6 +108,8 @@ public class FindShoeView extends View {
     private void storeShoe() throws InventoryControlException {
         //System.out.println("*** storeShoe function called ***");
         int result = InventoryControl.storeShoe(this.item);
+        System.out.println("Shoe stored in slot " + result);
+        PiggysRevenge.getCurrentGame().getMap().getLocations()[playerLoc.x][playerLoc.y].setItem(null);
     }
     
     private void displayInventory() {
