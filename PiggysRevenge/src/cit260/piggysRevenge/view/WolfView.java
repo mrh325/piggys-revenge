@@ -95,8 +95,8 @@ public class WolfView extends View {
                     + "\nby eating the roast beef, you are overcome by the"
                     + "\nthe wolf and YOU DIE.");            
         }
-        //EndGameView endGameView = new EndGameView();
-        //endGameView.display();
+        EndGameView endGameView = new EndGameView();
+        endGameView.display();
     }
     
     
