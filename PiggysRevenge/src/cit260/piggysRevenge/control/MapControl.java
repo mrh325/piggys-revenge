@@ -573,9 +573,11 @@ public class MapControl {
                 }
                 System.out.println(line.toString());
             }
+//            System.out.println("\nCurrent Scence: "
+//                    + locations[PiggysRevenge.getCurrentGame().getPlayer().getCoordinates().x][PiggysRevenge.getCurrentGame().getPlayer().getCoordinates().y].getScene().getName());
             System.out.println("\nKEY:  	. Unvisited");
             System.out.println("	# Visited");
-            System.out.println("	@ You (" + String.valueOf((char)('A' + PiggysRevenge.getCurrentGame().getPlayer().getCoordinates().y)) + (PiggysRevenge.getCurrentGame().getPlayer().getCoordinates().x+1) + ")"); //add location later
+            System.out.println("	@ You (" + String.valueOf((char)('A' + PiggysRevenge.getCurrentGame().getPlayer().getCoordinates().y)) + (PiggysRevenge.getCurrentGame().getPlayer().getCoordinates().x+1) + ")");
             System.out.println("	P A Little Piggy");
             System.out.println("	B The Builder");
         }

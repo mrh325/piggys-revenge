@@ -27,7 +27,7 @@ public class Game implements Serializable{
     private ArrayList<HighScore> highScores;
 
     public Game() {
-        this.turns = 1;
+        this.turns = 0;
         this.score = 0;
         this.wolfKilled = false;
         this.highScores = new ArrayList<>();

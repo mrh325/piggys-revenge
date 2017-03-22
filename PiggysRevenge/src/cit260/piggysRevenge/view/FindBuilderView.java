@@ -138,8 +138,9 @@ public class FindBuilderView extends View {
                 MapControl.deleteBricks(PiggysRevenge.getCurrentGame().getMap());
                 PiggysRevenge.getCurrentGame().getBackpack().setBricks(playerBricks-neededBricks);
                 if (PiggysRevenge.getCurrentGame().getPlayer().isHasEaten()) {
-                    System.out.println("Great Job!  You unlocked the treasure chest! You now have"
-                            + "\n15 turns to capture the wolf.");
+                    System.out.println("Great Job!  You unlocked the treasure chest and eaten"
+                            + "\nthe roast beef! You feel your strength increase tremendously."
+                            + "\nYou are ready to hunt the wolf!  You now have 15 turns to capture the wolf.");
                 } else {
                     System.out.println("HAS EATEN ERROR");
                 }

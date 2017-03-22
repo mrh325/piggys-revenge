@@ -17,6 +17,7 @@ import cit260.piggysRevenge.model.Player;
 import cit260.piggysRevenge.model.Scene;
 import cit260.piggysRevenge.model.Wolf;
 import java.awt.Point;
+import java.io.IOException;
 import static java.lang.Math.round;
 import java.util.Random;
 import piggysrevenge.PiggysRevenge;
@@ -33,8 +34,8 @@ public class GameControl {
             throw new GameControlException("The number of bricks cannot be negative.");
         }        
         //turns can not be less than 1
-        if (numberOfTurns < 1) {
-            throw new GameControlException("The number of turns must be greater than 0.");
+        if (numberOfTurns < 0) {
+            throw new GameControlException("The number of turns must be greater than -1.");
         }
         //wolf can't be killed if player has not eaten.
         if (hasEaten == false && wolfKilled == true) {

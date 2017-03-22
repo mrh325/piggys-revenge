@@ -28,7 +28,6 @@ public class GameMenuView extends View {
                 + "\nS - (S)how Map"
                 + "\nD - Show all (D)istances"
                 + "\nI - (I)nventory"
-                + "\nG - Play the Mini (G)ame!"
                 + "\nC - Show s(C)ore"
                 + "\nH - (H)igh Score list"
                 + "\nB - (B)ack to Main Menu"
@@ -52,9 +51,6 @@ public class GameMenuView extends View {
                 break;
             case "I":
                 this.displayInventoryMenu();
-                break;
-            case "G":
-                this.displayMiniGameMenu();
                 break;
             case "C":
                 this.displayScore();
@@ -116,12 +112,6 @@ public class GameMenuView extends View {
         //We'll probably pass a backpack object in here.
         InventoryMenuView inventoryMenu = new InventoryMenuView();
         inventoryMenu.display();
-    }
-
-    private void displayMiniGameMenu() {
-        //System.out.println("\n*** displayMiniGameMenu() function called ***");
-        MiniGameMenuView miniGameMenu = new MiniGameMenuView();
-        miniGameMenu.display();
     }
 
     private void displayScore() {

@@ -53,6 +53,14 @@ class ScoreView extends View {
         } catch (GameControlException ex) {
             System.out.println(ex.getMessage());
         }
+        System.out.println("+" + (bricks*10) + " Points for building the house.");
+        System.out.println("-" + (turns*10) + " Points for the number of turns taken (" + turns + " turns).");
+        if (hasEaten) {
+            System.out.println("+1000 Points for eating roast beef.");    
+        }
+        if (wolfKilled) {
+            System.out.println("+2000 Points for killing the wolf.");    
+        }
         System.out.println("\nYOUR FINAL SCORE IS:  " + result);
 //        if (result == -1) {
 //            System.out.println("\n-----------------------------------------------------------------"

@@ -14,7 +14,7 @@ import piggysrevenge.PiggysRevenge;
 class EndGameView {
 
     void display() {
-        if (!PiggysRevenge.getCurrentGame().isWolfKilled()) {
+        if (!PiggysRevenge.getCurrentGame().isWolfKilled() && PiggysRevenge.getCurrentGame().getPlayer().isHasEaten()) {
             System.out.println("\nAwww... you missed the wolf this time....");
         }
         ScoreView scoreView = new ScoreView();
