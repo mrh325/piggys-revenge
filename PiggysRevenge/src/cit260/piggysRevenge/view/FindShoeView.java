@@ -102,6 +102,7 @@ public class FindShoeView extends View {
             case 2:
                 InventoryControl.equipShoe(result);
                 PiggysRevenge.getCurrentGame().getMap().getLocations()[playerLoc.x][playerLoc.y].setItem(null);
+                this.console.println(PiggysRevenge.getPlayer().getCurrentShoes().getName() + " Equipped.");
         }
     }
 

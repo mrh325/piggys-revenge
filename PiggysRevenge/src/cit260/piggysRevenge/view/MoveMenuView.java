@@ -14,7 +14,6 @@ import piggysrevenge.PiggysRevenge;
 public class MoveMenuView extends View {
     Point playerLoc;
     Point wolfLoc;
-    boolean freeTurn = false;
     
     public MoveMenuView(Point playerLoc, Point wolfLoc) {
         super ();
@@ -25,23 +24,6 @@ public class MoveMenuView extends View {
         //MapControl.drawMap();
         this.drawMenu(playerLoc);
     }
-    
-//    public void display(boolean doOnce) {
-//        // this.console.println("\n*** display() function called ***");
-//        this.doOnce = doOnce;
-//        boolean done = false;
-//        do {
-//            // this.console.println(this.menu);
-//            String value = this.getInput();
-//            if (value.toUpperCase().equals("Q")) {
-//                return;
-//            }
-//
-//            done = this.doAction(value);
-//
-//        } while (!done);
-//
-//    }
 
     @Override
     public boolean doAction(String menuOption) {
@@ -102,42 +84,30 @@ public class MoveMenuView extends View {
         //this.console.println("\n*** moveUp() function called ***");
         //move the player's location
         MapControl.movePlayer(playerLoc,"up");
-        if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes() != null) {
-            this.freeTurn = !("Sneakers".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes().getName()) && this.freeTurn);
-        }
         this.doAfterMove(playerLoc,wolfLoc);
     }
 
     private void moveDown() throws MapControlException {
         //this.console.println("\n*** moveDown() function called ***");
         MapControl.movePlayer(playerLoc,"down");
-        if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes() != null) {
-            this.freeTurn = !("Sneakers".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes().getName()) && this.freeTurn);
-        }
         this.doAfterMove(playerLoc,wolfLoc);
     }
 
     private void moveLeft() throws MapControlException {
         //this.console.println("\n*** moveLeft() function called ***");
         MapControl.movePlayer(playerLoc,"left");
-        if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes() != null) {
-            this.freeTurn = !("Sneakers".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes().getName()) && this.freeTurn);
-        }
         this.doAfterMove(playerLoc,wolfLoc);
     }
 
     private void moveRight() throws MapControlException {
         //this.console.println("\n*** moveRight() function called ***");
         MapControl.movePlayer(playerLoc,"right");
-        if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes() != null) {
-            this.freeTurn = !("Sneakers".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes().getName()) && this.freeTurn);
-        }
         this.doAfterMove(playerLoc,wolfLoc);
     }
 
     private void displayMap() {
 //        this.console.println("\n*** displayMap() function called ***");
-        this.console.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        this.console.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         MapView mapView = new MapView();
         mapView.display();
         //MapControl.drawMap();
@@ -185,9 +155,12 @@ public class MoveMenuView extends View {
     private void doAfterMove(Point playerLoc,Point wolfLoc) {
         
         //move the wolf
-        this.console.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+        this.console.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes() != null) {
-            if ("Sneakers".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes().getName()) && this.freeTurn) {
+            if (
+                "Sneakers".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes().getName())
+                && !PiggysRevenge.getCurrentGame().isWolfMovesThisTurn()
+               ) {
                 this.console.println("You're Wearing Sneakers --> The wolf didn't move this turn.");
             } else {
                 this.console.println("The Wolf moved.");

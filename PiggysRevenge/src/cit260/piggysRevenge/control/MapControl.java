@@ -490,6 +490,16 @@ public class MapControl {
         if (PiggysRevenge.getCurrentGame().getTurnsRemaining() > -1) {
             PiggysRevenge.getCurrentGame().setTurnsRemaining(PiggysRevenge.getCurrentGame().getTurnsRemaining()-1);
         }
+        //toggle wolfMovesThisTurn for sneakers
+        try {
+            if (PiggysRevenge.getCurrentGame().isWolfMovesThisTurn()) {
+                PiggysRevenge.getCurrentGame().setWolfMovesThisTurn(false);
+            } else {
+                PiggysRevenge.getCurrentGame().setWolfMovesThisTurn(true);
+            }
+        } catch (NullPointerException e) {
+            throw new MapControlException("WolfMovesTHisTurn is null: " + e.getMessage());
+        }
     }
     
     public static void moveWolf(Point wolfLoc) {

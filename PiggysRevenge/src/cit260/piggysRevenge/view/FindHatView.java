@@ -105,6 +105,7 @@ public class FindHatView extends View {
             case 2:
                 InventoryControl.equipHat(result);
                 PiggysRevenge.getCurrentGame().getMap().getLocations()[playerLoc.x][playerLoc.y].setItem(null);
+                this.console.println(PiggysRevenge.getPlayer().getCurrentHat().getName() + " Equipped.");
         }
         
     }

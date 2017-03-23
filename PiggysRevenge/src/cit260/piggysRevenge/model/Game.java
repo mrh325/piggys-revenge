@@ -20,6 +20,7 @@ public class Game implements Serializable{
     private int turnsRemaining;
     private int score;
     private boolean wolfKilled;
+    private boolean wolfMovesThisTurn;
     private Player player;
     private Wolf wolf;
     private House house;
@@ -32,6 +33,7 @@ public class Game implements Serializable{
         this.wolfKilled = false;
         this.highScores = new ArrayList<>();
         this.turnsRemaining = -1;
+        this.wolfMovesThisTurn = true;
     }
     
     public Map getMap() {
@@ -76,6 +78,14 @@ public class Game implements Serializable{
 
     public void setWolfKilled(boolean wolfKilled) {
         this.wolfKilled = wolfKilled;
+    }
+
+    public boolean isWolfMovesThisTurn() {
+        return wolfMovesThisTurn;
+    }
+
+    public void setWolfMovesThisTurn(boolean wolfMovesThisTurn) {
+        this.wolfMovesThisTurn = wolfMovesThisTurn;
     }
     
     public Player getPlayer() {
@@ -126,6 +136,7 @@ public class Game implements Serializable{
         hash = 29 * hash + this.turnsRemaining;
         hash = 29 * hash + this.score;
         hash = 29 * hash + (this.wolfKilled ? 1 : 0);
+        hash = 29 * hash + (this.wolfMovesThisTurn ? 1 : 0);
         hash = 29 * hash + Objects.hashCode(this.player);
         hash = 29 * hash + Objects.hashCode(this.wolf);
         hash = 29 * hash + Objects.hashCode(this.house);
@@ -158,6 +169,9 @@ public class Game implements Serializable{
         if (this.wolfKilled != other.wolfKilled) {
             return false;
         }
+        if (this.wolfMovesThisTurn != other.wolfMovesThisTurn) {
+            return false;
+        }
         if (!Objects.equals(this.map, other.map)) {
             return false;
         }
@@ -181,7 +195,7 @@ public class Game implements Serializable{
 
     @Override
     public String toString() {
-        return "Game{" + "map=" + map + ", turns=" + turns + ", turnsRemaining=" + turnsRemaining + ", score=" + score + ", wolfKilled=" + wolfKilled + ", player=" + player + ", wolf=" + wolf + ", house=" + house + ", backpack=" + backpack + ", highScores=" + highScores + '}';
+        return "Game{" + "map=" + map + ", turns=" + turns + ", turnsRemaining=" + turnsRemaining + ", score=" + score + ", wolfKilled=" + wolfKilled + ", wolfMovesThisTurn=" + wolfMovesThisTurn + ", player=" + player + ", wolf=" + wolf + ", house=" + house + ", backpack=" + backpack + ", highScores=" + highScores + '}';
     }    
         
 }

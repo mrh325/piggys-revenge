@@ -75,8 +75,8 @@ class DistanceView extends View {
         //bubble sort all three arrays (distance, points, names)
         if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes() != null) {            
             if ("Alien Boots from Outer Space".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes().getName())) {
-                for (int n = 0; n < 5; n++) {
-                    for (int m = 0; m < 4 - n; m++) {
+                for (int n = 0; n < distances.length+1; n++) {
+                    for (int m = 0; m < 5 - n; m++) {
                         if (distances[m] > distances[m + 1]) {
                             Double swapDouble = distances[m];
                             distances[m] = distances[m + 1];
@@ -96,7 +96,7 @@ class DistanceView extends View {
         //this.console.println("distances sorted:  ");
         //this.console.println(Arrays.toString(distances));
         //display sorted List of actors and wolf
-        this.console.println("\nDISTANCES\n");
+        this.console.println("DISTANCES:\n");
         StringBuilder line = new StringBuilder("                                         ");
         line.insert(4, "ACTOR");
         line.insert(25, "DISTANCE");
