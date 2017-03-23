@@ -20,7 +20,7 @@ public class FindPiggyView extends View {
     String piggyAsciiArt = "\n\nYOU HAVE FOUND A PIGGY!";
     
     public FindPiggyView() {
-        System.out.println(this.piggyAsciiArt);
+        this.console.println(this.piggyAsciiArt);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class FindPiggyView extends View {
                 }
             }
         }
-        System.out.println("\n\n"
+        this.console.println("\n\n"
                 + "         ___\n" +
 "         ',_`\"\"\\        .---,\n" +
 "            \\   :-\"\"``/`    |\n" +
@@ -68,10 +68,10 @@ public class FindPiggyView extends View {
                 + ".  You found me!  I am "
                 + map.getLocations()[playerCoords.x][playerCoords.y].getActor().getDescription());
         if (unvisitedPiggys == 0) {
-            System.out.println(".\nI was the last piggy to find! The builder will"
+            this.console.println(".\nI was the last piggy to find! The builder will"
                     + "\nnow build the house for you.");
         } else {
-            System.out.println(".\nThere are still "
+            this.console.println(".\nThere are still "
                     + unvisitedPiggys
                     + " Piggys left to find before the builder will build your house.");
         }
@@ -82,18 +82,16 @@ public class FindPiggyView extends View {
 
     @Override
     public boolean doAction(String value) {
-        System.out.println("\n*** doAction() in FindPiggyView called ***");
+        this.console.println("\n*** doAction() in FindPiggyView called ***");
         return true;
     }
     
     private void pressAnyKeyToContinue() {
         try
         {
-            Scanner keyIn = new Scanner(System.in);
-
             System.out.print("Press the enter key to continue");
-            keyIn.nextLine();
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            this.keyboard.readLine();
+            this.console.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         }  
         catch(Exception e)
         {}          

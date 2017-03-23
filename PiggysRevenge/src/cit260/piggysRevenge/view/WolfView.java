@@ -70,28 +70,28 @@ public class WolfView extends View {
             + "\n\nYOU HAVE ENCOUNTERED THE WOLF!!";
     
     public WolfView() {
-        System.out.println(this.wolfAsciiArt);
+        this.console.println(this.wolfAsciiArt);
     }
 
     @Override
     public void display() {
         try
         {
-            Scanner keyIn = new Scanner(System.in);
+
 
             System.out.print("Press the enter key to continue");
-            keyIn.nextLine();
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            this.keyboard.readLine();
+            this.console.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         }  
         catch(Exception e)
         {}
         if (PiggysRevenge.getPlayer().isHasEaten()) {
             PiggysRevenge.getCurrentGame().setWolfKilled(true);
-            System.out.println("You have captured the wolf and rid the forest of"
+            this.console.println("You have captured the wolf and rid the forest of"
                     + "\ndanger for the rest of your days.  Great Job!"
                     + "\nBonus points for you!");
         } else {
-            System.out.println("Without the superpig strength given to you"
+            this.console.println("Without the superpig strength given to you"
                     + "\nby eating the roast beef, you are overcome by the"
                     + "\nthe wolf and YOU DIE.");            
         }
@@ -103,7 +103,7 @@ public class WolfView extends View {
 
     @Override
     public boolean doAction(String value) {
-        System.out.println("\n*** doAction() in WolfView called ***");
+        this.console.println("\n*** doAction() in WolfView called ***");
         return true;
     }
     

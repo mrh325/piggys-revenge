@@ -47,10 +47,10 @@ public class MainMenuView extends View{
     
 
 //    public void displayMainMenuView() {
-//        // System.out.println("\n*** displayMainMenuView() function called ***");
+//        // this.console.println("\n*** displayMainMenuView() function called ***");
 //        boolean done = false;
 //        do {
-//            System.out.println(this.menu);
+//            this.console.println(this.menu);
 //            String menuOption = this.getMenuOption();
 //            if (menuOption.toUpperCase().equals("Q"))
 //                return;
@@ -63,19 +63,19 @@ public class MainMenuView extends View{
 //    }
 //
 //    private String getMenuOption() {
-//        // System.out.println("\n*** getMenuOption() function called ***");
+//        // this.console.println("\n*** getMenuOption() function called ***");
 //        Scanner keyboard = new Scanner(System.in); 
 //        String value = "";
 //        boolean valid = false;
 //
 //        while (!valid) {
-//            System.out.println("\nPlease choose from the options above: ");
+//            this.console.println("\nPlease choose from the options above: ");
 //
 //            value = keyboard.nextLine();
 //            value = value.trim();
 //
 //            if (value.length() < 1 || value.length() > 1) {
-//                System.out.println("\nInvalid value: Please re-enter");
+//                this.console.println("\nInvalid value: Please re-enter");
 //                continue;
 //}
 //        break;
@@ -85,7 +85,7 @@ public class MainMenuView extends View{
 
     @Override
     public boolean doAction(String value) {
-        // System.out.println("\n*** doAction() function called ***");
+        // this.console.println("\n*** doAction() function called ***");
         
         value = value.toUpperCase();
         
@@ -98,7 +98,7 @@ public class MainMenuView extends View{
                 try {
                     this.displayGameMenu();
                 } catch (NullPointerException e) {
-                    System.out.println("\n*** ERROR:  No game in progress ***");
+                    this.console.println("\n*** ERROR:  No game in progress ***");
                 }
                 break;
             case "L":
@@ -108,21 +108,21 @@ public class MainMenuView extends View{
                 try {
                     this.saveGame();
                 } catch (NullPointerException e) {
-                    System.out.println("\n*** ERROR:  No game in progress ***");
+                    this.console.println("\n*** ERROR:  No game in progress ***");
                 }
                 break;
             case "H":
                 this.displayHelpMenu();
                 break;
             default:
-                System.out.println("\n*** Invalid selection *** Try again ***");
+                this.console.println("\n*** Invalid selection *** Try again ***");
                 break;
         }
         return false;
     }
 
     private void startNewGame() {
-        // System.out.println("\n*** startNewGame() function called ***");
+        // this.console.println("\n*** startNewGame() function called ***");
         //Don't erase a current game unless the player confirms
         if (PiggysRevenge.getCurrentGame() != null) {
             this.displayMessage = "\n-----------------------------------------------------------------"
@@ -136,7 +136,7 @@ public class MainMenuView extends View{
                     this.displayMessage = this.menuCurrentGame;
                     return;
                 default:
-                    System.out.println("\n-----------------------------------------------------------------"
+                    this.console.println("\n-----------------------------------------------------------------"
                             + "\nERROR: Please enter Y or N"
                             + "\n-----------------------------------------------------------------");
             }
@@ -161,7 +161,7 @@ public class MainMenuView extends View{
                 HouseSizeView houseSizeView = new HouseSizeView();
                 houseSizeView.display();
             } catch (Exception e) {
-                System.out.println(e.getMessage());
+                this.console.println(e.getMessage());
                 done = false;
             }
         }
@@ -172,21 +172,21 @@ public class MainMenuView extends View{
     }
 
     private void displayGameMenu() {
-        //System.out.println("\n*** displayGameMenu() function called ***");
+        //this.console.println("\n*** displayGameMenu() function called ***");
 
         this.gameMenu.display();
     }
 
     private void loadSavedGame() {
-        System.out.println("\n*** loadSavedGame() function called ***");
+        this.console.println("\n*** loadSavedGame() function called ***");
     }
 
     private void saveGame() {
-        System.out.println("\n*** saveGame() function called ***");
+        this.console.println("\n*** saveGame() function called ***");
     }
 
     private void displayHelpMenu() {
-        // System.out.println("\n*** displayHelpMenu() function called ***");
+        // this.console.println("\n*** displayHelpMenu() function called ***");
     
         HelpMenuView helpMenu = new HelpMenuView();
         helpMenu.display();

@@ -13,6 +13,7 @@ import cit260.piggysRevenge.model.Location;
 import cit260.piggysRevenge.model.SceneType;
 import cit260.piggysRevenge.model.Map;
 import cit260.piggysRevenge.model.Scene;
+import cit260.piggysRevenge.view.ErrorView;
 import cit260.piggysRevenge.view.FindBricksView;
 import cit260.piggysRevenge.view.FindBuilderView;
 import cit260.piggysRevenge.view.FindHatView;
@@ -91,7 +92,7 @@ public class MapControl {
     }
 
     public static Map createMap() {
-        // System.out.println("*** createMap() called ***");
+        // this.console.println("*** createMap() called ***");
         
         Map map = new Map(7, 7); //set map size here
         
@@ -102,7 +103,7 @@ public class MapControl {
     }
 
     private static Scene[] createScenes(Map map) {
-        // System.out.println("*** Scene function called***");
+        // this.console.println("*** Scene function called***");
         //we need to create as many scenes as there are map locations
         int totalMapLocations = map.getColumnCount()*map.getRowCount();
         Scene[] scenes = new Scene[totalMapLocations];
@@ -232,12 +233,12 @@ public class MapControl {
         startingScene.setMapSymbol(" @ ");
         scenes[totalMapLocations/2] = startingScene;
         
-        //System.out.println(Arrays.toString(scenes));
+        //this.console.println(Arrays.toString(scenes));
         return scenes;
     }
 
     static void moveActorsToStartingLocation(Map map) {
-        // System.out.println("*** assignScenesToLocations called ***");
+        // this.console.println("*** assignScenesToLocations called ***");
         //pick random, unique locations for actors and assign the actor to those locations.
         Location[][] locations = map.getLocations();
         Point[] tempPoints = new Point[Actor.values().length];
@@ -253,7 +254,7 @@ public class MapControl {
             tempPoints[i] = point;
             //and assign the next actor in the Actor class to the chosen location.
             locations[point.x][point.y].setActor(Actor.values()[i]);
-            //System.out.println("adding " + Actor.values()[i] + " to " + point.x + "," + point.y);
+            //this.console.println("adding " + Actor.values()[i] + " to " + point.x + "," + point.y);
         }
     }
 
@@ -274,15 +275,15 @@ public class MapControl {
 
                 //check to make sure the point is unique
                 for (Point temp : tempPoints) {
-//                    System.out.println("temp and point:");
-//                    System.out.println(temp);
-//                    System.out.println(point);
+//                    this.console.println("temp and point:");
+//                    this.console.println(temp);
+//                    this.console.println(point);
                     if (temp==null) {
                         pickNewLocation = false;
                         break;
                     } else if (temp.equals(point)) {
-//                        System.out.println("SAME POINT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//                        System.out.println(point);
+//                        this.console.println("SAME POINT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//                        this.console.println(point);
                         pickNewLocation = true;
                         break;
                     } else {
@@ -295,18 +296,18 @@ public class MapControl {
     }
     
     public static Point[] getActorPoints(Map map) {
-         //System.out.println("*** getActorPoints called ***");
+         //this.console.println("*** getActorPoints called ***");
          //create array to save actor points
          Point[] actorPoints = new Point[Actor.values().length];
          //get the map locations
-//         System.out.println("All Actors:  ");
+//         this.console.println("All Actors:  ");
          
          Location[][] locations = map.getLocations();
          int nextIndex = 0;
          //go through each location to find the actors
          for (Location[] array1 : locations) {
             for (Location location : array1) {
-//                System.out.println(location.getActor());
+//                this.console.println(location.getActor());
                 //if the location has an actor
                 if (location.getActor() != null) {
                     //store the actor's coordinates as a point in the point array
@@ -317,26 +318,26 @@ public class MapControl {
             }
          }
          if (nextIndex != Actor.values().length) {
-             System.out.println("ERROR:  not enough points in getActorPoints()");
+             ErrorView.display(MapControl.class.getName(), "ERROR:  not enough points in getActorPoints()");
          }
-         //System.out.println("ActorPoints:  ");
-         //System.out.println(Arrays.toString(actorPoints)); //testing
+         //this.console.println("ActorPoints:  ");
+         //this.console.println(Arrays.toString(actorPoints)); //testing
          return actorPoints;
     }
     
     public static String[] getActorNames(Map map) {
-         //System.out.println("*** getActorPoints called ***");
+         //this.console.println("*** getActorPoints called ***");
          //create array to save actor points
          String[] actorNames = new String[Actor.values().length];
          //get the map locations
-//         System.out.println("All Actors:  ");
+//         this.console.println("All Actors:  ");
          
          Location[][] locations = map.getLocations();
          int nextIndex = 0;
          //go through each location to find the actors
          for (Location[] array1 : locations) {
             for (Location location : array1) {
-//                System.out.println(location.getActor());
+//                this.console.println(location.getActor());
                 //if the location has an actor
                 if (location.getActor() != null) {
                     //store the actor's coordinates as a point in the point array
@@ -347,15 +348,15 @@ public class MapControl {
             }
          }
          if (nextIndex != Actor.values().length) {
-             System.out.println("ERROR:  not enough names in getActorNames()");
+             ErrorView.display(MapControl.class.getName(), "ERROR:  not enough names in getActorNames()");
          }
-         //System.out.println("ActorPoints:  ");
-         //System.out.println(Arrays.toString(actorPoints)); //testing
+         //this.console.println("ActorPoints:  ");
+         //this.console.println(Arrays.toString(actorPoints)); //testing
          return actorNames;
     }
 
     static void moveItemsToStartingLocation(Map map,Item[] items) {
-        // System.out.println("*** moveItemsToStartingLocations called ***");
+        // this.console.println("*** moveItemsToStartingLocations called ***");
         //pick random, unique locations for items and assign the item to those locations.
         Location[][] locations = map.getLocations();
         Point[] tempPoints = new Point[ItemType.values().length];
@@ -372,7 +373,7 @@ public class MapControl {
             tempPoints[i] = point;
             //and assign the next item in item list to the chosen location.
             locations[point.x][point.y].setItem(items[i]);
-            //System.out.println("adding " + items[i] + " to " + point.x + "," + point.y);
+            //this.console.println("adding " + items[i] + " to " + point.x + "," + point.y);
         }
     }
 
@@ -393,15 +394,15 @@ public class MapControl {
 
                 //check to make sure the point is unique
                 for (Point temp : tempPoints) {
-//                    System.out.println("temp and point:");
-//                    System.out.println(temp);
-//                    System.out.println(point);
+//                    this.console.println("temp and point:");
+//                    this.console.println(temp);
+//                    this.console.println(point);
                     if (temp==null) {
                         pickNewLocation = false;
                         break;
                     } else if (temp.equals(point)) {
-//                        System.out.println("SAME POINT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//                        System.out.println(point);
+//                        this.console.println("SAME POINT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//                        this.console.println(point);
                         pickNewLocation = true;
                         break;
                     } else {
@@ -414,7 +415,7 @@ public class MapControl {
     }
     
     public static void movePlayer(Point playerLoc,String dir) throws MapControlException {
-        //System.out.println("*** movePlayer() called ***");
+        //this.console.println("*** movePlayer() called ***");
         Location[][] locations = PiggysRevenge.getCurrentGame().getMap().getLocations();
         switch (dir) {
             case "left":
@@ -543,17 +544,17 @@ public class MapControl {
             //draw the title
             StringBuilder line = new StringBuilder(emptyLine);
             //String mapTitle = "The Far Away Land of Nonsense";
-            //System.out.println(mapTitle.length()/2);
-            //System.out.println(line.toString().length()/2);
+            //this.console.println(mapTitle.length()/2);
+            //this.console.println(line.toString().length()/2);
             //line.insert(10, mapTitle);
-            //System.out.println(line.toString());
+            //this.console.println(line.toString());
 
             //draw a line.
             String aLine = "";
             for (int i = 0; i <= columns*5+10; i++ ) {
                 aLine += "–";
             }
-            System.out.println(aLine);
+            this.console.println(aLine);
 
             //draw column headers
             //line = new StringBuilder(emptyLine);
@@ -562,7 +563,7 @@ public class MapControl {
                 line.insert(insertPoint,"| " + ch + " |");
                 ch++;
             }
-            System.out.println(line.toString());
+            this.console.println(line.toString());
 
             //draw the rows
             for (int currentRow = 1; currentRow <= PiggysRevenge.getCurrentGame().getMap().getRowCount(); currentRow++) {
@@ -571,15 +572,15 @@ public class MapControl {
                 for (int currentColumn = 0; currentColumn < columns; currentColumn++) {
                     line.insert(10+currentColumn*5,"|" + locations[currentRow-1][currentColumn].getScene().mapSymbol() + "|");
                 }
-                System.out.println(line.toString());
+                this.console.println(line.toString());
             }
-//            System.out.println("\nCurrent Scence: "
+//            this.console.println("\nCurrent Scence: "
 //                    + locations[PiggysRevenge.getCurrentGame().getPlayer().getCoordinates().x][PiggysRevenge.getCurrentGame().getPlayer().getCoordinates().y].getScene().getName());
-            System.out.println("\nKEY:  	. Unvisited");
-            System.out.println("	# Visited");
-            System.out.println("	@ You (" + String.valueOf((char)('A' + PiggysRevenge.getCurrentGame().getPlayer().getCoordinates().y)) + (PiggysRevenge.getCurrentGame().getPlayer().getCoordinates().x+1) + ")");
-            System.out.println("	P A Little Piggy");
-            System.out.println("	B The Builder");
+            this.console.println("\nKEY:  	. Unvisited");
+            this.console.println("	# Visited");
+            this.console.println("	@ You (" + String.valueOf((char)('A' + PiggysRevenge.getCurrentGame().getPlayer().getCoordinates().y)) + (PiggysRevenge.getCurrentGame().getPlayer().getCoordinates().x+1) + ")");
+            this.console.println("	P A Little Piggy");
+            this.console.println("	B The Builder");
         }
 
     public static void checkUnvisitedActorCollision(Point playerLoc) {
@@ -631,7 +632,7 @@ public class MapControl {
                 }
             }
         }
-        //System.out.println("Getting: " + getting);
+        //this.console.println("Getting: " + getting);
     }
     
     static void seedBricksToSingleLocation(Map map) {
@@ -646,7 +647,7 @@ public class MapControl {
                 break;
             }
         }
-        //System.out.println("seeded to single location");
+        //this.console.println("seeded to single location");
     }
 
     public static void deleteBricks(Map map) {
@@ -657,7 +658,7 @@ public class MapControl {
                 locationy.setBricks(0);
             }
         }
-        //System.out.println("Getting: " + getting);
+        //this.console.println("Getting: " + getting);
     }
     
     public static void checkBrickCollection(Point playerLoc) {

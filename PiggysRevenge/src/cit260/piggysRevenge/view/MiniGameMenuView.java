@@ -28,7 +28,7 @@ class MiniGameMenuView extends View {
 
     @Override
     public boolean doAction(String menuOption) {
-        // System.out.println("\n*** doAction() function called ***");
+        // this.console.println("\n*** doAction() function called ***");
         
         menuOption = menuOption.toUpperCase();
         
@@ -43,14 +43,14 @@ class MiniGameMenuView extends View {
             case "Q":
                 return true;
             default:
-                System.out.println("\n*** Invalid selection *** Try again ***");
+                this.console.println("\n*** Invalid selection *** Try again ***");
                 break;
         }
         return false;    
     }
 
     private void startNewMiniGame() {
-        //System.out.println("\n*** startNewMiniGame() function called ***");
+        //this.console.println("\n*** startNewMiniGame() function called ***");
         
         MiniGame miniGame = new MiniGame();
         miniGame.setComboOrder("1234");
@@ -60,7 +60,7 @@ class MiniGameMenuView extends View {
     }
     
     private void displayHelpMenu() {
-        // System.out.println("\n*** displayHelpMenu() function called ***");
+        // this.console.println("\n*** displayHelpMenu() function called ***");
     
         HelpMenuView helpMenu = new HelpMenuView();
         helpMenu.display();

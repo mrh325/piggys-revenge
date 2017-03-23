@@ -16,6 +16,7 @@ import cit260.piggysRevenge.model.Map;
 import cit260.piggysRevenge.model.Player;
 import cit260.piggysRevenge.model.Scene;
 import cit260.piggysRevenge.model.Wolf;
+import cit260.piggysRevenge.view.ErrorView;
 import java.awt.Point;
 import java.io.IOException;
 import static java.lang.Math.round;
@@ -118,9 +119,10 @@ public class GameControl {
     }
 
     public static void createNewGame(Player player) {
-        //System.out.println("\n*** createNewGame() function called ***");
+        //this.console.println("\n*** createNewGame() function called ***");
         if (player == null) {
-            System.out.println("\n*** Error:  player is null ***");
+            ErrorView.display(GameControl.class.getName(), "Player is null.");
+                    
         } else {
             Game game = new Game();
             PiggysRevenge.setCurrentGame(game);
@@ -137,7 +139,7 @@ public class GameControl {
             //set player's starting coordinates
             Point point = new Point(map.getColumnCount()/2,map.getRowCount()/2);
             player.setCoordinates(point);
-            //System.out.println(player.toString());
+            //this.console.println(player.toString());
             
             game.setWolf(GameControl.createNewWolf(map));
 
@@ -149,19 +151,19 @@ public class GameControl {
     }
 
     public static House createNewHouse() {
-        //System.out.println("\n*** createNewHouse() function called ***");
+        //this.console.println("\n*** createNewHouse() function called ***");
         House house = new House(0,0,0,0);
         return house;
     }
 
     public static Backpack createNewBackpack() {
-        //System.out.println("\n*** createNewBackpack() function called ***");
+        //this.console.println("\n*** createNewBackpack() function called ***");
         Backpack backpack = new Backpack(new Item[2][3]);
         return backpack;
     }
     
     public static Wolf createNewWolf(Map map) {
-        //System.out.println("\n*** createNewWolf() function called ***");
+        //this.console.println("\n*** createNewWolf() function called ***");
         //set wolf's starting coordinates
         Wolf wolf = new Wolf();
         //give wolf a random name
@@ -183,13 +185,13 @@ public class GameControl {
         wolf.setCoordinates(point);
         Location[][] locations = map.getLocations();
         locations[point.x][point.y].setContainsWolf(true);
-        //System.out.println("Wolf coords is:  ");
-        //System.out.println(wolf.toString());
+        //this.console.println("Wolf coords is:  ");
+        //this.console.println(wolf.toString());
         return wolf;
     }
 
     private static Item[] createItems(Map map) {
-        // System.out.println("*** Scene function called***");
+        // this.console.println("*** Scene function called***");
         //we need to create as many scenes as there are map locations
         //int totalMapLocations = map.getColumnCount() * map.getRowCount();
         Item[] items = new Item[ItemType.values().length];
@@ -206,7 +208,7 @@ public class GameControl {
     }
     
     public static void assignScenesToLocations(Map map, Scene[] scenes) {
-        //System.out.println("*** assignScenesToLocations called ***");
+
         Location[][] locations = map.getLocations();
         
         for (int i = 0; i < map.getColumnCount(); i++) {
@@ -216,8 +218,8 @@ public class GameControl {
 //                    locations[i][j].setVisited(Boolean.TRUE);
 //                } else {
                 if (scenes[i*map.getRowCount()+j] == null) {
-                    System.out.println(i*map.getRowCount()+j);
-                    System.out.println(scenes[i*map.getRowCount()+j]);   
+                    ErrorView.display(GameControl.class.getName(), Integer.toString(i*map.getRowCount()+j));
+                    ErrorView.display(GameControl.class.getName(), scenes[i*map.getRowCount()+j].toString());   
                 }
                 locations[i][j].setScene(scenes[(i*map.getRowCount()+j)]);
 //                }

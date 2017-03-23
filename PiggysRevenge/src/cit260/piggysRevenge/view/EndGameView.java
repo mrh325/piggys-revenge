@@ -11,16 +11,22 @@ import piggysrevenge.PiggysRevenge;
  *
  * @author natebolton
  */
-class EndGameView {
+class EndGameView extends View {
 
-    void display() {
+    @Override
+    public void display() {
         if (!PiggysRevenge.getCurrentGame().isWolfKilled() && PiggysRevenge.getCurrentGame().getPlayer().isHasEaten()) {
-            System.out.println("\nAwww... you missed the wolf this time....");
+            this.console.println("\nAwww... you missed the wolf this time....");
         }
         ScoreView scoreView = new ScoreView();
         scoreView.display();
-        System.out.println("\nThank you for playing.  The game will now exit.");
+        this.console.println("\nThank you for playing.  The game will now exit.");
         System.exit(0);
+    }
+
+    @Override
+    public boolean doAction(String value) {
+        return true;
     }
     
 }

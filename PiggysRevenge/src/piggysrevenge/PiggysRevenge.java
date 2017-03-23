@@ -7,6 +7,10 @@ package piggysrevenge;
 
 import cit260.piggysRevenge.model.*;
 import cit260.piggysRevenge.view.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 /**
  *
  * @author hales
@@ -18,10 +22,23 @@ public class PiggysRevenge {
     private static Game currentGame = null;
     private static Player player = null;
     
-    public static void main(String[] args) {
-
-        StartProgramView startProgramView = new StartProgramView();
+    private static PrintWriter outFile = null;
+    private static BufferedReader inFile = null;
+    
+    private static PrintWriter logFile = null;
+    
+    public static void main(String[] args) throws IOException {
+        
         try {
+            
+            PiggysRevenge.inFile = new BufferedReader(new InputStreamReader(System.in));
+            PiggysRevenge.outFile = new PrintWriter(System.out, true);
+            
+            String filePath = "log.txt";
+            PiggysRevenge.logFile = new PrintWriter(filePath);
+            
+            StartProgramView startProgramView = new StartProgramView();
+//        try {
         startProgramView.display();
     } catch (Throwable te) {
         System.out.println("The game encountered an error and will close.");
@@ -29,6 +46,20 @@ public class PiggysRevenge {
         te.printStackTrace();
         System.exit(0);
     }
+        finally {
+            try {
+                if (PiggysRevenge.inFile != null)
+                    PiggysRevenge.inFile.close();
+                if (PiggysRevenge.outFile !=null)
+                   PiggysRevenge.outFile.close();
+                if (PiggysRevenge.logFile != null)
+                    PiggysRevenge.logFile.close();
+            } catch (IOException ex) {
+                System.out.println("Error closing files");
+                return;
+                
+            }
+        }
     }
 
     public static Game getCurrentGame() {
@@ -46,6 +77,32 @@ public class PiggysRevenge {
     public static void setPlayer(Player player) {
         PiggysRevenge.player = player;
     }
+
+    public static PrintWriter getOutFile() {
+        return outFile;
+    }
+
+    public static void setOutFile(PrintWriter outFile) {
+        PiggysRevenge.outFile = outFile;
+    }
+
+    public static BufferedReader getInFile() {
+        return inFile;
+    }
+
+    public static void setInFile(BufferedReader inFile) {
+        PiggysRevenge.inFile = inFile;
+    }
+
+    public static PrintWriter getLogFile() {
+        return logFile;
+    }
+
+    public static void setLogFile(PrintWriter logFile) {
+        PiggysRevenge.logFile = logFile;
+    }
+    
+    
 
 }
 

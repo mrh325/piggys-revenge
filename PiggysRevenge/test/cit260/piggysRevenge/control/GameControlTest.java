@@ -6,6 +6,7 @@
 package cit260.piggysRevenge.control;
 
 import cit260.piggysRevenge.exceptions.GameControlException;
+import cit260.piggysRevenge.view.ErrorView;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -25,8 +26,8 @@ public class GameControlTest {
      */
     @Test
     public void testCalcScore() throws GameControlException {
-        System.out.println("calcScore");
-        System.out.println("Test1 - Valid1");
+        ErrorView.display(GameControlTest.class.getName(), "calcScore");
+        ErrorView.display(GameControlTest.class.getName(), "Test1 - Valid1");
         int numberOfBricks = 250;
         int numberOfTurns = 35;
         boolean hasEaten = false;
@@ -36,7 +37,7 @@ public class GameControlTest {
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         // fail("The test case is a prototype.");
-        System.out.println("Test2 - Valid2");
+        ErrorView.display(GameControlTest.class.getName(), "Test2 - Valid2");
         numberOfBricks = 250;
         numberOfTurns = 35;
         hasEaten = true;
@@ -45,7 +46,7 @@ public class GameControlTest {
         result = GameControl.calcScore(numberOfBricks, numberOfTurns, hasEaten, wolfKilled);
         assertEquals(expResult, result);
 
-        System.out.println("Test3 - Valid3");
+        ErrorView.display(GameControlTest.class.getName(), "Test3 - Valid3");
         numberOfBricks = 250;
         numberOfTurns = 35;
         hasEaten = true;
@@ -54,7 +55,7 @@ public class GameControlTest {
         result = GameControl.calcScore(numberOfBricks, numberOfTurns, hasEaten, wolfKilled);
         assertEquals(expResult, result);
         
-        System.out.println("Test4 - invalid1 - numberOfBricks");
+        ErrorView.display(GameControlTest.class.getName(), "Test4 - invalid1 - numberOfBricks");
         numberOfBricks = -1;
         numberOfTurns = 35;
         hasEaten = true;
@@ -63,7 +64,7 @@ public class GameControlTest {
         result = GameControl.calcScore(numberOfBricks, numberOfTurns, hasEaten, wolfKilled);
         assertEquals(expResult, result);
         
-        System.out.println("Test5 - invalid2 - numberOfTurns");
+        ErrorView.display(GameControlTest.class.getName(), "Test5 - invalid2 - numberOfTurns");
         numberOfBricks = 300;
         numberOfTurns = -5;
         hasEaten = false;
@@ -72,7 +73,7 @@ public class GameControlTest {
         result = GameControl.calcScore(numberOfBricks, numberOfTurns, hasEaten, wolfKilled);
         assertEquals(expResult, result);
         
-        System.out.println("Test6 - invalid3 - wolfkilled but not eaten");
+        ErrorView.display(GameControlTest.class.getName(), "Test6 - invalid3 - wolfkilled but not eaten");
         numberOfBricks = 250;
         numberOfTurns = 35;
         hasEaten = false;
@@ -81,7 +82,7 @@ public class GameControlTest {
         result = GameControl.calcScore(numberOfBricks, numberOfTurns, hasEaten, wolfKilled);
         assertEquals(expResult, result);
         
-        System.out.println("Test4 - lower boundary - 0 Score");
+        ErrorView.display(GameControlTest.class.getName(), "Test4 - lower boundary - 0 Score");
         numberOfBricks = 0;
         numberOfTurns = 1;
         hasEaten = false;
@@ -99,8 +100,8 @@ public class GameControlTest {
      */
     @Test
     public void testCalcNumberOfBricks() throws GameControlException {
-        System.out.println("calcNumberOfBricks");
-        System.out.println("Test 1 - Length - Invalid");
+        ErrorView.display(GameControlTest.class.getName(), "calcNumberOfBricks");
+        ErrorView.display(GameControlTest.class.getName(), "Test 1 - Length - Invalid");
         int length = -3;
         int width = 6;
         int height = 10;
@@ -112,7 +113,7 @@ public class GameControlTest {
         // TODO review the generated test code and remove the default call to fail.
         // fail("The test case is a prototype.");
         
-        System.out.println("Test 2 - Length - Invalid");
+        ErrorView.display(GameControlTest.class.getName(), "Test 2 - Length - Invalid");
         length = 252;
         width = 6;
         height = 10;
@@ -121,7 +122,7 @@ public class GameControlTest {
         result = GameControl.calcNumberOfBricks(length, width, height, numberOfStories);
         assertEquals(expResult, result);
 
-        System.out.println("Test 3 - Width - Invalid");
+        ErrorView.display(GameControlTest.class.getName(), "Test 3 - Width - Invalid");
         length = 7;
         width = -5;
         height = 9;
@@ -130,7 +131,7 @@ public class GameControlTest {
         result = GameControl.calcNumberOfBricks(length, width, height, numberOfStories);
         assertEquals(expResult, result);
         
-        System.out.println("Test 4 - Width - Invalid");
+        ErrorView.display(GameControlTest.class.getName(), "Test 4 - Width - Invalid");
         length = 7;
         width = 2323;
         height = 8;
@@ -139,7 +140,7 @@ public class GameControlTest {
         result = GameControl.calcNumberOfBricks(length, width, height, numberOfStories);
         assertEquals(expResult, result);
         
-        System.out.println("Test 5 - Height - Invalid");
+        ErrorView.display(GameControlTest.class.getName(), "Test 5 - Height - Invalid");
         length = 13;
         width = 15;
         height = 1;
@@ -148,7 +149,7 @@ public class GameControlTest {
         result = GameControl.calcNumberOfBricks(length, width, height, numberOfStories);
         assertEquals(expResult, result);
         
-        System.out.println("Test 6 - Height - Invalid");
+        ErrorView.display(GameControlTest.class.getName(), "Test 6 - Height - Invalid");
         length = 9;
         width = 11;
         height = 15;
@@ -157,7 +158,7 @@ public class GameControlTest {
         result = GameControl.calcNumberOfBricks(length, width, height, numberOfStories);
         assertEquals(expResult, result);
         
-        System.out.println("Test 7 - numberOfStories - Invalid");
+        ErrorView.display(GameControlTest.class.getName(), "Test 7 - numberOfStories - Invalid");
         length = 14;
         width = 15;
         height = 6;
@@ -166,7 +167,7 @@ public class GameControlTest {
         result = GameControl.calcNumberOfBricks(length, width, height, numberOfStories);
         assertEquals(expResult, result);
         
-        System.out.println("Test 8 - numberOfStories - Invalid");
+        ErrorView.display(GameControlTest.class.getName(), "Test 8 - numberOfStories - Invalid");
         length = 6;
         width = 18;
         height = 6;
@@ -175,7 +176,7 @@ public class GameControlTest {
         result = GameControl.calcNumberOfBricks(length, width, height, numberOfStories);
         assertEquals(expResult, result);
         
-        System.out.println("Test 9 - Valid 1");
+        ErrorView.display(GameControlTest.class.getName(), "Test 9 - Valid 1");
         length = 20;
         width = 8;
         height = 8;
@@ -184,7 +185,7 @@ public class GameControlTest {
         result = GameControl.calcNumberOfBricks(length, width, height, numberOfStories);
         assertEquals(expResult, result);
         
-        System.out.println("Test 10 - Valid 2");
+        ErrorView.display(GameControlTest.class.getName(), "Test 10 - Valid 2");
         length = 13;
         width = 15;
         height = 8;
@@ -193,7 +194,7 @@ public class GameControlTest {
         result = GameControl.calcNumberOfBricks(length, width, height, numberOfStories);
         assertEquals(expResult, result);
         
-        System.out.println("Test 11 - Width Lower Boundary");
+        ErrorView.display(GameControlTest.class.getName(), "Test 11 - Width Lower Boundary");
         length = 11;
         width = 6;
         height = 8;
@@ -202,7 +203,7 @@ public class GameControlTest {
         result = GameControl.calcNumberOfBricks(length, width, height, numberOfStories);
         assertEquals(expResult, result);
         
-        System.out.println("Test 12 - Height Upper Boundary");
+        ErrorView.display(GameControlTest.class.getName(), "Test 12 - Height Upper Boundary");
         length = 13;
         width = 15;
         height = 10;

@@ -7,6 +7,7 @@ package cit260.piggysRevenge.control;
 
 import cit260.piggysRevenge.exceptions.MiniGameControlException;
 import cit260.piggysRevenge.model.MiniGame;
+import cit260.piggysRevenge.view.ErrorView;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -24,10 +25,10 @@ public class MiniGameControlTest {
      */
     @Test
     public void testGenerateComboOrder_String_long() {
-        System.out.println("generateComboOrder");
+        ErrorView.display(MiniGameControlTest.class.getName(), "generateComboOrder");
         
         //TEST 1
-        System.out.println("TEST 1 - VALID");
+        ErrorView.display(MiniGameControlTest.class.getName(), "TEST 1 - VALID");
         MiniGame miniGame = new MiniGame();
         miniGame.setComboOrder("1234");
         long randSeed = 1L;
@@ -39,7 +40,7 @@ public class MiniGameControlTest {
         //fail("The test case is a prototype.");
         
         //TEST 2
-        System.out.println("TEST 2 EMPTY STRING");        
+        ErrorView.display(MiniGameControlTest.class.getName(), "TEST 2 EMPTY STRING");        
         miniGame.setComboOrder("");
         randSeed = 1L;
         MiniGameControl.generateComboOrder(miniGame, randSeed);
@@ -48,7 +49,7 @@ public class MiniGameControlTest {
         assertEquals(expResult, result);
         
         //TEST 3
-        System.out.println("TEST 2 LARGE STRING");
+        ErrorView.display(MiniGameControlTest.class.getName(), "TEST 2 LARGE STRING");
         miniGame.setComboOrder("Stack Overflow is a community of 6.7 million programmers, just like you, helping each other. Join them; it only takes a minute:");
         //inputKeyOrder = "Stack Overflow is a community of 6.7 million programmers, just like you, helping each other. Join them; it only takes a minute:";
         randSeed = 1L;
@@ -63,10 +64,10 @@ public class MiniGameControlTest {
      */
     @Test
     public void testCheckKeyOrder() throws MiniGameControlException {
-        System.out.println("checkKeyOrder");
+        ErrorView.display(MiniGameControlTest.class.getName(), "checkKeyOrder");
         
         //TEST 1
-        System.out.println("TEST 1 VALID"); 
+        ErrorView.display(MiniGameControlTest.class.getName(), "TEST 1 VALID"); 
         String playerOrder = "4321";
         String systemOrder = "4321";
         int expResult = 4;
@@ -76,7 +77,7 @@ public class MiniGameControlTest {
         //fail("The test case is a prototype.");
 
         //TEST 2
-        System.out.println("TEST 2 INVALID EMPTY STRINGS"); 
+        ErrorView.display(MiniGameControlTest.class.getName(), "TEST 2 INVALID EMPTY STRINGS"); 
         playerOrder = "";
         systemOrder = "";
         expResult = -1;
@@ -84,7 +85,7 @@ public class MiniGameControlTest {
         assertEquals(expResult, result);        
 
         //TEST 3
-        System.out.println("TEST 3 INVALID NOT SAME LENGTH"); 
+        ErrorView.display(MiniGameControlTest.class.getName(), "TEST 3 INVALID NOT SAME LENGTH"); 
         playerOrder = "54321";
         systemOrder = "4321";
         expResult = -2;
@@ -92,7 +93,7 @@ public class MiniGameControlTest {
         assertEquals(expResult, result);
 
         //TEST 4
-        System.out.println("TEST 4 INVALID NOT SAME LENGTH, DIFFERENT CHARACTER COUNT"); 
+        ErrorView.display(MiniGameControlTest.class.getName(), "TEST 4 INVALID NOT SAME LENGTH, DIFFERENT CHARACTER COUNT"); 
         playerOrder = "4421";
         systemOrder = "54321";
         expResult = -2;
@@ -100,7 +101,7 @@ public class MiniGameControlTest {
         assertEquals(expResult, result);
         
         //TEST 5
-        System.out.println("TEST 5 INVALID SAME LENGTH, DIFFERENT CHARACTER COUNT"); 
+        ErrorView.display(MiniGameControlTest.class.getName(), "TEST 5 INVALID SAME LENGTH, DIFFERENT CHARACTER COUNT"); 
         playerOrder = "4421";
         systemOrder = "4321";
         expResult = -3;

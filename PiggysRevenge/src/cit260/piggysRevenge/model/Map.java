@@ -5,6 +5,7 @@
  */
 package cit260.piggysRevenge.model;
 
+import cit260.piggysRevenge.view.ErrorView;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Objects;
@@ -23,10 +24,10 @@ public class Map implements Serializable {
     }
 
     public Map(int columnCount, int rowCount) {
-        // System.out.println("*** Map class called ***");
+        // this.console.println("*** Map class called ***");
         
         if (rowCount < 1 || columnCount < 1) {
-            System.out.println("The number of rows and columns must be > zero");
+            ErrorView.display(this.getClass().getName(), "The number of rows and columns must be > zero");
             return;
         }
         

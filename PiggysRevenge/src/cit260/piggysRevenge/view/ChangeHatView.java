@@ -27,20 +27,20 @@ class ChangeHatView extends View {
         }
         System.out.print("\nYou currently have the following hats:\n");
         Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
-        //System.out.println(Arrays.toString(hats[0]));
+        //this.console.println(Arrays.toString(hats[0]));
         int i = 1;
         for (Item hat : itemList[0]) {
             if (hat != null) {
                 System.out.print("\n" + Integer.toString(i) + ":  ");
-                System.out.println(hat.getName());
-                System.out.println(hat.getDescription());
+                this.console.println(hat.getName());
+                this.console.println(hat.getDescription());
                 i++;
             }
         }
         //if i was not incremented, all values are null
         if (i == 1) {
-            System.out.println("--I'm sorry, you don't have any hats yet.");
-            //System.out.println(Arrays.toString(itemList[0]));
+            this.console.println("--I'm sorry, you don't have any hats yet.");
+            //this.console.println(Arrays.toString(itemList[0]));
             return;
         }
         super.display();
@@ -48,7 +48,7 @@ class ChangeHatView extends View {
 
     @Override
     public boolean doAction(String value) {
-        // System.out.println("\n*** doAction() function called in ChangeHatView***");
+        // this.console.println("\n*** doAction() function called in ChangeHatView***");
         
         value = value.toUpperCase();
         Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
@@ -58,7 +58,7 @@ class ChangeHatView extends View {
                     PiggysRevenge.getPlayer().setCurrentHat(itemList[0][0]);
                     return true;
                 } else {
-                    System.out.println("\n*** Invalid selection *** Try again ***");
+                    this.console.println("\n*** Invalid selection *** Try again ***");
                 }
                 break;
             case "2":
@@ -66,7 +66,7 @@ class ChangeHatView extends View {
                     PiggysRevenge.getPlayer().setCurrentHat(itemList[0][1]);
                     return true;
                 } else {
-                    System.out.println("\n*** Invalid selection *** Try again ***");
+                    this.console.println("\n*** Invalid selection *** Try again ***");
                 }
                 break;
             case "3":
@@ -74,7 +74,7 @@ class ChangeHatView extends View {
                     PiggysRevenge.getPlayer().setCurrentHat(itemList[0][2]);
                     return true;
                 } else {
-                    System.out.println("\n*** Invalid selection *** Try again ***");
+                    this.console.println("\n*** Invalid selection *** Try again ***");
                 }
                 break;
             case "N":
@@ -84,7 +84,7 @@ class ChangeHatView extends View {
             case "Q":
                 return true;
             default:
-                System.out.println("\n*** Invalid selection *** Try again ***");
+                this.console.println("\n*** Invalid selection *** Try again ***");
                 break;
         }
         return false; 

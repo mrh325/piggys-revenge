@@ -47,10 +47,10 @@ class DistanceView extends View {
         //variable wolfName needed later
         allNames[index] = PiggysRevenge.getCurrentGame().getWolf().getName() + " the Wolf";
 
-//        System.out.println("allPoints is:  ");
-//        System.out.println(Arrays.toString(allPoints));
-//        System.out.println("Player's coords is:  ");
-//        System.out.println(playerCoords.toString());
+//        this.console.println("allPoints is:  ");
+//        this.console.println(Arrays.toString(allPoints));
+//        this.console.println("Player's coords is:  ");
+//        this.console.println(playerCoords.toString());
         
         //convert list of points to list of distances from player
         double[] distances = new double[allPoints.length];
@@ -66,12 +66,12 @@ class DistanceView extends View {
                        
                 index++;
             } catch (MapControlException ex) {
-                System.out.println(ex.getMessage());
+                this.console.println(ex.getMessage());
             }
         }
         //sort lists
-        //System.out.println("distances unsorted:  ");
-        //System.out.println(Arrays.toString(distances));
+        //this.console.println("distances unsorted:  ");
+        //this.console.println(Arrays.toString(distances));
         //bubble sort all three arrays (distance, points, names)
         if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes() != null) {            
             if ("Alien Boots from Outer Space".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes().getName())) {
@@ -90,27 +90,27 @@ class DistanceView extends View {
                         }
                     }
                 }
-                System.out.println("WEARING ALIEN BOOTS - DISTANCES ARE SORTED");
+                this.console.println("WEARING ALIEN BOOTS - DISTANCES ARE SORTED");
             }
         }
-        //System.out.println("distances sorted:  ");
-        //System.out.println(Arrays.toString(distances));
+        //this.console.println("distances sorted:  ");
+        //this.console.println(Arrays.toString(distances));
         //display sorted List of actors and wolf
-        System.out.println("\nDISTANCES\n");
+        this.console.println("\nDISTANCES\n");
         StringBuilder line = new StringBuilder("                                         ");
         line.insert(4, "ACTOR");
         line.insert(25, "DISTANCE");
-        System.out.println(line.toString());
+        this.console.println(line.toString());
         line = new StringBuilder("                                         ");
         line.insert(4, "-----");
         line.insert(25, "--------");
-        System.out.println(line.toString());
+        this.console.println(line.toString());
         index = 0;
         for (String name : allNames) {
             line = new StringBuilder("                                         ");
             //Actor value = MapControl.getActorFromPoint(point,PiggysRevenge.getCurrentGame().getMap());
             if (name == null) {
-                System.out.println("ERROR:  null value");
+                this.console.println("ERROR:  null value");
                 return;
 //                line.insert(0, Integer.toString(index+1) + ":  Wolf");
             } else {
@@ -154,7 +154,7 @@ class DistanceView extends View {
                     }
             }
             //line.insert(25, distances[index]);
-            System.out.println(line.toString());
+            this.console.println(line.toString());
             index++;
         }
 

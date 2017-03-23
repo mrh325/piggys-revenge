@@ -87,7 +87,7 @@ private String menuS;
     
     @Override
     public boolean doAction(String menuOption) {
-        // System.out.println("\n*** doAction() function called ***");
+        // this.console.println("\n*** doAction() function called ***");
         
         menuOption = menuOption.toUpperCase();
         
@@ -105,22 +105,22 @@ private String menuS;
             case "Q":
                 return true;
             default:
-                System.out.println("\n*** Invalid selection *** Try again ***");
+                this.console.println("\n*** Invalid selection *** Try again ***");
                 break;
         }
         return false;    
     }
     
     private void displayGameHelp() {
-        System.out.println(this.menuG);  //Game Description
+        this.console.println(this.menuG);  //Game Description
     }
     
     private void displayMoveHelp() {
-        System.out.println(this.menuH); // Move description
+        this.console.println(this.menuH); // Move description
     }
     
     private void displayScoreHelp() {
-        System.out.println(this.menuS); // Score description
+        this.console.println(this.menuS); // Score description
     }
 } 
 

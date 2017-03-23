@@ -6,6 +6,7 @@
 package cit260.piggysRevenge.control;
 
 import cit260.piggysRevenge.exceptions.MapControlException;
+import cit260.piggysRevenge.view.ErrorView;
 import org.junit.AfterClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -28,10 +29,10 @@ public class MapControlTest {
      */
 //    @Test
 //    public void testCalculateEventProbability() {
-//        System.out.println("\n\ncalculateEventProbability");
+//        ErrorView.display(MapControlTest.class.getName(), "\n\ncalculateEventProbability");
 //        
 //        //TEST 1 valid, non-boundary inputs
-//        System.out.println("TEST 1 - VALID");
+//        ErrorView.display(MapControlTest.class.getName(), "TEST 1 - VALID");
 //        int visitedScenes = 16;
 //        int totalScenes = 25;
 //        int visitedEvents = 3;
@@ -40,7 +41,7 @@ public class MapControlTest {
 //        double result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
 //        assertEquals(expResult, result, 0.0001);
 //        //TEST 2 visite scenes < 1
-//        System.out.println("TEST 2 - INVALID -1");
+//        ErrorView.display(MapControlTest.class.getName(), "TEST 2 - INVALID -1");
 //        visitedScenes = 0;
 //        totalScenes = 25;
 //        visitedEvents = 0;
@@ -49,7 +50,7 @@ public class MapControlTest {
 //        result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
 //        assertEquals(expResult, result, 0.0001);
 //        //TEST 3 total scenes < 2
-//        System.out.println("TEST 3 - INVALID -1");
+//        ErrorView.display(MapControlTest.class.getName(), "TEST 3 - INVALID -1");
 //        visitedScenes = 1;
 //        totalScenes = 1;
 //        visitedEvents = 0;
@@ -58,7 +59,7 @@ public class MapControlTest {
 //        result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
 //        assertEquals(expResult, result, 0.0001);
 //        //TEST 4 visited events < 0
-//        System.out.println("TEST 4 - INVALID -1");
+//        ErrorView.display(MapControlTest.class.getName(), "TEST 4 - INVALID -1");
 //        visitedScenes = 1;
 //        totalScenes = 25;
 //        visitedEvents = -1;
@@ -67,7 +68,7 @@ public class MapControlTest {
 //        result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
 //        assertEquals(expResult, result, 0.0001);
 //        //TEST 5 total events < 1
-//        System.out.println("TEST 5 - INVALID -1");
+//        ErrorView.display(MapControlTest.class.getName(), "TEST 5 - INVALID -1");
 //        visitedScenes = 1;
 //        totalScenes = 25;
 //        visitedEvents = 0;
@@ -76,7 +77,7 @@ public class MapControlTest {
 //        result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
 //        assertEquals(expResult, result, 0.0001);
 //        //TEST 6 visited scenes > total scenes
-//        System.out.println("TEST 6 - INVALID -2");
+//        ErrorView.display(MapControlTest.class.getName(), "TEST 6 - INVALID -2");
 //        visitedScenes = 26;
 //        totalScenes = 25;
 //        visitedEvents = 0;
@@ -85,7 +86,7 @@ public class MapControlTest {
 //        result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
 //        assertEquals(expResult, result, 0.0001);
 //        //TEST 7 visited events > total events
-//        System.out.println("TEST 7 - INVALID -3");
+//        ErrorView.display(MapControlTest.class.getName(), "TEST 7 - INVALID -3");
 //        visitedScenes = 1;
 //        totalScenes = 25;
 //        visitedEvents = 6;
@@ -94,7 +95,7 @@ public class MapControlTest {
 //        result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
 //        assertEquals(expResult, result, 0.0001);
 //        //TEST 8 total scenes > 100
-//        System.out.println("TEST 8 - INVALID -4");
+//        ErrorView.display(MapControlTest.class.getName(), "TEST 8 - INVALID -4");
 //        visitedScenes = 1;
 //        totalScenes = 101;
 //        visitedEvents = 0;
@@ -103,7 +104,7 @@ public class MapControlTest {
 //        result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
 //        assertEquals(expResult, result, 0.0001);
 //        //TEST 9 total events > 5
-//        System.out.println("TEST 9 - INVALID -5");
+//        ErrorView.display(MapControlTest.class.getName(), "TEST 9 - INVALID -5");
 //        visitedScenes = 1;
 //        totalScenes = 25;
 //        visitedEvents = 0;
@@ -112,7 +113,7 @@ public class MapControlTest {
 //        result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
 //        assertEquals(expResult, result, 0.0001);
 //        //TEST 10 first boundary 100%
-//        System.out.println("TEST 10 - BOUNDARY 1.0");
+//        ErrorView.display(MapControlTest.class.getName(), "TEST 10 - BOUNDARY 1.0");
 //        visitedScenes = 1;
 //        totalScenes = 2;
 //        visitedEvents = 0;
@@ -121,7 +122,7 @@ public class MapControlTest {
 //        result = MapControl.calculateEventProbability(visitedScenes, totalScenes, visitedEvents, totalEvents);
 //        assertEquals(expResult, result, 0.0001);
 //        //TEST 11 second boundary 0%
-//        System.out.println("TEST 11 - BOUNDARY 0.0");
+//        ErrorView.display(MapControlTest.class.getName(), "TEST 11 - BOUNDARY 0.0");
 //        visitedScenes = 1;
 //        totalScenes = 100;
 //        visitedEvents = 0;
@@ -139,7 +140,7 @@ public class MapControlTest {
     public void testCalcDistance() throws MapControlException {
         
         //TEST 1 
-        System.out.println("calcDistance TEST1 Valid");
+        ErrorView.display(MapControlTest.class.getName(), "calcDistance TEST1 Valid");
         double startPositionX = 2.0;
         double endPositionX = 3.0;
         double startPositionY = 4.0;
@@ -149,7 +150,7 @@ public class MapControlTest {
         assertEquals(expResult, result, 0.0);
         
          //TEST 2 
-        System.out.println("calcDistance TEST2 LESS THAN 1");
+        ErrorView.display(MapControlTest.class.getName(), "calcDistance TEST2 LESS THAN 1");
         startPositionX = -1.0;
         endPositionX = 2.0;
         startPositionY = 3.0;
@@ -159,7 +160,7 @@ public class MapControlTest {
         assertEquals(expResult, result, 0.0);
         
           //TEST 3
-        System.out.println("calcDistance TEST3 MORE THAN 5");
+        ErrorView.display(MapControlTest.class.getName(), "calcDistance TEST3 MORE THAN 5");
         startPositionX = 6.0;
         endPositionX = 3.0;
         startPositionY = 2.0;
@@ -169,7 +170,7 @@ public class MapControlTest {
         assertEquals(expResult, result, 0.0);
         
          //TEST 4 
-        System.out.println("calcDistance TEST4 BOUNDARY");
+        ErrorView.display(MapControlTest.class.getName(), "calcDistance TEST4 BOUNDARY");
         startPositionX = 1.0;
         endPositionX = 5.0;
         startPositionY = 1.0;
@@ -179,7 +180,7 @@ public class MapControlTest {
         assertEquals(expResult, result, 0.0);
         
          //TEST 5
-        System.out.println("calcDistance TEST5 REVERSE BOUNDARY");
+        ErrorView.display(MapControlTest.class.getName(), "calcDistance TEST5 REVERSE BOUNDARY");
         startPositionX = 5.0;
         endPositionX = 1.0;
         startPositionY = 5.0;

@@ -33,7 +33,7 @@ public class HighScoreView extends View {
             }
         }
         
-          System.out.println("\n-------------------------------------------"
+          this.console.println("\n-------------------------------------------"
                 + "\n               HIGH SCORES                 "
                 + "\n-------------------------------------------"
                 + "\n"
@@ -45,12 +45,12 @@ public class HighScoreView extends View {
        for (HighScore hs : highScores) {
 
             try {
-                System.out.println(hs.getName() + "        " + hs.getScore() + "            "
+                this.console.println(hs.getName() + "        " + hs.getScore() + "            "
                         + GameControl.calcNumberOfBricks(hs.getHouse().getLength(),
                                 hs.getHouse().getWidth(), hs.getHouse().getHeight(),
                                 hs.getHouse().getStories()));
             } catch (GameControlException ex) {
-                System.out.println(ex.getMessage());
+                this.console.println(ex.getMessage());
             }
 
 

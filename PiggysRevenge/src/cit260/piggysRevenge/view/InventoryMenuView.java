@@ -28,7 +28,7 @@ class InventoryMenuView extends View {
  
     @Override
     public boolean doAction(String menuOption) {
-        // System.out.println("\n*** doAction() function called ***");
+        // this.console.println("\n*** doAction() function called ***");
         
         menuOption = menuOption.toUpperCase();
         Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
@@ -46,65 +46,65 @@ class InventoryMenuView extends View {
             case "Q":
                 return true;
             default:
-                System.out.println("\n*** Invalid selection *** Try again ***");
+                this.console.println("\n*** Invalid selection *** Try again ***");
                 break;
         }
         return false;    
     }
 
     private void displayInventory() {
-        //System.out.println("\n*** displayInventory() function called ***");
-//        System.out.println(Arrays.deepToString(PiggysRevenge.getBackpack().getItemList())); //inventory throw-up
+        //this.console.println("\n*** displayInventory() function called ***");
+//        this.console.println(Arrays.deepToString(PiggysRevenge.getBackpack().getItemList())); //inventory throw-up
         Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
-        System.out.println("\n-----------------------------------------------------------------"
+        this.console.println("\n-----------------------------------------------------------------"
                 + "\nHATS:");
         int i = 1;
         for (Item hat : itemList[0]) {
             if (hat != null) {
                 System.out.print("\n");
                 if (hat == PiggysRevenge.getPlayer().getCurrentHat()) {
-                    System.out.println(hat.getName() + " - CURRENTLY WEARING");
+                    this.console.println(hat.getName() + " - CURRENTLY WEARING");
                 } else {
-                    System.out.println(hat.getName());
+                    this.console.println(hat.getName());
                 }
-                System.out.println(hat.getDescription());
+                this.console.println(hat.getDescription());
                 i++;
             }
         }
         if (i == 1) {
-            System.out.println("\nYou have no hats.");
+            this.console.println("\nYou have no hats.");
         }
-        System.out.println("\n-----------------------------------------------------------------"
+        this.console.println("\n-----------------------------------------------------------------"
                 + "\nSHOES:");
         i = 1;
         for (Item shoe : itemList[1]) {
             if (shoe != null) {
                 System.out.print("\n");
                 if (shoe == PiggysRevenge.getPlayer().getCurrentShoes()) {
-                    System.out.println(shoe.getName() + " - CURRENTLY WEARING");
+                    this.console.println(shoe.getName() + " - CURRENTLY WEARING");
                 } else {
-                    System.out.println(shoe.getName());
+                    this.console.println(shoe.getName());
                 }
-                System.out.println(shoe.getDescription());
+                this.console.println(shoe.getDescription());
                 i++;
             }
         }
         if (i == 1) {
-            System.out.println("\nYou have no shoes.");
+            this.console.println("\nYou have no shoes.");
         }
-        System.out.println("\n-----------------------------------------------------------------"
+        this.console.println("\n-----------------------------------------------------------------"
                 + "\nBricks:");
-        System.out.println(PiggysRevenge.getCurrentGame().getBackpack().getBricks());
+        this.console.println(PiggysRevenge.getCurrentGame().getBackpack().getBricks());
     }
 
     private void setHat() {
-        //System.out.println("\n*** setHat() function called ***");
+        //this.console.println("\n*** setHat() function called ***");
         ChangeHatView changeHatView = new ChangeHatView();
         changeHatView.display();
     }
 
     private void setShoes() {
-        //System.out.println("\n*** setShoes() function called ***");
+        //this.console.println("\n*** setShoes() function called ***");
         ChangeShoesView changeShoesView = new ChangeShoesView();
         changeShoesView.display();
     }

@@ -31,7 +31,7 @@ class ScoreView extends View {
 
     @Override
     public void display() {
-        // System.out.println("\n*** display() function called ***");
+        // this.console.println("\n*** display() function called ***");
         Game game = PiggysRevenge.getCurrentGame();
         int bricks = 0;
         if (game.getHouse().isCompleted()) {
@@ -39,7 +39,7 @@ class ScoreView extends View {
             try {
                 bricks = GameControl.calcNumberOfBricks(house.getLength(), house.getWidth(), house.getHeight(), house.getStories());
             } catch (GameControlException ex) {
-                System.out.println(ex.getMessage());
+                this.console.println(ex.getMessage());
             }
         } else {
             bricks = 0;
@@ -51,31 +51,31 @@ class ScoreView extends View {
         try {
             result = GameControl.calcScore(bricks, turns, hasEaten, wolfKilled);
         } catch (GameControlException ex) {
-            System.out.println(ex.getMessage());
+            this.console.println(ex.getMessage());
         }
-        System.out.println("+" + (bricks*10) + " Points for building the house.");
-        System.out.println("-" + (turns*10) + " Points for the number of turns taken (" + turns + " turns).");
+        this.console.println("+" + (bricks*10) + " Points for building the house.");
+        this.console.println("-" + (turns*10) + " Points for the number of turns taken (" + turns + " turns).");
         if (hasEaten) {
-            System.out.println("+1000 Points for eating roast beef.");    
+            this.console.println("+1000 Points for eating roast beef.");    
         }
         if (wolfKilled) {
-            System.out.println("+2000 Points for killing the wolf.");    
+            this.console.println("+2000 Points for killing the wolf.");    
         }
-        System.out.println("\nYOUR FINAL SCORE IS:  " + result);
+        this.console.println("\nYOUR FINAL SCORE IS:  " + result);
 //        if (result == -1) {
-//            System.out.println("\n-----------------------------------------------------------------"
+//            this.console.println("\n-----------------------------------------------------------------"
 //                    + "\nERROR: You may not have less than 0 bricks"
 //                    + "\n-----------------------------------------------------------------");
 //        } else if (result == -2) {
-//            System.out.println("\n-----------------------------------------------------------------"
+//            this.console.println("\n-----------------------------------------------------------------"
 //                    + "\nERROR: Turns can not be less than 1"
 //                    + "\n-----------------------------------------------------------------");
 //        } else if (result == -3) {
-//            System.out.println("\n-----------------------------------------------------------------"
+//            this.console.println("\n-----------------------------------------------------------------"
 //                    + "\nERROR: The wolf can't be killed if the player has not eaten"
 //                    + "\n-----------------------------------------------------------------");
 //        } else {
-//            System.out.println("\n-----------------------------------------------------------------"
+//            this.console.println("\n-----------------------------------------------------------------"
 //                    + "\nYour score is: "
 //                    + String.valueOf(result)
 //                    + "."
@@ -88,11 +88,11 @@ class ScoreView extends View {
     
     @Override
     public boolean doAction(String value) {
-//        // System.out.println("\n*** doAction() function called ***");
+//        // this.console.println("\n*** doAction() function called ***");
 //        //split whitespace separated values
 //        String[] parts = value.split("\\s+");
 //        if (parts.length != 4) {
-//            System.out.println("\n-----------------------------------------------------------------"
+//            this.console.println("\n-----------------------------------------------------------------"
 //                        + "\nERROR:  You must enter 4 space-separated values"
 //                        + "\n-----------------------------------------------------------------");
 //            return false;
@@ -115,24 +115,24 @@ class ScoreView extends View {
 //            bricks = Integer.parseInt(input1);
 //            turns = Integer.parseInt(input2);
 //        } catch (NumberFormatException e) {
-//            System.out.println("\n-----------------------------------------------------------------"
+//            this.console.println("\n-----------------------------------------------------------------"
 //                        + "\nERROR:  Number of Bricks and Turns must be whole numbers"
 //                        + "\n-----------------------------------------------------------------");
 //            return false;
 //        }
 //        if (!("Y".equals(input3) || "N".equals(input3))) {
-//            System.out.println("\n-----------------------------------------------------------------"
+//            this.console.println("\n-----------------------------------------------------------------"
 //                    + "\nERROR: You must enter Y or N for the Has Eaten question"
 //                    + "\n-----------------------------------------------------------------");
 //            return false;
 //        } else if (!("Y".equals(input4) || "N".equals(input4))) {
-//            System.out.println("\n-----------------------------------------------------------------"
+//            this.console.println("\n-----------------------------------------------------------------"
 //                    + "\nERROR: You must enter Y or N for the Wolf Killed question"
 //                    + "\n-----------------------------------------------------------------");
 //            return false;
 //        } else {
 //            if (null == input3) {
-//                System.out.println("\n-----------------------------------------------------------------"
+//                this.console.println("\n-----------------------------------------------------------------"
 //                        + "\nERROR: Null Error"
 //                        + "\n-----------------------------------------------------------------");                
 //                return false;
@@ -144,13 +144,13 @@ class ScoreView extends View {
 //                    hasEaten = false;
 //                    break;
 //                default:
-//                    System.out.println("\n-----------------------------------------------------------------"
+//                    this.console.println("\n-----------------------------------------------------------------"
 //                            + "\nERROR: Unkown Error"
 //                            + "\n-----------------------------------------------------------------");
 //                    return false;
 //            }
 //            if (null == input4) {
-//                System.out.println("\n-----------------------------------------------------------------"
+//                this.console.println("\n-----------------------------------------------------------------"
 //                        + "\nERROR: Null Error"
 //                        + "\n-----------------------------------------------------------------");                
 //                return false;
@@ -162,7 +162,7 @@ class ScoreView extends View {
 //                    wolfKilled = false;
 //                    break;
 //                default:
-//                    System.out.println("\n-----------------------------------------------------------------"
+//                    this.console.println("\n-----------------------------------------------------------------"
 //                            + "\nERROR: Unkown Error"
 //                            + "\n-----------------------------------------------------------------");
 //                    return false;
@@ -170,19 +170,19 @@ class ScoreView extends View {
 //            
 //            int result = GameControl.calcScore(bricks, turns, hasEaten, wolfKilled);
 //            if (result == -1) {
-//                System.out.println("\n-----------------------------------------------------------------"
+//                this.console.println("\n-----------------------------------------------------------------"
 //                        + "\nERROR: You may not have less than 0 bricks"
 //                        + "\n-----------------------------------------------------------------");
 //            } else if (result == -2) {
-//                System.out.println("\n-----------------------------------------------------------------"
+//                this.console.println("\n-----------------------------------------------------------------"
 //                        + "\nERROR: Turns can not be less than 1"
 //                        + "\n-----------------------------------------------------------------");
 //            } else if (result == -3) {
-//                System.out.println("\n-----------------------------------------------------------------"
+//                this.console.println("\n-----------------------------------------------------------------"
 //                        + "\nERROR: The wolf can't be killed if the player has not eaten"
 //                        + "\n-----------------------------------------------------------------");
 //            } else {
-//                System.out.println("\n-----------------------------------------------------------------"
+//                this.console.println("\n-----------------------------------------------------------------"
 //                        + "\nWith answers like those, Your score would be "
 //                        + String.valueOf(result)
 //                        + "."

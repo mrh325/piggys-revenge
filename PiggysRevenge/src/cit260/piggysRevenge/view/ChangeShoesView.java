@@ -28,20 +28,20 @@ class ChangeShoesView extends View {
         }
         System.out.print("\nYou currently have the following shoes:\n");
         Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
-        //System.out.println(Arrays.toString(hats[0]));
+        //this.console.println(Arrays.toString(hats[0]));
         int i = 1;
         for (Item shoe : itemList[1]) {
             if (shoe != null) {
                 System.out.print("\n" + Integer.toString(i) + ":  ");
-                System.out.println(shoe.getName());
-                System.out.println(shoe.getDescription());
+                this.console.println(shoe.getName());
+                this.console.println(shoe.getDescription());
                 i++;
             }
         }
         //if shoe list is all null...
         if (i == 1) {
-            System.out.println("--I'm sorry, you don't have any shoes yet.");
-            //System.out.println(Arrays.toString(itemList[1]));
+            this.console.println("--I'm sorry, you don't have any shoes yet.");
+            //this.console.println(Arrays.toString(itemList[1]));
             return;
         }
         super.display();
@@ -49,7 +49,7 @@ class ChangeShoesView extends View {
 
     @Override
     public boolean doAction(String value) {
-        // System.out.println("\n*** doAction() function called in ChangeHatView***");
+        // this.console.println("\n*** doAction() function called in ChangeHatView***");
         
         value = value.toUpperCase();
         Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
@@ -59,7 +59,7 @@ class ChangeShoesView extends View {
                     PiggysRevenge.getPlayer().setCurrentShoes(itemList[1][0]);
                     return true;
                 } else {
-                    System.out.println("\n*** Invalid selection *** Try again ***");
+                    this.console.println("\n*** Invalid selection *** Try again ***");
                 }
                 break;
             case "2":
@@ -67,7 +67,7 @@ class ChangeShoesView extends View {
                     PiggysRevenge.getPlayer().setCurrentShoes(itemList[1][1]);
                     return true;
                 } else {
-                    System.out.println("\n*** Invalid selection *** Try again ***");
+                    this.console.println("\n*** Invalid selection *** Try again ***");
                 }
                 break;
             case "3":
@@ -75,7 +75,7 @@ class ChangeShoesView extends View {
                     PiggysRevenge.getPlayer().setCurrentShoes(itemList[1][2]);
                     return true;
                 } else {
-                    System.out.println("\n*** Invalid selection *** Try again ***");
+                    this.console.println("\n*** Invalid selection *** Try again ***");
                 }
                 break;
             case "N":
@@ -85,7 +85,7 @@ class ChangeShoesView extends View {
             case "Q":
                 return true;
             default:
-                System.out.println("\n*** Invalid selection *** Try again ***");
+                this.console.println("\n*** Invalid selection *** Try again ***");
                 break;
         }
         return false; 

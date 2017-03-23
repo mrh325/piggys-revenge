@@ -35,7 +35,7 @@ public class GameMenuView extends View {
     }
     @Override
     public boolean doAction(String menuOption) {
-        // System.out.println("\n*** doAction() function called ***");
+        // this.console.println("\n*** doAction() function called ***");
         
         menuOption = menuOption.toUpperCase();
         
@@ -62,14 +62,14 @@ public class GameMenuView extends View {
 //                try {
 //                    this.displayTestDistanceException();
 //                } catch (MapControlException ex) {
-//                    System.out.println(ex.getMessage());
+//                    this.console.println(ex.getMessage());
 //                }
 //                break;
 //            case "Z":
 //                try {
 //                    this.displayTestDistanceException2();
 //                } catch (MapControlException ex) {
-//                    System.out.println(ex.getMessage());
+//                    this.console.println(ex.getMessage());
 //                }
 //                break;
             case "U":
@@ -82,7 +82,7 @@ public class GameMenuView extends View {
             case "Q":
                 return true;
             default:
-                System.out.println("\n*** Invalid selection *** Try again ***");
+                this.console.println("\n*** Invalid selection *** Try again ***");
                 break;
         }
         return false;    
@@ -96,38 +96,38 @@ public class GameMenuView extends View {
     }
 
     private void displayMap() {
-//        System.out.println("\n*** displayMap() function called ***");
+//        this.console.println("\n*** displayMap() function called ***");
         MapControl.drawMap();
     }
 
     private void displayDistances() {
-        //System.out.println("\n*** displayDistance() function called ***");
+        //this.console.println("\n*** displayDistance() function called ***");
         DistanceView distanceView = new DistanceView();
         distanceView.display();
         
     }
 
     private void displayInventoryMenu() {
-        //System.out.println("\n*** displayInventory() function called ***");
+        //this.console.println("\n*** displayInventory() function called ***");
         //We'll probably pass a backpack object in here.
         InventoryMenuView inventoryMenu = new InventoryMenuView();
         inventoryMenu.display();
     }
 
     private void displayScore() {
-        //System.out.println("\n*** displayScore() function called ***");
+        //this.console.println("\n*** displayScore() function called ***");
         ScoreView scoreView = new ScoreView();
         scoreView.display();
     }
 
 //    private void displayProbability() {
-//        //System.out.println("\n*** displayProbability() function called ***");
+//        //this.console.println("\n*** displayProbability() function called ***");
 //        ProbabilityView probabilityView = new ProbabilityView();
 //        probabilityView.display();
 //    }
 //
     private void displayHouseMenu() {
-        // System.out.println("\n*** displayHouseMenu() function called ***");
+        // this.console.println("\n*** displayHouseMenu() function called ***");
         HouseSizeView houseSize = new HouseSizeView();
         houseSize.display();
     }

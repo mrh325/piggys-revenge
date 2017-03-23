@@ -22,7 +22,7 @@ class MiniGameView extends View {
     
     public MiniGameView(MiniGame miniGame) {
         super("\n\nGuess the correct order (ie. 1234, or 3241, etc.), or Q to quit: ");
-        System.out.println("\n-----------------------------------------------------------------"
+        this.console.println("\n-----------------------------------------------------------------"
                 + "\nIn this game, you will guess the corect order of four numbers. (1 2 3 4)"
                 + "\nThe correct order is chosen at random.  You will enter a four"
                 + "\ndigit number and then you will be told how many digits"
@@ -34,7 +34,7 @@ class MiniGameView extends View {
 
     @Override
     public boolean doAction(String userGuess) {
-        // System.out.println("\n*** doAction() function called ***");
+        // this.console.println("\n*** doAction() function called ***");
         userGuess = userGuess.toUpperCase();
         
         if ("Q".equals(userGuess)) {
@@ -45,7 +45,7 @@ class MiniGameView extends View {
         try {
             result = MiniGameControl.checkKeyOrder(userGuess, this.miniGame.getComboOrder());
         } catch (MiniGameControlException ex) {
-            System.out.println(ex.getMessage());
+            this.console.println(ex.getMessage());
         }
         
         switch (result) {
@@ -53,12 +53,12 @@ class MiniGameView extends View {
             case 1:
             case 2:
             case 3:
-                System.out.println("\n-----------------------------------------------------------------"
+                this.console.println("\n-----------------------------------------------------------------"
                         + "\nYou have " + String.valueOf(result) + " digits in the correct order."
                         + "\n-----------------------------------------------------------------");
                 break;
             case 4:
-                System.out.println("\n-----------------------------------------------------------------"
+                this.console.println("\n-----------------------------------------------------------------"
                         + "\nYou win! The correct order was "
                         + String.valueOf(this.miniGame.getComboOrder())
                         + "\n-----------------------------------------------------------------");

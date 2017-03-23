@@ -7,6 +7,7 @@ package cit260.piggysRevenge.control;
 
 import cit260.piggysRevenge.exceptions.InventoryControlException;
 import cit260.piggysRevenge.model.Item;
+import cit260.piggysRevenge.view.ErrorView;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -73,8 +74,7 @@ public class InventoryControl {
         Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
         if (itemList[0][result] != null) {
             PiggysRevenge.getPlayer().setCurrentHat(itemList[0][result]);
-            System.out.println("\n-----------------------------------------------------------------\n"
-                    + PiggysRevenge.getPlayer().getCurrentHat().getName()
+            ErrorView.display(InventoryControl.class.getName(), PiggysRevenge.getPlayer().getCurrentHat().getName()
                     + " Equipped.");
         } else {
             throw new InventoryControlException("Error Equiping Hat");
@@ -85,8 +85,7 @@ public class InventoryControl {
         Item[][] itemList = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
         if (itemList[1][result] != null) {
             PiggysRevenge.getPlayer().setCurrentShoes(itemList[1][result]);
-            System.out.println("\n-----------------------------------------------------------------\n"
-                    + PiggysRevenge.getPlayer().getCurrentShoes().getName()
+            ErrorView.display(InventoryControl.class.getName(), PiggysRevenge.getPlayer().getCurrentShoes().getName()
                     + " Equipped.");
         } else {
             throw new InventoryControlException("Error Equiping Shoe");
@@ -100,13 +99,13 @@ public class InventoryControl {
 //            int result = InventoryControl.storeHat(item);
 //            switch (result) {
 //                case -1:
-//                    System.out.println("\n-----------------------------------------------------------------"
+//                    this.console.println("\n-----------------------------------------------------------------"
 //                            + "\nERROR: item is not a hat type");
 //                    return -1;
 //                case -2:
 //                case -3:
 //                    if (i == 3 || result == -3) {
-//                        System.out.println("\n-----------------------------------------------------------------"
+//                        this.console.println("\n-----------------------------------------------------------------"
 //                            + "\nERROR: No space left in inventory");
 //                        return -3;
 //                    }
@@ -114,7 +113,7 @@ public class InventoryControl {
 //                case 0:
 //                case 1:
 //                case 2:
-//                    System.out.println("\n-----------------------------------------------------------------"
+//                    this.console.println("\n-----------------------------------------------------------------"
 //                            + "\nA hat has been placed in your backpack.");
 //                    return result;
 //            }
@@ -129,13 +128,13 @@ public class InventoryControl {
 //            int result = InventoryControl.storeShoe(item);
 //            switch (result) {
 //                case -1:
-//                    System.out.println("\n-----------------------------------------------------------------"
+//                    this.console.println("\n-----------------------------------------------------------------"
 //                            + "\nERROR: item is not a shoe type");
 //                    return -1;
 //                case -2:
 //                case -3:
 //                    if (i == 3 || result == -3) {
-//                        System.out.println("\n-----------------------------------------------------------------"
+//                        this.console.println("\n-----------------------------------------------------------------"
 //                            + "\nERROR: No space left in inventory");
 //                        return -3;
 //                    }
@@ -143,7 +142,7 @@ public class InventoryControl {
 //                case 0:
 //                case 1:
 //                case 2:
-//                    System.out.println("\n-----------------------------------------------------------------"
+//                    this.console.println("\n-----------------------------------------------------------------"
 //                            + "\nShoes have been placed in your backpack.");
 //                    return result;
 //            }

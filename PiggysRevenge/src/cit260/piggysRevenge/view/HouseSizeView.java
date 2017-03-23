@@ -40,7 +40,7 @@ class HouseSizeView extends View {
             this.chooseSizes();
         } else {
             try {
-                System.out.println("\nYour previously chosen house dimensions are:"
+                this.console.println("\nYour previously chosen house dimensions are:"
                         + "\nLength: " + playerHouse.getLength()
                         + "\nWidth: " + playerHouse.getWidth()
                         + "\nHeight: " + playerHouse.getHeight()
@@ -49,7 +49,7 @@ class HouseSizeView extends View {
                         + GameControl.calcNumberOfBricks(playerHouse.getLength(), playerHouse.getWidth(), playerHouse.getHeight(), playerHouse.getStories())
                         + " bricks.");
             } catch (GameControlException ex) {
-                System.out.println(ex.getMessage());
+                this.console.println(ex.getMessage());
             }
             //temporarily change messages for getInput
             this.displayMessage = "\nWould you like to change your dimensions? (Y or N)";
@@ -63,7 +63,7 @@ class HouseSizeView extends View {
                 case "N":
                     return;
                 default:
-                    System.out.println("\n-----------------------------------------------------------------"
+                    this.console.println("\n-----------------------------------------------------------------"
                             + "\nERROR: Please enter Y or N"
                             + "\n-----------------------------------------------------------------");
             }
@@ -72,11 +72,11 @@ class HouseSizeView extends View {
     }
     
     public boolean doAction(String input1,String input2,String input3,String input4) {
-        // System.out.println("\n*** doAction() function called ***");
+        // this.console.println("\n*** doAction() function called ***");
 //        String[] parts = value.split("\\s+");
 //
 //        if (parts.length != 4) {
-//            System.out.println("Please enter exactly 4 integers.");
+//            this.console.println("Please enter exactly 4 integers.");
 //            return false;
 //        }
 //
@@ -98,7 +98,7 @@ class HouseSizeView extends View {
             num4 = Integer.parseInt(input4);
             // is an integer!
         } catch (NumberFormatException e) {
-            System.out.println("\nYou did not enter an integer, please try again.");
+            this.console.println("\nYou did not enter an integer, please try again.");
             return false;
         }
         //I guess all is well, let's save the dimensions
@@ -111,55 +111,55 @@ class HouseSizeView extends View {
         int result;
         try {
             result = GameControl.calcNumberOfBricks(num1, num2, num3, num4);
-            System.out.println("\nYou will need " + result + " bricks to build your house  Good Luck!");
+            this.console.println("\nYou will need " + result + " bricks to build your house  Good Luck!");
             return true;
         } catch (GameControlException ex) {
-            System.out.println(ex.getMessage());
+            this.console.println(ex.getMessage());
 
         }
 //        switch (result) {
 //            case -11:
-//                System.out.println("\n-----------------------------------------------------------------"
+//                this.console.println("\n-----------------------------------------------------------------"
 //                        + "\nLength is too small."
 //                        + "\n-----------------------------------------------------------------");
 //                break;
 //            case -12:
-//                System.out.println("\n-----------------------------------------------------------------"
+//                this.console.println("\n-----------------------------------------------------------------"
 //                        + "\nLength is too large."
 //                        + "\n-----------------------------------------------------------------");
 //                break;
 //            case -21:
-//                System.out.println("\n-----------------------------------------------------------------"
+//                this.console.println("\n-----------------------------------------------------------------"
 //                        + "\nWidth is too small."
 //                        + "\n-----------------------------------------------------------------");
 //                break;
 //            case -22:
-//                System.out.println("\n-----------------------------------------------------------------"
+//                this.console.println("\n-----------------------------------------------------------------"
 //                        + "\nWidth is too large."
 //                        + "\n-----------------------------------------------------------------");
 //                break;
 //            case -31:
-//                System.out.println("\n-----------------------------------------------------------------"
+//                this.console.println("\n-----------------------------------------------------------------"
 //                        + "\nHeight is too small."
 //                        + "\n-----------------------------------------------------------------");
 //                break;
 //            case -32:
-//                System.out.println("\n-----------------------------------------------------------------"
+//                this.console.println("\n-----------------------------------------------------------------"
 //                        + "\nHeight is too large."
 //                        + "\n-----------------------------------------------------------------");
 //                break;
 //            case -41:
-//                System.out.println("\n-----------------------------------------------------------------"
+//                this.console.println("\n-----------------------------------------------------------------"
 //                        + "\nNumber of stories is too small."
 //                        + "\n-----------------------------------------------------------------");
 //                break;
 //            case -42:
-//                System.out.println("\n-----------------------------------------------------------------"
+//                this.console.println("\n-----------------------------------------------------------------"
 //                        + "\nNumber of stories is too large."
 //                        + "\n-----------------------------------------------------------------");
 //                break;
 //            default:
-//                System.out.println("\n-----------------------------------------------------------------"
+//                this.console.println("\n-----------------------------------------------------------------"
 //                        + "\nYou will need to collect  "
 //                        + String.valueOf(result)
 //                        + " bricks."
@@ -171,36 +171,36 @@ class HouseSizeView extends View {
 
     @Override
     public boolean doAction(String value) {
-        System.out.println("\n*** doAction() function called ***");
+        this.console.println("\n*** doAction() function called ***");
         return true;
     }
 
     private void chooseSizes() {
-        System.out.println(this.displayMessage);
+        this.console.println(this.displayMessage);
         boolean done = false;
         do {
             this.displayMessage = "Enter the length of the house (between 5 and 20)";
             String userInput1 = this.getInput();
             if ("Q".equals(userInput1.toUpperCase())) {
-                System.out.println("House Size View Interrupted.");
+                this.console.println("House Size View Interrupted.");
                 return;
             }
             this.displayMessage = "Enter the width of the house (between 5 and 20)";
             String userInput2 = this.getInput();
             if ("Q".equals(userInput2.toUpperCase())) {
-                System.out.println("House Size View Interrupted.");
+                this.console.println("House Size View Interrupted.");
                 return;
             }
             this.displayMessage = "Enter the height of the house (between 6 and 10)";
             String userInput3 = this.getInput();
             if ("Q".equals(userInput3.toUpperCase())) {
-                System.out.println("House Size View Interrupted.");
+                this.console.println("House Size View Interrupted.");
                 return;
             }
             this.displayMessage = "Enter the number of stories of the house (between 1 and 3)";
             String userInput4 = this.getInput();
             if ("Q".equals(userInput4.toUpperCase())) {
-                System.out.println("House Size View Interrupted.");
+                this.console.println("House Size View Interrupted.");
                 return;
             }
            

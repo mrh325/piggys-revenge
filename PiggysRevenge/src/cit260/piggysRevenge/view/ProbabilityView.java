@@ -28,11 +28,11 @@ class ProbabilityView extends View {
 
     @Override
     public boolean doAction(String value) {
-        // System.out.println("\n*** doAction() function called ***");
+        // this.console.println("\n*** doAction() function called ***");
         //split whitespace separated values
         String[] parts = value.split("\\s+");
         if (parts.length != 2) {
-            System.out.println("\n-----------------------------------------------------------------"
+            this.console.println("\n-----------------------------------------------------------------"
                         + "\nERROR:  You must enter 2 space-separated values"
                         + "\n-----------------------------------------------------------------");
             return false;
@@ -50,7 +50,7 @@ class ProbabilityView extends View {
             scenesV = Double.parseDouble(input1);
             eventsV = Double.parseDouble(input2);
         } catch (NumberFormatException e) {
-            System.out.println("\n-----------------------------------------------------------------"
+            this.console.println("\n-----------------------------------------------------------------"
                     + "\nERROR:  Scenses vistied and events visited must be numbers"
                     + "\n-----------------------------------------------------------------");
             return false;
@@ -59,14 +59,14 @@ class ProbabilityView extends View {
         double result;
         try {
             result = MapControl.calculateEventProbability(scenesV, 25, eventsV, 5);
-            System.out.println("\n-----------------------------------------------------------------"
+            this.console.println("\n-----------------------------------------------------------------"
                     + "\nYou have a "
                     + String.valueOf(result)
                     + " percent chance of completing the game with the fewest moves possible."
                     + "\n-----------------------------------------------------------------");
             return true;
         } catch (MapControlException ex) {
-            System.out.println(ex.getMessage());
+            this.console.println(ex.getMessage());
         }
         
         return false;  

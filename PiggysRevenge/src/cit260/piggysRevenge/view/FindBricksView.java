@@ -27,29 +27,29 @@ public class FindBricksView extends View {
 
     public FindBricksView(int bricksFound) {
         this.bricksFound = bricksFound;
-        System.out.println(builderAsciiArt);
+        this.console.println(builderAsciiArt);
     }
 
     @Override
     public void display() {
-        System.out.println("\nYou found " + this.bricksFound + " bricks.");
+        this.console.println("\nYou found " + this.bricksFound + " bricks.");
         this.pressAnyKeyToContinue();
     }
     
     @Override
     public boolean doAction(String value) {
-        System.out.println("\n*** doAction() in FindBricksView called ***");
+        this.console.println("\n*** doAction() in FindBricksView called ***");
         return true;
     }
 
     private void pressAnyKeyToContinue() {
         try
         {
-            Scanner keyIn = new Scanner(System.in);
+//            Scanner keyIn = new Scanner(System.in);
 
             System.out.print("Press the enter key to continue");
-            keyIn.nextLine();
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            this.keyboard.readLine();
+            this.console.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         }  
         catch(Exception e)
         {}          

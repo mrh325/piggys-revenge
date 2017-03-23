@@ -41,13 +41,13 @@ public class FindBuilderView extends View {
             + "\nYOU HAVE FOUND THE BUILDER!";
     
     public FindBuilderView() {
-        System.out.println(this.builderAsciiArt);
+        this.console.println(this.builderAsciiArt);
     }
 
     @Override
     public void display() {
         if (PiggysRevenge.getCurrentGame().getHouse().isCompleted()) {
-            System.out.println("you have completed your house already, go get that wolf!");
+            this.console.println("you have completed your house already, go get that wolf!");
             this.pressAnyKeyToContinue();
             return;
         }
@@ -63,18 +63,18 @@ public class FindBuilderView extends View {
             }
         }
         if (unvisitedPiggys > 0) {
-            System.out.println("You must find all four piggys before I can work with you."
+            this.console.println("You must find all four piggys before I can work with you."
                     + "\nReturn to me after you have found all four piggys.");
         //if all 4 piggys are found, make sure house dimensions were chosen
         } else {
-            System.out.println("Thank you for finding the piggys.  Having found the piggys, "
+            this.console.println("Thank you for finding the piggys.  Having found the piggys, "
                     + "\nwe are now ready to build the house.");
             House playerHouse = PiggysRevenge.getCurrentGame().getHouse();
             while (playerHouse.getHeight() == 0
                 || playerHouse.getLength() == 0
                 || playerHouse.getWidth() == 0
                 || playerHouse.getStories() == 0) {
-                System.out.println("You need to choose how big your house will be first.");
+                this.console.println("You need to choose how big your house will be first.");
                 HouseSizeView houseSize = new HouseSizeView();
                 houseSize.display();
             }
@@ -83,11 +83,11 @@ public class FindBuilderView extends View {
             try {
                 neededBricks = GameControl.calcNumberOfBricks(playerHouse.getLength(), playerHouse.getWidth(), playerHouse.getHeight(), playerHouse.getStories());
             } catch (GameControlException ex) {
-                System.out.println(ex.getMessage());
+                this.console.println(ex.getMessage());
                 return;
             }
             int playerBricks = PiggysRevenge.getCurrentGame().getBackpack().getBricks();
-            System.out.println("\nYour previously chosen house dimensions are:"
+            this.console.println("\nYour previously chosen house dimensions are:"
                     + "\nLength: " + playerHouse.getLength()
                     + "\nWidth: " + playerHouse.getWidth()
                     + "\nHeight: " + playerHouse.getHeight()
@@ -96,12 +96,12 @@ public class FindBuilderView extends View {
                     + neededBricks
                     + " bricks.");
 
-            System.out.println("You current have "
+            this.console.println("You current have "
                     + playerBricks
                     + " bricks.");
             //if not enough bricks, return.
             if (neededBricks > playerBricks) {
-                System.out.println("\nYou do not have enough bricks to continue.\nPlease collect "
+                this.console.println("\nYou do not have enough bricks to continue.\nPlease collect "
                         + neededBricks
                         + " bricks before returning.");
                 this.pressAnyKeyToContinue();
@@ -109,9 +109,9 @@ public class FindBuilderView extends View {
             } else {
                 //if enough bricks have been collected, set house.completed = true,
                 //delete all the bricks, and play mini game
-                System.out.println("You have collected the required number of bricks, I will now build your house...");
-                System.out.println("...and done!");
-                System.out.println("Now you need to unlock the treasure chest to eat the roast beef.");
+                this.console.println("You have collected the required number of bricks, I will now build your house...");
+                this.console.println("...and done!");
+                this.console.println("Now you need to unlock the treasure chest to eat the roast beef.");
                 while (PiggysRevenge.getCurrentGame().getPlayer().isHasEaten() == false) {
                     MiniGame miniGame = new MiniGame();
                     miniGame.setComboOrder("1234");
@@ -128,7 +128,7 @@ public class FindBuilderView extends View {
                             case "N":
                                 break;
                             default:
-                                System.out.println("\n-----------------------------------------------------------------"
+                                this.console.println("\n-----------------------------------------------------------------"
                                         + "\nERROR: Please enter Y or N"
                                         + "\n-----------------------------------------------------------------");
                         }
@@ -138,11 +138,11 @@ public class FindBuilderView extends View {
                 MapControl.deleteBricks(PiggysRevenge.getCurrentGame().getMap());
                 PiggysRevenge.getCurrentGame().getBackpack().setBricks(playerBricks-neededBricks);
                 if (PiggysRevenge.getCurrentGame().getPlayer().isHasEaten()) {
-                    System.out.println("Great Job!  You unlocked the treasure chest and eaten"
+                    this.console.println("Great Job!  You unlocked the treasure chest and eaten"
                             + "\nthe roast beef! You feel your strength increase tremendously."
                             + "\nYou are ready to hunt the wolf!  You now have 15 turns to capture the wolf.");
                 } else {
-                    System.out.println("HAS EATEN ERROR");
+                    this.console.println("HAS EATEN ERROR");
                 }
                 PiggysRevenge.getCurrentGame().setTurnsRemaining(15);
             }
@@ -153,18 +153,18 @@ public class FindBuilderView extends View {
 
     @Override
     public boolean doAction(String value) {
-        System.out.println("\n*** doAction() in FindBuilderView called ***");
+        this.console.println("\n*** doAction() in FindBuilderView called ***");
         return true;
     }
     
     private void pressAnyKeyToContinue() {
         try
         {
-            Scanner keyIn = new Scanner(System.in);
+//            Scanner keyIn = new Scanner(System.in);
 
             System.out.print("Press the enter key to continue");
-            keyIn.nextLine();
-            System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+            this.keyboard.readLine();
+            this.console.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
         }  
         catch(Exception e)
         {}          
