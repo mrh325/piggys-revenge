@@ -20,7 +20,9 @@ public class MoveMenuView extends View {
         super ();
         this.playerLoc = playerLoc;
         this.wolfLoc = wolfLoc;
-        MapControl.drawMap();
+        MapView mapView = new MapView();
+        mapView.display();
+        //MapControl.drawMap();
         this.drawMenu(playerLoc);
     }
     
@@ -136,7 +138,9 @@ public class MoveMenuView extends View {
     private void displayMap() {
 //        this.console.println("\n*** displayMap() function called ***");
         this.console.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        MapControl.drawMap();
+        MapView mapView = new MapView();
+        mapView.display();
+        //MapControl.drawMap();
     }
     
     private void drawMenu(Point playerLoc) {
@@ -213,6 +217,8 @@ public class MoveMenuView extends View {
         //redefine the menu for the next display() call
         this.drawMenu(playerLoc);        
         //draw the map to screen
-        MapControl.drawMap();
+        MapView mapView = new MapView();
+        mapView.display();
+//        MapControl.drawMap();
     }
 }

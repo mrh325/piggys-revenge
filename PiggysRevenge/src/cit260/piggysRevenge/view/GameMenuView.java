@@ -97,7 +97,9 @@ public class GameMenuView extends View {
 
     private void displayMap() {
 //        this.console.println("\n*** displayMap() function called ***");
-        MapControl.drawMap();
+        MapView mapView = new MapView();
+        mapView.display();
+        //MapControl.drawMap();
     }
 
     private void displayDistances() {
