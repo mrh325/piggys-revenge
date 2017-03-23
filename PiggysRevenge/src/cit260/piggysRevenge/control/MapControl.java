@@ -482,6 +482,8 @@ public class MapControl {
                     playerLoc.x += 1;
                 }
                 break;
+            default:
+                break;
         }
         PiggysRevenge.getCurrentGame().getPlayer().setCoordinates(playerLoc);
         locations[playerLoc.x][playerLoc.y].getScene().setMapSymbol(" @ ");

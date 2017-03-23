@@ -5,9 +5,14 @@
  */
 package cit260.piggysRevenge.view;
 
+import cit260.piggysRevenge.control.MapControl;
 import cit260.piggysRevenge.control.MiniGameControl;
+import cit260.piggysRevenge.exceptions.MapControlException;
 import cit260.piggysRevenge.exceptions.MiniGameControlException;
 import cit260.piggysRevenge.model.MiniGame;
+import java.awt.Point;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -46,6 +51,7 @@ class MiniGameView extends View {
             result = MiniGameControl.checkKeyOrder(userGuess, this.miniGame.getComboOrder());
         } catch (MiniGameControlException ex) {
             this.console.println(ex.getMessage());
+            return false;
         }
         
         switch (result) {
@@ -64,6 +70,32 @@ class MiniGameView extends View {
                         + "\n-----------------------------------------------------------------");
                 PiggysRevenge.getCurrentGame().getPlayer().setHasEaten(true);
                 return true;
+        }
+        Point playerLoc = PiggysRevenge.getCurrentGame().getPlayer().getCoordinates();
+        try {
+            MapControl.movePlayer(playerLoc,"");
+        } catch (MapControlException ex) {
+            this.console.println(ex.getMessage());
+        }
+        Point wolfLoc = PiggysRevenge.getCurrentGame().getWolf().getCoordinates();
+        if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes() != null) {
+            if (
+                "Sneakers".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes().getName())
+                && !PiggysRevenge.getCurrentGame().isWolfMovesThisTurn()
+               ) {
+                this.console.println("You're Wearing Sneakers --> The wolf didn't move this turn.");
+            } else {
+                this.console.println("The Wolf moved.");
+                MapControl.moveWolf(wolfLoc);                
+            }
+        } else {
+                this.console.println("The Wolf moved.");
+                MapControl.moveWolf(wolfLoc);                
+        }
+        //check for wolf-player collision
+        if (playerLoc.x == wolfLoc.x && playerLoc.y == wolfLoc.y) {
+            WolfView wolfView = new WolfView();
+            wolfView.display();
         }
         return false;  
     }
