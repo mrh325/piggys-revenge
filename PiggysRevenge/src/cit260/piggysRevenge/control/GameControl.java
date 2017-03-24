@@ -241,7 +241,7 @@ public class GameControl {
             output.writeObject(currentGame);
         }
         catch(Exception e){
-                throw new GameControlException(e.getMessage());
+                throw new GameControlException("Save Game Error " + e.getMessage());
         }
     }
 
@@ -254,7 +254,7 @@ public class GameControl {
             game = (Game) input.readObject();
         }
         catch(Exception e) {
-            throw new GameControlException(e.getMessage());
+            throw new GameControlException("Load Game Error " + e.getMessage());
         }
         PiggysRevenge.setCurrentGame(game);
         
