@@ -15,12 +15,11 @@ import piggysrevenge.PiggysRevenge;
 public class MainMenuView extends View{
     //private String menu;
     private final String menuCurrentGame;
+    private final String menuNewGame;
     private GameMenuView gameMenu;
 
     public MainMenuView() {
         //Game currentGame = PiggysRevenge.getCurrentGame();
-        
-            //main menu before starting a new game
             super("\n"
                 + "\n======================================="
                 + "\n| Main Menu                           |"
@@ -30,6 +29,17 @@ public class MainMenuView extends View{
                 + "\nH - Get (H)elp"
                 + "\nQ - (Q)uit"
                 + "\n=======================================");
+            
+            //main menu before starting a new game
+            this.menuNewGame ="\n"
+                + "\n======================================="
+                + "\n| Main Menu                           |"
+                + "\n======================================="
+                + "\nN - Start (N)ew game"
+                + "\nL - (L)oad saved game"
+                + "\nH - Get (H)elp"
+                + "\nQ - (Q)uit"
+                + "\n=======================================";
             //main menu after starting a new game
             this.menuCurrentGame = "\n"
                 + "\n======================================="
@@ -178,27 +188,38 @@ public class MainMenuView extends View{
     }
 
     private void startSavedGame() {
-        this.console.println("\nEnter the name of the file with the saved game.");
+        this.displayMessage = "\nEnter the name of the file with the saved game.";
         
         String filePath = this.getInput();
         
         try {
             GameControl.getSavedGame(filePath);
+            this.displayMessage = this.menuCurrentGame;
+            GameMenuView gameMenu = new GameMenuView();
+            this.gameMenu = gameMenu;
+            
         }catch (Exception ex) {
             ErrorView.display("MainMenuView", ex.getMessage());
+            this.displayMessage = this.menuNewGame;
         }
-        GameMenuView gameMenu = new GameMenuView();
+        
+        
+        
     }
 
     private void saveGame() {
-        this.console.println("\n\nEnter the name of the file to be saved.");
+        
+        this.displayMessage = "\n\nEnter the name of the file to be saved.";
+        
         String filePath = this.getInput();
         
         try {
             GameControl.saveGame(PiggysRevenge.getCurrentGame(), filePath);
+            this.console.println("\nYour game was successfully saved to " + filePath);
         } catch (Exception ex) {
             ErrorView.display("MainMenuView", ex.getMessage());
         }
+        this.displayMessage = this.menuCurrentGame;
     }
 
     private void displayHelpMenu() {

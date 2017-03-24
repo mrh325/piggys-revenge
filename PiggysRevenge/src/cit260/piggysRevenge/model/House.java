@@ -5,11 +5,13 @@
  */
 package cit260.piggysRevenge.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author natebolton
  */
-public class House {
+public class House implements Serializable {
     
     private int length;
     private int width;
