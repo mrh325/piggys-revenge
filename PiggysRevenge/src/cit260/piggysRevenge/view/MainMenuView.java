@@ -102,7 +102,7 @@ public class MainMenuView extends View{
                 }
                 break;
             case "L":
-                this.loadSavedGame();
+                this.startSavedGame();
                 break;
             case "S":
                 try {
@@ -177,12 +177,28 @@ public class MainMenuView extends View{
         this.gameMenu.display();
     }
 
-    private void loadSavedGame() {
-        this.console.println("\n*** loadSavedGame() function called ***");
+    private void startSavedGame() {
+        this.console.println("\nEnter the name of the file with the saved game.");
+        
+        String filePath = this.getInput();
+        
+        try {
+            GameControl.getSavedGame(filePath);
+        }catch (Exception ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
+        GameMenuView gameMenu = new GameMenuView();
     }
 
     private void saveGame() {
-        this.console.println("\n*** saveGame() function called ***");
+        this.console.println("\n\nEnter the name of the file to be saved.");
+        String filePath = this.getInput();
+        
+        try {
+            GameControl.saveGame(PiggysRevenge.getCurrentGame(), filePath);
+        } catch (Exception ex) {
+            ErrorView.display("MainMenuView", ex.getMessage());
+        }
     }
 
     private void displayHelpMenu() {

@@ -18,7 +18,12 @@ import cit260.piggysRevenge.model.Scene;
 import cit260.piggysRevenge.model.Wolf;
 import cit260.piggysRevenge.view.ErrorView;
 import java.awt.Point;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import static java.lang.Math.round;
 import java.util.Random;
 import piggysrevenge.PiggysRevenge;
@@ -225,6 +230,33 @@ public class GameControl {
 //                }
             }
         }
+        
+    }
+
+    public static void saveGame(Game currentGame, String filePath) throws GameControlException, FileNotFoundException, IOException {
+        
+        try ( FileOutputStream fops = new FileOutputStream(filePath)) {
+            ObjectOutputStream output = new ObjectOutputStream(fops);
+            
+            output.writeObject(currentGame);
+        }
+        catch(Exception e){
+                throw new GameControlException(e.getMessage());
+        }
+    }
+
+    public static void getSavedGame(String filePath) throws GameControlException {
+        Game game = null;
+        
+        try( FileInputStream fips = new FileInputStream(filePath)) {
+            ObjectInputStream input = new ObjectInputStream(fips);
+            
+            game = (Game) input.readObject();
+        }
+        catch(Exception e) {
+            throw new GameControlException(e.getMessage());
+        }
+        PiggysRevenge.setCurrentGame(game);
         
     }
 
