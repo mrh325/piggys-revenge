@@ -7,6 +7,7 @@ package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.model.Location;
 import java.awt.Point;
+import java.io.IOException;
 import java.io.PrintWriter;
 import piggysrevenge.PiggysRevenge;
 
@@ -77,7 +78,7 @@ class MapReportView extends View {
                     out.printf("%n%102s", "------------------------------------------------------------------------------------------------------");
                 }
             }
-        } catch (Exception e) {
+        } catch (IOException e) {
             ErrorView.display("in saveMapReportToFile - ", e.getMessage());
         }
     }
