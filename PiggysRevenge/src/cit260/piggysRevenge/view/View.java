@@ -71,7 +71,7 @@ public abstract class View implements ViewInterface {
                 break;
             }
         } catch (IOException ex) {
-             this.console.println(ex.getMessage());
+             this.console.println("ERROR in View - " + ex.getMessage());
         }
         return value;
     }

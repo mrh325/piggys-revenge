@@ -152,16 +152,6 @@ public class MainMenuView extends View{
             }
         }
         GameControl.createNewGame(PiggysRevenge.getPlayer());
-//        GameControl.createNewHouse(PiggysRevenge.getPlayer());
-        //ASK PLAYER FOR HOUSE INPUTS HERE (FUTURE IMPLEMENTATION)
-//        this.displayMessage = "\n-----------------------------------------------------------------"
-//                + "\nPlease enter the size of house you plan to build.  The size of your house"
-//                + "\ndetermines the number of bricks you must collect and adds to your"
-//                + "score at the end of the game."
-//                + "\n-----------------------------------------------------------------";
-//        HouseSizeView houseSizeView = new HouseSizeView();
-//        houseSizeView.display();
-
         
         this.displayMessage = this.menuCurrentGame; //change menu to include current game options
         boolean done = false;

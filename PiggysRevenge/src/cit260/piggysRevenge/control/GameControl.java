@@ -144,7 +144,8 @@ public class GameControl {
             //set player's starting coordinates
             Point point = new Point(map.getColumnCount()/2,map.getRowCount()/2);
             player.setCoordinates(point);
-            //this.console.println(player.toString());
+            //set start location visited to true
+            map.getLocations()[3][3].setVisited(Boolean.TRUE);
             
             game.setWolf(GameControl.createNewWolf(map));
 

@@ -30,6 +30,7 @@ public class GameMenuView extends View {
                 + "\nI - (I)nventory"
                 + "\nC - Show s(C)ore"
                 + "\nH - (H)igh Score list"
+                + "\nN - Print (N)ate's Map Report"
                 + "\nB - (B)ack to Main Menu"
                 + "\n=======================================");
     }
@@ -77,6 +78,9 @@ public class GameMenuView extends View {
                 break;
             case "H":
                 this.displayHighScores();
+                break;
+            case "N":
+                this.printMapReport();
                 break;
             case "B":
             case "Q":
@@ -156,5 +160,10 @@ public class GameMenuView extends View {
 //        MapControl.calcDistance(2, 125, 2, 3);
 //    }
 //
+
+    private void printMapReport() {
+        MapReportView mapReportView = new MapReportView();
+        mapReportView.display();
+    }
     
 }

@@ -53,143 +53,25 @@ class ScoreView extends View {
         } catch (GameControlException ex) {
             this.console.println(ex.getMessage());
         }
-        this.console.println("+" + (bricks*10) + " Points for building the house.");
-        this.console.println("-" + (turns*10) + " Points for the number of turns taken (" + turns + " turns).");
+        if (result>0) {
+            this.console.println("+" + (bricks*10) + " Points for building the house.");
+            this.console.println("-" + (turns*10) + " Points for the number of turns taken (" + turns + " turns).");
+        } else {
+            this.console.println("You get no points if you do not build a house,"
+                    + "\neat the roast beef, or kill the wolf.");
+        }
         if (hasEaten) {
             this.console.println("+1000 Points for eating roast beef.");    
         }
         if (wolfKilled) {
             this.console.println("+2000 Points for killing the wolf.");    
         }
-        this.console.println("\nYOUR FINAL SCORE IS:  " + result);
-//        if (result == -1) {
-//            this.console.println("\n-----------------------------------------------------------------"
-//                    + "\nERROR: You may not have less than 0 bricks"
-//                    + "\n-----------------------------------------------------------------");
-//        } else if (result == -2) {
-//            this.console.println("\n-----------------------------------------------------------------"
-//                    + "\nERROR: Turns can not be less than 1"
-//                    + "\n-----------------------------------------------------------------");
-//        } else if (result == -3) {
-//            this.console.println("\n-----------------------------------------------------------------"
-//                    + "\nERROR: The wolf can't be killed if the player has not eaten"
-//                    + "\n-----------------------------------------------------------------");
-//        } else {
-//            this.console.println("\n-----------------------------------------------------------------"
-//                    + "\nYour score is: "
-//                    + String.valueOf(result)
-//                    + "."
-//                    + "\nTurns:  " + turns
-//                    + "\n-----------------------------------------------------------------");
-//        }
-//        
+        this.console.println("\nYOUR SCORE IS:  " + result);
      
     }
     
     @Override
     public boolean doAction(String value) {
-//        // this.console.println("\n*** doAction() function called ***");
-//        //split whitespace separated values
-//        String[] parts = value.split("\\s+");
-//        if (parts.length != 4) {
-//            this.console.println("\n-----------------------------------------------------------------"
-//                        + "\nERROR:  You must enter 4 space-separated values"
-//                        + "\n-----------------------------------------------------------------");
-//            return false;
-//        }
-//
-//        String input1 = parts[0].toUpperCase();
-//        String input2 = parts[1].toUpperCase();
-//        String input3 = parts[2].toUpperCase();
-//        String input4 = parts[3].toUpperCase();
-//
-//        
-//        if ("Q".equals(input1) || "Q".equals(input2) || "Q".equals(input3) || "Q".equals(input4)) {
-//            return true;
-//        }
-//        int bricks;
-//        int turns;
-//        boolean hasEaten;
-//        boolean wolfKilled;
-//        try {
-//            bricks = Integer.parseInt(input1);
-//            turns = Integer.parseInt(input2);
-//        } catch (NumberFormatException e) {
-//            this.console.println("\n-----------------------------------------------------------------"
-//                        + "\nERROR:  Number of Bricks and Turns must be whole numbers"
-//                        + "\n-----------------------------------------------------------------");
-//            return false;
-//        }
-//        if (!("Y".equals(input3) || "N".equals(input3))) {
-//            this.console.println("\n-----------------------------------------------------------------"
-//                    + "\nERROR: You must enter Y or N for the Has Eaten question"
-//                    + "\n-----------------------------------------------------------------");
-//            return false;
-//        } else if (!("Y".equals(input4) || "N".equals(input4))) {
-//            this.console.println("\n-----------------------------------------------------------------"
-//                    + "\nERROR: You must enter Y or N for the Wolf Killed question"
-//                    + "\n-----------------------------------------------------------------");
-//            return false;
-//        } else {
-//            if (null == input3) {
-//                this.console.println("\n-----------------------------------------------------------------"
-//                        + "\nERROR: Null Error"
-//                        + "\n-----------------------------------------------------------------");                
-//                return false;
-//            } else switch (input3) {
-//                case "Y":
-//                    hasEaten = true;
-//                    break;
-//                case "N":
-//                    hasEaten = false;
-//                    break;
-//                default:
-//                    this.console.println("\n-----------------------------------------------------------------"
-//                            + "\nERROR: Unkown Error"
-//                            + "\n-----------------------------------------------------------------");
-//                    return false;
-//            }
-//            if (null == input4) {
-//                this.console.println("\n-----------------------------------------------------------------"
-//                        + "\nERROR: Null Error"
-//                        + "\n-----------------------------------------------------------------");                
-//                return false;
-//            } else switch (input4) {
-//                case "Y":
-//                    wolfKilled = true;
-//                    break;
-//                case "N":
-//                    wolfKilled = false;
-//                    break;
-//                default:
-//                    this.console.println("\n-----------------------------------------------------------------"
-//                            + "\nERROR: Unkown Error"
-//                            + "\n-----------------------------------------------------------------");
-//                    return false;
-//            }
-//            
-//            int result = GameControl.calcScore(bricks, turns, hasEaten, wolfKilled);
-//            if (result == -1) {
-//                this.console.println("\n-----------------------------------------------------------------"
-//                        + "\nERROR: You may not have less than 0 bricks"
-//                        + "\n-----------------------------------------------------------------");
-//            } else if (result == -2) {
-//                this.console.println("\n-----------------------------------------------------------------"
-//                        + "\nERROR: Turns can not be less than 1"
-//                        + "\n-----------------------------------------------------------------");
-//            } else if (result == -3) {
-//                this.console.println("\n-----------------------------------------------------------------"
-//                        + "\nERROR: The wolf can't be killed if the player has not eaten"
-//                        + "\n-----------------------------------------------------------------");
-//            } else {
-//                this.console.println("\n-----------------------------------------------------------------"
-//                        + "\nWith answers like those, Your score would be "
-//                        + String.valueOf(result)
-//                        + "."
-//                                + "\n-----------------------------------------------------------------");
-//                return true;
-//            }
-//        }
         return false;  
     }
     
