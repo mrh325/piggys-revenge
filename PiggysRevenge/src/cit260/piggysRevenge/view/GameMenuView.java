@@ -5,12 +5,17 @@
  */
 package cit260.piggysRevenge.view;
 
-import cit260.piggysRevenge.control.MapControl;
-import cit260.piggysRevenge.exceptions.MapControlException;
 import cit260.piggysRevenge.model.HighScore;
 import cit260.piggysRevenge.model.House;
+import cit260.piggysRevenge.model.Item;
 import java.awt.Point;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.lang.String;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -31,6 +36,7 @@ public class GameMenuView extends View {
                 + "\nC - Show s(C)ore"
                 + "\nH - (H)igh Score list"
                 + "\nN - Print (N)ate's Map Report"
+                + "\nP - (P)rint Mike's Inventory Report"
                 + "\nB - (B)ack to Main Menu"
                 + "\n=======================================");
     }
@@ -56,9 +62,15 @@ public class GameMenuView extends View {
             case "C":
                 this.displayScore();
                 break;
-//            case "P":
-//                this.displayProbability();
-//                break;
+            case "P":
+        {
+            try {
+                this.printInventoryReport();
+            } catch (FileNotFoundException ex) {
+                this.console.print(ex.getMessage());
+            }
+        }
+                break;
 //            case "L":
 //                try {
 //                    this.displayTestDistanceException();
@@ -151,6 +163,7 @@ public class GameMenuView extends View {
         highScoreView.display();
     }
 
+
 //    private void displayTestDistanceException() throws MapControlException {
 //        MapControl.calcDistance(-1, 4, 2, 3);
 //        
@@ -166,4 +179,53 @@ public class GameMenuView extends View {
         mapReportView.display();
     }
     
+
+    private void printInventoryReport() throws FileNotFoundException {
+        
+        this.displayMessage = "\n\nEnter the name of the file to be saved.";
+        
+        String outputLocation = this.getInput();
+        Item[][] inventory = PiggysRevenge.getCurrentGame().getBackpack().getItemList();
+        
+        try (PrintWriter out = new PrintWriter(outputLocation)) {
+            out.println("\n\n             Inventory Report             ");
+            out.printf("%n%-10s%20s%10s%10s", "Slot", "Description", "Name", "Item Type");
+            out.printf("%n%-10s%20s%10s%10s", "----", "-----------", "----", "---------");
+            
+            int i = 1;
+            for (Item[] inventory1 : inventory) {
+                for (Item inventory11 : inventory1) {
+                    if (inventory11 == null) {
+                        out.printf("%n%-10s%20s%10s%10s", i, "Empty", "Empty", "Empty", "Empty");
+                    }
+                    else {
+                    out.printf("%n%-10s%20s%10s%10s", i, inventory11.getDescription(), inventory11.getName(), inventory11.getItemType());
+                    }
+                    i++;
+                }
+            }
+            this.console.print("\nReport saved to "+ outputLocation + " successfully.");
+    }
+        catch (IOException ex) {
+                ErrorView.display("GameMenuView", ex.getMessage());
+        }
+        finally {
+            this.displayMessage = "\n"
+                + "\n======================================="
+                + "\n| Game Menu                           |"
+                + "\n======================================="
+                + "\nM - (M)ove"
+                + "\nS - (S)how Map"
+                + "\nD - Show all (D)istances"
+                + "\nI - (I)nventory"
+                + "\nC - Show s(C)ore"
+                + "\nH - (H)igh Score list"
+                + "\nN - Print (N)ate's Map Report"
+                + "\nP - (P)rint Mike's Inventory Report"
+                + "\nB - (B)ack to Main Menu"
+                + "\n=======================================";
+        }
+
+}
+
 }
