@@ -13,9 +13,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.lang.String;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -189,17 +186,17 @@ public class GameMenuView extends View {
         
         try (PrintWriter out = new PrintWriter(outputLocation)) {
             out.println("\n\n             Inventory Report             ");
-            out.printf("%n%-10s%20s%10s%10s", "Slot", "Description", "Name", "Item Type");
-            out.printf("%n%-10s%20s%10s%10s", "----", "-----------", "----", "---------");
+            out.printf("%n%-5s%-15s%-45s%-10s", "Slot", "Name", "Description", "Item Type");
+            out.printf("%n%-5s%-15s%-45s%-10s", "----", "----", "-----------", "---------");
             
             int i = 1;
             for (Item[] inventory1 : inventory) {
                 for (Item inventory11 : inventory1) {
                     if (inventory11 == null) {
-                        out.printf("%n%-10s%20s%10s%10s", i, "Empty", "Empty", "Empty", "Empty");
+                        out.printf("%n%-5s%-15s%-45s%-10s", i, "Empty", "Empty", "Empty", "Empty");
                     }
                     else {
-                    out.printf("%n%-10s%20s%10s%10s", i, inventory11.getDescription(), inventory11.getName(), inventory11.getItemType());
+                    out.printf("%n%-5s%-15s%-45s%-10s", i, inventory11.getName(), inventory11.getDescription(), inventory11.getItemType());
                     }
                     i++;
                 }
