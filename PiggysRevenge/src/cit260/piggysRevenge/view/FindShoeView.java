@@ -40,7 +40,7 @@ public class FindShoeView extends View {
                 + "\n"
                 + "\nCONGRATULATIONS!! You found "
                 + item.getName()
-                + "\n"
+                + "\nFunction:  "
                 + item.getDescription()
                 + "\n\n\nPlease choose from the following:"
                 + "\n======================================="

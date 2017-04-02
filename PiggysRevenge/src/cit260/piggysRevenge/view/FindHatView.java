@@ -43,7 +43,7 @@ public class FindHatView extends View {
                 + "\n"
                 + "\nCONGRATULATIONS!! You found the "
                 + item.getName()
-                + "\nwhich "
+                + "\nFunction:  "
                 + item.getDescription()
                 + "\n\n\nPlease choose from the following:"
                 + "\n======================================="
