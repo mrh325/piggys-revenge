@@ -6,7 +6,6 @@
 package cit260.piggysRevenge.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Objects;
 
 /**
@@ -25,13 +24,12 @@ public class Game implements Serializable{
     private Wolf wolf;
     private House house;
     private Backpack backpack;
-    private ArrayList<HighScore> highScores;
+    private HighScore[] highScores;
 
     public Game() {
         this.turns = 0;
         this.score = 0;
         this.wolfKilled = false;
-        this.highScores = new ArrayList<>();
         this.turnsRemaining = -1;
         this.wolfMovesThisTurn = true;
     }
@@ -120,13 +118,15 @@ public class Game implements Serializable{
         this.backpack = backpack;
     }
 
-    public ArrayList<HighScore> getHighScores() {
+    public HighScore[] getHighScores() {
         return highScores;
     }
 
-    public void setHighScores(ArrayList<HighScore> highScores) {
+    public void setHighScores(HighScore[] highScores) {
         this.highScores = highScores;
     }
+
+
 
     @Override
     public int hashCode() {

@@ -18,7 +18,7 @@ class EndGameView extends View {
         if (!PiggysRevenge.getCurrentGame().isWolfKilled() && PiggysRevenge.getCurrentGame().getPlayer().isHasEaten()) {
             this.console.println("\nAwww... you missed the wolf this time....");
         }
-        ScoreView scoreView = new ScoreView();
+        ScoreView scoreView = new ScoreView(true);
         scoreView.display();
         this.console.println("\nThank you for playing.  The game will now exit.");
         System.exit(0);

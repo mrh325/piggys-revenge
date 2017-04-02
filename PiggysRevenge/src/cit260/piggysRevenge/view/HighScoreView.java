@@ -8,7 +8,6 @@ package cit260.piggysRevenge.view;
 import cit260.piggysRevenge.control.GameControl;
 import cit260.piggysRevenge.exceptions.GameControlException;
 import cit260.piggysRevenge.model.HighScore;
-import java.util.ArrayList;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -16,47 +15,41 @@ import piggysrevenge.PiggysRevenge;
  * @author hales
  */
 public class HighScoreView extends View {
-         
-    
+
     @Override
     public void display() {
-            
-        ArrayList<HighScore> highScores = PiggysRevenge.getCurrentGame().getHighScores();
 
-        for (int n = 0; n < highScores.size(); n++) {
-            for (int m = 0; m < highScores.size() - 1 - n; m++) {
-                if (highScores.get(m).getScore() < highScores.get(m + 1).getScore()) {
-                    HighScore swapHighScore = highScores.get(m);
-                    highScores.set(m,highScores.get(m + 1));
-                    highScores.set(m + 1,swapHighScore);
+        HighScore[] highScores = PiggysRevenge.getCurrentGame().getHighScores();
+
+            this.console.println("\n-----------------------------------------------"
+                    + "\n                 HIGH SCORES                   "
+                    + "\n-----------------------------------------------"
+                    + "\n");
+            this.console.printf("%n%-7s%15s%10s%20s", "Rank", "Name", "Score", "House Size");
+            this.console.printf("%n%-7s%15s%10s%20s", "----", "----", "-----", "----------");
+            this.console.println("\n");
+
+            int index = 0;
+            for (HighScore hs : highScores) {
+                if (hs != null && index < 10) {
+
+                    try {
+                        if (hs.getHouse().isCompleted()) {
+                            this.console.printf("%n%-7s%15s%10s%20d", Integer.toString(index + 1), hs.getName(), hs.getScore(),
+                                    GameControl.calcNumberOfBricks(hs.getHouse().getLength(),
+                                            hs.getHouse().getWidth(), hs.getHouse().getHeight(),
+                                            hs.getHouse().getStories()));
+                        } else {
+                            this.console.printf("%n%-7s%15s%10s%20s", Integer.toString(index + 1), hs.getName(), hs.getScore(), "Not built");
+                        }
+                    } catch (GameControlException ex) {
+                        this.console.println(ex.getMessage());
+                    }
                 }
+                index++;
             }
-        }
         
-          this.console.println("\n-------------------------------------------"
-                + "\n               HIGH SCORES                 "
-                + "\n-------------------------------------------"
-                + "\n"
-                + "\nName           Score             House Size"
-                + "\n----           -----             ----------"
-                + "\n");
-          
-       int index = 0;
-       for (HighScore hs : highScores) {
 
-            try {
-                this.console.println(hs.getName() + "        " + hs.getScore() + "            "
-                        + GameControl.calcNumberOfBricks(hs.getHouse().getLength(),
-                                hs.getHouse().getWidth(), hs.getHouse().getHeight(),
-                                hs.getHouse().getStories()));
-            } catch (GameControlException ex) {
-                this.console.println(ex.getMessage());
-            }
-
-
-
-           index++;
-       }
     }
 
     @Override
@@ -65,4 +58,3 @@ public class HighScoreView extends View {
     }
 
 }
-

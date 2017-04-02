@@ -6,13 +6,14 @@
 package cit260.piggysRevenge.view;
 
 import cit260.piggysRevenge.model.HighScore;
-import cit260.piggysRevenge.model.House;
 import cit260.piggysRevenge.model.Item;
 import java.awt.Point;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import piggysrevenge.PiggysRevenge;
 
 /**
@@ -31,9 +32,9 @@ public class GameMenuView extends View {
                 + "\nD - Show all (D)istances"
                 + "\nI - (I)nventory"
                 + "\nC - Show s(C)ore"
-                + "\nH - (H)igh Score list"
                 + "\nN - Print (N)ate's Map Report"
                 + "\nP - (P)rint Mike's Inventory Report"
+                + "\nH - (H)igh Score List"
                 + "\nB - (B)ack to Main Menu"
                 + "\n=======================================");
     }
@@ -67,29 +68,15 @@ public class GameMenuView extends View {
                 this.console.print(ex.getMessage());
             }
         }
-                break;
-//            case "L":
-//                try {
-//                    this.displayTestDistanceException();
-//                } catch (MapControlException ex) {
-//                    this.console.println(ex.getMessage());
-//                }
-//                break;
-//            case "Z":
-//                try {
-//                    this.displayTestDistanceException2();
-//                } catch (MapControlException ex) {
-//                    this.console.println(ex.getMessage());
-//                }
-//                break;
+        break;
             case "U":
                 this.displayHouseMenu();
                 break;
-            case "H":
-                this.displayHighScores();
-                break;
             case "N":
                 this.printMapReport();
+                break;
+            case "H":
+                this.displayHighScores();
                 break;
             case "B":
             case "Q":
@@ -131,46 +118,43 @@ public class GameMenuView extends View {
 
     private void displayScore() {
         //this.console.println("\n*** displayScore() function called ***");
-        ScoreView scoreView = new ScoreView();
+        ScoreView scoreView = new ScoreView(false);
         scoreView.display();
     }
 
-//    private void displayProbability() {
-//        //this.console.println("\n*** displayProbability() function called ***");
-//        ProbabilityView probabilityView = new ProbabilityView();
-//        probabilityView.display();
-//    }
-//
+
     private void displayHouseMenu() {
         // this.console.println("\n*** displayHouseMenu() function called ***");
         HouseSizeView houseSize = new HouseSizeView();
         houseSize.display();
     }
 
-    private void displayHighScores() {
+        private void displayHighScores() {
 
-        ArrayList<HighScore> highScores = PiggysRevenge.getCurrentGame().getHighScores();
-        highScores.add(new HighScore("Player1", 900, new House(8,8,8,2)));
-        highScores.add(new HighScore("Player2", 78300, new House(19,13,8,3)));
-        highScores.add(new HighScore("Player3", 1600, new House(7,8,9,1)));
+            HighScore[] highScores;
+
+            File varTmpDir = new File("highscores.txt");
+
+            if (varTmpDir.exists()) {
+
+                try (FileInputStream fips = new FileInputStream("highscores.txt")) {
+                    ObjectInputStream input = new ObjectInputStream(fips);
+
+                    highScores = (HighScore[]) input.readObject();
+                    PiggysRevenge.getCurrentGame().setHighScores(highScores);
+                    HighScoreView highScoreView = new HighScoreView();
+                    highScoreView.display();
+                } catch (Exception e) {
+                    ErrorView.display("GameMenuView", e.getMessage());
+                }
+
+            }
+            else {
+                this.console.println("There are no high scores to display.");
+            }
         
-        PiggysRevenge.getCurrentGame().setHighScores(highScores);
-        
-        HighScoreView highScoreView = new HighScoreView();
-        highScoreView.display();
+
     }
-
-
-//    private void displayTestDistanceException() throws MapControlException {
-//        MapControl.calcDistance(-1, 4, 2, 3);
-//        
-//    }
-//
-//    private void displayTestDistanceException2() throws MapControlException {
-//        MapControl.calcDistance(2, 125, 2, 3);
-//    }
-//
-
     private void printMapReport() {
         MapReportView mapReportView = new MapReportView();
         mapReportView.display();

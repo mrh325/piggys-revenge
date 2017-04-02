@@ -56,43 +56,6 @@ public class MainMenuView extends View{
     
     
 
-//    public void displayMainMenuView() {
-//        // this.console.println("\n*** displayMainMenuView() function called ***");
-//        boolean done = false;
-//        do {
-//            this.console.println(this.menu);
-//            String menuOption = this.getMenuOption();
-//            if (menuOption.toUpperCase().equals("Q"))
-//                return;
-//            
-//            done = this.doAction(menuOption);
-//            
-//        } while (!done);
-//        
-//     
-//    }
-//
-//    private String getMenuOption() {
-//        // this.console.println("\n*** getMenuOption() function called ***");
-//        Scanner keyboard = new Scanner(System.in); 
-//        String value = "";
-//        boolean valid = false;
-//
-//        while (!valid) {
-//            this.console.println("\nPlease choose from the options above: ");
-//
-//            value = keyboard.nextLine();
-//            value = value.trim();
-//
-//            if (value.length() < 1 || value.length() > 1) {
-//                this.console.println("\nInvalid value: Please re-enter");
-//                continue;
-//}
-//        break;
-//}
-//    return value;
-//    }
-
     @Override
     public boolean doAction(String value) {
         // this.console.println("\n*** doAction() function called ***");
@@ -220,5 +183,6 @@ public class MainMenuView extends View{
         
     }
     
+
 }
 
