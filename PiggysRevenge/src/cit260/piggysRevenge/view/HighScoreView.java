@@ -21,9 +21,9 @@ public class HighScoreView extends View {
 
         HighScore[] highScores = PiggysRevenge.getCurrentGame().getHighScores();
 
-            this.console.println("\n-----------------------------------------------"
-                    + "\n                 HIGH SCORES                   "
-                    + "\n-----------------------------------------------"
+            this.console.println("\n-----------------------------------------------------"
+                    + "\n                    HIGH SCORES                      "
+                    + "\n-----------------------------------------------------"
                     + "\n");
             this.console.printf("%n%-7s%15s%10s%20s", "Rank", "Name", "Score", "House Size");
             this.console.printf("%n%-7s%15s%10s%20s", "----", "----", "-----", "----------");
