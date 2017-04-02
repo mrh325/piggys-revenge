@@ -116,7 +116,7 @@ class ScoreView extends View {
 
                     highScores = new HighScore[11];
                         for (int i = 0; i < highScores.length; i++){
-                        highScores[i] = new HighScore("Blank", 0, new House(5, 5, 6, 1));
+                        highScores[i] = new HighScore("---", 0, new House(5, 5, 6, 1));
                         
                     }
 
