@@ -74,7 +74,7 @@ class DistanceView extends View {
         //this.console.println(Arrays.toString(distances));
         //bubble sort all three arrays (distance, points, names)
         if (PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes() != null) {            
-            if ("Alien Boots from Outer Space".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes().getName())) {
+            if ("Alien Boots".equals(PiggysRevenge.getCurrentGame().getPlayer().getCurrentShoes().getName())) {
                 for (int n = 0; n < distances.length+1; n++) {
                     for (int m = 0; m < 5 - n; m++) {
                         if (distances[m] > distances[m + 1]) {
