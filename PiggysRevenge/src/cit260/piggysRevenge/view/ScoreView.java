@@ -77,21 +77,23 @@ class ScoreView extends View {
         }
         this.console.println("\nYOUR SCORE IS:  " + result);
 
-        if (gameOver == true) {
+        if (gameOver) {
             HighScore[] highScores;
 
             File varTmpDir = new File("highscores.txt");
 
             if (varTmpDir.exists()) {
-                try (FileInputStream fips = new FileInputStream("highscores.txt")) {
-                    ObjectInputStream input = new ObjectInputStream(fips);
+                try (FileInputStream fips = new FileInputStream("highscores.txt");
+                        ObjectInputStream input = new ObjectInputStream(fips);) {
+                    
 
                     highScores = (HighScore[]) input.readObject();
                     highScores[10] = new HighScore(game.getPlayer().getName(), result, house);
 
                     for (int n = 0; n < highScores.length; n++) {
                         for (int m = 0; m < highScores.length - 1 - n; m++) {
-                            if (highScores[m].getScore() < highScores[m + 1].getScore()) {
+                            if (highScores[m].getScore() < highScores[m + 1].getScore()
+                                    || "---".equals(highScores[m].getName())) {
                                 HighScore swapHighScore = highScores[m];
                                 highScores[m] = highScores[m + 1];
                                 highScores[m + 1] = swapHighScore;
@@ -99,9 +101,11 @@ class ScoreView extends View {
                         }
                     }
 
-                    try (FileOutputStream fops = new FileOutputStream("highscores.txt")) {
-                        ObjectOutputStream output = new ObjectOutputStream(fops);
+                    try (FileOutputStream fops = new FileOutputStream("highscores.txt");
+                            ObjectOutputStream output = new ObjectOutputStream(fops);) {
+                        
                         output.writeObject(highScores);
+                        this.console.println("Score saved successfully");
                         
                     } catch (Exception e) {
                         ErrorView.display("ScoreView", e.getMessage());
@@ -111,8 +115,9 @@ class ScoreView extends View {
                 }
 
             } else {
-                try (FileOutputStream fops = new FileOutputStream("highscores.txt")) {
-                    ObjectOutputStream output = new ObjectOutputStream(fops);
+                try (FileOutputStream fops = new FileOutputStream("highscores.txt");
+                        ObjectOutputStream output = new ObjectOutputStream(fops);) {
+                    
 
                     highScores = new HighScore[11];
                         for (int i = 0; i < highScores.length; i++){
@@ -122,7 +127,7 @@ class ScoreView extends View {
 
                     highScores[0] = new HighScore(game.getPlayer().getName(), result, house);
                     output.writeObject(highScores);
-                    
+                    this.console.println("New highscore file created.  Score saved successfully");
                 } catch (Exception e) {
                     ErrorView.display("ScoreView", e.getMessage());
                 }
